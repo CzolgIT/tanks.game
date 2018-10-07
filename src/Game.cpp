@@ -24,7 +24,7 @@ void Game::CreateWindow(int width, int height){
     screenSurface = SDL_GetWindowSurface( window );
 
     //Fill the surface white
-    SDL_FillRect( screenSurface, NULL, SDL_MapRGB( screenSurface->format, 0x1F, 0x22, 0xFB ) );
+    SDL_FillRect( screenSurface, NULL, SDL_MapRGB( screenSurface->format, 0x1F, 0x72, 0xFB ) );
 
     //Update the surface
     SDL_UpdateWindowSurface( window );
