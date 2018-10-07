@@ -29,7 +29,7 @@ void Game::CreateWindow(int width, int height){
     //Update the surface
     SDL_UpdateWindowSurface( window );
 
-    //Wait two seconds
+    //Wait twenty seconds
     SDL_Delay( 20000 );
   }
 }

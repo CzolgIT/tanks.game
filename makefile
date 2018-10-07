@@ -1,4 +1,4 @@
-EXE = Tanks
+EXE = Tanks.app
 SRC_DIR = src
 OBJ_DIR = obj
 INC_DIR = include
