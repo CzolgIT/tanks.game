@@ -18,9 +18,12 @@ C:\tools\mingw64
 ### Linux
 Simply enter the project folder and type
 ```
-make
+make SYSTEM=linux
 ```
-(arguments tbd)
 
 ### Windows
-tbd
+CLI
+```
+make
+```
+If you're Andrzej and using jakieś gówno for building project i dont know what to do
