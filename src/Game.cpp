@@ -1,4 +1,4 @@
-#include "Game.h"
+#include "../include/Game.h"
 
 bool Game::Initialize()
 {
@@ -30,6 +30,6 @@ void Game::CreateWindow(int width, int height){
     SDL_UpdateWindowSurface( window );
 
     //Wait two seconds
-    SDL_Delay( 2000 );
+    SDL_Delay( 20000 );
   }
 }
