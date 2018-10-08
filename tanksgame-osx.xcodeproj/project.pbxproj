@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FEACF24A216BD906001C388A /* texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FEACF249216BD906001C388A /* texture.cpp */; };
 		FED1BCBB216BC39800D91B43 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FED1BCB9216BC39800D91B43 /* Game.cpp */; };
 		FED1BCBC216BC39800D91B43 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FED1BCBA216BC39800D91B43 /* main.cpp */; };
 		FEF309DE216BB8420030398A /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEF309DB216BB8420030398A /* SDL2.framework */; };
@@ -27,6 +28,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		FEACF249216BD906001C388A /* texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = texture.cpp; sourceTree = "<group>"; };
+		FEACF24B216BD90C001C388A /* texture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = texture.h; sourceTree = "<group>"; };
 		FED1BCB9216BC39800D91B43 /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
 		FED1BCBA216BC39800D91B43 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		FED1BCC6216BC4DD00D91B43 /* ECS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECS.h; sourceTree = "<group>"; };
@@ -62,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				FED1BCB9216BC39800D91B43 /* Game.cpp */,
+				FEACF249216BD906001C388A /* texture.cpp */,
 				FED1BCBA216BC39800D91B43 /* main.cpp */,
 			);
 			path = src;
@@ -71,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				FED1BCC6216BC4DD00D91B43 /* ECS.h */,
+				FEACF24B216BD90C001C388A /* texture.h */,
 				FED1BCC7216BC4DD00D91B43 /* Game.h */,
 			);
 			path = include;
@@ -175,6 +180,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEACF24A216BD906001C388A /* texture.cpp in Sources */,
 				FED1BCBC216BC39800D91B43 /* main.cpp in Sources */,
 				FED1BCBB216BC39800D91B43 /* Game.cpp in Sources */,
 			);
