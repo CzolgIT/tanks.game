@@ -7,6 +7,8 @@ Those packages have to be installed
 ```
 libsdl2-dev
 libsdl2-net-dev
+libsdl2-image-2.0-0
+libsdl2-image-dev
 ```
 ### Windows
 make sure that your mingw64 libraries are installed in

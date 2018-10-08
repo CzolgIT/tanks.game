@@ -1,8 +1,8 @@
 #include <iostream>
 #include <string>
 #include <SDL2/SDL.h>
-#include <SDL2_image/SDL_image.h>
-#include <SDL2_net/SDL_net.h>
+#include <SDL2/SDL_image.h>
+#include <SDL2/SDL_net.h>
 #include "ECS.h"
 #include "Game.h"
 #include "Texture.h"

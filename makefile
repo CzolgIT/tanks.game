@@ -5,9 +5,9 @@ INC_DIR = include
 SYSTEM = windows
 
 ifeq ($(SYSTEM),linux)
-LIBS = -lSDL2
+LIBS = -lSDL2 -lSDL2_image -lSDL2_net
 else
-LIBS = -lmingw32 -lSDL2main -lSDL2
+LIBS = -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_net
 endif
 
 SDL_INCLUDE_DIR = C:\tools\mingw64\include
