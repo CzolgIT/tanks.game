@@ -6,38 +6,32 @@
 
 int main(int argc, char * argv[])
 {
-    Game * game = new Game;
-    if (game->Initialize())
-        game->CreateWindow(600, 400);
-    else
-        std::cout << "MEH\n" ;
+    Game game;
+    if (game.Initialize())
+        game.CreateWindow(600, 400);
     
     
-    bool quit = false; //Main loop flag
-    SDL_Event event; //Event handler
-    
-    //While application is running
-    while( !quit )
+    while( game.isRunning )
     {
         //Handle events on queue
-        while( SDL_PollEvent( &event ) != 0 )
+        while( SDL_PollEvent( &game.eventhandler ) != 0 )
         {
             //User requests quit
-            if( event.type == SDL_QUIT )
+            if( game.eventhandler.type == SDL_QUIT )
             {
-                quit = true;
+                game.isRunning = false;
             }
         }
         //Clear screen
-        SDL_SetRenderDrawColor( game->renderer, 0xFF, 0xFF, 0xFF, 0xFF );
-        SDL_RenderClear( game->renderer );
+        SDL_SetRenderDrawColor( game.renderer, 0xFF, 0xFF, 0xFF, 0xFF );
+        SDL_RenderClear( game.renderer );
         
         
         // HERE WE ARE DRAWING THINGS TO SCREEN
         
 
         //Update screen
-        SDL_RenderPresent( game->renderer );
+        SDL_RenderPresent( game.renderer );
     }
   return 0;
 }

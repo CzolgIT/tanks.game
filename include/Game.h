@@ -5,8 +5,12 @@ class Game {
 private:
   std::vector<GameObject*> gameObjects; // WHAT IT'S DOING ?
 public:
+    bool isRunning = false;
+    
     SDL_Window * window = NULL;
     SDL_Renderer * renderer = NULL;
+    SDL_Event eventhandler;
+    
     bool Initialize();
     bool CreateWindow(int width, int height,
                     int x = SDL_WINDOWPOS_UNDEFINED,

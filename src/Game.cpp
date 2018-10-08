@@ -53,5 +53,7 @@ bool Game::CreateWindow(int width, int height, int x, int y)
     }
     //Initialize renderer color
     SDL_SetRenderDrawColor( renderer, 0xFF, 0xFF, 0xFF, 0xFF );
+    
+    isRunning = true;
     return true;
 }
