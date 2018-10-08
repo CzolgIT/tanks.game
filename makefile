@@ -30,6 +30,7 @@ $(EXE) : $(OBJ)
 	$(CC) $^ $(IFLAGS) $(LFLAGS) $(LIBS) -o $@
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.cpp
+	@mkdir -p $(@D)
 	$(CC) -c $< $(IFLAGS) $(LFLAGS) $(LIBS) -o $@
 
 clean :
