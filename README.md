@@ -2,18 +2,18 @@
 
 ## Prerequirements
 
-###Linux
+### Linux
 Those packages have to be installed
 ```
 libsdl2-dev
 libsdl2-net-dev
 ```
-###Windows
+### Windows
 make sure that your mingw64 libraries are installed in
 ```
 C:\tools\mingw64
 ```
-###Mac OS
+### Mac OS
 Make sure you have correctly installed all frameworks:
 ```
 /Library/Frameworks/SDL2
