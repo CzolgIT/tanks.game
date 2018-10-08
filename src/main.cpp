@@ -22,7 +22,7 @@ int main(int argc, char * argv[])
                 game.isRunning = false;
             }
         }
-        //Clear screen
+        // Clear screen
         SDL_SetRenderDrawColor( game.renderer, 0xFF, 0xFF, 0xFF, 0xFF );
         SDL_RenderClear( game.renderer );
         
@@ -30,7 +30,7 @@ int main(int argc, char * argv[])
         // HERE WE ARE DRAWING THINGS TO SCREEN
         
 
-        //Update screen
+        // Update screen
         SDL_RenderPresent( game.renderer );
     }
   return 0;
