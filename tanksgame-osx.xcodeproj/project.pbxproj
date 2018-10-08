@@ -53,14 +53,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		FED1BCB8216BC37B00D91B43 /* src */ = {
+		FED1BCBD216BC44300D91B43 /* src */ = {
 			isa = PBXGroup;
 			children = (
 				FED1BCB9216BC39800D91B43 /* Game.cpp */,
 				FED1BCBA216BC39800D91B43 /* main.cpp */,
 			);
-			name = src;
-			path = "New Group";
+			path = src;
 			sourceTree = "<group>";
 		};
 		FEF309BF216BB2C60030398A = {
@@ -69,8 +68,8 @@
 				FEF309D6216BB48C0030398A /* img */,
 				FEF309D2216BB48C0030398A /* include */,
 				FEF309D5216BB48C0030398A /* makefile */,
+				FED1BCBD216BC44300D91B43 /* src */,
 				FEF309D3216BB48C0030398A /* README.md */,
-				FED1BCB8216BC37B00D91B43 /* src */,
 				FEF309C9216BB2C60030398A /* Products */,
 				FEF309DA216BB8420030398A /* Frameworks */,
 			);
