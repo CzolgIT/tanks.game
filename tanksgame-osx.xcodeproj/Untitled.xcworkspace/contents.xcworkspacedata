@@ -4,12 +4,4 @@
    <FileRef
       location = "container:">
    </FileRef>
-   <Group
-      location = "container:"
-      name = "New Group">
-      <Group
-         location = "container:"
-         name = "New Group">
-      </Group>
-   </Group>
 </Workspace>
