@@ -29,7 +29,7 @@
 
 /* Begin PBXFileReference section */
 		FEACF249216BD906001C388A /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
-		FEACF24B216BD90C001C388A /* texture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = texture.h; sourceTree = "<group>"; };
+		FEACF24B216BD90C001C388A /* Texture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
 		FED1BCB9216BC39800D91B43 /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
 		FED1BCBA216BC39800D91B43 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		FED1BCC6216BC4DD00D91B43 /* ECS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECS.h; sourceTree = "<group>"; };
@@ -75,7 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				FED1BCC6216BC4DD00D91B43 /* ECS.h */,
-				FEACF24B216BD90C001C388A /* texture.h */,
+				FEACF24B216BD90C001C388A /* Texture.h */,
 				FED1BCC7216BC4DD00D91B43 /* Game.h */,
 			);
 			path = include;
