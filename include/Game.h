@@ -1,7 +1,5 @@
-#include <iostream>
-#include <SDL2/SDL.h>
-#include "ECS.h"
-
+#ifndef Game_h
+#define Game_h
 
 class Game {
 private:
@@ -14,7 +12,6 @@ public:
   void CreateWindow(int width, int height);
   void Start();
   void Update();
-
-
-
 };
+
+#endif

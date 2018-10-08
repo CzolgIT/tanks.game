@@ -1,5 +1,8 @@
 #include <vector>
 
+#ifndef ECS_h
+#define ECS_h
+
 class Component{
 private:
 
@@ -23,3 +26,5 @@ public:
   }
 
 };
+
+#endif

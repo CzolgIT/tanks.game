@@ -1,3 +1,6 @@
+#include <iostream>
+#include <SDL2/SDL.h>
+#include "ECS.h"
 #include "Game.h"
 
 
