@@ -1,8 +1,6 @@
 #ifndef Texture_h
 #define Texture_h
 
-// w tej klasie będą ładowane pliki do SDL_Texture poprzez SDL_Surface
-
 class Texture
 {
 public:

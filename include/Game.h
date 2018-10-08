@@ -3,15 +3,16 @@
 
 class Game {
 private:
-  int windowHeight, windowWidth;
-  SDL_Window * window = NULL;
-  SDL_Surface * screenSurface = NULL;
-  std::vector<GameObject*> gameObjects;
+  std::vector<GameObject*> gameObjects; // WHAT IT'S DOING ?
 public:
-  bool Initialize();
-  void CreateWindow(int width, int height);
-  void Start();
-  void Update();
+    SDL_Window * window = NULL;
+    SDL_Renderer * renderer = NULL;
+    bool Initialize();
+    bool CreateWindow(int width, int height,
+                    int x = SDL_WINDOWPOS_UNDEFINED,
+                    int y = SDL_WINDOWPOS_UNDEFINED);
+    //void Start();
+    //void Update();
 };
 
 #endif
