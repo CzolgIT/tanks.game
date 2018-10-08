@@ -26,4 +26,11 @@ CLI
 ```
 make
 ```
-If you're Andrzej and using jakieś gówno for building project i dont know what to do
+
+### Mac OS
+Simply clone this project to xcode.
+Make sure you have correctly  installed frameworks:
+
+ - SDL2
+ - SDL2_image
+ - SDL2_net
