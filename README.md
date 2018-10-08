@@ -29,7 +29,7 @@ make
 
 ### Mac OS
 Simply clone this project to xcode.
-Make sure you have correctly  installed frameworks:
+Make sure you have correctly installed frameworks:
 
  - SDL2
  - SDL2_image

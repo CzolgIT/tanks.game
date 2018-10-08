@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FEF309D7216BB48C0030398A /* makefile in Sources */ = {isa = PBXBuildFile; fileRef = FEF309D5216BB48C0030398A /* makefile */; };
+		FEE7B21C216BBC650029E79B /* src in Sources */ = {isa = PBXBuildFile; fileRef = FEF309D4216BB48C0030398A /* src */; };
+		FEF309DE216BB8420030398A /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEF309DB216BB8420030398A /* SDL2.framework */; };
+		FEF309DF216BB8420030398A /* SDL2_net.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEF309DC216BB8420030398A /* SDL2_net.framework */; };
+		FEF309E0216BB8420030398A /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEF309DD216BB8420030398A /* SDL2_image.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,6 +32,9 @@
 		FEF309D4216BB48C0030398A /* src */ = {isa = PBXFileReference; lastKnownFileType = folder; path = src; sourceTree = "<group>"; };
 		FEF309D5216BB48C0030398A /* makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = makefile; sourceTree = "<group>"; };
 		FEF309D6216BB48C0030398A /* img */ = {isa = PBXFileReference; lastKnownFileType = folder; path = img; sourceTree = "<group>"; };
+		FEF309DB216BB8420030398A /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
+		FEF309DC216BB8420030398A /* SDL2_net.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_net.framework; path = ../../../../Library/Frameworks/SDL2_net.framework; sourceTree = "<group>"; };
+		FEF309DD216BB8420030398A /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +42,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEF309DE216BB8420030398A /* SDL2.framework in Frameworks */,
+				FEF309DF216BB8420030398A /* SDL2_net.framework in Frameworks */,
+				FEF309E0216BB8420030398A /* SDL2_image.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,6 +60,7 @@
 				FEF309D3216BB48C0030398A /* README.md */,
 				FEF309D4216BB48C0030398A /* src */,
 				FEF309C9216BB2C60030398A /* Products */,
+				FEF309DA216BB8420030398A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,6 +70,16 @@
 				FEF309C8216BB2C60030398A /* tanksgame-osx */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		FEF309DA216BB8420030398A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FEF309DD216BB8420030398A /* SDL2_image.framework */,
+				FEF309DC216BB8420030398A /* SDL2_net.framework */,
+				FEF309DB216BB8420030398A /* SDL2.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,7 +138,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FEF309D7216BB48C0030398A /* makefile in Sources */,
+				FEE7B21C216BBC650029E79B /* src in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,7 +259,12 @@
 		FEF309D0216BB2C60030398A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -247,7 +272,12 @@
 		FEF309D1216BB2C60030398A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
