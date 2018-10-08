@@ -1,7 +1,5 @@
 #include "Game.h"
 
-int xd;
-
 
 int main(int argc, char * argv[])
 {
