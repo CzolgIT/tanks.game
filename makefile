@@ -6,6 +6,8 @@ SYSTEM = windows
 
 ifeq ($(SYSTEM),linux)
 LIBS = -lSDL2
+$(OBJ_DIR)/.:
+	mkdir -p $@
 else
 LIBS = -lmingw32 -lSDL2main -lSDL2
 endif
