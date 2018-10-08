@@ -2,6 +2,8 @@
 #include <SDL2/SDL.h>
 #include "ECS.h"
 #include "Game.h"
+#include "Texture.h"
+#include "Tank.h"
 
 
 int main(int argc, char * argv[])
