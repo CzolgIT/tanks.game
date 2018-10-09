@@ -8,12 +8,22 @@
 #endif
 
 #include "Sprite.h"
-#include "Texture.h"
+
+void Sprite::Start(){
+
+}
+
+void Sprite::Update(){
+
+
+}
 
 void Sprite::setTexture(Texture texture)
 {
     spriteTexture = texture;
 }
+
+
 
 void Sprite::setRect(int x, int y, int w, int h)
 {
@@ -26,7 +36,7 @@ void Sprite::setRect(int x, int y, int w, int h)
 void Sprite::draw(SDL_Renderer *renderer, int x, int y, int angle)
 {
     //angle not used for now
-    
-    
-    
+
+
+
 }

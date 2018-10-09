@@ -1,16 +1,4 @@
-#include <iostream>
-#include <string>
-#include <SDL2/SDL.h>
-#ifdef __APPLE__
-#include <SDL2_image/SDL_image.h>
-#include <SDL2_net/SDL_net.h>
-#else
-#include <SDL2/SDL_image.h>
-#include <SDL2/SDL_net.h>
-#endif
-#include "ECS.h"
 #include "Game.h"
-#include "Texture.h"
 
 bool Game::Initialize()
 {
@@ -22,6 +10,8 @@ bool Game::Initialize()
         return false;
     }
 
+
+    isRunning = true;
     //Initialize SDL_image library
     int imgFlags = IMG_INIT_PNG;
     if( !( IMG_Init( imgFlags ) & imgFlags ) )
@@ -30,6 +20,9 @@ bool Game::Initialize()
         printf("SDL_mage Error: %s\n",IMG_GetError());
         return false;
     }
+
+
+
     return true;
 }
 
@@ -52,8 +45,22 @@ bool Game::CreateWindow(int width, int height, int x, int y)
         return false;
     }
     //Initialize renderer color
-    SDL_SetRenderDrawColor( renderer, 0xFF, 0xFF, 0xFF, 0xFF );
-    
-    isRunning = true;
+
+
+
+    Tank * tank = new Tank();
+    tank->AddComponent<Sprite>();
+    SDL_RenderClear( renderer );
+    if (tank->hasComponent<Sprite>())
+    {
+      SDL_Rect fillRect = { 114, 111, 111, 112 };
+      SDL_SetRenderDrawColor( renderer, 0xFF, 0x00, 0x00, 0xFF );
+      SDL_RenderFillRect( renderer, &fillRect );
+
+    } else {
+      SDL_SetRenderDrawColor( renderer, 0xF2, 0xAF, 0x12, 0xFF );
+    }
+    SDL_RenderPresent(renderer);
+
     return true;
 }

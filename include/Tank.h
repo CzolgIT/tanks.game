@@ -1,12 +1,13 @@
+#include "ECS.h"
 #ifndef Tank_h
 #define Tank_h
 
-class Tank
+class Tank : public GameObject
 {
 public:
-    int a;
+
 private:
-    int b;
+
 };
 
 #endif

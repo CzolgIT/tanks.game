@@ -1,13 +1,13 @@
-EXE = Tanks.app
+EXE = Tanks
 SRC_DIR = src
 OBJ_DIR = obj
 INC_DIR = include
 SYSTEM = windows
 
 ifeq ($(SYSTEM),linux)
-LIBS = -lSDL2 -lSDL2_image -lSDL2_net
+LIBS = -lSDL2 -lSDL2_image -lSDL2_net -std=c++11
 else
-LIBS = -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_net
+LIBS = -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_net -std=c++11
 endif
 
 SDL_INCLUDE_DIR = C:\tools\mingw64\include
