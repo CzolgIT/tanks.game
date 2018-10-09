@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FE07BC99216CFCAE00FA94F3 /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FE07BC98216CFCAE00FA94F3 /* Sprite.cpp */; };
 		FEACF24A216BD906001C388A /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FEACF249216BD906001C388A /* Texture.cpp */; };
 		FEACF251216C03AB001C388A /* Tank.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FEACF250216C03AB001C388A /* Tank.cpp */; };
 		FED1BCBB216BC39800D91B43 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FED1BCB9216BC39800D91B43 /* Game.cpp */; };
@@ -29,6 +30,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		FE07BC97216CFCA100FA94F3 /* Sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sprite.h; sourceTree = "<group>"; };
+		FE07BC98216CFCAE00FA94F3 /* Sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite.cpp; sourceTree = "<group>"; };
 		FEACF249216BD906001C388A /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
 		FEACF24B216BD90C001C388A /* Texture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
 		FEACF24F216C03A1001C388A /* Tank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tank.h; sourceTree = "<group>"; };
@@ -69,6 +72,7 @@
 			children = (
 				FED1BCB9216BC39800D91B43 /* Game.cpp */,
 				FEACF249216BD906001C388A /* Texture.cpp */,
+				FE07BC98216CFCAE00FA94F3 /* Sprite.cpp */,
 				FEACF250216C03AB001C388A /* Tank.cpp */,
 				FED1BCBA216BC39800D91B43 /* main.cpp */,
 			);
@@ -80,6 +84,7 @@
 			children = (
 				FED1BCC6216BC4DD00D91B43 /* ECS.h */,
 				FEACF24B216BD90C001C388A /* Texture.h */,
+				FE07BC97216CFCA100FA94F3 /* Sprite.h */,
 				FEACF24F216C03A1001C388A /* Tank.h */,
 				FED1BCC7216BC4DD00D91B43 /* Game.h */,
 			);
@@ -187,6 +192,7 @@
 			files = (
 				FEACF24A216BD906001C388A /* Texture.cpp in Sources */,
 				FED1BCBC216BC39800D91B43 /* main.cpp in Sources */,
+				FE07BC99216CFCAE00FA94F3 /* Sprite.cpp in Sources */,
 				FED1BCBB216BC39800D91B43 /* Game.cpp in Sources */,
 				FEACF251216C03AB001C388A /* Tank.cpp in Sources */,
 			);
