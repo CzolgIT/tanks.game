@@ -10,8 +10,23 @@
 #include "Sprite.h"
 #include "Texture.h"
 
-bool Sprite::setTexture(Texture texture)
+void Sprite::setTexture(Texture texture)
 {
+    spriteTexture = texture;
+}
+
+void Sprite::setRect(int x, int y, int w, int h)
+{
+    clip.x = x;
+    clip.y = y;
+    clip.w = w;
+    clip.h = h;
+}
+
+void Sprite::draw(SDL_Renderer *renderer, int x, int y, int angle)
+{
+    //angle not used for now
     
-    return true;
+    
+    
 }
