@@ -59,10 +59,9 @@ public:
   }
   template <typename T> T& getComponent() const
   {
-    std::type_info id = typeid(T);
     for (int i = 0 ; i < static_cast<int>(components.size()); i++)
     {
-      if (typeid(components[i]) == id)
+      if (typeid(components[i]) == typeid(T))
       return *static_cast<T*>(components[i]);
     }
 
