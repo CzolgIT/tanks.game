@@ -4,6 +4,7 @@
 #include "Game.h"
 #include "Texture.h"
 #include "Tank.h"
+#include "Sprite.h"
 
 
 int main(int argc, char * argv[])
@@ -11,6 +12,14 @@ int main(int argc, char * argv[])
     Game game;
     if (game.Initialize())
         game.CreateWindow(600, 400);
+    
+    // TEST
+    Texture tank_blue;
+    tank_blue.load( game.renderer , "./img/tank_blue.png" );
+    
+    Sprite tank_blue_all;
+    
+    
     
     
     while( game.isRunning )

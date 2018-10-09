@@ -1,3 +1,5 @@
+#include <string>
+
 #ifndef Texture_h
 #define Texture_h
 

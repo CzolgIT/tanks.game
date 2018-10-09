@@ -72,8 +72,8 @@
 			children = (
 				FED1BCB9216BC39800D91B43 /* Game.cpp */,
 				FEACF249216BD906001C388A /* Texture.cpp */,
-				FE07BC98216CFCAE00FA94F3 /* Sprite.cpp */,
 				FEACF250216C03AB001C388A /* Tank.cpp */,
+				FE07BC98216CFCAE00FA94F3 /* Sprite.cpp */,
 				FED1BCBA216BC39800D91B43 /* main.cpp */,
 			);
 			path = src;
@@ -316,12 +316,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -329,12 +331,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
