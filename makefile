@@ -2,36 +2,41 @@ EXE = Tanks
 SRC_DIR = src
 OBJ_DIR = obj
 INC_DIR = include
-SYSTEM = windows
 
-ifeq ($(SYSTEM),linux)
-LIBS = -lSDL2 -lSDL2_image -lSDL2_net -std=c++11
-else
-LIBS = -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_net -std=c++11
+CC = g++
+
+ifeq ($(OS),Windows_NT) 
+    LIBS = -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_net -std=c++11
+    SDL_INCLUDE_DIR = -I C:\tools\mingw64\include
+    SDL_LIBRARY_DIR = -L C:\tools\mingw64\lib
 endif
 
-SDL_INCLUDE_DIR = C:\tools\mingw64\include
-SDL_LIBRARY_DIR = C:\tools\mingw64\lib
+ifeq ($(shell uname),Linux)
+    LIBS = -lSDL2 -lSDL2_image -lSDL2_net -std=c++11
+endif
+
+ifeq ($(shell uname),Darwin)
+    LIBS = -std=c++11 -stdlib=libc++
+    SDL_LIBRARY_DIR = -F/Library/Frameworks/ 
+    LIBS_OSX = -framework SDL2 -framework SDL2_image -framework SDL2_net 
+endif
 
 SRC = $(wildcard $(SRC_DIR)/*.cpp)
 OBJ = $(SRC:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 
-CC = g++
-
-IFLAGS = -I$(INC_DIR) -I$(SDL_INCLUDE_DIR)
-LFLAGS = -L$(SDL_LIBRARY_DIR)
-OBJ_NAME = Tanks
+IFLAGS = -I$(INC_DIR) $(SDL_INCLUDE_DIR)
+LFLAGS = $(SDL_LIBRARY_DIR)
 
 .PHONY : all clean
 
 all : $(EXE)
 
 $(EXE) : $(OBJ)
-	$(CC) $^ $(IFLAGS) $(LFLAGS) $(LIBS) -o $@
+	$(CC) $^ $(IFLAGS) $(LFLAGS) $(LIBS) $(LIBS_OSX) -o $@ 
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.cpp
 	@mkdir -p $(@D)
-	$(CC) -c $< $(IFLAGS) $(LFLAGS) $(LIBS) -o $@
+	$(CC) $(LIBS) -c $< $(IFLAGS) $(LFLAGS) -o $@
 
 clean :
 	rm -rf $(OBJ)
