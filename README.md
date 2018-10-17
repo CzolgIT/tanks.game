@@ -1,4 +1,4 @@
-# tanks.game
+# tanksgame
 
 ## Prerequirements
 
