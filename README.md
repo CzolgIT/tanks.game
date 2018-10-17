@@ -1,4 +1,5 @@
 # tanks.game
+![Icon](https://raw.githubusercontent.com/CzolgIT/tanksgame/master/img/tanks_logo.png)
 
 ## Prerequirements
 
