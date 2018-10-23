@@ -13,7 +13,7 @@ Manager::Manager()
 
     TEX_Tank = new Texture( renderer , "texture.png" );
     //menu = new Menu( renderer );
-    Player * player = new Player( renderer , TEX_Tank , 100 , 100 );
+    Player * player = new Player( renderer , TEX_Tank , 100.0 , 100.0 );
     gameObjects.push_back(player);
     running = true;
 }

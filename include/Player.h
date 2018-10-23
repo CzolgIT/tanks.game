@@ -7,7 +7,7 @@ class Player: public GameObject
 {
 public:
 
-    Player( SDL_Renderer* r , Texture* t , float x , float y );
+    Player( SDL_Renderer* r , Texture* texture , float x , float y );
 
     void loadSprites();
 

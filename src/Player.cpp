@@ -1,10 +1,6 @@
 #include "Main.h"
 
-<<<<<<< HEAD
-Player::Player( SDL_Renderer* r , Texture* texture , int x , int y )
-=======
-Player::Player( SDL_Renderer* r , Texture* t , float x , float y )
->>>>>>> 512be606bf946971fb6d59a3a0db8df4c811cdf0
+Player::Player( SDL_Renderer* r , Texture* texture , float x , float y )
 {
     this->x = x;
     this->y = y;
