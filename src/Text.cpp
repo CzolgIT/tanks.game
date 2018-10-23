@@ -10,10 +10,24 @@ Text::Text( SDL_Renderer* r , std::string f )
     color = { 0, 0, 0 };
     align = false;
     
- //texture->loadFromRenderedText( renderer , font , newText , textColor );
+    newSize(size);
+    
 }
 
 void Text::draw( std::string str , int x , int y)
 {
-        //texture->render( renderer , x - texture->getWidth() / 2, y - texture->getHeight() / 2 );
+    std::cout << "dlugosc tekstu ktory chcesz otrzymac: " << str.length() << "\n";
+}
+
+
+void Text::newSize( int s )
+{
+    std::string str="x";
+    TTF_Font* font = TTF_OpenFont( fontPath.c_str() , s );
+    for ( int i = 32 ; i <127 ; i++ )
+    {
+        //str[0] = (char)i;
+        letter[i][s] = new Texture;
+        //letter[i][s]->loadFromRenderedText( renderer , font , "wtf" , color );
+    }
 }

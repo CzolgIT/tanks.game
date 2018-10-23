@@ -120,13 +120,13 @@ bool Texture::loadFromFile( SDL_Renderer* gRenderer , std::string path )
 }
 
 #ifdef _SDL_TTF_H
-bool Texture::loadFromRenderedText( SDL_Renderer* gRenderer , TTF_Font *gFont , std::string textureText, SDL_Color textColor )
+bool Texture::loadFromRenderedText( SDL_Renderer* gRenderer , TTF_Font *gFont , std::string textureText , SDL_Color textColor )
 {
     //Get rid of preexisting texture
     free();
     
     //Render text surface
-    SDL_Surface* textSurface = TTF_RenderText_Solid( gFont, textureText.c_str(), textColor );
+    SDL_Surface* textSurface = TTF_RenderText_Solid( gFont, textureText.c_str() , textColor );
     if( textSurface != NULL )
     {
         //Create texture from surface pixels

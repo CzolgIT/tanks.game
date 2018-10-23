@@ -10,7 +10,7 @@ Manager::Manager()
     window = SDL_CreateWindow( "Tanks Game", SCREEN_X , SCREEN_Y , SCREEN_WIDTH , SCREEN_HEIGHT , SDL_WINDOW_SHOWN );
     renderer = SDL_CreateRenderer( window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC );
 
-
+    text = new Text( renderer , "armyrangersexpand.ttf" );
     
     TEX_Tank = new Texture( renderer , "assets/texture.png" );
     //menu = new Menu( renderer );

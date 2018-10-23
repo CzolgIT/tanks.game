@@ -27,6 +27,8 @@ private:
 
     Timer stepTimer;
     SDL_Event eventHandler;
+    
+    Text* text;
 
     Texture* TEX_Tank;
     Texture* TEX_Menu;
