@@ -17,7 +17,7 @@ public:
     
     virtual void draw();
 
-    float direction,towerDirection;
+    int direction,towerDirection;
     float moveSpeed;
     
 private:
