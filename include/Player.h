@@ -22,6 +22,10 @@ public:
 
 private:
 
+    
+    int tankMaxSpeed;
+    int tankMaxSpeedDir;
+    
     Sprite* spriteTrackLeft;
     Sprite* spriteTrackRight;
     Sprite* spriteBody;

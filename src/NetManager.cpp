@@ -19,7 +19,7 @@ void NetManager::activate( std::string ip , int port )
 
 void NetManager::close()
 {
-    SDLNet_FreePacket( packet ); // Don't forget to free the packet!
+    SDLNet_FreePacket( packet );
     SDLNet_FreePacket( packet2 );
     SDLNet_Quit();
 }

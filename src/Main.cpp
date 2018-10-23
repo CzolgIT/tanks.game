@@ -13,8 +13,5 @@ int main( int argc, char* args[] )
         manager.updateScreen();
     }
 
-    manager.close();
-    //netManager.close();
-    
     return 0;
 }

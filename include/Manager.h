@@ -7,14 +7,11 @@ class Manager
 {
 public:
     Manager();
-
-    bool init();
-    void close();
+    ~Manager();
 
     void handleEvents();
     void updateScreen();
 
-    SDL_Window* window;
     SDL_Renderer* renderer;
 
     std::vector<GameObject*> gameObjects; 
@@ -25,8 +22,10 @@ public:
 private:
     bool running;
 
+    SDL_Window* window;
     Timer stepTimer;
     SDL_Event eventHandler;
+    Player* player;
     
     Text* text;
 

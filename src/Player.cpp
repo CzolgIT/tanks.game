@@ -15,6 +15,9 @@ Player::Player( SDL_Renderer* r , Texture* texture , float x , float y )
     directionSpeed = 0;
     towerSpeed = 0;
 
+    tankMaxSpeed = 256;
+    tankMaxSpeedDir = 100;
+    
     renderer = r;
 
     spriteTrackLeft = new Sprite( renderer , texture , 512+96+122+122 , 0 , 33 , 158 , 66 , 80 );
@@ -30,24 +33,24 @@ void Player::handleEvent( SDL_Event& e )
     {
         switch( e.key.keysym.sym )
         {
-            case SDLK_UP: moveSpeed -= TANKMAXSPEED; break;
-            case SDLK_DOWN: moveSpeed += TANKMAXSPEED; break;
-            case SDLK_LEFT: directionSpeed -= TANKMAXDIRECTIONSPEED; break;
-            case SDLK_RIGHT: directionSpeed += TANKMAXDIRECTIONSPEED; break;
-            case SDLK_z: towerSpeed -= TANKMAXDIRECTIONSPEED; break;
-            case SDLK_x: towerSpeed += TANKMAXDIRECTIONSPEED; break;
+            case SDLK_UP: moveSpeed -= tankMaxSpeed; break;
+            case SDLK_DOWN: moveSpeed += tankMaxSpeed; break;
+            case SDLK_LEFT: directionSpeed -= tankMaxSpeedDir; break;
+            case SDLK_RIGHT: directionSpeed += tankMaxSpeedDir; break;
+            case SDLK_z: towerSpeed -= tankMaxSpeedDir; break;
+            case SDLK_x: towerSpeed += tankMaxSpeedDir; break;
         }
     }
     else if( e.type == SDL_KEYUP && e.key.repeat == 0 )
     {
         switch( e.key.keysym.sym )
         {
-            case SDLK_UP: moveSpeed += TANKMAXSPEED; break;
-            case SDLK_DOWN: moveSpeed -= TANKMAXSPEED; break;
-            case SDLK_LEFT: directionSpeed += TANKMAXDIRECTIONSPEED; break;
-            case SDLK_RIGHT: directionSpeed -= TANKMAXDIRECTIONSPEED; break;
-            case SDLK_z: towerSpeed += TANKMAXDIRECTIONSPEED; break;
-            case SDLK_x: towerSpeed -= TANKMAXDIRECTIONSPEED; break;
+            case SDLK_UP: moveSpeed += tankMaxSpeed; break;
+            case SDLK_DOWN: moveSpeed -= tankMaxSpeed; break;
+            case SDLK_LEFT: directionSpeed += tankMaxSpeedDir; break;
+            case SDLK_RIGHT: directionSpeed -= tankMaxSpeedDir; break;
+            case SDLK_z: towerSpeed += tankMaxSpeedDir; break;
+            case SDLK_x: towerSpeed -= tankMaxSpeedDir; break;
         }
     }
 }

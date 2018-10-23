@@ -44,9 +44,6 @@ const char MENU_FILE[] = "png800x600.png";
 const char FONT_FILE[] = "armyrangersexpand.ttf";
 const int FONT_SIZE = 42;
 
-static const int TANKMAXSPEED = 256;
-static const int TANKMAXDIRECTIONSPEED = 100;
-
 #define SERVERIP "153.19.7.230"
 //#define SERVERIP "153.19.7.230" // sigma
 //#define SERVERIP "127.0.0.1" // localhost

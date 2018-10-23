@@ -14,13 +14,13 @@ Manager::Manager()
     
     TEX_Tank = new Texture( renderer , "assets/texture.png" );
     //menu = new Menu( renderer );
-    Player * player = new Player( renderer , TEX_Tank , 100.0 , 100.0 );
+    player = new Player( renderer , TEX_Tank , 100.0 , 100.0 );
     gameObjects.push_back(player);
     running = true;
 }
 
 
-void Manager::close()
+Manager::~Manager()
 {
     TEX_Tank->free();
 
@@ -42,9 +42,8 @@ void Manager::updateScreen()
     {
       gameObjects[i]->draw();
     }
+    
     SDL_RenderPresent( renderer );
-    //stepTimer.start();
-
 }
 
 void Manager::handleEvents()
@@ -54,6 +53,7 @@ void Manager::handleEvents()
         if( eventHandler.type == SDL_QUIT )
         {
             running = false;
+            break;
         }
         for (int i = 0; i < gameObjects.size();i++)
         {
@@ -62,12 +62,10 @@ void Manager::handleEvents()
     }
 
     float timeStep = stepTimer.getTicks() / 1000.f;
-
     for (int i = 0; i < gameObjects.size();i++)
     {
-        gameObjects[i]->move( timeStep );;
+        gameObjects[i]->move( timeStep );
     }
-
     stepTimer.start();
 }
 
