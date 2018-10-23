@@ -6,20 +6,20 @@
 class GameObject
 {
 public:
-    GameObject();
+    GameObject(SDL_Renderer * ren, float x, float y, int width, int height);
     // virtual void Start()
     virtual void update(){}
     virtual void move(float timeStep){}
     virtual void draw(){}
     virtual void handleEvent(SDL_Event& e){}
 
-    int getX();
-    int getY();
+    Collider collider();
 
 protected:
     SDL_Renderer* renderer;
     float x,y;
     int width,height;
+
 
 };
 

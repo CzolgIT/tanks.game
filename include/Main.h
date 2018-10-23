@@ -19,6 +19,7 @@
     #include <SDL2/SDL_ttf.h>
 #endif
 
+#include "Collider.h"
 #include "GameObject.h"
 #include "Texture.h"
 #include "Text.h"
@@ -30,6 +31,7 @@
 #include "Manager.h"
 #include "NetManager.h"
 #include "Wall.h"
+
 
 
 // Screen position and dimensions

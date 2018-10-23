@@ -1,12 +1,7 @@
 #include "Main.h"
 
-Player::Player( SDL_Renderer* r , Texture* texture , float x , float y )
+Player::Player( SDL_Renderer* r , Texture* texture , float x , float y ) : GameObject(r,x,y,100,100)
 {
-    this->x = x;
-    this->y = y;
-
-    width=100;
-    height=100;
 
     direction=90;
     towerDirection=90;
@@ -17,8 +12,6 @@ Player::Player( SDL_Renderer* r , Texture* texture , float x , float y )
 
     tankMaxSpeed = 256;
     tankMaxSpeedDir = 100;
-    
-    renderer = r;
 
     spriteTrackLeft = new Sprite( renderer , texture , 512+96+122+122 , 0 , 33 , 158 , 66 , 80 );
     spriteTrackRight = new Sprite( renderer , texture , 512+96+122+122 , 0 , 33 , 158 , -33 , 80 );

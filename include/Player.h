@@ -7,7 +7,7 @@ class Player: public GameObject
 {
 public:
 
-    Player( SDL_Renderer* r , Texture* texture , float x , float y );
+    Player( SDL_Renderer* r , Texture* texture , float x , float y ) ;
 
     void loadSprites();
 
@@ -22,10 +22,10 @@ public:
 
 private:
 
-    
+
     int tankMaxSpeed;
     int tankMaxSpeedDir;
-    
+
     Sprite* spriteTrackLeft;
     Sprite* spriteTrackRight;
     Sprite* spriteBody;

@@ -4,12 +4,12 @@ Sprite::Sprite( SDL_Renderer* r , Texture* t , int x , int y , int w , int h , i
 {
     renderer = r;
     texture = t;
-    
+
     clip.x = x;
     clip.y = y;
     clip.w = w;
     clip.h = h;
-    
+
     center.x = xc;
     center.y = yc;
 }
