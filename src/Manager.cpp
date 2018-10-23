@@ -12,7 +12,7 @@ Manager::Manager()
 
 
     TEX_Tank = new Texture( renderer , "texture.png" );
-    menu = new Menu( renderer );
+    //menu = new Menu( renderer );
     Player * player = new Player( renderer , TEX_Tank , 100 , 100 );
     gameObjects.push_back(player);
     running = true;
@@ -36,7 +36,7 @@ void Manager::updateScreen()
     SDL_SetRenderDrawColor( renderer, 0xFF, 0xFF, 0xFF, 0xFF );
     SDL_RenderClear( renderer );
 
-    menu->draw();
+    //menu->draw();
     for (int i = 0; i < gameObjects.size();i++)
     {
       gameObjects[i]->draw();
