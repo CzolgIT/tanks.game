@@ -5,8 +5,8 @@ INC_DIR = include
 
 CC = g++
 
-ifeq ($(OS),Windows_NT) 
-    LIBS = -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_net -std=c++11
+ifeq ($(OS),Windows_NT)
+    LIBS = -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_net -lSDL2_ttf -std=c++11
     SDL_INCLUDE_DIR = -I C:\tools\mingw64\include
     SDL_LIBRARY_DIR = -L C:\tools\mingw64\lib
 endif
@@ -17,7 +17,7 @@ endif
 
 ifeq ($(shell uname),Darwin)
     LIBS = -std=c++11 -stdlib=libc++
-    SDL_LIBRARY_DIR = -F/Library/Frameworks/ 
+    SDL_LIBRARY_DIR = -F/Library/Frameworks/
     LIBS_OSX = -framework SDL2 -framework SDL2_image -framework SDL2_net -framework SDL2_ttf
 endif
 
@@ -32,7 +32,7 @@ LFLAGS = $(SDL_LIBRARY_DIR)
 all : $(EXE)
 
 $(EXE) : $(OBJ)
-	$(CC) $^ $(IFLAGS) $(LFLAGS) $(LIBS) $(LIBS_OSX) -o $@ 
+	$(CC) $^ $(IFLAGS) $(LFLAGS) $(LIBS) $(LIBS_OSX) -o $@
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.cpp
 	@mkdir -p $(@D)

@@ -4,20 +4,20 @@ Player::Player( SDL_Renderer* r , Texture* t , int x , int y )
 {
     this->x = x;
     this->y = y;
-    
+
     width=100;
     height=100;
-    
+
     direction=90;
     towerDirection=90;
-    
+
     moveSpeed = 0;
     directionSpeed = 0;
     towerSpeed = 0;
-    
+
     renderer = r;
     texture = t;
-    
+
     spriteTrackLeft = new Sprite( renderer , texture , 512+96+122+122 , 0 , 33 , 158 , 66 , 80 );
     spriteTrackRight = new Sprite( renderer , texture , 512+96+122+122 , 0 , 33 , 158 , -33 , 80 );
     spriteBody = new Sprite( renderer , texture , 512+96 , 0 , 122 , 171 , 61 , 84 );
@@ -58,12 +58,12 @@ void Player::move( float timeStep )
     // move forward and back
     x += (int)(cos(direction *M_PI/180) * moveSpeed * timeStep);
     y += (int)(sin(direction *M_PI/180) * moveSpeed * timeStep);
-    
+
     // rotate tank and tower
     direction += directionSpeed * timeStep ;
     towerDirection += directionSpeed * timeStep ;
     towerDirection += towerSpeed * timeStep ;
-    
+
     // Wall limits
     if( x < 0 )
     {
@@ -73,7 +73,7 @@ void Player::move( float timeStep )
     {
         x = SCREEN_WIDTH - width;
     }
-    
+
     if( y < 0 )
     {
         y = 0;
@@ -92,13 +92,3 @@ void Player::draw()
     spriteTower->draw( x+18, y+41 , towerDirection);
     spriteBarrel->draw( x+39, y , towerDirection);
 }
-/*
-int Player::getX()
-{
-    return x;
-}
-int Player::getY()
-{
-    return y;
-}
-*/
