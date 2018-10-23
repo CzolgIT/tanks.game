@@ -18,6 +18,7 @@ public:
 
 protected:
     SDL_Renderer* renderer;
+    
     int x,y,width,height;
 
 };

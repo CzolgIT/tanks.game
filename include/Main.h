@@ -29,6 +29,7 @@
 #include "Background.h"
 #include "Manager.h"
 #include "NetManager.h"
+#include "Wall.h"
 
 
 // Screen position and dimensions
