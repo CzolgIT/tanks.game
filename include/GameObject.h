@@ -18,7 +18,8 @@ public:
 
 protected:
     SDL_Renderer* renderer;
-    int x,y,width,height;
+    float x,y;
+    int width,height;
 
 };
 

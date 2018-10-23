@@ -1,6 +1,6 @@
 #include "Main.h"
 
-Player::Player( SDL_Renderer* r , Texture* t , int x , int y )
+Player::Player( SDL_Renderer* r , Texture* t , float x , float y )
 {
     this->x = x;
     this->y = y;
@@ -56,8 +56,8 @@ void Player::handleEvent( SDL_Event& e )
 void Player::move( float timeStep )
 {
     // move forward and back
-    x += (int)(cos(direction *M_PI/180) * moveSpeed * timeStep);
-    y += (int)(sin(direction *M_PI/180) * moveSpeed * timeStep);
+    x += (cos(direction *M_PI/180) * moveSpeed * timeStep);
+    y += (sin(direction *M_PI/180) * moveSpeed * timeStep);
 
     // rotate tank and tower
     direction += directionSpeed * timeStep ;
