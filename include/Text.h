@@ -20,8 +20,12 @@ private:
     SDL_Renderer* renderer;
     std::string fontPath;
     
+    // znaki od 32 do 126
+    // rozmiary (domyslnie tylko 16)
+    Texture* letter[128][128];
+    
     int size;
-    void newSize();
+    void newSize( int s );
     SDL_Color color;
     bool align;
     
