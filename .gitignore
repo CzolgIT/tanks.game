@@ -31,3 +31,7 @@ obj/*.o
 **/*.exe
 **/*.out
 **/*.app
+
+# Andrzej dodał
+Tanks
+**/.DS_Store
