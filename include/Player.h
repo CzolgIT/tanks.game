@@ -7,33 +7,29 @@ class Player: public GameObject
 {
 public:
 
-    Player( SDL_Renderer* r , Texture* t , float x , float y );
+    Player( SDL_Renderer* r , Texture* texture , float x , float y );
 
     void loadSprites();
-    
+
     void handleEvent( SDL_Event& e );
-    
+
     void move( float timeStep );
-    
+
     virtual void draw();
 
     int direction,towerDirection;
     float moveSpeed;
-    
+
 private:
-    Texture* texture;
-    
+
     Sprite* spriteTrackLeft;
     Sprite* spriteTrackRight;
     Sprite* spriteBody;
     Sprite* spriteTower;
     Sprite* spriteBarrel;
-    
+
     float directionSpeed;
     float towerSpeed;
 };
 
 #endif /* Player_h */
-
-
-

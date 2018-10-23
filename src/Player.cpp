@@ -1,6 +1,6 @@
 #include "Main.h"
 
-Player::Player( SDL_Renderer* r , Texture* t , float x , float y )
+Player::Player( SDL_Renderer* r , Texture* texture , float x , float y )
 {
     this->x = x;
     this->y = y;
@@ -16,7 +16,6 @@ Player::Player( SDL_Renderer* r , Texture* t , float x , float y )
     towerSpeed = 0;
 
     renderer = r;
-    texture = t;
 
     spriteTrackLeft = new Sprite( renderer , texture , 512+96+122+122 , 0 , 33 , 158 , 66 , 80 );
     spriteTrackRight = new Sprite( renderer , texture , 512+96+122+122 , 0 , 33 , 158 , -33 , 80 );
