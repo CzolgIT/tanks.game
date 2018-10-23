@@ -12,7 +12,7 @@ ifeq ($(OS),Windows_NT)
 endif
 
 ifeq ($(shell uname),Linux)
-    LIBS = -lSDL2 -lSDL2_image -lSDL2_net -std=c++11
+    LIBS = -lSDL2 -lSDL2_image -lSDL2_net -lSDL2_ttf -std=c++11
 endif
 
 ifeq ($(shell uname),Darwin)

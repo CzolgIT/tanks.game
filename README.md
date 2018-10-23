@@ -9,6 +9,7 @@ libsdl2-dev
 libsdl2-net-dev
 libsdl2-image-2.0-0
 libsdl2-image-dev
+libsdl2-ttf-dev
 ```
 ### Windows
 mingw64 libraries installed in:
