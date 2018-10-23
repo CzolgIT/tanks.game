@@ -36,3 +36,15 @@ CLI
 make
 ```
 
+## License
+
+### Font
+
+```
+Army Rangers Truetype Font for Windows
+2013 Iconian Fonts - Daniel Zadorozny
+http://www.iconian.com/
+iconian@aol.com
+
+This font may be freely distributed and is free for all non-commercial uses.  Use of the fonts are at your own risk. 
+```
