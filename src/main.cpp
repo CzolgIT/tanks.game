@@ -1,36 +1,19 @@
-#include <iostream>
-#include <SDL2/SDL.h>
-#include "ECS.h"
-#include "Game.h"
+#include "Main.h"
 
-
-
-int main(int argc, char * argv[])
+int main( int argc, char* args[] )
 {
-    Game game;
-    if (game.Initialize())
-        game.CreateWindow(600, 400);
+    Manager manager;
+    //NetManager netManager;
+    //netManager.activate( "153.19.7.230" , 1616 );
 
-    while( game.isRunning )
+    while( manager.isRunning() )
     {
-        //Handle events on queue
-        while( SDL_PollEvent( &game.eventhandler ) != 0 )
-        {
-            //User requests quit
-            if( game.eventhandler.type == SDL_QUIT )
-            {
-                game.isRunning = false;
-            }
-        }
-        // Clear screen
-      //  SDL_RenderClear( game.renderer );
-
-
-        // HERE WE ARE DRAWING THINGS TO SCREEN
-
-
-        // Update screen
-      //  SDL_RenderPresent( game.renderer );
+        manager.handleEvents();
+        manager.updateScreen();
     }
-  return 0;
+
+    manager.close();
+    //netManager.close();
+    
+    return 0;
 }

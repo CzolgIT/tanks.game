@@ -1,42 +1,22 @@
-#include <SDL2/SDL.h>
-#ifdef __APPLE__
-#include <SDL2_image/SDL_image.h>
-#include <SDL2_net/SDL_net.h>
-#else
-#include <SDL2/SDL_image.h>
-#include <SDL2/SDL_net.h>
-#endif
+#include "Main.h"
 
-#include "Sprite.h"
-
-void Sprite::Start(){
-
-}
-
-void Sprite::Update(){
-
-
-}
-
-void Sprite::setTexture(Texture texture)
+Sprite::Sprite( SDL_Renderer* r , Texture* t , int x , int y , int w , int h , int xc , int yc )
 {
-    spriteTexture = texture;
-}
-
-
-
-void Sprite::setRect(int x, int y, int w, int h)
-{
+    renderer = r;
+    texture = t;
+    
     clip.x = x;
     clip.y = y;
     clip.w = w;
     clip.h = h;
+    
+    center.x = xc;
+    center.y = yc;
 }
 
-void Sprite::draw(SDL_Renderer *renderer, int x, int y, int angle)
+void Sprite::draw( float x , float y , double angle )
 {
-    //angle not used for now
-
-
-
+    if (texture==NULL)
+        printf("nic z tego");
+    texture->render( renderer , x, y , &clip , angle - 90 , &center );
 }

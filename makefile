@@ -18,7 +18,7 @@ endif
 ifeq ($(shell uname),Darwin)
     LIBS = -std=c++11 -stdlib=libc++
     SDL_LIBRARY_DIR = -F/Library/Frameworks/ 
-    LIBS_OSX = -framework SDL2 -framework SDL2_image -framework SDL2_net 
+    LIBS_OSX = -framework SDL2 -framework SDL2_image -framework SDL2_net -framework SDL2_ttf
 endif
 
 SRC = $(wildcard $(SRC_DIR)/*.cpp)
