@@ -11,6 +11,7 @@ Manager::Manager()
     renderer = SDL_CreateRenderer( window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC );
 
 
+    
     TEX_Tank = new Texture( renderer , "assets/texture.png" );
     //menu = new Menu( renderer );
     Player * player = new Player( renderer , TEX_Tank , 100.0 , 100.0 );

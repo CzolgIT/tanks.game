@@ -1,19 +1,19 @@
 #include "Main.h"
 
-Text::Text( SDL_Renderer* r , std::string newText , TTF_Font* font )
+Text::Text( SDL_Renderer* r , std::string f )
 {
     renderer = r;
-    textColor = { 0, 0, 0 };
-    texture = new Texture( renderer );
+    fontPath = f;
     
-    textString = newText;
-    texture->loadFromRenderedText( renderer , font , newText , textColor );
+    // default values
+    size = 16;
+    color = { 0, 0, 0 };
+    align = false;
+    
+ //texture->loadFromRenderedText( renderer , font , newText , textColor );
 }
 
-void Text::draw( int x , int y , bool center )
+void Text::draw( std::string str , int x , int y)
 {
-    if ( center == true)
-        texture->render( renderer , x - texture->getWidth() / 2, y - texture->getHeight() / 2 );
-    else
-        texture->render( renderer , x , y - texture->getHeight() / 2 );
+        //texture->render( renderer , x - texture->getWidth() / 2, y - texture->getHeight() / 2 );
 }
