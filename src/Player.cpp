@@ -67,7 +67,8 @@ void Player::move( float timeStep )
     if ( direction < 0 ) direction += 360;
     if ( towerDirection < 0 ) towerDirection += 360;
     
-    // dzięki temu kąt obrotu będzie miał zakres 180 i zmieści się w jednym bajcie
+    // dzięki temu kąt obrotu będzie można zapisać jako liczbę
+    // od 0 do 180 i zmieści się w jednym bajcie
     iDirection = round(direction/2)*2;
     iTowerDirection = round(towerDirection/2)*2;
     
