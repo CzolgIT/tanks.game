@@ -44,6 +44,8 @@ void Manager::updateScreen()
     {
       gameObjects[i]->draw();
     }
+    
+    text->draw( "Chcialbym byc marynarzem..." , 300 , 100 );
 
     SDL_RenderPresent( renderer );
 }
