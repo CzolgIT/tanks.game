@@ -9,29 +9,26 @@ public:
     Manager();
     ~Manager();
 
+    // metody do głównej pętli
     void handleEvents();
     void updateScreen();
-
-    SDL_Renderer* renderer;
-
-    std::vector<GameObject*> gameObjects; 
-    Menu* menu;
-
     bool isRunning();
-
+    
 private:
     bool running;
 
+    // ważne rzeczy - managery - silniki - globalne
     SDL_Window* window;
+    SDL_Renderer* renderer;
     Timer stepTimer;
     SDL_Event eventHandler;
-    Player* player;
-    
     Text* text;
-
-    //Texture* TEX_Tank;
-    Texture* TEX_Menu;
+    NetManager* net;
+    
+    // obiekty gry
+    std::vector<GameObject*> gameObjects;
+    Player* player;
+    Menu* menu;
 };
-
 
 #endif /* Manager_h */

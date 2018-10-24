@@ -76,18 +76,18 @@ void Player::move( float timeStep )
     {
         x = 0;
     }
-    else if( x > SCREEN_WIDTH - width )
+    else if( x > SCR_W - width )
     {
-        x = SCREEN_WIDTH - width;
+        x = SCR_W - width;
     }
 
     if( y < 0 )
     {
         y = 0;
     }
-    else if( y > SCREEN_HEIGHT - height )
+    else if( y > SCR_H - height )
     {
-        y = SCREEN_HEIGHT - height;
+        y = SCR_H - height;
     }
     
 }

@@ -5,22 +5,18 @@ Manager::Manager()
     SDL_Init( SDL_INIT_VIDEO );
     SDL_SetHint( SDL_HINT_RENDER_SCALE_QUALITY, "1" );
     IMG_Init( IMG_INIT_PNG );
-    TTF_Init();
 
-    window = SDL_CreateWindow( "Tanks Game", SCREEN_X , SCREEN_Y , SCREEN_WIDTH , SCREEN_HEIGHT , SDL_WINDOW_SHOWN );
-    renderer = SDL_CreateRenderer( window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC );
-
+    window = SDL_CreateWindow( "Tanks Game", SCR_X , SCR_Y , SCR_W , SCR_H , SDL_WINDOW_SHOWN );
+    renderer = SDL_CreateRenderer( window, -1, ACCELERATION | VSYNC );
     text = new Text( renderer , FONT_FILE );
+    net = new NetManager();
 
     //menu = new Menu( renderer );
     player = new Player( renderer , 100.0 , 100.0 );
-
     gameObjects.push_back(player);
 
     running = true;
-
 }
-
 
 Manager::~Manager()
 {

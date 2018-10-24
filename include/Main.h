@@ -28,15 +28,19 @@
 #include "Sprite.h"
 #include "Player.h"
 #include "Background.h"
-#include "Manager.h"
-#include "NetManager.h"
 #include "Wall.h"
+#include "NetManager.h"
+#include "Manager.h" // musi być ostatni
+
+// SDL vars
+const int ACCELERATION = 0x00000002;
+const int VSYNC = 0x00000004;
 
 // Screen position and dimensions
-const int SCREEN_X = 300;
-const int SCREEN_Y = 300;
-const int SCREEN_WIDTH = 800;
-const int SCREEN_HEIGHT = 600;
+const int SCR_X = 300;
+const int SCR_Y = 300;
+const int SCR_W = 800;
+const int SCR_H = 600;
 
 // Resources
 const char TEXTURE_FILE[] = "texture.png";

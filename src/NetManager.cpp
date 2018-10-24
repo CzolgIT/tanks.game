@@ -3,6 +3,7 @@
 NetManager::NetManager()
 {
     SDLNet_Init();
+    activate( "153.19.7.230" , 1616 );
 }
 
 NetManager::~NetManager()

@@ -8,6 +8,7 @@ class Text
 public:
 
     Text( SDL_Renderer* r , std::string f );
+    ~Text();
     
     void draw( std::string str , int x , int y );
     

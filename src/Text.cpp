@@ -2,6 +2,8 @@
 
 Text::Text( SDL_Renderer* r , std::string f )
 {
+    TTF_Init();
+    
     renderer = r;
     fontPath = f;
     
@@ -11,6 +13,10 @@ Text::Text( SDL_Renderer* r , std::string f )
     align = false;
 
     newSize(size);
+}
+Text::~Text()
+{
+    TTF_Quit();
 }
 
 void Text::draw( std::string str , int x , int y )
