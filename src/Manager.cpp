@@ -11,10 +11,10 @@ Manager::Manager()
     text = new Text( renderer , FONT_FILE );
     net = new NetManager();
 
-    //menu = new Menu( renderer );
-    player = new Player( renderer , 100.0 , 100.0 );
-    gameObjects.push_back(player);
+    menu = new Menu( renderer , text );
 
+    player = NULL;
+    
     running = true;
 }
 
@@ -33,24 +33,13 @@ void Manager::updateScreen()
     SDL_SetRenderDrawColor( renderer, 0xFF, 0xFF, 0xFF, 0xFF );
     SDL_RenderClear( renderer );
 
-    //menu->draw();
+    if (menu != NULL)
+        menu->draw();
+    
     for (int i = 0; i < gameObjects.size();i++)
     {
       gameObjects[i]->draw();
     }
-    
-    text->setColor( C_RED );
-    text->setSize( 50 );
-    text->draw( "Somebody" , 300 , 100 );
-    text->draw( "once told me" , 340 , 130 );
-    
-    text->setColor( C_BLUE );
-    text->setSize( 30 );
-    text->draw( "the world" , 300 , 160 );
-    text->draw( "is gonna roll me" , 340 , 190 );
-    
-    text->draw( "x: " + std::to_string( player->getX() ) ,  500 , 500 );
-    text->draw( "y: " + std::to_string( player->getY() ) ,  500 , 530 );
     
     SDL_RenderPresent( renderer );
 }
@@ -68,6 +57,8 @@ void Manager::handleEvents()
         {
             gameObjects[i]->handleEvent( eventHandler );
         }
+        if ( menu->handleEvent( eventHandler ) == 69 )
+            startGame();
     }
 
     float timeStep = stepTimer.getTicks() / 1000.f;
@@ -78,6 +69,15 @@ void Manager::handleEvents()
     stepTimer.start();
 }
 
+void Manager::startGame()
+{
+    delete menu;
+    menu = NULL;
+    
+    player = new Player( renderer , text , 100.0 , 100.0 );
+    gameObjects.push_back(player);
+}
+    
 bool Manager::isRunning()
 {
     return running;

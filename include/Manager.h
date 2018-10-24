@@ -14,6 +14,9 @@ public:
     void updateScreen();
     bool isRunning();
     
+    // metody stanu gry
+    void startGame();
+    
 private:
     bool running;
 
@@ -25,10 +28,11 @@ private:
     Text* text;
     NetManager* net;
     
+    Menu* menu;
+    
     // obiekty gry
     std::vector<GameObject*> gameObjects;
     Player* player;
-    Menu* menu;
 };
 
 #endif /* Manager_h */

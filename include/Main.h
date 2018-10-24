@@ -57,3 +57,4 @@ const int FONT_SIZE = 42;
 // Some Colors
 const SDL_Color C_RED = { 255 , 0 , 0 };
 const SDL_Color C_BLUE = { 0 , 0 , 255 };
+const SDL_Color C_BLACK = { 0 , 0 , 0 };

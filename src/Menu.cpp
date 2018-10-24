@@ -1,33 +1,47 @@
 #include "Main.h"
 
-Menu::Menu( SDL_Renderer* r )
+Menu::Menu( SDL_Renderer* r , Text* t )
 {
     renderer = r;
-    TEX_Menu = new Texture( renderer , "assets/png800x600.png" );
+    text = t;
+    //TEX_Menu = new Texture( renderer , "assets/png800x600.png" );
 
     clip1.x=298;
     clip1.y=272;
     clip1.w=206;
     clip1.h=63;
 
-    font = TTF_OpenFont("armyrangersexpand.ttf", 30);
+}
 
-    //text_game = new Text(renderer, "Tanks Game" , font );
-    //text_new = new Text(renderer, "New game" , font );
-    //text_join = new Text(renderer, "Join" , font );
-    //text_settings = new Text(renderer, "settings" , font );
-    //text_exit = new Text(renderer, "exit" , font );
+int Menu::handleEvent( SDL_Event& e )
+{
+    if( e.type == SDL_KEYDOWN && e.key.repeat == 0 )
+    {
+        switch( e.key.keysym.sym )
+        {
+            case SDLK_SPACE: return 69; break;
+        }
+    }
+    return 0;
 }
 
 void Menu::draw()
 {
-    TEX_Menu->render( renderer , 0 , 0 );
+    //TEX_Menu->render( renderer , 0 , 0 );
+    //SDL_RenderDrawRect( renderer , &clip1 );
 
-    SDL_RenderDrawRect( renderer , &clip1 );
-
-    //text_game->draw( SCREEN_WIDTH/2 , 100 );
-    //text_new->draw( SCREEN_WIDTH/2 , 200 );
-    //text_join->draw( SCREEN_WIDTH/2 , 300 );
-    //text_settings->draw( SCREEN_WIDTH/2 , 400 );
-    //text_exit->draw( SCREEN_WIDTH/2 , 500 );
+    text->setColor( C_RED );
+    text->setSize( 50 );
+    text->draw( "Tanks" , 300 , 50 );
+    text->draw( "Game" , 340 , 100 );
+    
+    text->setColor( C_BLUE );
+    text->setSize( 30 );
+    text->draw( "the world" , 300 , 160 );
+    text->draw( "is gonna roll me" , 340 , 190 );
+    
+    
+    text->setColor( C_BLACK );
+    text->draw( "Press SPACE to start" , 220 , 550 );
+    
 }

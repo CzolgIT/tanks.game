@@ -1,7 +1,9 @@
 #include "Main.h"
 
-Player::Player( SDL_Renderer* r , float x , float y ) : GameObject(r,x,y,100,100)
+Player::Player( SDL_Renderer* r , Text* t , float x , float y ) : GameObject(r,x,y,100,100)
 {
+    text = t;
+    
     direction=90;
     towerDirection=90;
 
@@ -99,4 +101,7 @@ void Player::draw()
     spriteBody->draw( x+5, y+21 , iDirection);
     spriteTower->draw( x+18, y+41 , iTowerDirection);
     spriteBarrel->draw( x+39, y , iTowerDirection);
+    
+    text->draw( "x: " + std::to_string( x ) ,  500 , 500 );
+    text->draw( "y: " + std::to_string( y ) ,  500 , 530 );
 }

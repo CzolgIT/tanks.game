@@ -7,9 +7,10 @@ class Menu
 {
 public:
 
-    Menu( SDL_Renderer* r );
+    Menu( SDL_Renderer* r , Text* t );
     
     void loadTexts();
+    int handleEvent( SDL_Event& e );
     void draw();
     
 private:
@@ -19,16 +20,10 @@ private:
     SDL_Renderer* renderer;
     
     SDL_Rect clip1;
-    
-    TTF_Font* font;
-    
+
+    Text* text;
     int selected;
     
-    Text* text_game;
-    Text* text_new;
-    Text* text_join;
-    Text* text_settings;
-    Text* text_exit;
 
 };
 
