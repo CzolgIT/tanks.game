@@ -20,7 +20,12 @@ int Menu::handleEvent( SDL_Event& e )
     {
         switch( e.key.keysym.sym )
         {
-            case SDLK_RETURN: if ( selected == 1 ) return 69 ; break;
+            case SDLK_RETURN:
+                if ( selected == 1 )
+                    return 69 ;
+                if ( selected == 4 )
+                    return 22 ;
+                break;
             case SDLK_UP: if (selected == 1 ) selected = 4; else selected--; break;
             case SDLK_DOWN: if (selected == 4 ) selected = 1; else selected++; break;
         }

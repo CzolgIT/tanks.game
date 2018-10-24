@@ -1,6 +1,6 @@
 #include "Main.h"
 
-Player::Player( SDL_Renderer* r , Text* t , float x , float y ) : GameObject(r,x,y,100,100)
+Player::Player( SDL_Renderer* r , Text* t , float x , float y ) : GameObject(r,x,y,150,150)
 {
     text = t;
     
@@ -74,25 +74,23 @@ void Player::move( float timeStep )
     //std::cout << iDirection << "  " << iTowerDirection << "\n";
     
     // Wall limits
-    /*
-    if( x < 0 )
+    if( x < width/2 )
     {
-        x = 0;
+        x = width/2 ;
     }
-    else if( x > SCR_W - width )
+    else if( x > 2048 - width/2 )
     {
-        x = SCR_W - width;
+        x = 2048 - width/2;
     }
 
-    if( y < 0 )
+    if( y < height/2 )
     {
-        y = 0;
+        y = height/2;
     }
-    else if( y > SCR_H - height )
+    else if( y > 2048 - height/2 )
     {
-        y = SCR_H - height;
+        y = 2048 - height/2;
     }
-    */
 }
 
 void Player::draw()

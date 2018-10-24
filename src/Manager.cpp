@@ -38,7 +38,7 @@ void Manager::updateScreen()
         menu->draw();
     else
     {
-        background->draw( -player->getX() , -player->getY() );
+        background->draw( SCR_W/2-player->getX() , SCR_H/2-player->getY() );
         for (int i = 0; i < gameObjects.size();i++)
         {
           gameObjects[i]->draw();
@@ -61,8 +61,13 @@ void Manager::handleEvents()
             gameObjects[i]->handleEvent( eventHandler );
         }
         if (menu != NULL)
-            if ( menu->handleEvent( eventHandler ) == 69 )
+        {
+            int flag = menu->handleEvent( eventHandler );
+            if ( flag == 69 )
                 startGame();
+            if ( flag == 22 )
+                running = false;
+        }
     }
 
     float timeStep = stepTimer.getTicks() / 1000.f;
@@ -79,7 +84,7 @@ void Manager::startGame()
     menu = NULL;
     
     background = new Background( renderer );
-    player = new Player( renderer , text , 100.0 , 100.0 );
+    player = new Player( renderer , text , SCR_W/2 - 50 , SCR_H/2 - 50 );
     gameObjects.push_back(player);
 }
     
