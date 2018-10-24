@@ -5,8 +5,8 @@
 
 class Room
 {
-    Room()
-    
+    Room();
+    ~Room();
     
     
 public:
