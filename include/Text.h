@@ -14,7 +14,7 @@ public:
     
     void setSize( int s );
     void setColor( SDL_Color c );
-    void setAlignment( bool a );
+    //void setAlignment( bool a ); // TODO: alignment
     
 private:
 
@@ -23,12 +23,13 @@ private:
     
     // znaki od 32 do 126
     // rozmiary (domyslnie tylko 16)
-    Texture* letter[128][128];
+    // kolor R G B
+    Texture* letter[128][128][256][256][256];
     
     int size;
-    void newSize( int s );
+    void newCollection();
     SDL_Color color;
-    bool align;
+    //bool align; // TODO: alignment
     
     TTF_Font* font;
     
