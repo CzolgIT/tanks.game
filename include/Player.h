@@ -30,12 +30,8 @@ private:
     // maksymalne predkosci
     int tankMaxSpeed , tankMaxSpeedDir;
 
-    Sprite* spriteTrackLeft;
-    Sprite* spriteTrackRight;
-    Sprite* spriteBody;
-    Sprite* spriteTower;
-    Sprite* spriteBarrel;
-
+    TankSprite* sprite;
+    
 };
 
 #endif /* Player_h */
