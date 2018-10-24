@@ -15,7 +15,7 @@ public:
     bool isRunning();
     
     // metody stanu gry
-    void startGame();
+    void startGame( int color );
     
 private:
     bool running;

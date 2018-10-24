@@ -66,13 +66,13 @@ void Manager::handleEvents()
         if ( room != NULL )
         {
             int flag = room->handleEvent( eventHandler );
-            if ( flag == 1 ) // start
+            if ( flag >= 1 && flag <= 4 ) // start
             {
                 delete room;
                 room = NULL;
-                startGame();
+                startGame( flag );
             }
-            if ( flag == 2 ) // back
+            if ( flag == 5 ) // back
             {
                 delete room;
                 room = NULL;
@@ -106,14 +106,14 @@ void Manager::handleEvents()
     stepTimer.start();
 }
 
-void Manager::startGame()
+void Manager::startGame( int color )
 {
     
     delete menu;
     menu = NULL;
     
     background = new Background( renderer );
-    player = new Player( renderer , text , SCR_W/2 - 50 , SCR_H/2 - 50 );
+    player = new Player( renderer , text , SCR_W/2 - 50 , SCR_H/2 - 50 , color );
     gameObjects.push_back(player);
 }
     

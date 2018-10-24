@@ -1,6 +1,6 @@
 #include "Main.h"
 
-Player::Player( SDL_Renderer* r , Text* t , float x , float y ) : GameObject(r,x,y,150,150)
+Player::Player( SDL_Renderer* r , Text* t , float x , float y , int color ) : GameObject(r,x,y,150,150)
 {
     text = t;
     
@@ -14,7 +14,7 @@ Player::Player( SDL_Renderer* r , Text* t , float x , float y ) : GameObject(r,x
     tankMaxSpeed = 200;
     tankMaxSpeedDir = 128;
     
-    sprite = new TankSprite( renderer , 1 ); // 1-4 colors
+    sprite = new TankSprite( renderer , color );
 }
 
 void Player::handleEvent( SDL_Event& e )

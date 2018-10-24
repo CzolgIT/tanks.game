@@ -7,7 +7,7 @@ class Player: public GameObject
 {
 public:
 
-    Player( SDL_Renderer* r , Text* t , float x , float y ) ;
+    Player( SDL_Renderer* r , Text* t , float x , float y , int color ) ;
     void loadSprites();
     void handleEvent( SDL_Event& e );
     void move( float timeStep );
