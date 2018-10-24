@@ -41,7 +41,7 @@ const int SCREEN_HEIGHT = 600;
 // Resources
 const char TEXTURE_FILE[] = "texture.png";
 const char MENU_FILE[] = "png800x600.png";
-const char FONT_FILE[] = "armyrangersexpand.ttf";
+const char FONT_FILE[] = "assets/armyrangersexpand.ttf";
 const int FONT_SIZE = 42;
 
 #define SERVERIP "153.19.7.230"
@@ -49,3 +49,7 @@ const int FONT_SIZE = 42;
 //#define SERVERIP "127.0.0.1" // localhost
 #define SERVERPORT 6666
 #define CLIENTPORT 1666
+
+// Some Colors
+const SDL_Color C_RED = { 255 , 0 , 0 };
+const SDL_Color C_BLUE = { 0 , 0 , 255 };

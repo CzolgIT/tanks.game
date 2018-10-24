@@ -14,6 +14,11 @@ public:
     virtual void handleEvent(SDL_Event& e){}
 
     Collider collider();
+    
+    float getX();
+    float getY();
+    int getW();
+    int getH();
 
 protected:
     SDL_Renderer* renderer;

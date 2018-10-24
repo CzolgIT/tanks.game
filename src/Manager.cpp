@@ -10,7 +10,7 @@ Manager::Manager()
     window = SDL_CreateWindow( "Tanks Game", SCREEN_X , SCREEN_Y , SCREEN_WIDTH , SCREEN_HEIGHT , SDL_WINDOW_SHOWN );
     renderer = SDL_CreateRenderer( window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC );
 
-    text = new Text( renderer , "assets/armyrangersexpand.ttf" );
+    text = new Text( renderer , FONT_FILE );
 
     //menu = new Menu( renderer );
     player = new Player( renderer , 100.0 , 100.0 );
@@ -24,8 +24,6 @@ Manager::Manager()
 
 Manager::~Manager()
 {
-    //TEX_Tank->free();
-
     SDL_DestroyRenderer( renderer );
     SDL_DestroyWindow( window );
     window = NULL;
@@ -45,8 +43,19 @@ void Manager::updateScreen()
       gameObjects[i]->draw();
     }
     
-    text->draw( "Chcialbym byc marynarzem..." , 300 , 100 );
-
+    text->setColor( C_RED );
+    text->setSize( 50 );
+    text->draw( "Somebody" , 300 , 100 );
+    text->draw( "once told me" , 340 , 130 );
+    
+    text->setColor( C_BLUE );
+    text->setSize( 30 );
+    text->draw( "the world" , 300 , 160 );
+    text->draw( "is gonna roll me" , 340 , 190 );
+    
+    text->draw( "x: " + std::to_string( player->getX() ) ,  500 , 500 );
+    text->draw( "y: " + std::to_string( player->getY() ) ,  500 , 530 );
+    
     SDL_RenderPresent( renderer );
 }
 

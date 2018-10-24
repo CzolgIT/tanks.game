@@ -24,6 +24,18 @@ void Text::draw( std::string str , int x , int y )
     }
 }
 
+void Text::setSize( int s )
+{
+    if ( letter[64][s] == NULL )
+        newSize( s );
+    size = s;
+}
+
+void Text::setColor( SDL_Color c )
+{
+    color = c;
+}
+
 void Text::newSize( int s )
 {
     std::string str="x";

@@ -14,3 +14,20 @@ Collider GameObject::collider(){
     Collider col(x,y,width,height);
     return col;
 }
+
+float GameObject::getX()
+{
+    return x;
+}
+float GameObject::getY()
+{
+    return y;
+}
+int GameObject::getW()
+{
+    return width;
+}
+int GameObject::getH()
+{
+    return height;
+}
