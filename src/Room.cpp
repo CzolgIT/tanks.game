@@ -20,8 +20,8 @@ int Room::handleEvent( SDL_Event& e )
                 else
                     return selected ;
                 break;
-            case SDLK_UP: if (selected == 1 ) selected = 5; break;
-            case SDLK_DOWN: if (selected == 5) selected = 1; break;
+            case SDLK_UP: if (selected == 1 ) selected = 5; else selected=1; break;
+            case SDLK_DOWN: if (selected == 5) selected = 1; else selected=5; break;
             case SDLK_RIGHT: if (selectedTank == 4 ) selectedTank=1; else selectedTank++; break;
             case SDLK_LEFT: if (selectedTank == 1 ) selectedTank=4; else selectedTank--; break;
         }
@@ -46,7 +46,7 @@ void Room::draw()
     else
         text->setColor( C_BLACK );
     text->draw( "Start" , 400 , 480 );
-    if ( selected == 2 )
+    if ( selected == 5 )
         text->setColor( C_BLUE );
     else
         text->setColor( C_BLACK );
