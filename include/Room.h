@@ -5,8 +5,15 @@
 
 class Room
 {
+    Room()
+    
+    
+    
 public:
 
+    int selectedTank;
+    int selectedButton;
+    
 };
 
 #endif /* Room_h */
