@@ -1,5 +1,6 @@
 #ifndef Collider_h
 #define Collider_h
+
 #include "Main.h"
 
 class Collider {
@@ -11,4 +12,4 @@ public:
     std::vector<SDL_Point> points;
 
 };
-#endif
+#endif /* Collider_h */

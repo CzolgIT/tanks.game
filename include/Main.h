@@ -32,8 +32,6 @@
 #include "NetManager.h"
 #include "Wall.h"
 
-
-
 // Screen position and dimensions
 const int SCREEN_X = 300;
 const int SCREEN_Y = 300;

@@ -29,7 +29,7 @@ private:
     SDL_Color color;
     bool align;
     
-    
+    TTF_Font* font;
     
 };
 

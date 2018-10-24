@@ -5,6 +5,13 @@ NetManager::NetManager()
     SDLNet_Init();
 }
 
+NetManager::~NetManager()
+{
+    SDLNet_FreePacket( packet );
+    SDLNet_FreePacket( packet2 );
+    SDLNet_Quit();
+}
+
 void NetManager::activate( std::string ip , int port )
 {
     socket = SDLNet_UDP_Open( CLIENTPORT );
@@ -15,13 +22,6 @@ void NetManager::activate( std::string ip , int port )
     
     packet->address.host = destAddress.host;
     packet->address.port = destAddress.port;
-}
-
-void NetManager::close()
-{
-    SDLNet_FreePacket( packet );
-    SDLNet_FreePacket( packet2 );
-    SDLNet_Quit();
 }
 
 void NetManager::getMessage()

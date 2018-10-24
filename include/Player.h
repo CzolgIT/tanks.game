@@ -8,23 +8,16 @@ class Player: public GameObject
 public:
 
     Player( SDL_Renderer* r , Texture* texture , float x , float y ) ;
-
     void loadSprites();
-
     void handleEvent( SDL_Event& e );
-
     void move( float timeStep );
-
     virtual void draw();
 
-    int direction,towerDirection;
-    float moveSpeed;
-
 private:
-
-
-    int tankMaxSpeed;
-    int tankMaxSpeedDir;
+    
+    int moveSpeed , directionSpeed , towerSpeed; // aktualne predkosci
+    float direction , towerDirection; // aktualne pozycje obrotu
+    int tankMaxSpeed , tankMaxSpeedDir; // maksymalne predkosci
 
     Sprite* spriteTrackLeft;
     Sprite* spriteTrackRight;
@@ -32,8 +25,6 @@ private:
     Sprite* spriteTower;
     Sprite* spriteBarrel;
 
-    float directionSpeed;
-    float towerSpeed;
 };
 
 #endif /* Player_h */

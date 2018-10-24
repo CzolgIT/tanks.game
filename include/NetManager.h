@@ -7,6 +7,7 @@ class NetManager
 {
 public:
     NetManager();
+    ~NetManager();
     
     void activate( std::string ip = "127.0.0.1" , int port = 1616);
     void close();

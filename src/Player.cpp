@@ -2,7 +2,6 @@
 
 Player::Player( SDL_Renderer* r , Texture* texture , float x , float y ) : GameObject(r,x,y,100,100)
 {
-
     direction=90;
     towerDirection=90;
 
@@ -11,7 +10,7 @@ Player::Player( SDL_Renderer* r , Texture* texture , float x , float y ) : GameO
     towerSpeed = 0;
 
     tankMaxSpeed = 256;
-    tankMaxSpeedDir = 100;
+    tankMaxSpeedDir = 128;
 
     spriteTrackLeft = new Sprite( renderer , texture , 512+96+122+122 , 0 , 33 , 158 , 66 , 80 );
     spriteTrackRight = new Sprite( renderer , texture , 512+96+122+122 , 0 , 33 , 158 , -33 , 80 );
@@ -54,10 +53,12 @@ void Player::move( float timeStep )
     x += (cos(direction *M_PI/180) * moveSpeed * timeStep);
     y += (sin(direction *M_PI/180) * moveSpeed * timeStep);
 
+    
+    // TODO: obroty w lewo i prawo wydają się nierówne... o.O
+    
     // rotate tank and tower
     direction += directionSpeed * timeStep ;
-    towerDirection += directionSpeed * timeStep ;
-    towerDirection += towerSpeed * timeStep ;
+    towerDirection += directionSpeed * timeStep + towerSpeed * timeStep;
 
     // Wall limits
     if( x < 0 )
