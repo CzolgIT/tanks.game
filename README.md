@@ -22,6 +22,7 @@ Installed frameworks:
 /Library/Frameworks/SDL2
 /Library/Frameworks/SDL2_image
 /Library/Frameworks/SDL2_net
+/Library/Frameworks/SDL2_ttf
 ```
 
 ## Building
