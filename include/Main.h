@@ -23,6 +23,7 @@
 #include "GameObject.h"
 #include "Texture.h"
 #include "Text.h"
+#include "Room.h"
 #include "Menu.h"
 #include "Timer.h"
 #include "Sprite.h"

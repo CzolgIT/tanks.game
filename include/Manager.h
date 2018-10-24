@@ -29,6 +29,7 @@ private:
     NetManager* net;
     
     Menu* menu;
+    Room* room;
     Background* background;
     
     // obiekty gry

@@ -5,15 +5,19 @@
 
 class Room
 {
-    Room();
-    ~Room();
-    
-    
 public:
-
-    int selectedTank;
-    int selectedButton;
     
+    Room( SDL_Renderer* r , Text* t );
+    int handleEvent( SDL_Event& e );
+    void draw();
+    
+private:
+
+    SDL_Renderer* renderer;
+    Text* text;
+
+    int selected;
+    int selectedTank;
 };
 
 #endif /* Room_h */

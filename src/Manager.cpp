@@ -12,6 +12,7 @@ Manager::Manager()
     net = new NetManager();
 
     menu = new Menu( renderer , text );
+    room = NULL;
 
     player = NULL;
     background = NULL;
@@ -36,6 +37,8 @@ void Manager::updateScreen()
 
     if (menu != NULL)
         menu->draw();
+    else if (room != NULL)
+        room->draw();
     else
     {
         background->draw( SCR_W/2-player->getX() , SCR_H/2-player->getY() );
@@ -60,13 +63,38 @@ void Manager::handleEvents()
         {
             gameObjects[i]->handleEvent( eventHandler );
         }
+        if ( room != NULL )
+        {
+            int flag = room->handleEvent( eventHandler );
+            if ( flag == 1 ) // start
+            {
+                delete room;
+                room = NULL;
+                startGame();
+            }
+            if ( flag == 2 ) // back
+            {
+                delete room;
+                room = NULL;
+                menu = new Menu( renderer , text );
+            }
+        }
         if (menu != NULL)
         {
             int flag = menu->handleEvent( eventHandler );
-            if ( flag == 69 )
-                startGame();
-            if ( flag == 22 )
+            if ( flag == 1 ) // room
+            {
+                delete menu;
+                menu = NULL;
+                room = new Room( renderer , text );
+            }
+            if ( flag == 2 ) // join
+                std::cout << "Ta opcja jeszcze nie dziala";
+            if ( flag == 3 ) // settings
+                std::cout << "Ta opcja jeszcze nie dziala";
+            if ( flag == 4 ) // exit
                 running = false;
+            flag=0;
         }
     }
 
@@ -80,6 +108,7 @@ void Manager::handleEvents()
 
 void Manager::startGame()
 {
+    
     delete menu;
     menu = NULL;
     
