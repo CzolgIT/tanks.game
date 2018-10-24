@@ -10,12 +10,10 @@ Manager::Manager()
     window = SDL_CreateWindow( "Tanks Game", SCREEN_X , SCREEN_Y , SCREEN_WIDTH , SCREEN_HEIGHT , SDL_WINDOW_SHOWN );
     renderer = SDL_CreateRenderer( window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC );
 
+    text = new Text( renderer , "assets/armyrangersexpand.ttf" );
 
-    text = new Text( renderer , "armyrangersexpand.ttf" );
-
-    TEX_Tank = new Texture( renderer , "assets/texture.png" );
     //menu = new Menu( renderer );
-    player = new Player( renderer , TEX_Tank , 100.0 , 100.0 );
+    player = new Player( renderer , 100.0 , 100.0 );
 
     gameObjects.push_back(player);
 
@@ -26,7 +24,7 @@ Manager::Manager()
 
 Manager::~Manager()
 {
-    TEX_Tank->free();
+    //TEX_Tank->free();
 
     SDL_DestroyRenderer( renderer );
     SDL_DestroyWindow( window );

@@ -29,7 +29,7 @@ private:
     
     Text* text;
 
-    Texture* TEX_Tank;
+    //Texture* TEX_Tank;
     Texture* TEX_Menu;
 };
 
