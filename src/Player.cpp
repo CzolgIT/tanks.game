@@ -74,6 +74,7 @@ void Player::move( float timeStep )
     //std::cout << iDirection << "  " << iTowerDirection << "\n";
     
     // Wall limits
+    /*
     if( x < 0 )
     {
         x = 0;
@@ -91,7 +92,7 @@ void Player::move( float timeStep )
     {
         y = SCR_H - height;
     }
-    
+    */
 }
 
 void Player::draw()

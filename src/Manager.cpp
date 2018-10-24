@@ -36,12 +36,14 @@ void Manager::updateScreen()
 
     if (menu != NULL)
         menu->draw();
-    
-    for (int i = 0; i < gameObjects.size();i++)
+    else
     {
-      gameObjects[i]->draw();
+        background->draw( -player->getX() , -player->getY() );
+        for (int i = 0; i < gameObjects.size();i++)
+        {
+          gameObjects[i]->draw();
+        }
     }
-    
     SDL_RenderPresent( renderer );
 }
 

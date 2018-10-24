@@ -8,7 +8,7 @@ class Background
 public:
     Background( SDL_Renderer* r );
     void loadFromTexture( Texture* t , int x , int y , int w , int h );
-    void draw( float x , float y ); // rysuje tylko tyle obrazków ile potrzeba na okno gry
+    void draw( int x , int y ); // rysuje tylko tyle obrazków ile potrzeba na okno gry
     
 private:
     SDL_Renderer* renderer;
