@@ -10,7 +10,7 @@ Text::Text( SDL_Renderer* r , std::string f )
     // default values
     size = 32;
     color = { 0, 0, 0 };
-    //align = false; // TODO: alignment
+    align = false;
 
     newCollection();
 }
@@ -22,8 +22,11 @@ Text::~Text()
 
 void Text::draw( std::string str , int x , int y )
 {
-    int posx=x;
-    int posy=y;
+    int posx = x;
+    
+    if (align == true)
+        posx -= (getWidth( str )/2);
+    int posy = y;
     for ( int i = 0 ; i < str.length() ; i++ )
     {
         letter[str[i]][size][color.r][color.g][color.b]->render( renderer , posx , posy );
@@ -36,7 +39,6 @@ void Text::setSize( int s )
     size = s;
     if ( letter[64][size][color.r][color.g][color.b] == NULL )
         newCollection();
-
 }
 
 void Text::setColor( SDL_Color c )
@@ -44,7 +46,11 @@ void Text::setColor( SDL_Color c )
     color = c;
     if ( letter[64][size][color.r][color.g][color.b] == NULL )
         newCollection();
+}
 
+void Text::setAlignment( bool a )
+{
+    align = a;
 }
 
 void Text::newCollection()
@@ -59,4 +65,14 @@ void Text::newCollection()
         std::cout << str ;
     }
     TTF_CloseFont( font );
+}
+
+int Text::getWidth( std::string str )
+{
+    int width = 0;
+    for ( int i = 0 ; i < str.length() ; i++ )
+    {
+        width += letter[str[i]][size][color.r][color.g][color.b]->getWidth();
+    }
+    return width;
 }

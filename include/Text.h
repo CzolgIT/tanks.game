@@ -14,7 +14,9 @@ public:
     
     void setSize( int s );
     void setColor( SDL_Color c );
-    //void setAlignment( bool a ); // TODO: alignment
+    void setAlignment( bool a ); // true = center
+    
+    int getWidth( std::string str ); // width of text texture
     
 private:
 
@@ -29,7 +31,7 @@ private:
     int size;
     void newCollection();
     SDL_Color color;
-    //bool align; // TODO: alignment
+    bool align; // true = center
     
     TTF_Font* font;
     

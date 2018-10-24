@@ -27,21 +27,19 @@ int Menu::handleEvent( SDL_Event& e )
 
 void Menu::draw()
 {
-    //TEX_Menu->render( renderer , 0 , 0 );
-    //SDL_RenderDrawRect( renderer , &clip1 );
-
+    text->setAlignment( true );
+    
     text->setColor( C_RED );
-    text->setSize( 50 );
-    text->draw( "Tanks" , 300 , 50 );
-    text->draw( "Game" , 340 , 100 );
-    
-    text->setColor( C_BLUE );
-    text->setSize( 30 );
-    text->draw( "the world" , 300 , 160 );
-    text->draw( "is gonna roll me" , 340 , 190 );
-    
+    text->setSize( 80 );
+    text->draw( "Tanks" , 400 , 50 );
+    text->draw( "Game" , 400 , 130 );
     
     text->setColor( C_BLACK );
-    text->draw( "Press SPACE to start" , 220 , 550 );
+    text->setSize( 40 );
+    text->draw( "Create room" , 400 , 280 );
+    text->draw( "Join" , 400 , 340 );
+    text->draw( "Settings" , 400 , 400 );
+    text->draw( "Exit" , 400 , 460 );
     
+    text->draw( "Press SPACE to start" , 400 , 550 );
 }
