@@ -15,16 +15,15 @@ public:
     
 private:
 
-    Texture* TEX_Menu;
+    //Texture* TEX_Menu;
+    //SDL_Rect clip1;
     
     SDL_Renderer* renderer;
     
-    SDL_Rect clip1;
-
     Text* text;
+    
     int selected;
     
-
 };
 
 #endif /* Menu_h */

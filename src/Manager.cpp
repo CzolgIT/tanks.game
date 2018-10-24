@@ -57,8 +57,9 @@ void Manager::handleEvents()
         {
             gameObjects[i]->handleEvent( eventHandler );
         }
-        if ( menu->handleEvent( eventHandler ) == 69 )
-            startGame();
+        if (menu != NULL)
+            if ( menu->handleEvent( eventHandler ) == 69 )
+                startGame();
     }
 
     float timeStep = stepTimer.getTicks() / 1000.f;
