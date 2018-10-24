@@ -62,7 +62,6 @@ void Text::newCollection()
         str[0] = (char)i;
         letter[i][size][color.r][color.g][color.b] = new Texture;
         letter[i][size][color.r][color.g][color.b]->loadFromRenderedText( renderer , font , str , color );
-        std::cout << str ;
     }
     TTF_CloseFont( font );
 }
