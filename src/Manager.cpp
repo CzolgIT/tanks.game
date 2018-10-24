@@ -14,6 +14,7 @@ Manager::Manager()
     menu = new Menu( renderer , text );
 
     player = NULL;
+    background = NULL;
     
     running = true;
 }
@@ -75,6 +76,7 @@ void Manager::startGame()
     delete menu;
     menu = NULL;
     
+    background = new Background( renderer );
     player = new Player( renderer , text , 100.0 , 100.0 );
     gameObjects.push_back(player);
 }

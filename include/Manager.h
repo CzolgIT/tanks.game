@@ -29,6 +29,7 @@ private:
     NetManager* net;
     
     Menu* menu;
+    Background* background;
     
     // obiekty gry
     std::vector<GameObject*> gameObjects;

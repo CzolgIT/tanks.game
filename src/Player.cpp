@@ -96,11 +96,20 @@ void Player::move( float timeStep )
 
 void Player::draw()
 {
+    /* RYSOWANIE PO CALYM OKNIE
     spriteTrackLeft->draw( x , y+25 , iDirection);
     spriteTrackRight->draw( x+99, y+25 , iDirection);
     spriteBody->draw( x+5, y+21 , iDirection);
     spriteTower->draw( x+18, y+41 , iTowerDirection);
     spriteBarrel->draw( x+39, y , iTowerDirection);
+    */
+    
+    // RYSOWANIE NA SRODKU OKNA
+    spriteTrackLeft->draw( SCR_W/2-66 , SCR_H/2-105+25 , iDirection);
+    spriteTrackRight->draw( SCR_W/2-66+99, SCR_H/2-105+25 , iDirection);
+    spriteBody->draw( SCR_W/2-66+5, SCR_H/2-105+21 , iDirection);
+    spriteTower->draw( SCR_W/2-66+18, SCR_H/2-105+41 , iTowerDirection);
+    spriteBarrel->draw( SCR_W/2-66+39, SCR_H/2-105 , iTowerDirection);
     
     text->draw( "x: " + std::to_string( x ) ,  500 , 500 );
     text->draw( "y: " + std::to_string( y ) ,  500 , 530 );
