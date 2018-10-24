@@ -6,7 +6,7 @@ Background::Background( SDL_Renderer* r )
     width=512;
     height=512;
     texture = new Texture( renderer , "assets/tex_map.png" );
-    clip.x = 512;
+    clip.x = 0;
     clip.y = 0;
     clip.w = width;
     clip.h = height;

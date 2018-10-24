@@ -11,10 +11,10 @@ Player::Player( SDL_Renderer* r , Text* t , float x , float y ) : GameObject(r,x
     directionSpeed = 0;
     towerSpeed = 0;
 
-    tankMaxSpeed = 256;
+    tankMaxSpeed = 200;
     tankMaxSpeedDir = 128;
     
-    sprite = new TankSprite( renderer );
+    sprite = new TankSprite( renderer , 1 ); // 1-4 colors
 }
 
 void Player::handleEvent( SDL_Event& e )
@@ -90,7 +90,7 @@ void Player::move( float timeStep )
 
 void Player::draw()
 {
-    sprite->draw( x , y , iDirection , iTowerDirection );
+    sprite->draw( x , y , iDirection , iTowerDirection , moveSpeed );
     
     text->draw( "x: " + std::to_string( x ) ,  500 , 500 );
     text->draw( "y: " + std::to_string( y ) ,  500 , 530 );
