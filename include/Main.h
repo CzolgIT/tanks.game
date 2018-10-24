@@ -27,6 +27,7 @@
 #include "Timer.h"
 #include "Sprite.h"
 #include "Player.h"
+#include "TankSprite.h"
 #include "Background.h"
 #include "Wall.h"
 #include "NetManager.h"
