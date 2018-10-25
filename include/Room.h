@@ -13,10 +13,8 @@ public:
     
 private:
 
-    TankSprite* red;
-    TankSprite* blue;
-    TankSprite* yellow;
-    TankSprite* green;
+    TankSprite* sprite[4];
+    float dir;
     
     SDL_Renderer* renderer;
     Text* text;

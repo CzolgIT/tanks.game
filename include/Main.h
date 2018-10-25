@@ -49,6 +49,7 @@ const char TEXTURE_FILE[] = "texture.png";
 const char MENU_FILE[] = "png800x600.png";
 const char FONT_FILE[] = "assets/armyrangersexpand.ttf";
 const int FONT_SIZE = 42;
+const char NICKNAME[] = "Player";
 
 #define SERVERIP "153.19.7.230"
 //#define SERVERIP "153.19.7.230" // sigma

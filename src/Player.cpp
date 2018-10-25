@@ -90,7 +90,7 @@ void Player::move( float timeStep )
 
 void Player::draw()
 {
-    sprite->draw( x , y , iDirection , iTowerDirection , moveSpeed );
+    sprite->draw( SCR_W/2 , SCR_H/2 , iDirection , iTowerDirection , moveSpeed );
     
     text->draw( "x: " + std::to_string( x ) ,  500 , 500 );
     text->draw( "y: " + std::to_string( y ) ,  500 , 530 );
