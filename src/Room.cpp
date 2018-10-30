@@ -37,7 +37,7 @@ int Room::handleEvent( SDL_Event& e )
 
 void Room::draw()
 {
-    dir+=0.8;
+    dir+=0.2;
     if (dir>=360) dir-=360;
     sprite[0]->draw( 100 , 280 , dir , dir , 0 );
     sprite[1]->draw( 300 , 280 , dir , dir , 0 );
@@ -49,10 +49,10 @@ void Room::draw()
     text->setAlignment( true );
     
     text->setColor( C_RED );
-    text->setSize( 60 );
+    text->setSize( 65 );
     text->draw( "Tanks Game" , 400 , 20 );
     
-    text->setColor( C_BLACK );
+    //text->setColor( C_BLACK );
     text->setSize( 40 );
     
     if ( selectedTank == 1 )
@@ -66,14 +66,23 @@ void Room::draw()
 
     
     if ( selected == 1 )
-        text->setColor( C_BLUE );
+    {
+        text->setSize( 60 );
+        text->draw( "Start" , 400 , 470 );
+    }
     else
-        text->setColor( C_BLACK );
-    text->draw( "Start" , 400 , 480 );
+    {
+        text->setSize( 40 );
+        text->draw( "Start" , 400 , 480 );
+    }
     if ( selected == 5 )
-        text->setColor( C_BLUE );
+    {
+        text->setSize( 60 );
+        text->draw( "Back" , 400 , 530 );
+    }
     else
-        text->setColor( C_BLACK );
-    text->draw( "Back" , 400 , 540 );
-
+    {
+        text->setSize( 40 );
+        text->draw( "Back" , 400 , 540 );
+    }
 }

@@ -36,24 +36,47 @@ void Menu::draw()
     text->setSize( 40 );
     
     if ( selected == 1 )
-        text->setColor( C_BLUE );
+    {
+        text->setSize( 60 );
+        text->draw( "Create room" , 400 , 270 );
+    }
     else
-        text->setColor( C_BLACK );
-    text->draw( "Create room" , 400 , 280 );
+    {
+        text->setSize( 40 );
+        text->draw( "Create room" , 400 , 280 );
+    }
+    
     if ( selected == 2 )
-        text->setColor( C_BLUE );
+    {
+        text->setSize( 60 );
+        text->draw( "Join" , 400 , 330 );
+    }
     else
-        text->setColor( C_BLACK );
-    text->draw( "Join" , 400 , 340 );
+    {
+        text->setSize( 40 );
+        text->draw( "Join" , 400 , 340 );
+    }
+    
     if ( selected == 3 )
-        text->setColor( C_BLUE );
+    {
+        text->setSize( 60 );
+        text->draw( "Settings" , 400 , 390 );
+    }
     else
-        text->setColor( C_BLACK );
-    text->draw( "Settings" , 400 , 400 );
+    {
+        text->setSize( 40 );
+        text->draw( "Settings" , 400 , 400 );
+    }
+    
     if ( selected == 4 )
-        text->setColor( C_BLUE );
+    {
+        text->setSize( 60 );
+        text->draw( "Exit" , 400 , 450 );
+    }
     else
-        text->setColor( C_BLACK );
-    text->draw( "Exit" , 400 , 460 );
+    {
+        text->setSize( 40 );
+        text->draw( "Exit" , 400 , 460 );
+    }
     
 }

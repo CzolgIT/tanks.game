@@ -29,22 +29,22 @@ void Text::draw( std::string str , int x , int y )
     int posy = y;
     for ( int i = 0 ; i < str.length() ; i++ )
     {
-        letter[str[i]][size][color.r][color.g][color.b]->render( renderer , posx , posy );
-        posx += letter[str[i]][size][color.r][color.g][color.b]->getWidth();
+        letter[str[i]][size]->render( renderer , posx , posy );
+        posx += letter[str[i]][size]->getWidth();
     }
 }
 
 void Text::setSize( int s )
 {
     size = s;
-    if ( letter[64][size][color.r][color.g][color.b] == NULL )
+    if ( letter[64][size] == NULL )
         newCollection();
 }
 
 void Text::setColor( SDL_Color c )
 {
     color = c;
-    if ( letter[64][size][color.r][color.g][color.b] == NULL )
+    if ( letter[64][size] == NULL )
         newCollection();
 }
 
@@ -60,8 +60,8 @@ void Text::newCollection()
     for ( int i = 32 ; i <127 ; i++ )
     {
         str[0] = (char)i;
-        letter[i][size][color.r][color.g][color.b] = new Texture;
-        letter[i][size][color.r][color.g][color.b]->loadFromRenderedText( renderer , font , str , color );
+        letter[i][size] = new Texture;
+        letter[i][size]->loadFromRenderedText( renderer , font , str , color );
     }
     TTF_CloseFont( font );
 }
@@ -71,7 +71,7 @@ int Text::getWidth( std::string str )
     int width = 0;
     for ( int i = 0 ; i < str.length() ; i++ )
     {
-        width += letter[str[i]][size][color.r][color.g][color.b]->getWidth();
+        width += letter[str[i]][size]->getWidth();
     }
     return width;
 }

@@ -26,7 +26,7 @@ private:
     // znaki od 32 do 126
     // rozmiary (domyslnie tylko 16)
     // kolor R G B
-    Texture* letter[128][128][256][256][256];
+    Texture* letter[128][128];
     
     int size;
     void newCollection();

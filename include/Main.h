@@ -45,10 +45,10 @@ const int SCR_W = 800;
 const int SCR_H = 600;
 
 // Resources
-const char TEXTURE_FILE[] = "assets/texture.png";
-const char MENU_FILE[] = "assets/png800x600.png";
-const char FONT_FILE[] = "assets/armyrangersexpand.ttf";
-const int FONT_SIZE = 42;
+//const char TEXTURE_FILE[] = "assets/texture.png";
+//const char MENU_FILE[] = "assets/png800x600.png";
+const char FONT_FILE[] = "assets/font.ttf";
+//const int FONT_SIZE = 42;
 const char NICKNAME[] = "Player";
 
 #define SERVERIP "153.19.7.230"
