@@ -45,8 +45,8 @@ const int SCR_W = 800;
 const int SCR_H = 600;
 
 // Resources
-const char TEXTURE_FILE[] = "texture.png";
-const char MENU_FILE[] = "png800x600.png";
+const char TEXTURE_FILE[] = "assets/texture.png";
+const char MENU_FILE[] = "assets/png800x600.png";
 const char FONT_FILE[] = "assets/armyrangersexpand.ttf";
 const int FONT_SIZE = 42;
 const char NICKNAME[] = "Player";
