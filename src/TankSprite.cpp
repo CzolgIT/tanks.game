@@ -18,17 +18,26 @@ TankSprite::TankSprite( SDL_Renderer* r , int color )
 
 void TankSprite::draw( int x , int y , int dir , int dirT , int move )
 {
-    if ( move < 0 )
+    if (step >= 14 || step <= -14)
     {
-        step++;
-        if (step == 15)
-            step = 0;
+        step = 0;
     }
-    else
+
+    if (move > 0){
+        step++;
+        spriteTrackLeft[4-(int)round(abs(step)/3)]->draw( x-66 , y-105+25 , dir);
+        spriteTrackRight[4-(int)round(abs(step)/3)]->draw( x-66+99, y-105+25 , dir);
+    }else if (move < 0) {
+        step --;
+        spriteTrackLeft[(int)round(abs(step)/3)]->draw( x-66 , y-105+25 , dir);
+        spriteTrackRight[(int)round(abs(step)/3)]->draw( x-66+99, y-105+25 , dir);
+    } else
+    {
         step = 0 ;
-    
-    spriteTrackLeft[(int)round(step/3)]->draw( x-66 , y-105+25 , dir);
-    spriteTrackRight[(int)round(step/3)]->draw( x-66+99, y-105+25 , dir);
+        spriteTrackLeft[0]->draw( x-66 , y-105+25 , dir);
+        spriteTrackRight[0]->draw( x-66+99, y-105+25 , dir);
+    }
+
     spriteBody->draw( x-66+5, y-105+21 , dir);
     spriteTower->draw( x-66+18, y-105+41 , dirT);
     spriteBarrel->draw( x-66+39, y-105 , dirT);
