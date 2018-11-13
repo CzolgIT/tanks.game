@@ -2,11 +2,10 @@
 
 int main( int argc, char* args[] )
 {
-    Manager manager;
-    while( manager.isRunning() )
+    Game game;
+    while( game.isRunning())
     {
-        manager.handleEvents();
-        manager.updateScreen();
+        game.Update();
     }
     return 0;
 }

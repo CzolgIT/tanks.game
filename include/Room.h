@@ -3,21 +3,18 @@
 
 #include "Main.h"
 
-class Room
+class Room : public Scene
 {
 public:
-    
-    Room( SDL_Renderer* r , Text* t );
-    int handleEvent( SDL_Event& e );
-    void draw();
-    
-private:
 
+    Room( SDL_Renderer* r , Text* t );
+    void handleEvents();
+    void draw();
+
+
+private:
     TankSprite* sprite[4];
     float dir;
-    
-    SDL_Renderer* renderer;
-    Text* text;
 
     int selected;
     int selectedTank;
