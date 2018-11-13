@@ -14,23 +14,7 @@ Background::Background( SDL_Renderer* r )
 
 void Background::draw( int x , int y )
 {
-    texture->render( renderer , x, y , &clip );
-    texture->render( renderer , x+512, y , &clip );
-    texture->render( renderer , x+1024, y , &clip );
-    texture->render( renderer , x+1536, y , &clip );
-    
-    texture->render( renderer , x, y+512 , &clip );
-    texture->render( renderer , x+512, y+512 , &clip );
-    texture->render( renderer , x+1024, y+512 , &clip );
-    texture->render( renderer , x+1536, y+512 , &clip );
-    
-    texture->render( renderer , x, y+1024 , &clip );
-    texture->render( renderer , x+512, y+1024 , &clip );
-    texture->render( renderer , x+1024, y+1024 , &clip );
-    texture->render( renderer , x+1536, y+1024 , &clip );
-    
-    texture->render( renderer , x, y+1536 , &clip );
-    texture->render( renderer , x+512, y+1536 , &clip );
-    texture->render( renderer , x+1024, y+1536 , &clip );
-    texture->render( renderer , x+1536, y+1536 , &clip );
+    for(int i=0; i<4; i++)
+        for(int j=0; j<4; j++)
+            texture->render( renderer , x+(i*512) , y+(j*512) , &clip );
 }
