@@ -7,6 +7,11 @@
 #include <sstream>
 #include <math.h>
 #include <typeinfo>
+#include <memory>
+#include <queue>
+#include <thread>
+#include <atomic>
+
 #ifdef __APPLE__
     #include <SDL2/SDL.h>
     #include <SDL2_image/SDL_image.h>
@@ -22,8 +27,12 @@
 #include "Collider.h"
 #include "GameObject.h"
 #include "Texture.h"
+#include "BasePacket.h"
+#include "JoinResponsePacket.h"
+#include "JoinRequestPacket.h"
+#include "UniversalPacket.h"
+#include "TCPConnection.h"
 #include "Text.h"
-
 #include "Timer.h"
 #include "Sprite.h"
 #include "TankSprite.h"
@@ -34,7 +43,7 @@
 #include "Background.h"
 #include "Wall.h"
 #include "NetManager.h"
-#include "Manager.h" // musi być ostatni
+#include "Manager.h"
 #include "Game.h"
 
 
