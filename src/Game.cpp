@@ -29,15 +29,12 @@ void Game::Update()
 
     if (pom  < 0)
         running = false;
-    std::cout << "Nastepna scena!" << std::endl;
     if (typeid(*currentScene) == typeid(Menu))
     {
-        std::cout << "Przechodzimy do roomu!" << std::endl;
         currentScene = new Room(renderer, text);
     }
      else if (typeid(*currentScene) == typeid(Room))
     {
-        std::cout << "Przechodzimy do gry! kolor: " << pom << std::endl;
          currentScene = new Manager(renderer, text, pom);
     }  else running = false;
 
