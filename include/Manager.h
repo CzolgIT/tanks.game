@@ -3,36 +3,19 @@
 
 #include "Main.h"
 
-class Manager
+class Manager : public Scene
 {
 public:
-    Manager();
-    ~Manager();
-
+    Manager(SDL_Renderer * renderer, Text* text , int color);
     // metody do głównej pętli
     void handleEvents();
-    void updateScreen();
+    void draw();
     bool isRunning();
-    
-    // metody stanu gry
-    void startGame( int color );
-    
-private:
-    bool running;
 
-    // ważne rzeczy - managery - silniki - globalne
-    SDL_Window* window;
-    SDL_Renderer* renderer;
+private:
+    Background* background = NULL;
+
     Timer stepTimer;
-    SDL_Event eventHandler;
-    Text* text;
-    NetManager* net;
-    
-    Menu* menu;
-    Room* room;
-    Background* background;
-    
-    // obiekty gry
     std::vector<GameObject*> gameObjects;
     Player* player;
 };

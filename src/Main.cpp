@@ -2,15 +2,14 @@
 
 int main( int argc, char* args[] )
 {
-    Manager manager;
+    Game game;
 
     NetManager netManager;
     netManager.activate();
 
-    while( manager.isRunning() )
+    while( game.isRunning())
     {
-        manager.handleEvents();
-        manager.updateScreen();
+        game.Update();
     }
     return 0;
 }

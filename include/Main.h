@@ -6,6 +6,7 @@
 #include <iostream>
 #include <sstream>
 #include <math.h>
+#include <typeinfo>
 #include <memory>
 #include <queue>
 #include <thread>
@@ -35,13 +36,16 @@
 #include "Timer.h"
 #include "Sprite.h"
 #include "TankSprite.h"
+#include "Scene.h"
 #include "Room.h"
 #include "Menu.h"
 #include "Player.h"
 #include "Background.h"
 #include "Wall.h"
 #include "NetManager.h"
-#include "Manager.h" // musi być ostatni
+#include "Manager.h"
+#include "Game.h"
+
 
 // SDL vars
 const int ACCELERATION = 0x00000002;
@@ -67,6 +71,6 @@ const char NICKNAME[] = "Player";
 #define CLIENTPORT 1666
 
 // Some Colors
-const SDL_Color C_RED = { 255 , 0 , 0 };
-const SDL_Color C_BLUE = { 0 , 0 , 255 };
+const SDL_Color C_RED = { 255 , 100 , 0 };
+const SDL_Color C_BLUE = { 100 , 0 , 255 };
 const SDL_Color C_BLACK = { 0 , 0 , 0 };

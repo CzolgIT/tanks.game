@@ -14,24 +14,24 @@ public:
     virtual void draw();
 
 private:
-    
+
     // wskaznik do rysownika tekstow
     Text* text;
-    
+
     // aktualne predkosci
     int moveSpeed , directionSpeed , towerSpeed;
-    
+
     // aktualne pozycje obrotu
     float direction , towerDirection;
-    
+
     // aktualne pozycje obrotu do wyswietlania, poruszania w kierunku i przesylania do serwera
     int iDirection , iTowerDirection;
-    
+
     // maksymalne predkosci
     int tankMaxSpeed , tankMaxSpeedDir;
 
     TankSprite* sprite;
-    
+
 };
 
 #endif /* Player_h */
