@@ -65,10 +65,12 @@ const char FONT_FILE[] = "assets/font.ttf";
 const char NICKNAME[] = "Player";
 
 #define SERVERIP "153.19.7.230"
+#define SERVERPORT 7777
+
 //#define SERVERIP "153.19.7.230" // sigma
 //#define SERVERIP "127.0.0.1" // localhost
-#define SERVERPORT 6666
-#define CLIENTPORT 1666
+//#define SERVERPORT 7777
+//#define CLIENTPORT 1666
 
 // Some Colors
 const SDL_Color C_RED = { 255 , 100 , 0 };

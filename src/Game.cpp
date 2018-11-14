@@ -9,7 +9,10 @@ Game::Game()
     window = SDL_CreateWindow( "Tanks Game", SCR_X , SCR_Y , SCR_W , SCR_H , SDL_WINDOW_SHOWN );
     renderer = SDL_CreateRenderer( window, -1, ACCELERATION | VSYNC );
     text = new Text( renderer , FONT_FILE );
-    net = new NetManager();
+    netManager = new NetManager();
+
+    //NetManager netManager;
+    //netManager.activate();
 
     currentScene = new Menu(renderer, text);
     running = true;
@@ -30,7 +33,7 @@ void Game::Update()
     if (typeid(*currentScene) == typeid(Menu))
     {
         std::cout << "Przechodzimy do roomu!" << std::endl;
-        currentScene = new Room(renderer, text);
+        currentScene = new Room(renderer, text, netManager );
     }
      else if (typeid(*currentScene) == typeid(Room))
     {

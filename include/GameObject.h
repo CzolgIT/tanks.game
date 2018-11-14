@@ -7,7 +7,7 @@ class GameObject
 {
 public:
     GameObject(SDL_Renderer * ren, float x, float y, int width, int height);
-    // virtual void Start()
+    // virtual void Start() // not used
     virtual void update(){}
     virtual void move(float timeStep){}
     virtual void draw(){}

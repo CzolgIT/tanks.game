@@ -2,17 +2,20 @@
 #define Room_h
 
 #include "Main.h"
+#include "NetManager.h"
 
 class Room : public Scene
 {
 public:
 
-    Room( SDL_Renderer* r , Text* t );
+    Room( SDL_Renderer* r , Text* t , NetManager* net);
     void handleEvents();
     void draw();
 
 
 private:
+
+    NetManager* netManager;
     TankSprite* sprite[4];
     float dir;
 

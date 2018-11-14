@@ -19,7 +19,7 @@ private:
     Timer stepTimer;
     SDL_Event eventHandler;
     Text* text;
-    NetManager* net;
+    NetManager* netManager;
     Scene * currentScene;
     bool running;
 

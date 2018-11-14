@@ -13,15 +13,15 @@ enum JoinResponse : Uint8{
 // data indexes explanation:
 // data[0] -> packet type
 // data[1] -> response
+// data[2] -> given id
 
 class JoinResponsePacket : public BasePacket{
 public:
     JoinResponsePacket() : BasePacket(PT_JOIN_RESPONSE, JOIN_RESPONSE_PACKET_SIZE) {}
     ~JoinResponsePacket() {}
-    
-    void setResponse(JoinResponse joinResponse);
-    
+
     JoinResponse getResponse() const;
+    Uint8 getId() const ;
 };
 
 #endif

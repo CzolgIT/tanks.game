@@ -19,7 +19,6 @@ TCPConnection::~TCPConnection()
 
 bool TCPConnection::connectToServer(std::string host, Uint16 port)
 {
-    
     // Resolve the server name
     if (SDLNet_ResolveHost(&ipAddress, host.c_str(), port))
     {
@@ -34,7 +33,7 @@ bool TCPConnection::connectToServer(std::string host, Uint16 port)
         return false;
     }
     
-    std::cout << "Estabilished connection, requesting join...\n";
+    std::cout << "Established connection, requesting join...\n";
     
     JoinRequestPacket request;
     
@@ -46,7 +45,7 @@ bool TCPConnection::connectToServer(std::string host, Uint16 port)
     //read the response
     if(SDLNet_TCP_Recv(socket, response.getData(),response.getSize()) <= 0)
     {
-        std::cerr << "SDLNet_TCP_Recv error: " << SDLNet_GetError( ) << std::endl;
+        std::cerr << "SDLNet_TCP_Received error: " << SDLNet_GetError( ) << std::endl;
         return false;
     }
     
@@ -55,8 +54,8 @@ bool TCPConnection::connectToServer(std::string host, Uint16 port)
         std::cout << "Your connection was rejected by the server\n";
         return false;
     }
-    
-    std::cout << "The connection to the server was succesful! : O\n";
+    if(response.getResponse() == JR_OK)
+        std::cout << "The connection to the server was successful! : " << (int)response.getId() << "\n";
     
     return true;
     

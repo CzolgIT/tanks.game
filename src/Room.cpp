@@ -1,10 +1,12 @@
 #include "Main.h"
 
-Room::Room( SDL_Renderer* r , Text* t) : Scene(r)
+Room::Room( SDL_Renderer* r , Text* t , NetManager* net) : Scene(r)
 {
     text = t;
     selectedTank = 1;
     dir=0;
+    netManager = net;
+    net->activate();
 
     sprite[0] = new TankSprite( renderer , 1 );
     sprite[1] = new TankSprite( renderer , 2 );

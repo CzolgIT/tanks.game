@@ -6,8 +6,8 @@
 class Manager : public Scene
 {
 public:
+
     Manager(SDL_Renderer * renderer, Text* text , int color);
-    // metody do głównej pętli
     void handleEvents();
     void draw();
     bool isRunning();

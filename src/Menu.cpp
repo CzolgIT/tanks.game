@@ -53,7 +53,7 @@ void Menu::draw()
     {
 
         text->setSize( 60 );
-        text->draw( "Create room" , 400 , 270 );
+        text->draw( "- Create room -" , 400 , 270 );
     }
     else
     {
@@ -64,7 +64,7 @@ void Menu::draw()
     if ( selected == 2 )
     {
         text->setSize( 60 );
-        text->draw( "Join" , 400 , 330 );
+        text->draw( "- Join -" , 400 , 330 );
     }
     else
     {
@@ -75,7 +75,7 @@ void Menu::draw()
     if ( selected == 3 )
     {
         text->setSize( 60 );
-        text->draw( "Settings" , 400 , 390 );
+        text->draw( "- Settings -" , 400 , 390 );
     }
     else
     {
@@ -86,7 +86,7 @@ void Menu::draw()
     if ( selected == 4 )
     {
         text->setSize( 60 );
-        text->draw( "Exit" , 400 , 450 );
+        text->draw( "- Exit -" , 400 , 450 );
     }
     else
     {
