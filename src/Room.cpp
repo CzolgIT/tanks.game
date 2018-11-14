@@ -6,7 +6,7 @@ Room::Room( SDL_Renderer* r , Text* t , NetManager* net) : Scene(r)
     selectedTank = 1;
     dir=0;
     netManager = net;
-    net->activate();
+    netManager->activate();
 
     sprite[0] = new TankSprite( renderer , 1 );
     sprite[1] = new TankSprite( renderer , 2 );
@@ -31,7 +31,8 @@ void  Room::handleEvents()
             switch( eventHandler.key.keysym.sym )
             {
                 case SDLK_RETURN:
-                    flagReturn = selectedTank;
+
+                    flagReturn = 4; // tu byl selectedtank, ale tworzenie czolgu bedzie musialo byc juz w tej klasie
                     running = false;
                     break;
                 //case SDLK_UP: if (selected == 1 ) selected = 5; else selected=1; break;
@@ -75,6 +76,7 @@ void Room::draw()
     if ( selectedTank == 4 )
         text->draw( NICKNAME , 700 , 400 );
 
+    /*
 
     if ( selected == 1 )
     {
@@ -96,6 +98,6 @@ void Room::draw()
         text->setSize( 40 );
         text->draw( "Back" , 400 , 540 );
     }
-
+*/
      SDL_RenderPresent( renderer );
 }

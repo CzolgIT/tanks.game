@@ -4,7 +4,6 @@ TCPConnection::TCPConnection() :
 senderThread(nullptr)
 {
     close_thread = false;
-    
     socketSet = SDLNet_AllocSocketSet(1);
 }
 
@@ -29,7 +28,8 @@ bool TCPConnection::connectToServer(std::string host, Uint16 port)
     // Establish connection
     socket = SDLNet_TCP_Open(&ipAddress);
     if(!socket){
-        std::cerr << "SDLNet_TCP_Open error: " << SDLNet_GetError() << std::endl;
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,"SDLNet_TCP_Open error",SDLNet_GetError(),NULL);
+        //std::cerr << "SDLNet_TCP_Open error: " << SDLNet_GetError() << "\n";
         return false;
     }
     

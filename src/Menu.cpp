@@ -22,14 +22,22 @@ void Menu::handleEvents()
             switch( eventHandler.key.keysym.sym )
             {
                 case SDLK_RETURN:
-                if (selected == 1 ){
-                    flagReturn = selected;
+                    if (selected == 4)
+                        flagReturn = -1;
+                    else
+                        flagReturn = selected;
                     running = false;
                     break;
-                } else
-                break;
-                case SDLK_UP: if (selected == 1 ) selected = 4; else selected--; break;
-                case SDLK_DOWN: if (selected == 4 ) selected = 1; else selected++; break;
+                case SDLK_UP:
+                    if (selected == 1 )
+                        selected = 4;
+                    else selected--;
+                    break;
+                case SDLK_DOWN:
+                    if (selected == 4 )
+                        selected = 1;
+                    else selected++;
+                    break;
             }
         }
     }
@@ -55,23 +63,23 @@ void Menu::draw()
     {
 
         text->setSize( 60 );
-        text->draw( "- Create room -" , 400 , 270 );
+        text->draw( "- Multiplayer -" , 400 , 270 );
     }
     else
     {
         text->setSize( 40 );
-        text->draw( "Create room" , 400 , 280 );
+        text->draw( "Multiplayer" , 400 , 280 );
     }
 
     if ( selected == 2 )
     {
         text->setSize( 60 );
-        text->draw( "- Join -" , 400 , 330 );
+        text->draw( "- Singleplayer -" , 400 , 330 );
     }
     else
     {
         text->setSize( 40 );
-        text->draw( "Join" , 400 , 340 );
+        text->draw( "Singleplayer" , 400 , 340 );
     }
 
     if ( selected == 3 )

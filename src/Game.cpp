@@ -18,28 +18,35 @@ Game::Game()
 
 void Game::Update()
 {
-
     while (currentScene->isRunning())
     {
         currentScene->Update();
-
     }
-    // przechowuje "flage" z poprzedniej sceny
-    int pom = currentScene->getFlag();
+    // przechowuje "flage" z poprzedniej sceny wskazujaca nastepna scene
+    int flag = currentScene->getFlag();
 
-    if (pom  < 0)
-        running = false;
-    else
+    switch( flag )
     {
-        if (typeid(*currentScene) == typeid(Menu))
-        {
+        case 0: // Menu
+            currentScene = new Menu(renderer, text);
+            break;
+        case 1: // Multiplayer
             currentScene = new Room(renderer, text, netManager);
-        }
-         else if (typeid(*currentScene) == typeid(Room))
-        {
-             currentScene = new Manager(renderer, text, pom);
-        }
-        else running = false;
+            break;
+        case 2: // Singleplayer
+            currentScene = new Manager(renderer, text, flag);
+            break;
+        case 3: // Settings
+            SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,"Przykro mi","jeszcze nie ma opcji ustawień :(",NULL);
+            currentScene = new Menu(renderer, text);
+            break;
+        case 4: // Multiplayer-run
+            currentScene = new Manager(renderer, text, 1 ); // ta 1 jest wykrywana jako kolor, ale trzeba sie tego stad pozbyc
+            break;
+        default:
+            SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,"SIEMA","ELO",NULL);
+            running = false;
+            break;
     }
 }
 
@@ -47,8 +54,8 @@ Game::~Game()
 {
     SDL_DestroyRenderer( renderer );
     SDL_DestroyWindow( window );
-    window = NULL;
-    renderer = NULL;
+    window = nullptr;
+    renderer = nullptr;
     IMG_Quit();
     SDL_Quit();
 }
