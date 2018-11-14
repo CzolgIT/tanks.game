@@ -11,9 +11,6 @@ Game::Game()
     text = new Text( renderer , FONT_FILE );
     netManager = new NetManager();
 
-    //NetManager netManager;
-    //netManager.activate();
-
     currentScene = new Menu(renderer, text);
     running = true;
 
@@ -29,15 +26,15 @@ void Game::Update()
     }
     // przechowuje "flage" z poprzedniej sceny
     int pom = currentScene->getFlag();
-    std::cout << "Nastepna scena!" << std::endl;
+
+    if (pom  < 0)
+        running = false;
     if (typeid(*currentScene) == typeid(Menu))
     {
-        std::cout << "Przechodzimy do roomu!" << std::endl;
-        currentScene = new Room(renderer, text, netManager );
+        currentScene = new Room(renderer, text, netManager);
     }
      else if (typeid(*currentScene) == typeid(Room))
     {
-        std::cout << "Przechodzimy do gry! kolor: " << pom << std::endl;
          currentScene = new Manager(renderer, text, pom);
     }  else running = false;
 

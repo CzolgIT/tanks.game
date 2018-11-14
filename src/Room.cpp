@@ -22,6 +22,7 @@ void  Room::handleEvents()
         if( eventHandler.type == SDL_QUIT )
         {
             running = false;
+            flagReturn = -1;
             break;
         }
 
@@ -30,6 +31,7 @@ void  Room::handleEvents()
             switch( eventHandler.key.keysym.sym )
             {
                 case SDLK_RETURN:
+                    flagReturn = selectedTank;
                     running = false;
                     break;
                 //case SDLK_UP: if (selected == 1 ) selected = 5; else selected=1; break;
