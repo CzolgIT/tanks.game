@@ -31,6 +31,7 @@
 #include "JoinResponsePacket.h"
 #include "JoinRequestPacket.h"
 #include "UniversalPacket.h"
+#include "PlayerDisconnectedPacket.h"
 #include "TCPConnection.h"
 #include "Text.h"
 #include "Timer.h"
@@ -68,7 +69,7 @@ const char NICKNAME[] = "Player";
 #define SERVERPORT 7777
 
 //#define SERVERIP "153.19.7.230" // sigma
-//#define SERVERIP "127.0.0.1" // localhost
+#define SERVERIPLOCAL "127.0.0.1" // localhost
 //#define SERVERPORT 7777
 //#define CLIENTPORT 1666
 
