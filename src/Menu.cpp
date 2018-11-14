@@ -22,7 +22,6 @@ void Menu::handleEvents()
             {
                 case SDLK_RETURN:
                 if (selected == 1 ){
-                    selectedReturn = selected;
                     running = false;
                     break;
                 } else

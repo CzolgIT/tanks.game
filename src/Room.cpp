@@ -28,7 +28,6 @@ void  Room::handleEvents()
             switch( eventHandler.key.keysym.sym )
             {
                 case SDLK_RETURN:
-                    selectedReturn = selectedTank;
                     running = false;
                     break;
                 //case SDLK_UP: if (selected == 1 ) selected = 5; else selected=1; break;
