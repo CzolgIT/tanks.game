@@ -6,6 +6,10 @@
 #include <iostream>
 #include <sstream>
 #include <math.h>
+#include <memory>
+#include <queue>
+#include <thread>
+#include <atomic>
 
 #ifdef __APPLE__
     #include <SDL2/SDL.h>
@@ -22,6 +26,11 @@
 #include "Collider.h"
 #include "GameObject.h"
 #include "Texture.h"
+#include "BasePacket.h"
+#include "JoinResponsePacket.h"
+#include "JoinRequestPacket.h"
+#include "UniversalPacket.h"
+#include "TCPConnection.h"
 #include "Text.h"
 #include "Timer.h"
 #include "Sprite.h"

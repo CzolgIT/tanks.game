@@ -7,19 +7,20 @@ class NetManager
 {
 public:
     NetManager();
-    ~NetManager();
     
-    void activate( std::string ip = "127.0.0.1" , int port = 1616);
+    void activate( std::string ip = "153.19.7.230" , int port = 7777);
     void close();
     
     void getMessage();
     void sendMessage( char* slowo );
 
 private:
+
     UDPsocket socket;
     UDPpacket* packet;
     UDPpacket* packet2;
     IPaddress destAddress;
+    TCPConnection tcpConnection;
 };
 
 #endif /* NetManager_h */
