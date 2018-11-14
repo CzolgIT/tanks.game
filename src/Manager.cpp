@@ -28,6 +28,7 @@ void Manager::handleEvents()
         if( eventHandler.type == SDL_QUIT )
         {
             running = false;
+            flagReturn = -1;
             break;
         }
 

@@ -26,6 +26,9 @@ void Game::Update()
     }
     // przechowuje "flage" z poprzedniej sceny
     int pom = currentScene->getFlag();
+
+    if (pom  < 0)
+        running = false;
     std::cout << "Nastepna scena!" << std::endl;
     if (typeid(*currentScene) == typeid(Menu))
     {

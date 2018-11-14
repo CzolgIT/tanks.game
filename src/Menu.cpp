@@ -13,6 +13,7 @@ void Menu::handleEvents()
         if( eventHandler.type == SDL_QUIT )
         {
             running = false;
+            flagReturn = -1;
             break;
         }
 
@@ -22,7 +23,7 @@ void Menu::handleEvents()
             {
                 case SDLK_RETURN:
                 if (selected == 1 ){
-                    selectedReturn = selected;
+                    flagReturn = selected;
                     running = false;
                     break;
                 } else
