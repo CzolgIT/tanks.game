@@ -29,15 +29,18 @@ void Game::Update()
 
     if (pom  < 0)
         running = false;
-    if (typeid(*currentScene) == typeid(Menu))
+    else
     {
-        currentScene = new Room(renderer, text, netManager);
+        if (typeid(*currentScene) == typeid(Menu))
+        {
+            currentScene = new Room(renderer, text, netManager);
+        }
+         else if (typeid(*currentScene) == typeid(Room))
+        {
+             currentScene = new Manager(renderer, text, pom);
+        }
+        else running = false;
     }
-     else if (typeid(*currentScene) == typeid(Room))
-    {
-         currentScene = new Manager(renderer, text, pom);
-    }  else running = false;
-
 }
 
 Game::~Game()
