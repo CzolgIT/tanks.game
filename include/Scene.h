@@ -11,14 +11,14 @@ public:
     virtual void draw(){}
     bool isRunning() { return running; }
     void Update();
-    int getSelected() { return selectedReturn;}
+    int getFlag() { return flagReturn ;}
 
 protected:
     bool running;
     SDL_Renderer* renderer;
     SDL_Event eventHandler;
     Text* text;
-    int selectedReturn;
+    int flagReturn;
 
 };
 

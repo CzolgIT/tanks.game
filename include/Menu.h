@@ -11,7 +11,6 @@ public:
     void loadTexts();
     void handleEvents();
     void draw();
-    int getSelected() { return selectedReturn;}
 private:
     int selected;
 
