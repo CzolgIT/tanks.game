@@ -6,7 +6,11 @@ Room::Room( SDL_Renderer* r , Text* t , NetManager* net) : Scene(r)
     selectedTank = 1;
     dir=0;
     netManager = net;
-    netManager->activate();
+    if (netManager->activate() == false
+    {
+        flagReturn = 0;
+        running = false;
+    }
 
     sprite[0] = new TankSprite( renderer , 1 );
     sprite[1] = new TankSprite( renderer , 2 );

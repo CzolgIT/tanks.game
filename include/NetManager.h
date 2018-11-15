@@ -8,7 +8,7 @@ class NetManager
 public:
 
     NetManager();
-    void activate();
+    bool activate();
 
 private:
 

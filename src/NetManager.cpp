@@ -5,7 +5,7 @@ NetManager::NetManager()
     SDLNet_Init();
 }
 
-void NetManager::activate()
+bool NetManager::activate()
 {
-    tcpConnection.connectToServer( SERVERIP , SERVERPORT );
+    return tcpConnection.connectToServer( SERVERIP , SERVERPORT );
 }

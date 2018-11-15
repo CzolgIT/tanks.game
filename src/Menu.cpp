@@ -59,50 +59,19 @@ void Menu::draw()
     text->setColor( C_BLACK );
     text->setSize( 40 );
 
-    if ( selected == 1 )
-    {
+    text->draw( "Multiplayer" , 400 , 280 );
+    text->draw( "Singleplayer" , 400 , 340 );
+    text->draw( "Settings" , 400 , 400 );
+    text->draw( "Exit" , 400 , 460 );
 
-        text->setSize( 60 );
-        text->draw( "- Multiplayer -" , 400 , 270 );
-    }
-    else
+    switch( selected )
     {
-        text->setSize( 40 );
-        text->draw( "Multiplayer" , 400 , 280 );
-    }
-
-    if ( selected == 2 )
-    {
-        text->setSize( 60 );
-        text->draw( "- Singleplayer -" , 400 , 330 );
-    }
-    else
-    {
-        text->setSize( 40 );
-        text->draw( "Singleplayer" , 400 , 340 );
+        case 1: text->draw( "- Multiplayer -" , 400 , 280 ); break;
+        case 2: text->draw( "- Singleplayer -" , 400 , 340 ); break;
+        case 3: text->draw( "- Settings -" , 400 , 400 ); break;
+        case 4: text->draw( "- Exit -" , 400 , 460 ); break;
     }
 
-    if ( selected == 3 )
-    {
-        text->setSize( 60 );
-        text->draw( "- Settings -" , 400 , 390 );
-    }
-    else
-    {
-        text->setSize( 40 );
-        text->draw( "Settings" , 400 , 400 );
-    }
-
-    if ( selected == 4 )
-    {
-        text->setSize( 60 );
-        text->draw( "- Exit -" , 400 , 450 );
-    }
-    else
-    {
-        text->setSize( 40 );
-        text->draw( "Exit" , 400 , 460 );
-    }
     SDL_RenderPresent( renderer );
 
 }
