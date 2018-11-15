@@ -68,12 +68,15 @@ const char NICKNAME[] = "Player";
 #define SERVERIP "153.19.7.230"
 #define SERVERPORT 7777
 
-//#define SERVERIP "153.19.7.230" // sigma
-#define SERVERIPLOCAL "127.0.0.1" // localhost
-//#define SERVERPORT 7777
-//#define CLIENTPORT 1666
+//Tank Globals
+#define TANKMAXSPEED 200
+#define TANKMAXDIR 128
 
 // Some Colors
 const SDL_Color C_RED = { 255 , 100 , 0 };
 const SDL_Color C_BLUE = { 100 , 0 , 255 };
 const SDL_Color C_BLACK = { 0 , 0 , 0 };
+
+// Tank Globals
+#define TANKMAXSPEED 200
+#define TANKMAXDIR 128

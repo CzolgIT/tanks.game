@@ -10,9 +10,6 @@ Player::Player( SDL_Renderer* r , Text* t , float x , float y , int color ) : Ga
     moveSpeed = 0;
     directionSpeed = 0;
     towerSpeed = 0;
-
-    tankMaxSpeed = 200;
-    tankMaxSpeedDir = 128;
     
     sprite = new TankSprite( renderer , color );
 }
@@ -23,24 +20,24 @@ void Player::handleEvent( SDL_Event& e )
     {
         switch( e.key.keysym.sym )
         {
-            case SDLK_UP: moveSpeed -= tankMaxSpeed; break;
-            case SDLK_DOWN: moveSpeed += tankMaxSpeed; break;
-            case SDLK_LEFT: directionSpeed -= tankMaxSpeedDir; break;
-            case SDLK_RIGHT: directionSpeed += tankMaxSpeedDir; break;
-            case SDLK_z: towerSpeed -= tankMaxSpeedDir; break;
-            case SDLK_x: towerSpeed += tankMaxSpeedDir; break;
+            case SDLK_UP: moveSpeed -= TANKMAXSPEED; break;
+            case SDLK_DOWN: moveSpeed += TANKMAXSPEED; break;
+            case SDLK_LEFT: directionSpeed -= TANKMAXDIR; break;
+            case SDLK_RIGHT: directionSpeed += TANKMAXDIR; break;
+            case SDLK_z: towerSpeed -= TANKMAXDIR; break;
+            case SDLK_x: towerSpeed += TANKMAXDIR; break;
         }
     }
     else if( e.type == SDL_KEYUP && e.key.repeat == 0 )
     {
         switch( e.key.keysym.sym )
         {
-            case SDLK_UP: moveSpeed += tankMaxSpeed; break;
-            case SDLK_DOWN: moveSpeed -= tankMaxSpeed; break;
-            case SDLK_LEFT: directionSpeed += tankMaxSpeedDir; break;
-            case SDLK_RIGHT: directionSpeed -= tankMaxSpeedDir; break;
-            case SDLK_z: towerSpeed += tankMaxSpeedDir; break;
-            case SDLK_x: towerSpeed -= tankMaxSpeedDir; break;
+            case SDLK_UP: moveSpeed += TANKMAXSPEED; break;
+            case SDLK_DOWN: moveSpeed -= TANKMAXSPEED; break;
+            case SDLK_LEFT: directionSpeed += TANKMAXDIR; break;
+            case SDLK_RIGHT: directionSpeed -= TANKMAXDIR; break;
+            case SDLK_z: towerSpeed += TANKMAXDIR; break;
+            case SDLK_x: towerSpeed -= TANKMAXDIR; break;
         }
     }
 }
