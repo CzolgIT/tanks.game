@@ -6,7 +6,7 @@ Room::Room( SDL_Renderer* r , Text* t , NetManager* net) : Scene(r)
     selectedTank = 1;
     dir=0;
     netManager = net;
-    if (netManager->activate() == false
+    if (netManager->activate() == false)
     {
         flagReturn = 0;
         running = false;
