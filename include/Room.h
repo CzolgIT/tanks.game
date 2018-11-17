@@ -2,7 +2,6 @@
 #define Room_h
 
 #include "Main.h"
-#include "NetManager.h"
 
 class Room : public Scene
 {
@@ -12,14 +11,13 @@ public:
     void handleEvents();
     void draw();
 
-
 private:
 
     NetManager* netManager;
     TankSprite* sprite[4];
     float dir;
 
-    int selected;
+    //int selected;
     int selectedTank;
 };
 

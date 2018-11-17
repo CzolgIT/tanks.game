@@ -27,8 +27,8 @@ void Text::draw( std::string str , int x , int y )
     int posy = y;
     for ( int i = 0 ; i < str.length() ; i++ )
     {
-        letter[str[i]][size]->render( renderer , posx , posy );
-        posx += letter[str[i]][size]->getWidth();
+        letter[(int)str[i]][size]->render( renderer , posx , posy );
+        posx += letter[(int)str[i]][size]->getWidth();
     }
 }
 
@@ -70,7 +70,7 @@ int Text::getWidth( std::string str )
     int width = 0;
     for ( int i = 0 ; i < str.length() ; i++ )
     {
-        width += letter[str[i]][size]->getWidth();
+        width += letter[(int)str[i]][size]->getWidth();
     }
     return width;
 }

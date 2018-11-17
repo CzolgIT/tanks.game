@@ -35,6 +35,7 @@
 #include "UniversalPacket.h"
 #include "PlayerDisconnectedPacket.h"
 #include "TCPConnection.h"
+#include "NetManager.h"
 #include "Text.h"
 #include "Timer.h"
 #include "Sprite.h"
@@ -45,7 +46,6 @@
 #include "Player.h"
 #include "Background.h"
 #include "Wall.h"
-#include "NetManager.h"
 #include "Manager.h"
 #include "Game.h"
 

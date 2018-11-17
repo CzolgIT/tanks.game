@@ -85,8 +85,11 @@ void Player::move( float timeStep )
     }
 }
 
-void Player::draw()
+void Player::draw( int x0 , int y0 )
 {
+    SDL_Rect* kol = new SDL_Rect{ SCR_W/2-75 , SCR_H/2-75 ,150,150};
+    SDL_RenderDrawRect( renderer , kol );
+
     sprite->draw( SCR_W/2 , SCR_H/2 , iDirection , iTowerDirection , moveSpeed );
     
     text->draw( "x: " + std::to_string( x ) ,  500 , 500 );

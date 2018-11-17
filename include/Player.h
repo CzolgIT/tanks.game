@@ -8,10 +8,9 @@ class Player: public GameObject
 public:
 
     Player( SDL_Renderer* r , Text* t , float x , float y , int color ) ;
-    void loadSprites();
     void handleEvent( SDL_Event& e );
     void move( float timeStep );
-    virtual void draw();
+    void draw( int x0 , int y0 );
 
 private:
 
@@ -26,9 +25,6 @@ private:
 
     // aktualne pozycje obrotu do wyswietlania, poruszania w kierunku i przesylania do serwera
     int iDirection , iTowerDirection;
-
-    // maksymalne predkosci
-    int tankMaxSpeed , tankMaxSpeedDir;
 
     TankSprite* sprite;
 

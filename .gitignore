@@ -31,10 +31,17 @@ obj/*.o
 **/*.exe
 **/*.out
 **/*.app
+Tanks
 
 # KDevelop project files
 *.kdev4
 .kdev4/
-# Andrzej dodał
-Tanks
+
+# MAC files
+**/*/.DS_Store
 **/.DS_Store
+
+# cmake and clion files
+cmake-build-debug/*
+*.idea
+.idea/dictionaries/*

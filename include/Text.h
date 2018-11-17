@@ -33,7 +33,7 @@ private:
     SDL_Color color;
     bool align; // true = center
 
-    TTF_Font* font;
+    //TTF_Font* font;
 
 };
 

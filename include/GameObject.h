@@ -3,6 +3,10 @@
 
 #include "Main.h"
 
+// Wall
+// Player
+
+
 class GameObject
 {
 public:
@@ -10,7 +14,7 @@ public:
     // virtual void Start() // not used
     virtual void update(){}
     virtual void move(float timeStep){}
-    virtual void draw(){}
+    virtual void draw( int x0 , int y0 ){}
     virtual void handleEvent(SDL_Event& e){}
 
     Collider collider();
