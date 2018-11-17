@@ -21,7 +21,7 @@ ifeq ($(shell uname),Darwin)
     LIBS_OSX = -framework SDL2 -framework SDL2_image -framework SDL2_net -framework SDL2_ttf
 endif
 
-SRC = $(wildcard $(SRC_DIR)/*.cpp)
+SRC = $(wildcard $(SRC_DIR)/*.cpp $(SRC_DIR)/*/*.cpp)
 OBJ = $(SRC:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 
 IFLAGS = -I$(INC_DIR) $(SDL_INCLUDE_DIR)
