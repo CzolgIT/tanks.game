@@ -79,6 +79,3 @@ const SDL_Color C_RED = { 255 , 100 , 0 };
 const SDL_Color C_BLUE = { 100 , 0 , 255 };
 const SDL_Color C_BLACK = { 0 , 0 , 0 };
 
-// Tank Globals
-#define TANKMAXSPEED 200
-#define TANKMAXDIR 128

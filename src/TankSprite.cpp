@@ -3,12 +3,14 @@
 TankSprite::TankSprite( SDL_Renderer* r , int color )
 {
     renderer = r;
+
+    Texture* texTracks = new Texture( renderer , "assets/tank_tracks.png" );
     Texture* texture = new Texture( renderer , "assets/tex_tank.png" );
  
     for (int i=0; i<5; i++)
     {
-        spriteTrackLeft[i] = new Sprite( renderer , texture , 96+122+122+(i*33) , 0 , 33 , 158 , 66 , 80 );
-        spriteTrackRight[i] = new Sprite( renderer , texture , 96+122+122+(i*33) , 0 , 33 , 158 , -33 , 80 );
+        spriteTrackLeft[i] = new Sprite( renderer , texTracks , 2+i*35 , 2 , 33 , 158 , 66 , 80 );
+        spriteTrackRight[i] = new Sprite( renderer , texTracks , 2+i*35 , 2 , 33 , 158 , -33 , 80 );
     }
     spriteBody = new Sprite( renderer , texture , 96+(color>2 ? 122 : 0) , ((color+1)%2)*171 , 122 , 171 , 61 , 84 );
     spriteTower = new Sprite( renderer , texture , 0 , (color-1)*128 , 96 , 128 , 48 , 64 );
@@ -18,19 +20,19 @@ TankSprite::TankSprite( SDL_Renderer* r , int color )
 
 void TankSprite::draw( int x , int y , int dir , int dirT , int move )
 {
-    if (step >= 14 || step <= -14)
+    if (step >= 199 || step <= -199)
     {
         step = 0;
     }
 
     if (move > 0){
         step++;
-        spriteTrackLeft[4-(int)round(abs(step)/3)]->draw( x-66 , y-105+25 , dir);
-        spriteTrackRight[4-(int)round(abs(step)/3)]->draw( x-66+99, y-105+25 , dir);
+        spriteTrackLeft[4-(int)round(abs(step)/40)]->draw( x-66 , y-105+25 , dir);
+        spriteTrackRight[4-(int)round(abs(step)/40)]->draw( x-66+99, y-105+25 , dir);
     }else if (move < 0) {
         step --;
-        spriteTrackLeft[(int)round(abs(step)/3)]->draw( x-66 , y-105+25 , dir);
-        spriteTrackRight[(int)round(abs(step)/3)]->draw( x-66+99, y-105+25 , dir);
+        spriteTrackLeft[(int)round(abs(step)/40)]->draw( x-66 , y-105+25 , dir);
+        spriteTrackRight[(int)round(abs(step)/40)]->draw( x-66+99, y-105+25 , dir);
     } else
     {
         step = 0 ;

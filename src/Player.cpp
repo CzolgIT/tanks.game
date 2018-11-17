@@ -60,8 +60,8 @@ void Player::move( float timeStep )
     
     // dzięki temu kąt obrotu będzie można zapisać jako liczbę
     // od 0 do 180 i zmieści się w jednym bajcie
-    iDirection = round(direction/2)*2;
-    iTowerDirection = round(towerDirection/2)*2;
+    iDirection = (int)round(direction/2)*2;
+    iTowerDirection = (int)round(towerDirection/2)*2;
     
     //std::cout << iDirection << "  " << iTowerDirection << "\n";
     
