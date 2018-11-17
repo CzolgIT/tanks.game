@@ -14,7 +14,7 @@ find_package(SDL2_ttf REQUIRED)
 find_package(SDL2_image REQUIRED)
 find_package(SDL2_net REQUIRED)
 
-file(GLOB SOURCES "src/*.cpp")
+file(GLOB SOURCES "src/*.cpp" "src/*/*.cpp")
 add_executable(tanksgame ${SOURCES})
 
 # use cmake/FindSDL2*.cmake
@@ -22,6 +22,7 @@ set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
 
 
 include_directories(
+        "include/*"
         "include/"
         ${SDL2_INCLUDE_DIR}
         ${SDL2_TTF_INCLUDE_DIR}
