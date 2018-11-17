@@ -1,8 +1,8 @@
 #include "Main.h"
 
 UniversalPacket::UniversalPacket():
-    data(new Uint8[UNIVERSAL_PACKET_SIZE]()),
-    size(UNIVERSAL_PACKET_SIZE)
+    size(UNIVERSAL_PACKET_SIZE),
+    data(new Uint8[UNIVERSAL_PACKET_SIZE]())
 {}
 
 UniversalPacket::~UniversalPacket()
