@@ -24,6 +24,8 @@
     #include <SDL2/SDL_ttf.h>
 #endif
 
+#include "Vector2D.h"
+#include "Projection.h"
 #include "Collider.h"
 #include "GameObject.h"
 #include "Texture.h"
