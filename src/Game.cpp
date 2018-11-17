@@ -10,6 +10,8 @@ Game::Game()
     renderer = SDL_CreateRenderer( window, -1, ACCELERATION | VSYNC );
     text = new Text( renderer , FONT_FILE );
     netManager = new NetManager();
+    stepTimer = new Timer();
+    stepTimer->start();
 
     currentScene = new Menu(renderer, text);
     running = true;
@@ -20,7 +22,9 @@ void Game::Update()
 {
     while (currentScene->isRunning())
     {
-        currentScene->Update();
+        float t = stepTimer->getTicks() / 1000.f;
+        currentScene->update( t );
+        stepTimer->start();
     }
     // przechowuje "flage" z poprzedniej sceny wskazujaca nastepna scene
     int flag = currentScene->getFlag();

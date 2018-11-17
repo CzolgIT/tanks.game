@@ -10,8 +10,9 @@ public:
     virtual void handleEvents() {}
     virtual void draw(){}
     bool isRunning() { return running; }
-    void Update();
+    void update( float frameTime );
     int getFlag() { return flagReturn ;}
+    void showFPS( float frameTime );
 
 protected:
     bool running;

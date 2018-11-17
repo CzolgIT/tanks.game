@@ -16,7 +16,7 @@ public:
 private:
     SDL_Window* window;
     SDL_Renderer* renderer;
-    Timer stepTimer;
+    Timer* stepTimer;
     SDL_Event eventHandler;
     Text* text;
     NetManager* netManager;
