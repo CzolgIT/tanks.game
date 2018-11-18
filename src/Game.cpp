@@ -2,6 +2,8 @@
 
 Game::Game()
 {
+    //SDL_EnableKeyRepeat( 1 , 1 );
+
     SDL_Init( SDL_INIT_VIDEO );
     SDL_SetHint( SDL_HINT_RENDER_SCALE_QUALITY, "1" );
     IMG_Init( IMG_INIT_PNG );

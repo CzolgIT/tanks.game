@@ -1,6 +1,6 @@
 #include "Main.h"
 
-Player::Player( SDL_Renderer* r , Text* t , float x , float y , int color ) : GameObject(r,x,y,150,150)
+Player::Player( SDL_Renderer* r , Text* t , float x , float y , int color ) : GameObject(r,x,y,170,130)
 {
     text = t;
 
@@ -12,6 +12,7 @@ Player::Player( SDL_Renderer* r , Text* t , float x , float y , int color ) : Ga
     towerSpeed = 0;
 
     sprite = new TankSprite( renderer , color );
+
 }
 
 Collider Player::collider(){
@@ -26,21 +27,21 @@ void Player::handleEvent( SDL_Event& e )
     {
         switch( e.key.keysym.sym )
         {
-            case SDLK_UP: moveSpeed -= TANKMAXSPEED; break;
-            case SDLK_DOWN: moveSpeed += TANKMAXSPEED; break;
+            //case SDLK_UP: moveSpeed += TANKMAXSPEED; break;
+            case SDLK_DOWN: moveSpeed -= TANKMAXSPEED; break;
             case SDLK_LEFT: directionSpeed -= TANKMAXDIR; break;
             case SDLK_RIGHT: directionSpeed += TANKMAXDIR; break;
             case SDLK_z: towerSpeed -= TANKMAXDIR; break;
             case SDLK_x: towerSpeed += TANKMAXDIR; break;
-            //case SDLK_SPACE: bullet=1; break;
         }
     }
+
     else if( e.type == SDL_KEYUP && e.key.repeat == 0 )
     {
         switch( e.key.keysym.sym )
         {
-            case SDLK_UP: moveSpeed += TANKMAXSPEED; break;
-            case SDLK_DOWN: moveSpeed -= TANKMAXSPEED; break;
+            //case SDLK_UP: moveSpeed -= TANKMAXSPEED; break;
+            case SDLK_DOWN: moveSpeed += TANKMAXSPEED; break;
             case SDLK_LEFT: directionSpeed += TANKMAXDIR; break;
             case SDLK_RIGHT: directionSpeed -= TANKMAXDIR; break;
             case SDLK_z: towerSpeed += TANKMAXDIR; break;
@@ -51,9 +52,27 @@ void Player::handleEvent( SDL_Event& e )
 
 void Player::move( float timeStep )
 {
+    const Uint8 *state = SDL_GetKeyboardState(NULL);
+
+    if (state[SDL_SCANCODE_UP])
+    {
+        if ( moveSpeed < TANKMAXSPEED )
+            moveSpeed += (float)TANKMAXSPEED/200;
+    }
+    else
+    {
+        if ( moveSpeed > 0 )
+            moveSpeed -= (float)TANKMAXSPEED/200;
+    }
+
+    if (moveSpeed <0) moveSpeed = 0;
+    if (moveSpeed > TANKMAXSPEED) moveSpeed = TANKMAXSPEED;
+
+
+
     // move forward and back
-    x += (cos(iDirection *M_PI/180) * moveSpeed * timeStep);
-    y += (sin(iDirection *M_PI/180) * moveSpeed * timeStep);
+    x -= (cos(iDirection *M_PI/180) * moveSpeed * timeStep);
+    y -= (sin(iDirection *M_PI/180) * moveSpeed * timeStep);
 
     // rotate tank and tower
     direction += directionSpeed * timeStep ;
@@ -106,6 +125,7 @@ void Player::draw( int x0 , int y0 )
 
     text->draw( "x: " + std::to_string( x ) ,  500 , 500 );
     text->draw( "y: " + std::to_string( y ) ,  500 , 530 );
+    text->draw( "sp: " + std::to_string( moveSpeed ) ,  500 , 560 );
 }
 
 int Player::getTowDir()

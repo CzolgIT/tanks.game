@@ -20,7 +20,7 @@ private:
     Text* text;
 
     // aktualne predkosci
-    int moveSpeed , directionSpeed , towerSpeed;
+    float moveSpeed , directionSpeed , towerSpeed;
 
     // aktualne pozycje obrotu
     float direction , towerDirection;

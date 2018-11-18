@@ -43,7 +43,7 @@ void Manager::handleEvents( float frameTime )
             break;
         }
 
-        if( eventHandler.type == SDL_KEYDOWN && eventHandler.key.repeat == 0 )
+        if( eventHandler.type == SDL_KEYDOWN) // && eventHandler.key.repeat == 0 )
         {
             if (eventHandler.key.keysym.sym == SDLK_SPACE)
             {
