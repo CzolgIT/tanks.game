@@ -3,15 +3,21 @@
 Player::Player( SDL_Renderer* r , Text* t , float x , float y , int color ) : GameObject(r,x,y,150,150)
 {
     text = t;
-    
+
     direction=90;
     towerDirection=90;
 
     moveSpeed = 0;
     directionSpeed = 0;
     towerSpeed = 0;
-    
+
     sprite = new TankSprite( renderer , color );
+}
+
+Collider Player::collider(){
+
+    Collider col(x,y,width,height, direction);
+    return col;
 }
 
 void Player::handleEvent( SDL_Event& e )
@@ -48,24 +54,24 @@ void Player::move( float timeStep )
     // move forward and back
     x += (cos(iDirection *M_PI/180) * moveSpeed * timeStep);
     y += (sin(iDirection *M_PI/180) * moveSpeed * timeStep);
-    
+
     // rotate tank and tower
     direction += directionSpeed * timeStep ;
     towerDirection += directionSpeed * timeStep + towerSpeed * timeStep;
-    
+
     if ( direction > 360 ) direction -= 360;
     if ( towerDirection > 360 ) towerDirection -= 360;
-    
+
     if ( direction < 0 ) direction += 360;
     if ( towerDirection < 0 ) towerDirection += 360;
-    
+
     // dzięki temu kąt obrotu będzie można zapisać jako liczbę
     // od 0 do 180 i zmieści się w jednym bajcie
     iDirection = (int)round(direction/2)*2;
     iTowerDirection = (int)round(towerDirection/2)*2;
-    
+
     //std::cout << iDirection << "  " << iTowerDirection << "\n";
-    
+
     // Wall limits
     if( x < width/2 )
     {
@@ -88,11 +94,16 @@ void Player::move( float timeStep )
 
 void Player::draw( int x0 , int y0 )
 {
-    SDL_Rect* kol = new SDL_Rect{ SCR_W/2-75 , SCR_H/2-75 ,150,150};
-    SDL_RenderDrawRect( renderer , kol );
+    Collider col = collider();
+    for (int i = 0; i < 4; i ++){
+        if (i != 3)
+            SDL_RenderDrawLine( renderer,x0 + col.points[i].x ,y0+ col.points[i].y ,x0+ col.points[i+1].x, y0+col.points[i+1].y );
+        else
+            SDL_RenderDrawLine( renderer,x0 + col.points[i].x , y0+col.points[i].y ,x0 + col.points[0].x, y0+col.points[0].y );
+    }
 
     sprite->draw( SCR_W/2 , SCR_H/2 , iDirection , iTowerDirection , moveSpeed );
-    
+
     text->draw( "x: " + std::to_string( x ) ,  500 , 500 );
     text->draw( "y: " + std::to_string( y ) ,  500 , 530 );
 }

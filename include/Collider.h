@@ -6,7 +6,7 @@
 class Collider {
 
 public:
-    Collider(int centerX, int centerY, int width, int height);
+    Collider(int centerX, int centerY, int width, int height, float angle = 0);
     Collider(Vector2D * points)
     {
     }

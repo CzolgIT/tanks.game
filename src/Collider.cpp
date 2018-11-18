@@ -1,23 +1,24 @@
 #include "Main.h"
 
-Collider::Collider(int centerX, int centerY, int width, int height){
+Collider::Collider(int centerX, int centerY, int width, int height, float angle){
 
-    Vector2D p1;
-    p1.x = centerX + width/2;
-    p1.y = centerY + height/2;
-    points.push_back(p1);
-    Vector2D p2;
-    p2.x = centerX + width/2;
-    p2.y = centerY - height/2;
-    points.push_back(p2);
-    Vector2D p3;
-    p3.x = centerX - width/2;
-    p3.y = centerY - height/2;
-    points.push_back(p3);
-    Vector2D p4;
-    p4.x = centerX - width/2;
-    p4.y = centerY + height/2;
-    points.push_back(p4);
+        angle = angle/180 * M_PI;
+        Vector2D p1;
+        p1.x = centerX + (width/2  * cos(angle)) - (height/2  * sin(angle));
+        p1.y = centerY + (width/2 * sin(angle)) + (height/2 * cos(angle));
+        points.push_back(p1);
+        Vector2D p2;
+        p2.x = centerX + (-width/2  * cos(angle)) - (height/2  * sin(angle));
+        p2.y = centerY + (-width/2 * sin(angle)) + (height/2 * cos(angle));
+        points.push_back(p2);
+        Vector2D p3;
+        p3.x = centerX + (-width/2  * cos(angle)) - (-height/2  * sin(angle));
+        p3.y = centerY + (-width/2 * sin(angle)) + (-height/2 * cos(angle));
+        points.push_back(p3);
+        Vector2D p4;
+        p4.x = centerX + (width/2  * cos(angle)) - (-height/2  * sin(angle));
+        p4.y = centerY + (width/2 * sin(angle)) + (-height/2 * cos(angle));
+        points.push_back(p4);
 
 }
 
