@@ -1,6 +1,6 @@
 #include "Main.h"
 
-Manager::Manager(SDL_Renderer * renderer, Text* text , int color): Scene(renderer)
+Manager::Manager(SDL_Renderer * renderer, Text* text , int color): Scene( renderer , text )
 {
     background = new Background( renderer );
     player = new Player( renderer , text , SCR_W/2 - 50 , SCR_H/2 - 50 , color );
@@ -10,7 +10,7 @@ Manager::Manager(SDL_Renderer * renderer, Text* text , int color): Scene(rendere
     std::cout << "Zaczyna sie gra" << std::endl;
 }
 
-void Manager::draw()
+void Manager::draw( float frameTime )
 {
     SDL_SetRenderDrawColor( renderer, 0xFF, 0xFF, 0xFF, 0xFF );
     SDL_RenderClear( renderer );
@@ -24,18 +24,32 @@ void Manager::draw()
     {
       gameObjects[i]->draw( x0 , y0 );
     }
+
+    player->draw( x0 , y0 ); // czolg musi byc rysowany ostatni... nwm jak to rozegrac
+    // narazie rysuje sie dwa razy
+
+
     SDL_RenderPresent( renderer );
 }
 
-void Manager::handleEvents()
+void Manager::handleEvents( float frameTime )
 {
-    while( SDL_PollEvent( &eventHandler ) != 0 )
+    while ( SDL_PollEvent( &eventHandler ) != 0 )
     {
-        if( eventHandler.type == SDL_QUIT )
+        if ( eventHandler.type == SDL_QUIT )
         {
             running = false;
             flagReturn = -1;
             break;
+        }
+
+        if( eventHandler.type == SDL_KEYDOWN && eventHandler.key.repeat == 0 )
+        {
+            if (eventHandler.key.keysym.sym == SDLK_SPACE)
+            {
+                Bullet* bullet = new Bullet(renderer, (int) player->getX(), (int) player->getY(), player->getTowDir());
+                gameObjects.push_back(bullet);
+            }
         }
 
         for (int i = 0; i < gameObjects.size();i++)
@@ -50,17 +64,8 @@ void Manager::handleEvents()
         std::cout << "KOLIZJA POMIEDZY " << typeid(gameObjects[0]).name() << " a " << typeid(gameObjects[1]).name() << std::endl;
     }
 
-
-    float timeStep = stepTimer.getTicks() / 1000.f;
     for (int i = 0; i < gameObjects.size();i++)
     {
-        gameObjects[i]->move( timeStep );
+        gameObjects[i]->move( frameTime );
     }
-    stepTimer.start();
-}
-
-
-bool Manager::isRunning()
-{
-    return running;
 }

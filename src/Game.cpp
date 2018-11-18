@@ -23,8 +23,8 @@ void Game::Update()
     while (currentScene->isRunning())
     {
         float t = stepTimer->getTicks() / 1000.f;
-        currentScene->update( t );
         stepTimer->start();
+        currentScene->update( t ); // podany czas jaki minal od ostatniego update'a (do animacji i poruszania)
     }
     // przechowuje "flage" z poprzedniej sceny wskazujaca nastepna scene
     int flag = currentScene->getFlag();

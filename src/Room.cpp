@@ -1,8 +1,8 @@
 #include "Main.h"
 
-Room::Room( SDL_Renderer* r , Text* t , NetManager* net) : Scene(r)
+Room::Room( SDL_Renderer* renderer , Text* text , NetManager* net) : Scene( renderer , text )
 {
-    text = t;
+    this->text = text;
     selectedTank = 1;
     dir=0;
     netManager = net;
@@ -18,7 +18,7 @@ Room::Room( SDL_Renderer* r , Text* t , NetManager* net) : Scene(r)
     sprite[3] = new TankSprite( renderer , 4 );
 }
 
-void  Room::handleEvents()
+void  Room::handleEvents( float frameTime )
 {
     while( SDL_PollEvent( &eventHandler ) != 0 )
     {
@@ -48,7 +48,7 @@ void  Room::handleEvents()
     }
 }
 
-void Room::draw()
+void Room::draw( float frameTime )
 {
     SDL_SetRenderDrawColor( renderer, 0xFF, 0xFF, 0xFF, 0xFF );
     SDL_RenderClear( renderer );

@@ -74,6 +74,7 @@ const char NICKNAME[] = "Player";
 //Tank Globals
 #define TANKMAXSPEED 200
 #define TANKMAXDIR 128
+#define BULLETSPEED 500
 
 // Some Colors
 const SDL_Color C_RED = { 255 , 100 , 0 };

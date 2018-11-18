@@ -96,3 +96,8 @@ void Player::draw( int x0 , int y0 )
     text->draw( "x: " + std::to_string( x ) ,  500 , 500 );
     text->draw( "y: " + std::to_string( y ) ,  500 , 530 );
 }
+
+int Player::getTowDir()
+{
+    return iTowerDirection;
+}

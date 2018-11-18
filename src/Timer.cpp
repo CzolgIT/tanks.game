@@ -7,6 +7,8 @@ Timer::Timer()
     
     mPaused = false;
     mStarted = false;
+
+    start();
 }
 
 void Timer::start()

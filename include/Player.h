@@ -12,6 +12,8 @@ public:
     void move( float timeStep );
     void draw( int x0 , int y0 );
 
+    int getTowDir();
+
 private:
 
     // wskaznik do rysownika tekstow

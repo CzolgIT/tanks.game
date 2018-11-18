@@ -8,6 +8,7 @@ public:
 
     Bullet(SDL_Renderer* r , int x , int y , int dir);
     void draw( int x0 , int y0 );
+    void move( float timeStep );
 
 private:
 

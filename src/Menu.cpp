@@ -1,12 +1,12 @@
 #include "Main.h"
 
-Menu::Menu( SDL_Renderer* r , Text* t ) : Scene(r)
+Menu::Menu( SDL_Renderer* r , Text* t ) : Scene( r , t )
 {
-    text = t;
+    //text = t;
     selected = 1;
 }
 
-void Menu::handleEvents()
+void Menu::handleEvents( float frameTime )
 {
     while( SDL_PollEvent( &eventHandler ) != 0 )
     {
@@ -44,7 +44,7 @@ void Menu::handleEvents()
 
 }
 
-void Menu::draw()
+void Menu::draw( float frameTime )
 {
 
     SDL_SetRenderDrawColor( renderer, 0xFF, 0xFF, 0xFF, 0xFF );

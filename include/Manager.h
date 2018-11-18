@@ -8,14 +8,12 @@ class Manager : public Scene
 public:
 
     Manager(SDL_Renderer * renderer, Text* text , int color);
-    void handleEvents();
-    void draw();
-    bool isRunning();
+    void handleEvents( float frameTime );
+    void draw( float frameTime );
 
 private:
-    Background* background = NULL;
 
-    Timer stepTimer;
+    Background* background = NULL;
     std::vector<GameObject*> gameObjects;
     Player* player;
 };

@@ -3,18 +3,25 @@
 
 #include "Main.h"
 
-class Scene {
+// Menu
+// Room
+// Manager
+
+class Scene
+{
 public:
 
-    Scene(SDL_Renderer * renderer);
-    virtual void handleEvents() {}
-    virtual void draw(){}
+    Scene( SDL_Renderer* renderer , Text* text );
     bool isRunning() { return running; }
+
     void update( float frameTime );
+      virtual void handleEvents( float frameTime ){}
+      virtual void draw( float frameTime ){}
+
     int getFlag() { return flagReturn ;}
-    void showFPS( float frameTime );
 
 protected:
+
     bool running;
     SDL_Renderer* renderer;
     SDL_Event eventHandler;

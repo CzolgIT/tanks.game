@@ -8,10 +8,12 @@ class Menu : public Scene
 public:
 
     Menu( SDL_Renderer* r , Text* t );
-    void loadTexts();
-    void handleEvents();
-    void draw();
+
+    void handleEvents( float frameTime );
+    void draw( float frameTime );
+
 private:
+
     int selected;
 
 };
