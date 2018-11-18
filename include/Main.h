@@ -44,6 +44,7 @@
 #include "Room.h"
 #include "Menu.h"
 #include "Player.h"
+#include "Bullet.h"
 #include "Background.h"
 #include "Wall.h"
 #include "Manager.h"

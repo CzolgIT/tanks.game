@@ -26,6 +26,7 @@ void Player::handleEvent( SDL_Event& e )
             case SDLK_RIGHT: directionSpeed += TANKMAXDIR; break;
             case SDLK_z: towerSpeed -= TANKMAXDIR; break;
             case SDLK_x: towerSpeed += TANKMAXDIR; break;
+            //case SDLK_SPACE: bullet=1; break;
         }
     }
     else if( e.type == SDL_KEYUP && e.key.repeat == 0 )

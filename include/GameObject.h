@@ -5,7 +5,7 @@
 
 // Wall
 // Player
-
+// Bullet
 
 class GameObject
 {

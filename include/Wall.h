@@ -13,6 +13,7 @@ public:
     //void update() override {}
 
 private:
+
     Texture* texture;
 
 };
