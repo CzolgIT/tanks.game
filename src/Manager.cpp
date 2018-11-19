@@ -28,6 +28,7 @@ void Manager::draw( float frameTime )
     player->draw( x0 , y0 ); // czolg musi byc rysowany ostatni... nwm jak to rozegrac
     // narazie rysuje sie dwa razy
 
+    text->draw( "fps: " + std::to_string( frameTime ) ,  500 , 560 );
 
     SDL_RenderPresent( renderer );
 }

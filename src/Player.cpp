@@ -28,7 +28,7 @@ void Player::handleEvent( SDL_Event& e )
         switch( e.key.keysym.sym )
         {
             //case SDLK_UP: moveSpeed += TANKMAXSPEED; break;
-            case SDLK_DOWN: moveSpeed -= TANKMAXSPEED; break;
+            //case SDLK_DOWN: moveSpeed -= TANKMAXSPEED; break;
             case SDLK_LEFT: directionSpeed -= TANKMAXDIR; break;
             case SDLK_RIGHT: directionSpeed += TANKMAXDIR; break;
             case SDLK_z: towerSpeed -= TANKMAXDIR; break;
@@ -41,7 +41,7 @@ void Player::handleEvent( SDL_Event& e )
         switch( e.key.keysym.sym )
         {
             //case SDLK_UP: moveSpeed -= TANKMAXSPEED; break;
-            case SDLK_DOWN: moveSpeed += TANKMAXSPEED; break;
+            //case SDLK_DOWN: moveSpeed += TANKMAXSPEED; break;
             case SDLK_LEFT: directionSpeed += TANKMAXDIR; break;
             case SDLK_RIGHT: directionSpeed -= TANKMAXDIR; break;
             case SDLK_z: towerSpeed += TANKMAXDIR; break;
@@ -57,16 +57,37 @@ void Player::move( float timeStep )
     if (state[SDL_SCANCODE_UP])
     {
         if ( moveSpeed < TANKMAXSPEED )
-            moveSpeed += (float)TANKMAXSPEED/200;
+        {
+            moveSpeed += (float) TANKMAXSPEED / 200;
+            if (moveSpeed > TANKMAXSPEED) moveSpeed = TANKMAXSPEED;
+        }
     }
     else
     {
         if ( moveSpeed > 0 )
-            moveSpeed -= (float)TANKMAXSPEED/200;
+        {
+            moveSpeed -= (float) TANKMAXSPEED / 200;
+            if (moveSpeed < 0) moveSpeed = 0;
+        }
     }
 
-    if (moveSpeed <0) moveSpeed = 0;
-    if (moveSpeed > TANKMAXSPEED) moveSpeed = TANKMAXSPEED;
+    if (state[SDL_SCANCODE_DOWN])
+    {
+        if ( moveSpeed > -TANKMAXSPEED )
+        {
+            moveSpeed -= (float) TANKMAXSPEED / 200;
+            if (moveSpeed < -TANKMAXSPEED) moveSpeed = -TANKMAXSPEED;
+        }
+    }
+    else
+    {
+        if ( moveSpeed < 0 )
+        {
+            moveSpeed += (float) TANKMAXSPEED / 200;
+            if (moveSpeed > 0) moveSpeed = 0;
+        }
+    }
+
 
 
 
@@ -109,6 +130,7 @@ void Player::move( float timeStep )
     {
         y = 2048 - height/2;
     }
+
 }
 
 void Player::draw( int x0 , int y0 )
@@ -123,9 +145,11 @@ void Player::draw( int x0 , int y0 )
 
     sprite->draw( SCR_W/2 , SCR_H/2 , iDirection , iTowerDirection , moveSpeed );
 
-    text->draw( "x: " + std::to_string( x ) ,  500 , 500 );
-    text->draw( "y: " + std::to_string( y ) ,  500 , 530 );
-    text->draw( "sp: " + std::to_string( moveSpeed ) ,  500 , 560 );
+    text->draw( "x: " + std::to_string( x ) ,  100 , 500 );
+    text->draw( "y: " + std::to_string( y ) ,  100 , 530 );
+    text->draw( "sp: " + std::to_string( moveSpeed ) ,  100 , 560 );
+
+
 }
 
 int Player::getTowDir()
