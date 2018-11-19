@@ -32,7 +32,7 @@ bool TCPConnection::connectToServer(std::string host, Uint16 port)
         //std::cerr << "SDLNet_TCP_Open error: " << SDLNet_GetError() << "\n";
         return false;
     }
-    
+
     std::cout << "Established connection, requesting join...\n";
     
     JoinRequestPacket request;
@@ -54,10 +54,30 @@ bool TCPConnection::connectToServer(std::string host, Uint16 port)
         std::cout << "Your connection was rejected by the server\n";
         return false;
     }
-    if(response.getResponse() == JR_OK)
+    if(response.getResponse() == JR_OK){
         std::cout << "The connection to the server was successful! : " << (int)response.getId() << "\n";
+        setId(response.getId());
+        SDLNet_TCP_AddSocket(socketSet,socket);
+        return true;
+
+    }
+    return false;
+
     
+}
+
+void TCPConnection::setId(Uint8 givenId) {
+    id = givenId;
+}
+
+Uint8 TCPConnection::getId() {
+    return id;
+}
+
+bool TCPConnection::disconnectFromServer() {
+    PlayerDisconnectedPacket playerDisconnectedPacket(getId());
+    if(SDLNet_TCP_Send(socket,playerDisconnectedPacket.getData(),playerDisconnectedPacket.getSize())>0){
+        std::cout << "Player o ID" << getId() << " wysłał zapytanie do opuszczenia serwera" << std::endl;
+    }
     return true;
-    
-    
 }

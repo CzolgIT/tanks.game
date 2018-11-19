@@ -9,3 +9,7 @@ bool NetManager::activate()
 {
     return tcpConnection.connectToServer( SERVERIP , SERVERPORT );
 }
+
+bool NetManager::disconnectPlayer() {
+    return tcpConnection.disconnectFromServer();
+}
