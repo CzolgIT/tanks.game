@@ -6,6 +6,8 @@ public:
 
     Projection(int min, int max);
 
-    bool overlap(Projection * p2);
+    static bool overlap(Projection * p1, Projection * p2);
+
+    static float getOverlap(Projection * p1, Projection * p2);
 
 };

@@ -11,11 +11,13 @@ public:
     {
     }
 
-    static bool areColliding(Collider col1, Collider  col2);
+    static Vector2D areColliding(Collider col1, Collider  col2);
 
     Projection * project (Vector2D axis);
 
-    Vector2D * getAxes();
+    Vector2D * center;
+
+    static Vector2D * getAxes(Collider col);
 
     std::vector<Vector2D> points;
 

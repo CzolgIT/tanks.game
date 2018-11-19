@@ -18,7 +18,7 @@ public:
     virtual void handleEvent(SDL_Event& e){}
 
     Collider collider();
-    
+
     float getX();
     float getY();
     int getW();

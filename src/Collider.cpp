@@ -2,6 +2,7 @@
 
 Collider::Collider(int centerX, int centerY, int width, int height, float angle){
 
+        center = new Vector2D(centerX, centerY);
         angle = angle/180 * M_PI;
         Vector2D p1;
         p1.x = centerX + (width/2  * cos(angle)) - (height/2  * sin(angle));
@@ -23,17 +24,26 @@ Collider::Collider(int centerX, int centerY, int width, int height, float angle)
 }
 
 
-bool Collider::areColliding(Collider col1, Collider  col2)
+
+Vector2D Collider::areColliding(Collider col1, Collider  col2)
 {
-    Vector2D * axes1 = col1.getAxes();
-    Vector2D * axes2 = col2.getAxes();
+    int overlap = 100000;
+    Vector2D smallest(0,0);
+    Vector2D * axes1 = getAxes(col1);
+    Vector2D * axes2 = getAxes(col2);
     for (int i = 0; i < col1.points.size(); i++)
     {
         Projection * p1 = col2.project(axes1[i]);
         Projection * p2 = col1.project(axes1[i]);
 
-        if (p1->overlap(p2))
-          return false;
+        if (Projection::overlap(p1,p2))
+            return Vector2D(0,0);
+        else {
+            if (Projection::getOverlap(p1,p2) < overlap){
+                overlap = Projection::getOverlap(p1,p2);
+                smallest = axes1[i];
+            }
+        }
     }
 
     for (int i = 0; i < col2.points.size(); i++)
@@ -41,11 +51,24 @@ bool Collider::areColliding(Collider col1, Collider  col2)
         Projection * p1 = col2.project(axes2[i]);
         Projection * p2 = col1.project(axes2[i]);
 
-        if (p1->overlap(p2))
-            return false;
+        if (Projection::overlap(p1,p2))
+            return Vector2D(0,0);
+        else {
+            if (Projection::getOverlap(p1,p2)< overlap){
+                overlap = Projection::getOverlap(p1,p2);
+                smallest = axes2[i];
+            }
+        }
     }
-
-    return true;
+    Vector2D ba(col1.center->x-col2.center->x, col1.center->y-col2.center->y);
+    if(smallest.Dot(ba) < 0.0){
+        smallest.x*=-1;
+        smallest.y*=-1;
+    }
+    smallest.x*=overlap;
+    smallest.y*=overlap;
+    smallest = smallest.Normalize();
+    return smallest;
 }
 
 Projection * Collider::project (Vector2D axis)
@@ -67,14 +90,14 @@ Projection * Collider::project (Vector2D axis)
     return proj;
 }
 
-Vector2D * Collider::getAxes(){
+Vector2D * Collider::getAxes(Collider col){
 
     Vector2D * axes = NULL;
-    axes = new Vector2D[points.size()];
-    for (int i = 0; i < points.size(); i++)
+    axes = new Vector2D[col.points.size()];
+    for (int i = 0; i < col.points.size(); i++)
     {
-        Vector2D p1 = points[i];
-        Vector2D p2 = points[i + 1 == points.size() ? 0 : i + 1];
+        Vector2D p1 = col.points[i];
+        Vector2D p2 = col.points[i + 1 == col.points.size() ? 0 : i + 1];
         Vector2D edge = p1.Subtract(p2);
         Vector2D normal = edge.Perp();
         axes[i] = normal;

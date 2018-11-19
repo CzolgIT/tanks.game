@@ -64,13 +64,19 @@ Vector2D& Vector2D::operator/=(const Vector2D& vec)
 	return this->Divide(vec);
 }
 
-
 Vector2D& Vector2D::Perp()
 {
     this->x *=-1;
     int pom = this->x;
     this->x = this->y;
     this->y = pom;
+    return *this;
+}
+
+Vector2D& Vector2D::Normalize(){
+    int length = sqrt(x*x+y*y);
+    this->x = this->x / length;
+    this->y = this->y / length;
     return *this;
 }
 

@@ -17,7 +17,10 @@ public:
 	Vector2D& operator-=(const Vector2D& vec);
 	Vector2D& operator*=(const Vector2D& vec);
     Vector2D& operator/=(const Vector2D& vec);
+
     Vector2D& Perp();
     int Dot(const Vector2D& vec);
+
+    Vector2D& Normalize();
 
 };

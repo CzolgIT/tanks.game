@@ -12,7 +12,6 @@ public:
     void draw( float frameTime );
 
 private:
-
     Background* background = NULL;
     std::vector<GameObject*> gameObjects;
     Player* player;

@@ -60,9 +60,10 @@ void Manager::handleEvents( float frameTime )
     }
 
     // Check colliders
-    if (Collider::areColliding(gameObjects[0]->collider(), gameObjects[1]->collider()))
+    Vector2D col = Collider::areColliding(gameObjects[0]->collider(), gameObjects[1]->collider());
+    if (col.x != 0 || col.y != 0)
     {
-        std::cout << "KOLIZJA POMIEDZY " << typeid(gameObjects[0]).name() << " a " << typeid(gameObjects[1]).name() << std::endl;
+        std::cout << col.x << ", " << col.y << std::endl;
     }
 
     for (int i = 0; i < gameObjects.size();i++)

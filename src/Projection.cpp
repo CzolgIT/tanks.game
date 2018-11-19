@@ -6,10 +6,15 @@ Projection::Projection(int min, int max)
     this->max = max;
 }
 
-bool Projection::overlap(Projection * p2){
+bool Projection::overlap(Projection * p1, Projection * p2){
 
-    if (p2->min >= this->max || this->min >= p2->max){
+    if (p2->min >= p1->max || p1->min >= p2->max){
         return true;
     }
     else return false;
+}
+
+float Projection::getOverlap(Projection * p1, Projection * p2)
+{
+    return (p1->max < p2->max) ? p1->max - p2->min : p2->max - p1->min;
 }
