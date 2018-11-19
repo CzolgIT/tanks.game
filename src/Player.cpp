@@ -29,10 +29,10 @@ void Player::handleEvent( SDL_Event& e )
         {
             //case SDLK_UP: moveSpeed += TANKMAXSPEED; break;
             //case SDLK_DOWN: moveSpeed -= TANKMAXSPEED; break;
-            case SDLK_LEFT: directionSpeed -= TANKMAXDIR; break;
-            case SDLK_RIGHT: directionSpeed += TANKMAXDIR; break;
-            case SDLK_z: towerSpeed -= TANKMAXDIR; break;
-            case SDLK_x: towerSpeed += TANKMAXDIR; break;
+            //case SDLK_LEFT: directionSpeed -= TANKMAXDIR; break;
+            //case SDLK_RIGHT: directionSpeed += TANKMAXDIR; break;
+            //case SDLK_z: towerSpeed -= TANKMAXDIR; break;
+            //case SDLK_x: towerSpeed += TANKMAXDIR; break;
         }
     }
 
@@ -42,54 +42,23 @@ void Player::handleEvent( SDL_Event& e )
         {
             //case SDLK_UP: moveSpeed -= TANKMAXSPEED; break;
             //case SDLK_DOWN: moveSpeed += TANKMAXSPEED; break;
-            case SDLK_LEFT: directionSpeed += TANKMAXDIR; break;
-            case SDLK_RIGHT: directionSpeed -= TANKMAXDIR; break;
-            case SDLK_z: towerSpeed += TANKMAXDIR; break;
-            case SDLK_x: towerSpeed -= TANKMAXDIR; break;
+            //case SDLK_LEFT: directionSpeed += TANKMAXDIR; break;
+            //case SDLK_RIGHT: directionSpeed -= TANKMAXDIR; break;
+            //case SDLK_z: towerSpeed += TANKMAXDIR; break;
+            //case SDLK_x: towerSpeed -= TANKMAXDIR; break;
         }
     }
 }
 
 void Player::move( float timeStep )
 {
-    const Uint8 *state = SDL_GetKeyboardState(NULL);
 
-    if (state[SDL_SCANCODE_UP])
-    {
-        if ( moveSpeed < TANKMAXSPEED )
-        {
-            moveSpeed += (float) TANKMAXSPEED / 200;
-            if (moveSpeed > TANKMAXSPEED) moveSpeed = TANKMAXSPEED;
-        }
-    }
-    else
-    {
-        if ( moveSpeed > 0 )
-        {
-            moveSpeed -= (float) TANKMAXSPEED / 200;
-            if (moveSpeed < 0) moveSpeed = 0;
-        }
-    }
-
-    if (state[SDL_SCANCODE_DOWN])
-    {
-        if ( moveSpeed > -TANKMAXSPEED )
-        {
-            moveSpeed -= (float) TANKMAXSPEED / 200;
-            if (moveSpeed < -TANKMAXSPEED) moveSpeed = -TANKMAXSPEED;
-        }
-    }
-    else
-    {
-        if ( moveSpeed < 0 )
-        {
-            moveSpeed += (float) TANKMAXSPEED / 200;
-            if (moveSpeed > 0) moveSpeed = 0;
-        }
-    }
-
-
-
+    moveSpeed = accelerate( SDL_SCANCODE_UP , moveSpeed , 0 , TANKMAXSPEED , timeStep );
+    moveSpeed = accelerate( SDL_SCANCODE_DOWN , moveSpeed , 0 , -TANKMAXSPEED , timeStep );
+    directionSpeed = accelerate( SDL_SCANCODE_RIGHT , directionSpeed , 0 , TANKMAXDIR , timeStep );
+    directionSpeed = accelerate( SDL_SCANCODE_LEFT , directionSpeed , 0 , -TANKMAXDIR , timeStep );
+    towerSpeed = accelerate( SDL_SCANCODE_X , towerSpeed , 0 , TANKMAXDIR , timeStep );
+    towerSpeed = accelerate( SDL_SCANCODE_Z , towerSpeed , 0 , -TANKMAXDIR , timeStep );
 
     // move forward and back
     x -= (cos(iDirection *M_PI/180) * moveSpeed * timeStep);
@@ -155,4 +124,27 @@ void Player::draw( int x0 , int y0 )
 int Player::getTowDir()
 {
     return iTowerDirection;
+}
+
+float Player::accelerate( int scanCode , float what , float from , float to , float timeStep )
+{
+    const Uint8 *state = SDL_GetKeyboardState(NULL);
+
+    if (state[scanCode])
+    {
+        if ( from < to ? what < to : what > to )
+        {
+            what += to * timeStep * TANKACCELERATION ;
+            if ( from < to ? what > to : what < to ) what = to;
+        }
+    }
+    else
+    {
+        if ( from < to ? what > from : what < from )
+        {
+            what -= to * timeStep * TANKACCELERATION;
+            if ( from < to ? what < from : what > from ) what = from;
+        }
+    }
+    return what;
 }

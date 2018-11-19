@@ -16,6 +16,8 @@ public:
 
 private:
 
+    float accelerate( int scanCode , float what , float from , float to , float timeStep );
+
     // wskaznik do rysownika tekstow
     Text* text;
 

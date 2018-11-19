@@ -74,6 +74,8 @@ const char NICKNAME[] = "Player";
 //Tank Globals
 #define TANKMAXSPEED 200
 #define TANKMAXDIR 128
+#define TANKACCELERATION 3
+#define TANKSCALE 1
 #define BULLETSPEED 500
 
 // Some Colors
