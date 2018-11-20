@@ -1,10 +1,4 @@
-//
-// Created by inql on 15.11.18.
-//
-
-#include <Connection/PlayerDisconnectedPacket.h>
-
-#include "Connection/PlayerDisconnectedPacket.h"
+#include "Main.h"
 
 PlayerDisconnectedPacket::PlayerDisconnectedPacket() : BasePacket(PT_PLAYER_DISCONNECTED, PLAYERDISCONNECTED_PACKET_SIZE) {
 
@@ -12,10 +6,6 @@ PlayerDisconnectedPacket::PlayerDisconnectedPacket() : BasePacket(PT_PLAYER_DISC
 
 PlayerDisconnectedPacket::PlayerDisconnectedPacket(Uint8 id):PlayerDisconnectedPacket() {
     setId(id);
-}
-
-PlayerDisconnectedPacket::~PlayerDisconnectedPacket() {
-
 }
 
 void PlayerDisconnectedPacket::setId(Uint8 id) {

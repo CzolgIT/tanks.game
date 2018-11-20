@@ -1,12 +1,12 @@
 #pragma once
 
-#include <stdio.h>
+#include <cstdio>
 #include <string>
 #include <vector>
 #include <iostream>
 #include <sstream>
 #include <fstream>
-#include <math.h>
+#include <cmath>
 #include <typeinfo>
 #include <memory>
 #include <queue>

@@ -43,18 +43,18 @@ void Game::Update()
             currentScene = new Manager(renderer, text, flag);
             break;
         case 3: // Settings
-            SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,"Przykro mi","jeszcze nie ma opcji ustawień :(",NULL);
+            SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,"Przykro mi","jeszcze nie ma opcji ustawień :(",nullptr);
             currentScene = new Menu(renderer, text);
             break;
         case 4: // Multiplayer-run
-            SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,"NIE MA GRANIA","ledwo sie z serwerem polaczyles a juz bys chcial grac... nie ma tak dobrze. Za kare cie rozlaczam. Wracaj do menu!",NULL);
+            SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,"NIE MA GRANIA","ledwo sie z serwerem polaczyles a juz bys chcial grac... nie ma tak dobrze. Za kare cie rozlaczam. Wracaj do menu!",nullptr);
             if (netManager->isConnected()) netManager->disconnectPlayer();
             currentScene = new Menu(renderer, text);
             //currentScene = new Manager(renderer, text, 1 ); // ta 1 jest wykrywana jako kolor, ale trzeba sie tego stad pozbyc
             break;
         default:
             if (netManager->isConnected()) netManager->disconnectPlayer();
-            SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,"SIEMA","ELO",NULL);
+            SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,"SIEMA","ELO", nullptr);
             running = false;
             break;
     }

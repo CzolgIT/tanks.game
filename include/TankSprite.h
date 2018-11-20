@@ -6,8 +6,8 @@
 class TankSprite
 {
 public:
-    
-    TankSprite( SDL_Renderer* r , int color = 1);
+
+    explicit TankSprite( SDL_Renderer* r , int color = 1);
     void draw( int x , int y , int dir , int dirT , int move );
     
 private:

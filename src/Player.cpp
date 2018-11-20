@@ -1,6 +1,6 @@
 #include "Main.h"
 
-Player::Player( SDL_Renderer* r , Text* t , float x , float y , int color ) : GameObject(r,x,y,170,130)
+Player::Player( SDL_Renderer* r , Text* t , float x , float y , int color ) : GameObject(r,x,y,(int)((double)170*TANKSCALE),(int)((double)130*TANKSCALE))
 {
     text = t;
 
@@ -82,22 +82,22 @@ void Player::move( float timeStep )
     //std::cout << iDirection << "  " << iTowerDirection << "\n";
 
     // Wall limits
-    if( x < width/2 )
+    if( x < (int)((double)width/2) )
     {
-        x = width/2 ;
+        x = (int)((double)width/2) ;
     }
-    else if( x > 2048 - width/2 )
+    else if( x > 2048 - (int)((double)width/2) )
     {
-        x = 2048 - width/2;
+        x = 2048 - (int)((double)width/2);
     }
 
-    if( y < height/2 )
+    if( y < (int)((double)height/2) )
     {
-        y = height/2;
+        y = (int)((double)height/2);
     }
-    else if( y > 2048 - height/2 )
+    else if( y > 2048 - (int)((double)height/2) )
     {
-        y = 2048 - height/2;
+        y = 2048 - (int)((double)height/2);
     }
 
 }
@@ -112,7 +112,7 @@ void Player::draw( int x0 , int y0 )
             SDL_RenderDrawLine( renderer,x0 + col.points[i].x , y0+col.points[i].y ,x0 + col.points[0].x, y0+col.points[0].y );
     }
 
-    sprite->draw( SCR_W/2 , SCR_H/2 , iDirection , iTowerDirection , moveSpeed );
+    sprite->draw( SCR_W/2 , SCR_H/2 , iDirection , iTowerDirection , (int)moveSpeed );
 
     text->draw( "x: " + std::to_string( x ) ,  100 , 500 );
     text->draw( "y: " + std::to_string( y ) ,  100 , 530 );
@@ -128,7 +128,7 @@ int Player::getTowDir()
 
 float Player::accelerate( int scanCode , float what , float from , float to , float timeStep )
 {
-    const Uint8 *state = SDL_GetKeyboardState(NULL);
+    const Uint8 *state = SDL_GetKeyboardState(nullptr);
 
     if (state[scanCode])
     {

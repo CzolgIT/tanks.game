@@ -7,10 +7,7 @@ NetManager::NetManager()
 
 bool NetManager::activate()
 {
-    if ( tcpConnection.connectToServer( SERVERIP , SERVERPORT ) )
-        connected = true;
-    else
-        connected = false;
+    connected = tcpConnection.connectToServer(SERVERIP , SERVERPORT );
     return connected;
 }
 

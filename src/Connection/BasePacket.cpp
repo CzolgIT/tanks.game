@@ -9,9 +9,7 @@ BasePacket::BasePacket( PacketType type, unsigned int packetSize ):
             data[0] = type;
             
         }
-BasePacket::~BasePacket()
-{
-}
+BasePacket::~BasePacket() = default;
 
 PacketType BasePacket::getType() const
 {

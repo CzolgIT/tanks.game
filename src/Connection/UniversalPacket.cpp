@@ -6,7 +6,7 @@ UniversalPacket::UniversalPacket():
 {}
 
 UniversalPacket::~UniversalPacket()
-{}
+= default;
 
 Uint8 * UniversalPacket::getData() const
 {

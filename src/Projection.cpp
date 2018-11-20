@@ -6,12 +6,9 @@ Projection::Projection(float min, float max)
     this->max = max;
 }
 
-bool Projection::overlap(Projection * p1, Projection * p2){
-
-    if (p2->min >= p1->max || p1->min >= p2->max){
-        return true;
-    }
-    else return false;
+bool Projection::overlap(Projection * p1, Projection * p2)
+{
+    return p2->min >= p1->max || p1->min >= p2->max;
 }
 
 float Projection::getOverlap(Projection * p1, Projection * p2)

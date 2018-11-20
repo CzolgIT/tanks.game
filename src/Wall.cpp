@@ -9,5 +9,5 @@ Wall::Wall(SDL_Renderer* r , int x , int y , int width, int height)
 
 void Wall::draw( int x0 , int y0 )
 {
-    texture->render(renderer , x0+x-(width/2) , y0+y-(height/2) );
+    texture->render(renderer , x0 + x - width / 2, y0 + y - height / 2);
 }

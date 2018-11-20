@@ -6,7 +6,7 @@
 class Background
 {
 public:
-    Background( SDL_Renderer* r );
+    explicit Background( SDL_Renderer* r );
     //void loadFromTexture( Texture* t , int x , int y , int w , int h );
     void draw( int x , int y ); // rysuje tylko tyle obrazków ile potrzeba na okno gry
     

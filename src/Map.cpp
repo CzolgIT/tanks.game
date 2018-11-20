@@ -2,7 +2,7 @@
 
 Map::Map( SDL_Renderer* r )
 {
-    renderer = r;
+    this->renderer = r;
 }
 
 void Map::loadFromFile( std::vector<GameObject*> * gameObjects )
@@ -19,7 +19,7 @@ void Map::loadFromFile( std::vector<GameObject*> * gameObjects )
             infile >> c;
             if (c == '#')
             {
-                Wall * wall = new Wall( renderer , 32+j*64 , 32+i*64, 64, 64 );
+                auto * wall = new Wall( renderer , 32+j*64 , 32+i*64, 64, 64 );
                 gameObjects->push_back(wall);
             }
         }

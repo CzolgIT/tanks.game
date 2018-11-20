@@ -16,7 +16,7 @@ Sprite::Sprite( SDL_Renderer* r , Texture* t , int x , int y , int w , int h , i
 
 void Sprite::draw( float x , float y , double angle )
 {
-    if (texture==NULL)
+    if (texture== nullptr )
         printf("nic z tego");
     texture->render( renderer , x, y , &clip , angle - 90 , &center );
 }

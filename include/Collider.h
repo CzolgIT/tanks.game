@@ -6,8 +6,8 @@
 class Collider {
 
 public:
-    Collider(float centerX, float centerY, int width, int height, float angle = 0);
-    Collider(Vector2D * points)
+    Collider(float centerX, float centerY, float width, float height, float angle = 0);
+    explicit Collider(Vector2D * points)
     {
     }
 

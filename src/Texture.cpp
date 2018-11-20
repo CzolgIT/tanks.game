@@ -2,20 +2,20 @@
 
 Texture::Texture()
 {
-    mTexture = NULL;
+    mTexture = nullptr;
     mWidth = 0;
     mHeight = 0;
-    mPixels = NULL;
+    mPixels = nullptr;
     mPitch = 0;
     text = "";
 }
 
 Texture::Texture( SDL_Renderer* r )
 {
-    mTexture = NULL;
+    mTexture = nullptr;
     mWidth = 0;
     mHeight = 0;
-    mPixels = NULL;
+    mPixels = nullptr;
     mPitch = 0;
     text = "";
     renderer = r;
@@ -23,10 +23,10 @@ Texture::Texture( SDL_Renderer* r )
 
 Texture::Texture( SDL_Renderer* r , std::string path )
 {
-    mTexture = NULL;
+    mTexture = nullptr;
     mWidth = 0;
     mHeight = 0;
-    mPixels = NULL;
+    mPixels = nullptr;
     mPitch = 0;
     text = "";
     renderer = r;
@@ -44,11 +44,11 @@ bool Texture::loadFromFile( SDL_Renderer* gRenderer , std::string path )
     free();
     
     //The final texture
-    SDL_Texture* newTexture = NULL;
+    SDL_Texture* newTexture = nullptr;
     
     //Load image at specified path
     SDL_Surface* loadedSurface = IMG_Load( path.c_str() );
-    if( loadedSurface == NULL )
+    if( loadedSurface == nullptr )
     {
         printf( "Unable to load image %s! SDL_image Error: %s\n", path.c_str(), IMG_GetError() );
         return false;
@@ -57,7 +57,7 @@ bool Texture::loadFromFile( SDL_Renderer* gRenderer , std::string path )
     {
         //Convert surface to display format
         SDL_Surface* formattedSurface = SDL_ConvertSurfaceFormat( loadedSurface, SDL_PIXELFORMAT_RGBA8888, 0 );
-        if( formattedSurface == NULL )
+        if( formattedSurface == nullptr )
         {
             printf( "Unable to convert loaded surface to display format! %s\n", SDL_GetError() );
         }
@@ -65,7 +65,7 @@ bool Texture::loadFromFile( SDL_Renderer* gRenderer , std::string path )
         {
             //Create blank streamable texture
             newTexture = SDL_CreateTexture( gRenderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_STREAMING, formattedSurface->w, formattedSurface->h );
-            if( newTexture == NULL )
+            if( newTexture == nullptr )
             {
                 printf( "Unable to create blank texture! SDL Error: %s\n", SDL_GetError() );
             }
@@ -85,7 +85,7 @@ bool Texture::loadFromFile( SDL_Renderer* gRenderer , std::string path )
                 mHeight = formattedSurface->h;
                 
                 //Get pixel data in editable format
-                Uint32* pixels = (Uint32*)mPixels;
+                auto* pixels = (Uint32*)mPixels;
                 int pixelCount = ( mPitch / 4 ) * mHeight;
                 
                 //Map colors
@@ -103,7 +103,7 @@ bool Texture::loadFromFile( SDL_Renderer* gRenderer , std::string path )
                 
                 //Unlock texture to update
                 SDL_UnlockTexture( newTexture );
-                mPixels = NULL;
+                mPixels = nullptr;
             }
             
             //Get rid of old formatted surface
@@ -116,7 +116,7 @@ bool Texture::loadFromFile( SDL_Renderer* gRenderer , std::string path )
     
     //Return success
     mTexture = newTexture;
-    return mTexture != NULL;
+    return mTexture != nullptr;
 }
 
 #ifdef _SDL_TTF_H
@@ -127,11 +127,11 @@ bool Texture::loadFromRenderedText( SDL_Renderer* gRenderer , TTF_Font *gFont , 
     
     //Render text surface
     SDL_Surface* textSurface = TTF_RenderText_Solid( gFont, textureText.c_str() , textColor );
-    if( textSurface != NULL )
+    if( textSurface != nullptr )
     {
         //Create texture from surface pixels
         mTexture = SDL_CreateTextureFromSurface( gRenderer, textSurface );
-        if( mTexture == NULL )
+        if( mTexture == nullptr )
         {
             printf( "Unable to create texture from rendered text! SDL Error: %s\n", SDL_GetError() );
         }
@@ -152,7 +152,7 @@ bool Texture::loadFromRenderedText( SDL_Renderer* gRenderer , TTF_Font *gFont , 
     
     
     //Return success
-    return mTexture != NULL;
+    return mTexture != nullptr;
 }
 #endif
 
@@ -160,7 +160,7 @@ bool Texture::createBlank( SDL_Renderer* gRenderer , int width, int height, SDL_
 {
     //Create uninitialized texture
     mTexture = SDL_CreateTexture( gRenderer, SDL_PIXELFORMAT_RGBA8888, access, width, height );
-    if( mTexture == NULL )
+    if( mTexture == nullptr )
     {
         printf( "Unable to create blank texture! SDL Error: %s\n", SDL_GetError() );
     }
@@ -170,19 +170,19 @@ bool Texture::createBlank( SDL_Renderer* gRenderer , int width, int height, SDL_
         mHeight = height;
     }
     
-    return mTexture != NULL;
+    return mTexture != nullptr;
 }
 
 void Texture::free()
 {
     //Free texture if it exists
-    if( mTexture != NULL )
+    if( mTexture != nullptr )
     {
         SDL_DestroyTexture( mTexture );
-        mTexture = NULL;
+        mTexture = nullptr;
         mWidth = 0;
         mHeight = 0;
-        mPixels = NULL;
+        mPixels = nullptr;
         mPitch = 0;
     }
 }
@@ -211,7 +211,7 @@ void Texture::render( SDL_Renderer* gRenderer , float x, float y, SDL_Rect* clip
     SDL_Rect renderQuad = { (int)x, (int)y, mWidth, mHeight };
     
     //Set clip rendering dimensions
-    if( clip != NULL )
+    if( clip != nullptr )
     {
         renderQuad.w = (int)((double)clip->w * TANKSCALE);
         renderQuad.h = (int)((double)clip->h * TANKSCALE);
@@ -242,7 +242,7 @@ bool Texture::lockTexture()
     bool success = true;
     
     //Texture is already locked
-    if( mPixels != NULL )
+    if( mPixels != nullptr )
     {
         printf( "Texture is already locked!\n" );
         success = false;
@@ -250,7 +250,7 @@ bool Texture::lockTexture()
     //Lock texture
     else
     {
-        if( SDL_LockTexture( mTexture, NULL, &mPixels, &mPitch ) != 0 )
+        if( SDL_LockTexture( mTexture, nullptr, &mPixels, &mPitch ) != 0 )
         {
             printf( "Unable to lock texture! %s\n", SDL_GetError() );
             success = false;
@@ -265,7 +265,7 @@ bool Texture::unlockTexture()
     bool success = true;
     
     //Texture is not locked
-    if( mPixels == NULL )
+    if( mPixels == nullptr )
     {
         printf( "Texture is not locked!\n" );
         success = false;
@@ -274,7 +274,7 @@ bool Texture::unlockTexture()
     else
     {
         SDL_UnlockTexture( mTexture );
-        mPixels = NULL;
+        mPixels = nullptr;
         mPitch = 0;
     }
     
@@ -289,7 +289,7 @@ void* Texture::getPixels()
 void Texture::copyPixels( void* pixels )
 {
     //Texture is locked
-    if( mPixels != NULL )
+    if( mPixels != nullptr )
     {
         //Copy to locked pixels
         memcpy( mPixels, pixels, mPitch * mHeight );
@@ -303,7 +303,7 @@ int Texture::getPitch()
 
 void Texture::setText( std::string newtext )
 {
-    text = newtext;
+    text = std::move(newtext);
 }
 
 std::string Texture::getText()
@@ -314,7 +314,7 @@ std::string Texture::getText()
 Uint32 Texture::getPixel32( unsigned int x, unsigned int y )
 {
     //Convert the pixels to 32 bit
-    Uint32 *pixels = (Uint32*)mPixels;
+    auto *pixels = (Uint32*)mPixels;
     
     //Get the pixel requested
     return pixels[ ( y * ( mPitch / 4 ) ) + x ];

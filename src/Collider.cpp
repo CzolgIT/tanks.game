@@ -1,6 +1,6 @@
 #include "Main.h"
 
-Collider::Collider(float centerX, float centerY, int width, int height, float angle){
+Collider::Collider(float centerX, float centerY, float width, float height, float angle){
 
         center = new Vector2D(centerX, centerY);
         angle = angle/180 * M_PI;
@@ -21,7 +21,6 @@ Collider::Collider(float centerX, float centerY, int width, int height, float an
         p4.y = centerY + (width/2 * sin(angle)) + (-height/2 * cos(angle));
         points.push_back(p4);
 
-
 }
 
 
@@ -38,7 +37,7 @@ Vector2D Collider::areColliding(Collider col1, Collider  col2)
         Projection * p2 = col1.project(axes1[i]);
 
         if (Projection::overlap(p1,p2))
-            return Vector2D(0,0);
+            return {0,0};
         else {
             if (Projection::getOverlap(p1,p2) < overlap){
                 overlap = Projection::getOverlap(p1,p2);
@@ -53,7 +52,7 @@ Vector2D Collider::areColliding(Collider col1, Collider  col2)
         Projection * p2 = col1.project(axes2[i]);
 
         if (Projection::overlap(p1,p2))
-            return Vector2D(0,0);
+            return {0,0};
         else {
             if (Projection::getOverlap(p1,p2)< overlap){
                 overlap = Projection::getOverlap(p1,p2);
@@ -81,20 +80,19 @@ Projection * Collider::project (Vector2D axis)
       float p = axis.Dot(points[i]);
       if (p < min) {
         min = p;
-      }
-       if (p > max) {
+      } else if (p > max) {
         max = p;
       }
     }
 
-    Projection * proj = new Projection(min, max);
+    auto * proj = new Projection(min, max);
 
     return proj;
 }
 
 Vector2D * Collider::getAxes(Collider col){
 
-    Vector2D * axes = NULL;
+    Vector2D * axes = nullptr;
     axes = new Vector2D[col.points.size()];
     for (int i = 0; i < col.points.size(); i++)
     {

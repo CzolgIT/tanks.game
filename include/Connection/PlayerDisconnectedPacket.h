@@ -1,7 +1,3 @@
-//
-// Created by inql on 15.11.18.
-//
-
 #ifndef SERVERTANKSGAME_PLAYERDISCONNECTEDPACKET_H
 #define SERVERTANKSGAME_PLAYERDISCONNECTEDPACKET_H
 
@@ -14,7 +10,7 @@ class PlayerDisconnectedPacket : public BasePacket {
 public:
     PlayerDisconnectedPacket();
     PlayerDisconnectedPacket(Uint8 id);
-    ~PlayerDisconnectedPacket();
+    ~PlayerDisconnectedPacket() override {}
 
     void setId(Uint8 id);
 

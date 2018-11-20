@@ -18,7 +18,7 @@ enum JoinResponse : Uint8{
 class JoinResponsePacket : public BasePacket{
 public:
     JoinResponsePacket() : BasePacket(PT_JOIN_RESPONSE, JOIN_RESPONSE_PACKET_SIZE) {}
-    ~JoinResponsePacket() {}
+    ~JoinResponsePacket() override {}
 
     JoinResponse getResponse() const;
     Uint8 getId() const ;

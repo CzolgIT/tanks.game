@@ -9,8 +9,8 @@ public:
     Wall(SDL_Renderer* r , int x , int y , int width, int height);
     //void move( float timeStep );
     void draw( int x0 , int y0 );
-    //void handleEvent(SDL_Event& e) override {}
-    //void update() override {}
+    //void handleEvent(SDL_Event& e);
+    //void update();
 
 private:
 
