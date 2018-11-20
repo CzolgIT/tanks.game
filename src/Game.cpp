@@ -47,7 +47,10 @@ void Game::Update()
             currentScene = new Menu(renderer, text);
             break;
         case 4: // Multiplayer-run
-            currentScene = new Manager(renderer, text, 1 ); // ta 1 jest wykrywana jako kolor, ale trzeba sie tego stad pozbyc
+            SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,"NIE MA GRANIA","ledwo sie z serwerem polaczyles a juz bys chcial grac... nie ma tak dobrze. Za kare cie rozlaczam. Wracaj do menu!",NULL);
+            netManager->disconnectPlayer();
+            currentScene = new Menu(renderer, text);
+            //currentScene = new Manager(renderer, text, 1 ); // ta 1 jest wykrywana jako kolor, ale trzeba sie tego stad pozbyc
             break;
         default:
             netManager->disconnectPlayer();

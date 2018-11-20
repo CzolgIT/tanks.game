@@ -74,9 +74,12 @@ Vector2D& Vector2D::Perp()
 }
 
 Vector2D& Vector2D::Normalize(){
-    int length = sqrt(x*x+y*y);
-    this->x = this->x / length;
-    this->y = this->y / length;
+	double length = sqrt(x*x+y*y);
+    if (length != 0)
+	{
+    	this->x = (int)( (double)this->x / length );
+    	this->y = (int)( (double)this->y / length );
+	}
     return *this;
 }
 
