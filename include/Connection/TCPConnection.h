@@ -9,6 +9,9 @@ public:
     ~TCPConnection();
     
     bool connectToServer(std::string host, Uint16 port);
+    void setId(Uint8 givenId);
+    Uint8 getId();
+    bool disconnectFromServer();
     
 private:
     IPaddress ipAddress;
@@ -17,6 +20,7 @@ private:
     UniversalPacket uniPacket;
     std::thread* senderThread;
     std::atomic_bool close_thread;
+    Uint8 id;
     
 };
 

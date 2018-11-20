@@ -32,6 +32,7 @@ private:
 
     TankSprite* sprite;
 
+
 };
 
 #endif /* Player_h */

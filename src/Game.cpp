@@ -50,6 +50,7 @@ void Game::Update()
             currentScene = new Manager(renderer, text, 1 ); // ta 1 jest wykrywana jako kolor, ale trzeba sie tego stad pozbyc
             break;
         default:
+            netManager->disconnectPlayer();
             SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,"SIEMA","ELO",NULL);
             running = false;
             break;
