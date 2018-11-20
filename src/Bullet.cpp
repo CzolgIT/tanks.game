@@ -14,9 +14,13 @@ void Bullet::draw( int x0, int y0 )
     texture->render(renderer , x0+x-(width*TANKSCALE/2) , y0+y-(height*TANKSCALE/2) , bull , direction-90 );
 }
 
+Collider Bullet::collider() {
+    Collider col(x,y,width,height,direction);
+    return col;
+}
+
 void Bullet::move( float timeStep )
 {
 x -= (cos(direction *M_PI/180) * BULLETSPEED * timeStep);
 y -= (sin(direction *M_PI/180) * BULLETSPEED * timeStep);
 }
-

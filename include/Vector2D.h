@@ -18,6 +18,8 @@ public:
 	Vector2D& operator*=(const Vector2D& vec);
     Vector2D& operator/=(const Vector2D& vec);
 
+    Vector2D& operator*(const float& i);
+
     Vector2D& Perp();
     float Dot(const Vector2D& vec);
 
