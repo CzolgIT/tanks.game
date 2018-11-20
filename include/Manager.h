@@ -10,6 +10,7 @@ public:
     Manager(SDL_Renderer * renderer, Text* text , int color);
     void handleEvents( float frameTime );
     void draw( float frameTime );
+    void CheckColliders();
 
 private:
     Background* background = nullptr;

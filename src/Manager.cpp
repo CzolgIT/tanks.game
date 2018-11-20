@@ -56,7 +56,15 @@ void Manager::handleEvents( float frameTime )
         }
     }
 
-    // Check colliders
+    CheckColliders();
+
+    for (auto &gameObject : gameObjects) {
+        gameObject->move( frameTime );
+    }
+}
+
+void Manager::CheckColliders()
+{
     for (int i = 0; i < gameObjects.size(); i++)
     {
         Collider col1 = gameObjects[i]->collider();
@@ -66,17 +74,23 @@ void Manager::handleEvents( float frameTime )
             Vector2D col = Collider::areColliding(col1, col2);
             if (col.x != 0 || col.y != 0)
             {
-                std::cout << col.x << ", " << col.y << std::endl;
-                if (Player * p = dynamic_cast<Player *>(gameObjects[i]))
-                    p->PushOut(col*2);
-                if (Player * p = dynamic_cast<Player *>(gameObjects[j]))
-                    p->PushOut(col*2);
+                if (Player * p = dynamic_cast<Player *>(gameObjects[i])){
+                    if (Bullet * b = dynamic_cast<Bullet*>(gameObjects[j])){
+
+                    }
+                    else p->PushOut(col*2);
+
+                }
+                if (Player * p = dynamic_cast<Player *>(gameObjects[j])){
+                    if (Bullet * b = dynamic_cast<Bullet*>(gameObjects[i])){
+
+                    }
+                    else p->PushOut(col*2);
+                }
+
+
             }
         }
 
-    }
-
-    for (auto &gameObject : gameObjects) {
-        gameObject->move( frameTime );
     }
 }
