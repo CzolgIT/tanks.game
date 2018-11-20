@@ -28,12 +28,13 @@ bool TCPConnection::connectToServer(std::string host, Uint16 port)
     // Establish connection
     socket = SDLNet_TCP_Open(&ipAddress);
     if(!socket){
-        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,"SDLNet_TCP_Open error",SDLNet_GetError(),NULL);
+        std::cout << "wrong adress: "<< SERVERIP << " : " << SERVERPORT << "\n";
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,"SDLNet_TCP_Open error\n",SDLNet_GetError(),NULL);
         //std::cerr << "SDLNet_TCP_Open error: " << SDLNet_GetError() << "\n";
         return false;
     }
 
-    std::cout << "Established connection, requesting join...\n";
+    std::cout << "Established connection with server: " << SERVERIP << " : " << SERVERPORT << ", requesting join...\n";
     
     JoinRequestPacket request;
     
@@ -77,7 +78,7 @@ Uint8 TCPConnection::getId() {
 bool TCPConnection::disconnectFromServer() {
     PlayerDisconnectedPacket playerDisconnectedPacket(getId());
     if(SDLNet_TCP_Send(socket,playerDisconnectedPacket.getData(),playerDisconnectedPacket.getSize())>0){
-        std::cout << "Player o ID" << getId() << " wysłał zapytanie do opuszczenia serwera" << std::endl;
+        std::cout << "Player o ID: " << (int)getId() << " wysłał zapytanie do opuszczenia serwera" << std::endl;
     }
     return true;
 }

@@ -10,9 +10,11 @@ public:
     NetManager();
     bool activate();
     bool disconnectPlayer();
+    bool isConnected();
 
 private:
 
+    bool connected;
     TCPConnection tcpConnection;
 };
 

@@ -7,9 +7,18 @@ NetManager::NetManager()
 
 bool NetManager::activate()
 {
-    return tcpConnection.connectToServer( SERVERIP , SERVERPORT );
+    if ( tcpConnection.connectToServer( SERVERIP , SERVERPORT ) )
+        connected = true;
+    else
+        connected = false;
+    return connected;
 }
 
 bool NetManager::disconnectPlayer() {
+    connected = false;
     return tcpConnection.disconnectFromServer();
+}
+
+bool NetManager::isConnected(){
+    return connected;
 }
