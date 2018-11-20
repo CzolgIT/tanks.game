@@ -61,6 +61,7 @@ void Manager::handleEvents( float frameTime )
     if (col.x != 0 || col.y != 0)
     {
         std::cout << col.x << ", " << col.y << std::endl;
+        player->PushOut(col);
     }
     for (auto &gameObject : gameObjects) {
         gameObject->move( frameTime );

@@ -16,6 +16,11 @@ public:
 
     SDL_Point shootPosition();
 
+    void PushOut(Vector2D vec){
+        this->x += vec.x;
+        this->y += vec.y;
+    }
+
 private:
 
     float accelerate( int scanCode , float what , float from , float to , float timeStep );
