@@ -5,8 +5,8 @@ Manager::Manager(SDL_Renderer * renderer, Text* text , int color): Scene( render
     background = new Background( renderer );
     player = new Player( renderer , text , SCR_W/2 - 50 , SCR_H/2 - 50 , color );
     gameObjects.push_back(player);
-    Wall * wall = new Wall( renderer , 200 , 200, 64, 64 );
-    gameObjects.push_back(wall);
+    Map* map = new Map( renderer );
+    map->loadFromFile( &gameObjects );
     std::cout << "Zaczyna sie gra" << std::endl;
 }
 

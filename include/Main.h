@@ -5,12 +5,14 @@
 #include <vector>
 #include <iostream>
 #include <sstream>
+#include <fstream>
 #include <math.h>
 #include <typeinfo>
 #include <memory>
 #include <queue>
 #include <thread>
 #include <atomic>
+
 
 #ifdef __APPLE__
     #include <SDL2/SDL.h>

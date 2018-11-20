@@ -7,9 +7,10 @@ class Map
 {
 public:
 
-    Map();
-    void loadFromFile();
-
+    Map( SDL_Renderer* renderer );
+    void loadFromFile( std::vector<GameObject*> * gameObjects );
+private:
+    SDL_Renderer* renderer;
 };
 
 #endif
