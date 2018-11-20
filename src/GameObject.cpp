@@ -15,6 +15,11 @@ Collider GameObject::collider(){
     return col;
 }
 
+void GameObject::destroy()
+{
+    
+}
+
 float GameObject::getX()
 {
     return x;

@@ -12,7 +12,7 @@
 #include <queue>
 #include <thread>
 #include <atomic>
-
+#include <algorithm>
 
 #ifdef __APPLE__
     #include <SDL2/SDL.h>

@@ -34,6 +34,7 @@ void Manager::draw( float frameTime )
 
 void Manager::handleEvents( float frameTime )
 {
+
     while ( SDL_PollEvent( &eventHandler ) != 0 )
     {
         if ( eventHandler.type == SDL_QUIT )
@@ -59,7 +60,13 @@ void Manager::handleEvents( float frameTime )
     CheckColliders();
 
     for (auto &gameObject : gameObjects) {
-        gameObject->move( frameTime );
+        if(gameObject->shouldBeDestroy()){
+            gameObject->destroy();
+            gameObjects.erase(std::remove(gameObjects.begin(), gameObjects.end(), gameObject), gameObjects.end());
+            delete gameObject;
+        }
+        else
+            gameObject->move( frameTime );
     }
 }
 
@@ -81,13 +88,18 @@ void Manager::CheckColliders()
                     else p->PushOut(col*2);
 
                 }
-                if (Player * p = dynamic_cast<Player *>(gameObjects[j])){
+                else if (Player * p = dynamic_cast<Player *>(gameObjects[j])){
                     if (Bullet * b = dynamic_cast<Bullet*>(gameObjects[i])){
 
                     }
                     else p->PushOut(col*2);
                 }
-
+                else if (Bullet * b = dynamic_cast<Bullet*>(gameObjects[i])){
+                    b->setToBeDestroyed();
+                }
+                else if (Bullet * b = dynamic_cast<Bullet*>(gameObjects[j])){
+                    b->setToBeDestroyed();
+                }
 
             }
         }

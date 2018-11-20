@@ -16,19 +16,20 @@ public:
     virtual void move(float timeStep){}
     virtual void draw( int x0 , int y0 ){}
     virtual void handleEvent(SDL_Event& e){}
-
+    virtual void destroy();
     virtual Collider collider();
 
     float getX();
     float getY();
     int getW();
     int getH();
-
+    bool shouldBeDestroy(){ return toDestroy; }
+    void setToBeDestroyed(){ toDestroy = true; }
 protected:
     SDL_Renderer* renderer;
     float x,y;
     int width,height;
-
+    bool toDestroy = false;
 
 };
 

@@ -12,7 +12,6 @@ public:
     Collider collider() override;
 
 private:
-
     int direction;
     Texture* texture;
 
