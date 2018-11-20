@@ -54,6 +54,8 @@
 #include "Game.h"
 
 
+#define delete_object(x) {delete x; x = NULL;}
+
 // SDL vars
 const int ACCELERATION = 0x00000002;
 const int VSYNC = 0x00000004;

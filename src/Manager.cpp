@@ -62,8 +62,8 @@ void Manager::handleEvents( float frameTime )
     for (auto &gameObject : gameObjects) {
         if(gameObject->shouldBeDestroy()){
             gameObject->destroy();
+            delete_object(gameObject);
             gameObjects.erase(std::remove(gameObjects.begin(), gameObjects.end(), gameObject), gameObjects.end());
-            delete gameObject;
         }
         else
             gameObject->move( frameTime );
