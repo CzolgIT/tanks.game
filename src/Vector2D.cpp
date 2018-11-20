@@ -6,7 +6,7 @@ Vector2D::Vector2D()
     this->y = 0;
 }
 
-Vector2D::Vector2D(int x, int y)
+Vector2D::Vector2D(float x, float y)
 {
     this->x = x;
     this->y = y;
@@ -70,6 +70,7 @@ Vector2D& Vector2D::Perp()
     int pom = this->x;
     this->x = this->y;
     this->y = pom;
+    this->Normalize();
     return *this;
 }
 
@@ -83,7 +84,7 @@ Vector2D& Vector2D::Normalize(){
     return *this;
 }
 
-int Vector2D::Dot(const Vector2D& vec)
+float Vector2D::Dot(const Vector2D& vec)
 {
     return this->x * vec.x + this->y * vec.y;
 

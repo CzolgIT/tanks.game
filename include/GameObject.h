@@ -17,7 +17,7 @@ public:
     virtual void draw( int x0 , int y0 ){}
     virtual void handleEvent(SDL_Event& e){}
 
-    Collider collider();
+    virtual Collider collider();
 
     float getX();
     float getY();

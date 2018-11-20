@@ -1,6 +1,6 @@
 #include "Main.h"
 
-Collider::Collider(int centerX, int centerY, int width, int height, float angle){
+Collider::Collider(float centerX, float centerY, int width, int height, float angle){
 
         center = new Vector2D(centerX, centerY);
         angle = angle/180 * M_PI;
@@ -21,13 +21,14 @@ Collider::Collider(int centerX, int centerY, int width, int height, float angle)
         p4.y = centerY + (width/2 * sin(angle)) + (-height/2 * cos(angle));
         points.push_back(p4);
 
+
 }
 
 
 
 Vector2D Collider::areColliding(Collider col1, Collider  col2)
 {
-    int overlap = 100000;
+    float overlap = 100000;
     Vector2D smallest(0,0);
     Vector2D * axes1 = getAxes(col1);
     Vector2D * axes2 = getAxes(col2);
@@ -73,14 +74,15 @@ Vector2D Collider::areColliding(Collider col1, Collider  col2)
 
 Projection * Collider::project (Vector2D axis)
 {
-    int min = axis.Dot(this->points[0]);
-    int max = min;
+    float min = axis.Dot(this->points[0]);
+    float max = min;
 
     for (int i = 1; i < points.size(); i++) {
-      int p = axis.Dot(points[i]);
+      float p = axis.Dot(points[i]);
       if (p < min) {
         min = p;
-      } else if (p > max) {
+      }
+       if (p > max) {
         max = p;
       }
     }

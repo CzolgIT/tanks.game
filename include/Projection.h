@@ -2,9 +2,9 @@
 
 class Projection {
 public:
-    int min, max;
+    float min, max;
 
-    Projection(int min, int max);
+    Projection(float min, float max);
 
     static bool overlap(Projection * p1, Projection * p2);
 
