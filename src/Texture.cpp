@@ -213,8 +213,8 @@ void Texture::render( SDL_Renderer* gRenderer , float x, float y, SDL_Rect* clip
     //Set clip rendering dimensions
     if( clip != NULL )
     {
-        renderQuad.w = clip->w * TANKSCALE;
-        renderQuad.h = clip->h * TANKSCALE;
+        renderQuad.w = (int)((double)clip->w * TANKSCALE);
+        renderQuad.h = (int)((double)clip->h * TANKSCALE);
     }
     
     //Render to screen

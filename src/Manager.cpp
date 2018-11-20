@@ -48,7 +48,8 @@ void Manager::handleEvents( float frameTime )
         {
             if (eventHandler.key.keysym.sym == SDLK_SPACE)
             {
-                Bullet* bullet = new Bullet(renderer, (int) player->getX(), (int) player->getY(), player->getTowDir());
+                SDL_Point punkt = player->shootPosition();
+                Bullet* bullet = new Bullet(renderer, punkt.x , punkt.y , player->getTowDir());
                 gameObjects.push_back(bullet);
             }
         }

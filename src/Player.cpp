@@ -148,3 +148,12 @@ float Player::accelerate( int scanCode , float what , float from , float to , fl
     }
     return what;
 }
+
+SDL_Point Player::shootPosition()
+{
+
+    SDL_Point punkt;
+    punkt.x = (int)(x+(cos(iDirection *M_PI/180) * -50));
+    punkt.y = (int)(y+(sin(iDirection *M_PI/180) * -50));
+    return punkt;
+}

@@ -1,7 +1,6 @@
 #ifndef Game_h
 #define Game_h
 
-
 #include "Main.h"
 
 class Game {

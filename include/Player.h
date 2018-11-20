@@ -14,6 +14,8 @@ public:
     Collider collider();
     int getTowDir();
 
+    SDL_Point shootPosition();
+
 private:
 
     float accelerate( int scanCode , float what , float from , float to , float timeStep );
