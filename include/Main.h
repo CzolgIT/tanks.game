@@ -37,6 +37,7 @@
 #include "Connection/TCPConnection.h"
 #include "Connection/NetManager.h"
 #include "Text.h"
+#include "Map.h"
 #include "Timer.h"
 #include "Sprite.h"
 #include "TankSprite.h"
