@@ -1,6 +1,6 @@
 #include "Main.h"
 
-Projection::Projection(int min, int max)
+Projection::Projection(float min, float max)
 {
     this->min = min;
     this->max = max;

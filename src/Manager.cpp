@@ -60,7 +60,7 @@ void Manager::handleEvents( float frameTime )
     }
 
     // Check colliders
-    Vector2D col = Collider::areColliding(gameObjects[0]->collider(), gameObjects[1]->collider());
+    Vector2D col = Collider::areColliding(gameObjects[1]->collider(), player->collider());
     if (col.x != 0 || col.y != 0)
     {
         std::cout << col.x << ", " << col.y << std::endl;
