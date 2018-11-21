@@ -3,7 +3,7 @@
 Manager::Manager(SDL_Renderer * renderer, Text* text , int color): Scene( renderer , text )
 {
     background = new Background( renderer );
-    player = new Player( renderer , text , SCR_W/2 - 50 , SCR_H/2 - 50 , color );
+    player = new Player( renderer , text , 128 , 128 , color );
     gameObjects.push_back(player);
     auto map = new Map( renderer );
     map->loadFromFile( &gameObjects );

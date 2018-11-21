@@ -1,6 +1,4 @@
-#ifndef Player_h
-#define Player_h
-
+#pragma once
 #include "Main.h"
 
 class Player: public GameObject
@@ -24,21 +22,12 @@ private:
 
     float accelerate( int scanCode , float what , float from , float to , float timeStep );
 
-    // wskaznik do rysownika tekstow
     Text* text;
 
-    // aktualne predkosci
     float moveSpeed , directionSpeed , towerSpeed;
-
-    // aktualne pozycje obrotu
     float direction , towerDirection;
-
-    // aktualne pozycje obrotu do wyswietlania, poruszania w kierunku i przesylania do serwera
-    int iDirection , iTowerDirection;
+    int iDirection , iTowerDirection; // net optimized
 
     TankSprite* sprite;
-
-
 };
 
-#endif /* Player_h */

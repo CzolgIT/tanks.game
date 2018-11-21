@@ -7,7 +7,7 @@ Map::Map( SDL_Renderer* r )
 
 void Map::loadFromFile( std::vector<GameObject*> * gameObjects )
 {
-    std::ifstream infile("assets/maps/map1.txt");
+    std::ifstream infile("assets/maps/map2.txt");
     int w,h;
     infile >> w >> h;
     char c;
