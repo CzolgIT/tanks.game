@@ -5,6 +5,7 @@ Bullet::Bullet( SDL_Renderer* r , int x, int y, int dir)
 {
     direction = dir;
     texture = new Texture( renderer , "assets/bullet.png" );
+    collider = new Collider(x,y,width,height, direction);
 }
 
 void Bullet::draw( int x0, int y0 )
@@ -12,11 +13,6 @@ void Bullet::draw( int x0, int y0 )
     auto* bull = new SDL_Rect{0,0,36,36};
 
     texture->render(renderer , x0+x-(width*TANKSCALE/2) , y0+y-(height*TANKSCALE/2) , bull , direction-90 );
-}
-
-Collider Bullet::collider() {
-    Collider col(x,y,width,height,direction);
-    return col;
 }
 
 void Bullet::move( float timeStep )
@@ -32,5 +28,7 @@ void Bullet::move( float timeStep )
     {
         this->setToBeDestroyed();
     }
+
+    collider->update(x,y,width,height, direction);
 
 }

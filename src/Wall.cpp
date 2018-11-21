@@ -4,6 +4,7 @@ Wall::Wall(SDL_Renderer* r , int x , int y , int width, int height)
 : GameObject(r, x, y, width, height)
 {
     texture = new Texture( renderer , "assets/block2.png" );
+    collider = new Collider(x,y,width,height);
 }
 
 

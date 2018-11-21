@@ -7,17 +7,17 @@ GameObject::GameObject(SDL_Renderer * ren, float x, float y, int width, int heig
     this->width = width;
     this->height = height;
     this->renderer = ren;
+    this->collider = new Collider(x,y, width, height);
 }
 
-Collider GameObject::collider(){
+Collider * GameObject::getCollider(){
 
-    Collider col(x,y,width,height);
-    return col;
+    return collider;
 }
 
 void GameObject::destroy()
 {
-    
+
 }
 
 float GameObject::getX()

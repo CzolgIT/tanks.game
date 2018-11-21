@@ -11,7 +11,6 @@ public:
     void handleEvent( SDL_Event& e );
     void move( float timeStep );
     void draw( int x0 , int y0 );
-    Collider collider() override;
     int getTowDir();
 
     SDL_Point shootPosition();

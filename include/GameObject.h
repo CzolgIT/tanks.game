@@ -17,7 +17,7 @@ public:
     virtual void draw( int x0 , int y0 ){}
     virtual void handleEvent(SDL_Event& e){}
     virtual void destroy();
-    virtual Collider collider();
+    virtual Collider * getCollider();
 
     float getX();
     float getY();
@@ -26,6 +26,7 @@ public:
     bool shouldBeDestroy(){ return toDestroy; }
     void setToBeDestroyed(){ toDestroy = true; }
 protected:
+    Collider * collider;
     SDL_Renderer* renderer;
     float x,y;
     int width,height;

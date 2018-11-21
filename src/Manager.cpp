@@ -72,15 +72,20 @@ void Manager::handleEvents( float frameTime )
 
 void Manager::CheckColliders()
 {
+    Collider * col1 = NULL;
+    Collider * col2 = NULL;
+
     for (int i = 0; i < gameObjects.size(); i++)
     {
-        Collider col1 = gameObjects[i]->collider();
+        col1 = gameObjects[i]->getCollider();
         for (int j = i+1; j < gameObjects.size(); j++)
         {
-            Collider col2 = gameObjects[j]->collider();
+            col2 = gameObjects[j]->getCollider();
+
             Vector2D col = Collider::areColliding(col1, col2);
             if (col.x != 0 || col.y != 0)
             {
+
                 if (Player * p = dynamic_cast<Player *>(gameObjects[i])){
                     if (Bullet * b = dynamic_cast<Bullet*>(gameObjects[j])){
 
@@ -101,8 +106,11 @@ void Manager::CheckColliders()
                     b->setToBeDestroyed();
                 }
 
+
             }
+
         }
+
 
     }
 }

@@ -12,13 +12,8 @@ Player::Player( SDL_Renderer* r , Text* t , float x , float y , int color ) : Ga
     towerSpeed = 0;
 
     sprite = new TankSprite( renderer , color );
+    collider = new Collider(x,y,width,height, direction);
 
-}
-
-Collider Player::collider(){
-
-    Collider col(x,y,width,height, direction);
-    return col;
 }
 
 void Player::handleEvent( SDL_Event& e )
@@ -100,16 +95,17 @@ void Player::move( float timeStep )
         y = 2048 - (int)((double)height/2);
     }
 
+    collider->update(x,y,width,height, direction);
+
 }
 
 void Player::draw( int x0 , int y0 )
 {
-    Collider col = collider();
     for (int i = 0; i < 4; i ++){
         if (i != 3)
-            SDL_RenderDrawLine( renderer,x0 + col.points[i].x ,y0+ col.points[i].y ,x0+ col.points[i+1].x, y0+col.points[i+1].y );
+            SDL_RenderDrawLine( renderer,x0 + collider->points[i].x ,y0+ collider->points[i].y ,x0+ collider->points[i+1].x, y0+collider->points[i+1].y );
         else
-            SDL_RenderDrawLine( renderer,x0 + col.points[i].x , y0+col.points[i].y ,x0 + col.points[0].x, y0+col.points[0].y );
+            SDL_RenderDrawLine( renderer,x0 + collider->points[i].x , y0+collider->points[i].y ,x0 + collider->points[0].x, y0+collider->points[0].y );
     }
 
     sprite->draw( SCR_W/2 , SCR_H/2 , iDirection , iTowerDirection , (int)moveSpeed );
