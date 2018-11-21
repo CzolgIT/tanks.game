@@ -14,6 +14,8 @@ Player::Player( SDL_Renderer* r , Text* t , float x , float y , int color ) : Ga
     sprite = new TankSprite( renderer , color );
     collider = new Collider(x,y,width,height, direction);
 
+    blocked = {0,0};
+
 }
 
 void Player::handleEvent( SDL_Event& e )
@@ -47,7 +49,7 @@ void Player::handleEvent( SDL_Event& e )
 
 void Player::move( float timeStep )
 {
-
+    // acceleration
     moveSpeed = accelerate( SDL_SCANCODE_UP , moveSpeed , 0 , TANKMAXSPEED , timeStep );
     moveSpeed = accelerate( SDL_SCANCODE_DOWN , moveSpeed , 0 , -TANKMAXSPEED , timeStep );
     directionSpeed = accelerate( SDL_SCANCODE_RIGHT , directionSpeed , 0 , TANKMAXDIR , timeStep );
@@ -55,9 +57,47 @@ void Player::move( float timeStep )
     towerSpeed = accelerate( SDL_SCANCODE_X , towerSpeed , 0 , TANKMAXDIR , timeStep );
     towerSpeed = accelerate( SDL_SCANCODE_Z , towerSpeed , 0 , -TANKMAXDIR , timeStep );
 
-    // move forward and back
-    x -= (cos(iDirection *M_PI/180) * moveSpeed * timeStep);
-    y -= (sin(iDirection *M_PI/180) * moveSpeed * timeStep);
+
+    double xm = cos(iDirection *M_PI/180) * moveSpeed * timeStep;
+    double ym = sin(iDirection *M_PI/180) * moveSpeed * timeStep;
+
+    if (xm > 0 && blocked.x > 0)
+    {
+        if (xm > blocked.x)
+        {
+            x -= xm - blocked.x;
+        }
+    }
+    else if (xm < 0 && blocked.x < 0)
+    {
+        if (xm < blocked.x)
+        {
+            x -= xm - blocked.x;
+        }
+    }
+    else
+    x -= xm - blocked.x;
+
+    if (ym > 0 && blocked.y > 0)
+    {
+        if (ym > blocked.y)
+        {
+            y -= ym - blocked.y;
+        }
+    }
+    else if (ym < 0 && blocked.y < 0)
+    {
+        if (ym < blocked.y)
+        {
+            y -= ym - blocked.y;
+        }
+    }
+    else
+        y -= ym - blocked.y;
+
+    blocked.x = 0;
+    blocked.y = 0;
+
 
     // rotate tank and tower
     direction += directionSpeed * timeStep ;
@@ -110,11 +150,14 @@ void Player::draw( int x0 , int y0 )
 
     sprite->draw( SCR_W/2 , SCR_H/2 , iDirection , iTowerDirection , (int)moveSpeed );
 
-    text->draw( "x: " + std::to_string( x ) ,  100 , 500 );
-    text->draw( "y: " + std::to_string( y ) ,  100 , 530 );
-    text->draw( "sp: " + std::to_string( moveSpeed ) ,  100 , 560 );
+    text->draw( "x: " + std::to_string( x ) ,  150 , 500 );
+    text->draw( "y: " + std::to_string( y ) ,  150 , 530 );
+    text->draw( "sp: " + std::to_string( moveSpeed ) ,  150 , 560 );
 
-
+    text->draw( "xblock: " + std::to_string( blocked.x ) ,  550 , 500 );
+    text->draw( "yblock: " + std::to_string( blocked.y ) ,  550 , 530 );
+    blocked.x =0;
+    blocked.y = 0;
 }
 
 int Player::getTowDir()

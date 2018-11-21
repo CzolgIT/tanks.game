@@ -13,9 +13,10 @@ public:
 
     SDL_Point shootPosition();
 
-    void PushOut(Vector2D vec){
-        this->x += vec.x;
-        this->y += vec.y;
+    void PushOut(Vector2D vec)
+    {
+        blocked.x += vec.x;
+        blocked.y += vec.y;
     }
 
 private:
@@ -23,6 +24,8 @@ private:
     float accelerate( int scanCode , float what , float from , float to , float timeStep );
 
     Text* text;
+
+    Vector2D blocked;
 
     float moveSpeed , directionSpeed , towerSpeed;
     float direction , towerDirection;
