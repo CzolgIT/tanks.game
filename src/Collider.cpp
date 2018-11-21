@@ -89,7 +89,7 @@ Vector2D Collider::areColliding(Collider * col1, Collider * col2)
         else {
             if (Projection::getOverlap(p1,p2) < overlap){
                 overlap = Projection::getOverlap(p1,p2);
-                smallest = axes1[i];
+                smallest = axes2[i];
             }
         }
 
