@@ -10,9 +10,11 @@ public:
     Settings( SDL_Renderer* r , Text* t , Configuration* c );
     void handleEvents( float frameTime );
     void draw( float frameTime );
+    void loadDisplayModes();
 
 private:
 
+    std::vector<SDL_DisplayMode*> displayModeList;
     int resolution;
     //???
 

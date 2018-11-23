@@ -8,24 +8,25 @@ class Configuration {
 public:
 
     Configuration();
+    void init(SDL_Window* window);
 
-    void setWindow(SDL_Window* window);
+    void setQuality(float quality);
+    void setFullscreen(bool fullscreen);
+    void setResolution(int resolutionWidth , int resolutionHeight);
+
+
+
 
     float getQuality();
-    void setQuality(float quality);
-
     bool getAcceleration();
     void setAcceleration( bool acceleration );
     bool getVsync();
     void setVsync( bool vsync );
         Uint32 getRendererFlags();
-
     int getResolutionWidth();
     int getResolutionHeight();
-    void setResolution(int resolutionWidth , int resolutionHeight);
-
     bool isFullscreen();
-    void setFullscreen(bool fullscreen);
+
 
 private:
 

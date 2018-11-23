@@ -4,22 +4,14 @@ Game::Game()
 {
     configuration = new Configuration();
     SDL_Init( SDL_INIT_VIDEO );
-    SDL_SetHint( SDL_HINT_RENDER_SCALE_QUALITY, "1" );
     IMG_Init( IMG_INIT_PNG );
-    window = SDL_CreateWindow( "Tanks Game", SDL_WINDOWPOS_UNDEFINED , SDL_WINDOWPOS_UNDEFINED ,
-            configuration->getResolutionWidth() , configuration->getResolutionHeight() , SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE );
-    configuration->setWindow( window );
-    configuration->setFullscreen( configuration->isFullscreen() );
-    configuration->setResolution( configuration->getResolutionWidth() , configuration->getResolutionHeight() );
+    window = SDL_CreateWindow("Tanks Game",SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED,800,600,SDL_WINDOW_SHOWN|SDL_WINDOW_RESIZABLE);
+    configuration->init( window );
     renderer = SDL_CreateRenderer( window, -1, configuration->getRendererFlags() );
-
-
     text = new Text( renderer , FONT_FILE );
     netManager = new NetManager();
-
     stepTimer = new Timer();
     stepTimer->start();
-
     currentScene = new Menu(renderer, text , configuration);
     running = true;
 }
@@ -46,7 +38,7 @@ void Game::Update()
             currentScene = new Manager(renderer, text, configuration );
             break;
         case 3: // Settings
-            currentScene = new Menu(renderer, text , configuration );
+            currentScene = new Settings(renderer, text , configuration );
             break;
         case 4: // Multiplayer-run
             netManager->disconnectPlayer();
