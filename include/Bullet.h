@@ -1,6 +1,7 @@
 #ifndef BULLET_H
 #define BULLET_H
 
+#include "Main.h"
 
 class Bullet: public GameObject
 {
@@ -11,6 +12,7 @@ public:
     void move( float timeStep );
 
 private:
+
     int direction;
     Texture* texture;
 

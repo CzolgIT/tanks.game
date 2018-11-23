@@ -9,8 +9,11 @@ public:
 
     explicit Map( SDL_Renderer* r );
     void loadFromFile( std::vector<GameObject*> * gameObjects );
+
 private:
+
     SDL_Renderer* renderer;
+
 };
 
 #endif

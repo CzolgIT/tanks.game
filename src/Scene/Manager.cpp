@@ -105,12 +105,7 @@ void Manager::CheckColliders()
                 else if (Bullet * b = dynamic_cast<Bullet*>(gameObjects[j])){
                     b->setToBeDestroyed();
                 }
-
-
             }
-
         }
-
-
     }
 }

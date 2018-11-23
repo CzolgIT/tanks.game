@@ -4,7 +4,7 @@ TankSprite::TankSprite( SDL_Renderer* r , int color )
 {
     renderer = r;
 
-    Texture* texTracks = new Texture( renderer , "assets/tank_tracks.png" );
+    Texture* texTracks = new Texture( renderer , "assets/tank/tank_tracks.png" );
     Texture* texture = new Texture( renderer , "assets/tex_tank.png" );
  
     for (int i=0; i<5; i++)

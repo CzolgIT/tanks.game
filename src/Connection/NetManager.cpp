@@ -12,8 +12,11 @@ bool NetManager::activate()
 }
 
 bool NetManager::disconnectPlayer() {
-    connected = false;
-    return tcpConnection.disconnectFromServer();
+
+    if (connected)
+        return tcpConnection.disconnectFromServer();
+    else
+        return false;
 }
 
 bool NetManager::isConnected(){

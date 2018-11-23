@@ -43,18 +43,18 @@
 #include "Timer.h"
 #include "Sprite.h"
 #include "TankSprite.h"
-#include "Scene.h"
-#include "Room.h"
-#include "Menu.h"
 #include "Player.h"
 #include "Bullet.h"
 #include "Background.h"
 #include "Wall.h"
-#include "Manager.h"
+#include "Scene/Scene.h"
+#include "Scene/Settings.h"
+#include "Scene/Room.h"
+#include "Scene/Menu.h"
+#include "Scene/Manager.h"
 #include "Game.h"
 
-
-#define delete_object(x) {delete x; x = NULL;}
+#define delete_object(x) {delete x; x = nullptr;}
 
 // SDL vars
 const int ACCELERATION = 0x00000002;
@@ -67,10 +67,7 @@ const int SCR_W = 800;
 const int SCR_H = 600;
 
 // Resources
-//const char TEXTURE_FILE[] = "assets/texture.png";
-//const char MENU_FILE[] = "assets/png800x600.png";
 const char FONT_FILE[] = "assets/font.ttf";
-//const int FONT_SIZE = 42;
 const char NICKNAME[] = "Player";
 
 #define SERVERIP "153.19.7.230"

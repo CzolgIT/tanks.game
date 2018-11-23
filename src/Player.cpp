@@ -20,31 +20,7 @@ Player::Player( SDL_Renderer* r , Text* t , float x , float y , int color ) : Ga
 
 void Player::handleEvent( SDL_Event& e )
 {
-    if( e.type == SDL_KEYDOWN && e.key.repeat == 0 )
-    {
-        switch( e.key.keysym.sym )
-        {
-            //case SDLK_UP: moveSpeed += TANKMAXSPEED; break;
-            //case SDLK_DOWN: moveSpeed -= TANKMAXSPEED; break;
-            //case SDLK_LEFT: directionSpeed -= TANKMAXDIR; break;
-            //case SDLK_RIGHT: directionSpeed += TANKMAXDIR; break;
-            //case SDLK_z: towerSpeed -= TANKMAXDIR; break;
-            //case SDLK_x: towerSpeed += TANKMAXDIR; break;
-        }
-    }
-
-    else if( e.type == SDL_KEYUP && e.key.repeat == 0 )
-    {
-        switch( e.key.keysym.sym )
-        {
-            //case SDLK_UP: moveSpeed -= TANKMAXSPEED; break;
-            //case SDLK_DOWN: moveSpeed += TANKMAXSPEED; break;
-            //case SDLK_LEFT: directionSpeed += TANKMAXDIR; break;
-            //case SDLK_RIGHT: directionSpeed -= TANKMAXDIR; break;
-            //case SDLK_z: towerSpeed += TANKMAXDIR; break;
-            //case SDLK_x: towerSpeed -= TANKMAXDIR; break;
-        }
-    }
+    // not used anymore
 }
 
 void Player::move( float timeStep )
@@ -61,6 +37,7 @@ void Player::move( float timeStep )
     double xm = cos(iDirection *M_PI/180) * moveSpeed * timeStep;
     double ym = sin(iDirection *M_PI/180) * moveSpeed * timeStep;
 
+    /* OPTIONAL PUSHING OUT TANK
     if (xm > 0 && blocked.x > 0)
     {
         if (xm > blocked.x)
@@ -94,6 +71,10 @@ void Player::move( float timeStep )
     }
     else
         y -= ym - blocked.y;
+    */
+
+    x -= xm - blocked.x;
+    y -= ym - blocked.y;
 
     blocked.x = 0;
     blocked.y = 0;
@@ -141,12 +122,14 @@ void Player::move( float timeStep )
 
 void Player::draw( int x0 , int y0 )
 {
+    /*
     for (int i = 0; i < 4; i ++){
         if (i != 3)
             SDL_RenderDrawLine( renderer,x0 + collider->points[i].x ,y0+ collider->points[i].y ,x0+ collider->points[i+1].x, y0+collider->points[i+1].y );
         else
             SDL_RenderDrawLine( renderer,x0 + collider->points[i].x , y0+collider->points[i].y ,x0 + collider->points[0].x, y0+collider->points[0].y );
     }
+    */
 
     sprite->draw( SCR_W/2 , SCR_H/2 , iDirection , iTowerDirection , (int)moveSpeed );
 

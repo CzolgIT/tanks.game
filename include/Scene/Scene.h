@@ -3,21 +3,15 @@
 
 #include "Main.h"
 
-// Menu
-// Room
-// Manager
-
 class Scene
 {
 public:
 
     Scene( SDL_Renderer* renderer , Text* text );
     bool isRunning() { return running; }
-
     void update( float frameTime );
-      virtual void handleEvents( float frameTime ){}
-      virtual void draw( float frameTime ){}
-
+        virtual void handleEvents( float frameTime ){}
+        virtual void draw( float frameTime ){}
     int getFlag() { return flagReturn ;}
 
 protected:
@@ -30,4 +24,4 @@ protected:
 
 };
 
-#endif /* Scene_h */
+#endif

@@ -2,22 +2,20 @@
 
 Game::Game()
 {
-    //SDL_EnableKeyRepeat( 1 , 1 );
-
     SDL_Init( SDL_INIT_VIDEO );
-    SDL_SetHint( SDL_HINT_RENDER_SCALE_QUALITY, "1" );
+    SDL_SetHint( SDL_HINT_RENDER_SCALE_QUALITY, "5" );
     IMG_Init( IMG_INIT_PNG );
 
     window = SDL_CreateWindow( "Tanks Game", SCR_X , SCR_Y , SCR_W , SCR_H , SDL_WINDOW_SHOWN );
     renderer = SDL_CreateRenderer( window, -1, ACCELERATION | VSYNC );
     text = new Text( renderer , FONT_FILE );
     netManager = new NetManager();
+
     stepTimer = new Timer();
     stepTimer->start();
 
     currentScene = new Menu(renderer, text);
     running = true;
-
 }
 
 void Game::Update()
@@ -26,11 +24,10 @@ void Game::Update()
     {
         float t = stepTimer->getTicks() / 1000.f;
         stepTimer->start();
-        currentScene->update( t ); // podany czas jaki minal od ostatniego update'a (do animacji i poruszania)
+        currentScene->update( t );
     }
-    // przechowuje "flage" z poprzedniej sceny wskazujaca nastepna scene
-    int flag = currentScene->getFlag();
 
+    int flag = currentScene->getFlag();
     switch( flag )
     {
         case 0: // Menu
@@ -40,20 +37,19 @@ void Game::Update()
             currentScene = new Room(renderer, text, netManager);
             break;
         case 2: // Singleplayer
-            currentScene = new Manager(renderer, text, flag);
+            currentScene = new Manager(renderer, text, 1);
             break;
         case 3: // Settings
             SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,"Przykro mi","jeszcze nie ma opcji ustawień :(",nullptr);
             currentScene = new Menu(renderer, text);
             break;
         case 4: // Multiplayer-run
-            SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,"NIE MA GRANIA","ledwo sie z serwerem polaczyles a juz bys chcial grac... nie ma tak dobrze. Za kare cie rozlaczam. Wracaj do menu!",nullptr);
-            if (netManager->isConnected()) netManager->disconnectPlayer();
+            SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,"NIE MA GRANIA","przerzucam do menu!",nullptr);
+            netManager->disconnectPlayer();
             currentScene = new Menu(renderer, text);
-            //currentScene = new Manager(renderer, text, 1 ); // ta 1 jest wykrywana jako kolor, ale trzeba sie tego stad pozbyc
             break;
         default:
-            if (netManager->isConnected()) netManager->disconnectPlayer();
+            netManager->disconnectPlayer();
             SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,"SIEMA","ELO", nullptr);
             running = false;
             break;

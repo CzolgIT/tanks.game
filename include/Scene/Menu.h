@@ -8,7 +8,6 @@ class Menu : public Scene
 public:
 
     Menu( SDL_Renderer* r , Text* t );
-
     void handleEvents( float frameTime );
     void draw( float frameTime );
 
@@ -18,4 +17,4 @@ private:
 
 };
 
-#endif /* Menu_h */
+#endif

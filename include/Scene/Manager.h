@@ -13,9 +13,11 @@ public:
     void CheckColliders();
 
 private:
+
     Background* background = nullptr;
     std::vector<GameObject*> gameObjects;
     Player* player;
+
 };
 
-#endif /* Manager_h */
+#endif
