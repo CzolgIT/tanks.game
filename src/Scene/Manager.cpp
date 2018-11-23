@@ -83,7 +83,7 @@ void Manager::CheckColliders()
             double diagonal2 = sqrt( pow(gameObjects[j]->getW()/2,2) + pow(gameObjects[j]->getH()/2,2) );
             double distance = sqrt( pow(gameObjects[j]->getX()-gameObjects[i]->getX(),2) + pow(gameObjects[j]->getY()-gameObjects[i]->getY(),2) );
 
-            if ( (distance < diagonal1 + diagonal2) && gameObjects[i]->getType() != gameObjects[j]->getType() )
+            if ( (distance < diagonal1 + diagonal2) && !(gameObjects[i]->getType()==STATIC && gameObjects[j]->getType()==STATIC) )
             {
                 col1 = gameObjects[i]->getCollider();
                 col2 = gameObjects[j]->getCollider();
