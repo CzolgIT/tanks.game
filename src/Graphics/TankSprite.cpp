@@ -5,6 +5,8 @@ TankSprite::TankSprite( SDL_Renderer* r , int color )
     renderer = r;
 
     Texture* texTracks = new Texture( renderer , "assets/tank/tank_tracks.png" );
+    texTower = new Texture( renderer , std::string("assets/tank/tower")+std::to_string(color)+std::string(".png") );
+
     Texture* texture = new Texture( renderer , "assets/tex_tank.png" );
  
     for (int i=0; i<5; i++)
@@ -20,27 +22,20 @@ TankSprite::TankSprite( SDL_Renderer* r , int color )
 
 void TankSprite::draw( int x , int y , int dir , int dirT , int move )
 {
-    if (step >= 199 || step <= -199)
-    {
-        step = 0;
-    }
-
-    if (move > 0){
+    if (move > 0)
         step++;
-        spriteTrackLeft[4-(int)round(abs(step)/40)]->draw( x-66*TANKSCALE , y+(-105+25)*TANKSCALE , dir);
-        spriteTrackRight[4-(int)round(abs(step)/40)]->draw( x+(-66+99)*TANKSCALE, y+(-105+25)*TANKSCALE , dir);
-    }else if (move < 0) {
+    if (move < 0)
         step --;
-        spriteTrackLeft[(int)round(abs(step)/40)]->draw( x-66*TANKSCALE , y+(-105+25)*TANKSCALE , dir);
-        spriteTrackRight[(int)round(abs(step)/40)]->draw( x+(-66+99)*TANKSCALE, y+(-105+25)*TANKSCALE , dir);
-    } else
-    {
-        step = 0 ;
-        spriteTrackLeft[0]->draw( x-66*TANKSCALE , y+(-105+25)*TANKSCALE , dir);
-        spriteTrackRight[0]->draw( x+(-66+99)*TANKSCALE, y+(-105+25)*TANKSCALE , dir);
-    }
+    if (step == 199) step = 0; else if (step == 0) step = 199;
+
+    spriteTrackLeft[(int)round(abs(step)/40)]->draw( x-66*TANKSCALE , y+(-105+25)*TANKSCALE , dir);
+    spriteTrackRight[(int)round(abs(step)/40)]->draw( x+(-66+99)*TANKSCALE, y+(-105+25)*TANKSCALE , dir);
+
+    //SDL_Point* texcenter = new SDL_Point()
+    //texTower->render( renderer , x, y , NULL , dir - 90 );
 
     spriteBody->draw( x+(-66+5)*TANKSCALE, y+(-105+21)*TANKSCALE , dir);
+
     spriteTower->draw( x+(-66+18)*TANKSCALE, y+(-105+41)*TANKSCALE , dirT);
     spriteBarrel->draw( x+(-66+39)*TANKSCALE, y-105*TANKSCALE , dirT);
 }

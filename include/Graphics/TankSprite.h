@@ -13,7 +13,9 @@ public:
 private:
     
     SDL_Renderer* renderer;
-    
+
+    Texture* texTower;
+
     Sprite* spriteTrackLeft[5];
     Sprite* spriteTrackRight[5];
     Sprite* spriteBody;
