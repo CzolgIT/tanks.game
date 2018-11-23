@@ -1,9 +1,9 @@
 #include "Main.h"
 
-Manager::Manager(SDL_Renderer * renderer, Text* text , int color): Scene( renderer , text )
+Manager::Manager(SDL_Renderer * r, Text* t , Configuration* c): Scene( r , t , c )
 {
     background = new Background( renderer );
-    player = new Player( renderer , text , 128 , 128 , color );
+    player = new Player( renderer , text , 128 , 128 , 1 );
     gameObjects.push_back(player);
     auto map = new Map( renderer );
     map->loadFromFile( &gameObjects );
@@ -72,38 +72,39 @@ void Manager::handleEvents( float frameTime )
 
 void Manager::CheckColliders()
 {
-    Collider * col1 = NULL;
-    Collider * col2 = NULL;
+    Collider * col1 = nullptr;
+    Collider * col2 = nullptr;
 
     for (int i = 0; i < gameObjects.size(); i++)
     {
-        col1 = gameObjects[i]->getCollider();
         for (int j = i+1; j < gameObjects.size(); j++)
         {
-            col2 = gameObjects[j]->getCollider();
+            double diagonal1 = sqrt( pow(gameObjects[i]->getW()/2,2) + pow(gameObjects[i]->getH()/2,2) );
+            double diagonal2 = sqrt( pow(gameObjects[j]->getW()/2,2) + pow(gameObjects[j]->getH()/2,2) );
+            double distance = sqrt( pow(gameObjects[j]->getX()-gameObjects[i]->getX(),2) + pow(gameObjects[j]->getY()-gameObjects[i]->getY(),2) );
 
-            Vector2D col = Collider::areColliding(col1, col2);
-            if (col.x != 0 || col.y != 0)
+            if ( (distance < diagonal1 + diagonal2) && gameObjects[i]->getType() != gameObjects[j]->getType() )
             {
+                col1 = gameObjects[i]->getCollider();
+                col2 = gameObjects[j]->getCollider();
 
-                if (Player * p = dynamic_cast<Player *>(gameObjects[i])){
-                    if (Bullet * b = dynamic_cast<Bullet*>(gameObjects[j])){
+                Vector2D col = Collider::areColliding(col1, col2);
+                if (col.x != 0 || col.y != 0) {
 
+                    if (auto *p = dynamic_cast<Player *>(gameObjects[i])) {
+                        if (auto *b = dynamic_cast<Bullet *>(gameObjects[j])) {
+
+                        } else p->PushOut(col * 2);
+
+                    } else if (auto *p = dynamic_cast<Player *>(gameObjects[j])) {
+                        if (auto *b = dynamic_cast<Bullet *>(gameObjects[i])) {
+
+                        } else p->PushOut(col * 2);
+                    } else if (auto *b = dynamic_cast<Bullet *>(gameObjects[i])) {
+                        b->setToBeDestroyed();
+                    } else if (auto *b = dynamic_cast<Bullet *>(gameObjects[j])) {
+                        b->setToBeDestroyed();
                     }
-                    else p->PushOut(col*2);
-
-                }
-                else if (Player * p = dynamic_cast<Player *>(gameObjects[j])){
-                    if (Bullet * b = dynamic_cast<Bullet*>(gameObjects[i])){
-
-                    }
-                    else p->PushOut(col*2);
-                }
-                else if (Bullet * b = dynamic_cast<Bullet*>(gameObjects[i])){
-                    b->setToBeDestroyed();
-                }
-                else if (Bullet * b = dynamic_cast<Bullet*>(gameObjects[j])){
-                    b->setToBeDestroyed();
                 }
             }
         }

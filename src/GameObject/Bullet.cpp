@@ -1,7 +1,7 @@
 #include "Main.h"
 
 Bullet::Bullet( SDL_Renderer* r , int x, int y, int dir)
-        : GameObject(r, x, y, 12, 36)
+        : GameObject(r, x, y, 12, 36 , DYNAMIC )
 {
     direction = dir;
     texture = new Texture( renderer , "assets/bullet.png" );

@@ -1,8 +1,7 @@
 #include "Main.h"
 
-Menu::Menu( SDL_Renderer* r , Text* t ) : Scene( r , t )
+Menu::Menu( SDL_Renderer* r , Text* t , Configuration* c ) : Scene( r , t , c )
 {
-    //text = t;
     selected = 1;
 }
 

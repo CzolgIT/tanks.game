@@ -1,6 +1,6 @@
 #include "Main.h"
 
-GameObject::GameObject(SDL_Renderer * ren, float x, float y, int width, int height)
+GameObject::GameObject(SDL_Renderer * ren, float x, float y, int width, int height , ObjectType type)
 {
     this->x = x;
     this->y = y;
@@ -8,6 +8,7 @@ GameObject::GameObject(SDL_Renderer * ren, float x, float y, int width, int heig
     this->height = height;
     this->renderer = ren;
     this->collider = new Collider(x,y, width, height);
+    this->type = type;
 }
 
 Collider * GameObject::getCollider(){
@@ -35,4 +36,8 @@ int GameObject::getW()
 int GameObject::getH()
 {
     return height;
+}
+ObjectType GameObject::getType()
+{
+    return type;
 }

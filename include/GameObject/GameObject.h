@@ -3,14 +3,15 @@
 
 #include "Main.h"
 
-// Wall
-// Player
-// Bullet
+enum ObjectType : Uint8{
+    STATIC = 0,
+    DYNAMIC = 1
+};
 
 class GameObject
 {
 public:
-    GameObject(SDL_Renderer * ren, float x, float y, int width, int height);
+    GameObject(SDL_Renderer * ren, float x, float y, int width, int height , ObjectType type);
     // virtual void Start() // not used
     virtual void update(){}
     virtual void move(float timeStep){}
@@ -23,6 +24,7 @@ public:
     float getY();
     int getW();
     int getH();
+    ObjectType getType();
     bool shouldBeDestroy(){ return toDestroy; }
     void setToBeDestroyed(){ toDestroy = true; }
 protected:
@@ -31,6 +33,7 @@ protected:
     float x,y;
     int width,height;
     bool toDestroy = false;
+    ObjectType type;
 
 };
 

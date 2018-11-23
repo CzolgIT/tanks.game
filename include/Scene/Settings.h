@@ -7,7 +7,7 @@ class Settings : public Scene
 {
 public:
 
-    Settings( SDL_Renderer* renderer , Text* text );
+    Settings( SDL_Renderer* r , Text* t , Configuration* c );
     void handleEvents( float frameTime );
     void draw( float frameTime );
 

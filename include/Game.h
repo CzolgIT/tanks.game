@@ -3,25 +3,26 @@
 
 #include "Main.h"
 
-class Game {
-
+class Game
+{
 public:
+
     Game();
-    //void SwitchScene(Scene * scene);
+    ~Game();
     void Update();
     bool isRunning() { return running; }
-    ~Game();
 
 private:
+
     SDL_Window* window;
     SDL_Renderer* renderer;
+    Configuration* configuration;
     Timer* stepTimer;
-    //SDL_Event eventHandler;
     Text* text;
     NetManager* netManager;
     Scene * currentScene;
     bool running;
 
-
 };
-#endif /* Game_h */
+
+#endif

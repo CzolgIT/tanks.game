@@ -1,8 +1,7 @@
 #include "Main.h"
 
-Room::Room( SDL_Renderer* renderer , Text* text , NetManager* net) : Scene( renderer , text )
+Room::Room( SDL_Renderer* r , Text* t , Configuration* c , NetManager* net) : Scene( r , t , c )
 {
-    this->text = text;
     selectedTank = 1;
     dir=0;
     netManager = net;
