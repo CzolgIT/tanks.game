@@ -3,13 +3,14 @@
 Game::Game()
 {
     configuration = new Configuration();
-
     SDL_Init( SDL_INIT_VIDEO );
     SDL_SetHint( SDL_HINT_RENDER_SCALE_QUALITY, "1" );
     IMG_Init( IMG_INIT_PNG );
-
     window = SDL_CreateWindow( "Tanks Game", SDL_WINDOWPOS_UNDEFINED , SDL_WINDOWPOS_UNDEFINED ,
-            configuration->getResolutionWidth() , configuration->getResolutionHeight() , SDL_WINDOW_SHOWN );
+            configuration->getResolutionWidth() , configuration->getResolutionHeight() , SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE );
+    configuration->setWindow( window );
+    configuration->setFullscreen( configuration->isFullscreen() );
+    configuration->setResolution( configuration->getResolutionWidth() , configuration->getResolutionHeight() );
     renderer = SDL_CreateRenderer( window, -1, configuration->getRendererFlags() );
 
 
@@ -45,17 +46,14 @@ void Game::Update()
             currentScene = new Manager(renderer, text, configuration );
             break;
         case 3: // Settings
-            SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,"Przykro mi","jeszcze nie ma opcji ustawień :(",nullptr);
             currentScene = new Menu(renderer, text , configuration );
             break;
         case 4: // Multiplayer-run
-            SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,"NIE MA GRANIA","przerzucam do menu!",nullptr);
             netManager->disconnectPlayer();
             currentScene = new Menu(renderer, text , configuration );
             break;
         default:
             netManager->disconnectPlayer();
-            SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,"SIEMA","ELO", nullptr);
             running = false;
             break;
     }

@@ -43,8 +43,15 @@ void Manager::handleEvents( float frameTime )
             flagReturn = -1;
             break;
         }
+
         if( eventHandler.type == SDL_KEYDOWN) // && eventHandler.key.repeat == 0 )
         {
+            if (eventHandler.key.keysym.sym == SDLK_ESCAPE)
+            {
+                running = false;
+                flagReturn = -1;
+                break;
+            }
             if (eventHandler.key.keysym.sym == SDLK_SPACE)
             {
                 SDL_Point punkt = player->shootPosition();

@@ -9,6 +9,8 @@ public:
 
     Configuration();
 
+    void setWindow(SDL_Window* window);
+
     float getQuality();
     void setQuality(float quality);
 
@@ -19,15 +21,15 @@ public:
         Uint32 getRendererFlags();
 
     int getResolutionWidth();
-    void setResolutionWidth(int resolutionWidth);
-
     int getResolutionHeight();
-    void setResolutionHeight(int resolutionHeight);
+    void setResolution(int resolutionWidth , int resolutionHeight);
 
     bool isFullscreen();
     void setFullscreen(bool fullscreen);
 
 private:
+
+    SDL_Window* window;
 
     float quality; // 0 - 1
     bool acceleration;

@@ -29,7 +29,7 @@ bool TCPConnection::connectToServer(std::string host, Uint16 port)
     socket = SDLNet_TCP_Open(&ipAddress);
     if(!socket){
         std::cout << "wrong adress: "<< SERVERIP << " : " << SERVERPORT << "\n";
-        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,"SDLNet_TCP_Open error\n",SDLNet_GetError(),nullptr);
+        //SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,"SDLNet_TCP_Open error\n",SDLNet_GetError(),nullptr);
         //std::cerr << "SDLNet_TCP_Open error: " << SDLNet_GetError() << "\n";
         return false;
     }

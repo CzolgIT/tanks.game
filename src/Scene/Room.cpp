@@ -33,6 +33,10 @@ void  Room::handleEvents( float frameTime )
         {
             switch( eventHandler.key.keysym.sym )
             {
+                case SDLK_ESCAPE:
+                    running = false;
+                    flagReturn = -1;
+                    break;
                 case SDLK_RETURN:
 
                     flagReturn = 4; // tu byl selectedtank, ale tworzenie czolgu bedzie musialo byc juz w tej klasie
