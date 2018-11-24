@@ -51,6 +51,7 @@ void Menu::draw( float frameTime )
 {
     int w = configuration->getDisplayMode()->w;
     int h = configuration->getDisplayMode()->h;
+    int j = (int)((float)h/36);
     float s = configuration->getScale();
 
     SDL_SetRenderDrawColor( renderer, 0xFF, 0xFF, 0xFF, 0xFF );
@@ -58,28 +59,28 @@ void Menu::draw( float frameTime )
     text->setAlignment( true );
 
     text->setColor( C_RED );
-    text->setSize( (int)((float)80*s) );
-    text->draw( "Tanks" , w/2 , (int)((float)50*s) );
-    text->draw( "Game" , w/2 , (int)((float)130*s) );
+    text->setSize( 4*j );
+    text->draw( "Tanks" , w/2 , 6*j );
+    text->draw( "Game" , w/2 , 10*j );
 
     text->setColor( C_BLACK );
-    text->setSize( 40 );
+    text->setSize( 2*j );
 
     text->draw( std::to_string( w ) , 50 , 10 );
     text->draw( std::to_string( h ) , 50 , 40 );
     text->draw( std::to_string( s ) , 150 , 70 );
 
-    text->draw( "Multiplayer" , w/2 , 280 );
-    text->draw( "Singleplayer" , w/2 , 340 );
-    text->draw( "Settings" , w/2 , 400 );
-    text->draw( "Exit" , w/2 , 460 );
+    text->draw( "Multiplayer" , w/2 , 18*j );
+    text->draw( "Singleplayer" , w/2 , 21*j );
+    text->draw( "Settings" , w/2 , 24*j );
+    text->draw( "Exit" , w/2 , 27*j );
 
     switch( selected )
     {
-        case 1: text->draw( "- Multiplayer -" , w/2 , 280 ); break;
-        case 2: text->draw( "- Singleplayer -" , w/2 , 340 ); break;
-        case 3: text->draw( "- Settings -" , w/2 , 400 ); break;
-        case 4: text->draw( "- Exit -" , w/2 , 460 ); break;
+        case 1: text->draw( "- Multiplayer -" , w/2 , 18*j ); break;
+        case 2: text->draw( "- Singleplayer -" , w/2 , 21*j ); break;
+        case 3: text->draw( "- Settings -" , w/2 , 24*j ); break;
+        case 4: text->draw( "- Exit -" , w/2 , 27*j ); break;
     }
 
     SDL_RenderPresent( renderer );
