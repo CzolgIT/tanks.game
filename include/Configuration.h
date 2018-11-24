@@ -8,40 +8,38 @@ class Configuration {
 public:
 
     Configuration();
-    void init(SDL_Window* window);
+    void init( SDL_Window* window );
 
-    void setQuality(float quality);
-    void setFullscreen(bool fullscreen);
-    void setResolution(int resolutionWidth , int resolutionHeight);
-
-
-
+    void setQuality( float quality );
+    void setDisplayMode( SDL_DisplayMode* displayMode );
+    void setFullscreen( bool fullscreen );
+    void setAcceleration( bool acceleration );
+    void setVsync( bool vsync );
 
     float getQuality();
-    bool getAcceleration();
-    void setAcceleration( bool acceleration );
-    bool getVsync();
-    void setVsync( bool vsync );
-        Uint32 getRendererFlags();
-    int getResolutionWidth();
-    int getResolutionHeight();
+    SDL_DisplayMode* getDisplayMode();
     bool isFullscreen();
+    bool getAcceleration();
+    bool getVsync();
 
+        Uint32 getRendererFlags();
+        float getScale();
 
 private:
 
     SDL_Window* window;
 
     float quality; // 0 - 1
+    SDL_DisplayMode displayMode;
+    bool fullscreen;
     bool acceleration;
     bool vsync;
-    Uint32 rendererFlags;
 
-    int resolutionWidth;
-    int resolutionHeight;
-    bool fullscreen;
+        Uint32 rendererFlags;
+        float scale;
 
-    void saveToFile();
+    void writeFile();
+    void readFile();
 
 };
 #endif

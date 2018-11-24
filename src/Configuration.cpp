@@ -3,81 +3,114 @@
 Configuration::Configuration()
 {
     this->window = nullptr;
-    // wszystkie nastepujace dane musza zostac zaladowane z pliku
-
-    this->quality = 1;
-    this->acceleration = true;
-    this->vsync = true;
-        this->rendererFlags = (acceleration ? SDL_RENDERER_ACCELERATED : 0) | (vsync ? SDL_RENDERER_PRESENTVSYNC : 0);
-    this->resolutionWidth = 1920;
-    this->resolutionHeight = 1080;
-    this->fullscreen = true;
+    readFile();
 }
 void Configuration::init(SDL_Window* window)
 {
     this->window = window;
-
     setQuality( quality );
+    setDisplayMode( &this->displayMode );
     setFullscreen( isFullscreen() );
-    setResolution( resolutionWidth , resolutionHeight );
 }
 void Configuration::setQuality( float quality )
 {
     SDL_SetHint( SDL_HINT_RENDER_SCALE_QUALITY, std::to_string(quality).c_str() );
     this->quality = quality;
+    writeFile();
+}
+void Configuration::setDisplayMode( SDL_DisplayMode* displayMode )
+{
+    SDL_SetWindowDisplayMode( window , displayMode );
+    SDL_GetWindowDisplayMode( window , displayMode );
+    this->displayMode = *displayMode;
+    this->scale = ((float)displayMode->w + (float)displayMode->h) / 2000;
+    writeFile();
 }
 void Configuration::setFullscreen( bool fullscreen )
 {
     fullscreen ? SDL_SetWindowFullscreen( window, SDL_TRUE ) : SDL_SetWindowFullscreen( window, SDL_FALSE );
     this->fullscreen = fullscreen;
+    writeFile();
 }
-
-
-void Configuration::setResolution( int resolutionWidth , int resolutionHeight)
-{
-    // rozdzielczosc ma byc tu przetrzymywana i ustawiana jako displaymode
-    SDL_SetWindowSize( window , resolutionWidth , resolutionHeight );
-    this->resolutionWidth = resolutionWidth;
-    this->resolutionHeight = resolutionHeight;
-}
-
-
-
 void Configuration::setAcceleration( bool acceleration )
 {
     this->acceleration = acceleration;
-    saveToFile(); // gra musi zostac uruchomiona ponownie
+    writeFile();
 }
 void Configuration::setVsync(bool vsync)
 {
     this->vsync = vsync;
-    saveToFile(); // gra musi zostac uruchomiona ponownie
+    writeFile();
 }
 
 float Configuration::getQuality() { return quality; }
+SDL_DisplayMode* Configuration::getDisplayMode() { return &displayMode; }
+bool Configuration::isFullscreen() { return fullscreen; }
 bool Configuration::getAcceleration() { return acceleration; }
 bool Configuration::getVsync() { return vsync; }
+
     Uint32 Configuration::getRendererFlags() { return rendererFlags; }
-int Configuration::getResolutionWidth()
-{
-    int w;
-    int h;
-    SDL_GetWindowSize( window , &w , &h );
-    return w;
-}
-int Configuration::getResolutionHeight()
-{
-    int w;
-    int h;
-    SDL_GetWindowSize( window , &w , &h );
-    return h;
-}
-bool Configuration::isFullscreen() { return fullscreen; }
+    float Configuration::getScale() { return this->scale; }
 
-
-
-
-void Configuration::saveToFile()
+void Configuration::writeFile()
 {
     // zapisywanie wszystkich obecnych ustawien
+}
+
+void Configuration::readFile()
+{
+    // set default values
+    this->quality = 1;
+    this->acceleration = true;
+    this->vsync = true;
+    this->displayMode = { SDL_PIXELFORMAT_UNKNOWN, 1920, 1080, 60, nullptr };
+    this->fullscreen = true;
+
+    // load from file
+    std::ifstream infile("config.txt");
+    std::string key;
+
+    std::string sval;
+    float fval;
+    int ival;
+
+    while (infile.good())
+    {
+        infile >> key;
+
+        if (key == "QUALITY")
+        {
+            infile >> fval;
+            this->quality = fval;
+        } else
+        if (key == "ACCELERATION")
+        {
+            infile >> sval;
+            this->acceleration = !(sval == "NO");
+        } else
+        if (key == "VSYNC")
+        {
+            infile >> sval;
+            this->vsync = !(sval == "NO");
+        } else
+        if (key == "WIDTH")
+        {
+            infile >> ival;
+            this->displayMode.w = ival;
+        } else
+        if (key == "HEIGHT")
+        {
+            infile >> ival;
+            this->displayMode.h = ival;
+        } else
+        if (key == "FULLSCREEN")
+        {
+            infile >> sval;
+            this->acceleration = !(sval == "NO");
+        } else
+            infile >> sval;
+    }
+
+    infile.close();
+    this->rendererFlags = (acceleration ? SDL_RENDERER_ACCELERATED : 0) | (vsync ? SDL_RENDERER_PRESENTVSYNC : 0);
 }

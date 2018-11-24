@@ -11,6 +11,7 @@ public:
     void draw( int x0 , int y0 );
     //void handleEvent(SDL_Event& e);
     //void update();
+    void setTexture( Texture* texture);
 
 private:
 

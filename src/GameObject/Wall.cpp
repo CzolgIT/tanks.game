@@ -3,10 +3,13 @@
 Wall::Wall(SDL_Renderer* r , int x , int y , int width, int height)
 : GameObject(r, x, y, width, height , STATIC )
 {
-    texture = new Texture( renderer , "assets/block2.png" );
     collider = new Collider(x,y,width,height);
 }
 
+void Wall::setTexture( Texture* texture )
+{
+    this->texture = texture;
+}
 
 void Wall::draw( int x0 , int y0 )
 {

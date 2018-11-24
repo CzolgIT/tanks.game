@@ -51,23 +51,27 @@ void  Settings::handleEvents( float frameTime )
 
 void Settings::draw( float frameTime )
 {
+    int w = configuration->getDisplayMode()->w;
+    int h = configuration->getDisplayMode()->h;
+    float s = configuration->getScale();
+
     SDL_SetRenderDrawColor( renderer, 0xFF, 0xFF, 0xFF, 0xFF );
     SDL_RenderClear( renderer );
     text->setAlignment( true );
 
     text->setColor( C_RED );
     text->setSize( 80 );
-    text->draw( "Settings" , configuration->getResolutionWidth()/2 , 50 );
+    text->draw( "Settings" , w/2 , 50 );
 
     text->setColor( C_BLACK );
     text->setSize( 40 );
 
-    text->draw( std::to_string(configuration->getResolutionWidth()) , 50 , 10 );
-    text->draw( std::to_string(configuration->getResolutionHeight()) , 50 , 40 );
+    text->draw( std::to_string(w) , 50 , 10 );
+    text->draw( std::to_string(h) , 50 , 40 );
 
-    text->draw( "raz" , configuration->getResolutionWidth()/2 , 280 );
-    text->draw( "dwa" , configuration->getResolutionWidth()/2 , 340 );
-    text->draw( "trzy" , configuration->getResolutionWidth()/2 , 400 );
+    text->draw( "raz" , w/2 , 280 );
+    text->draw( "dwa" , w/2 , 340 );
+    text->draw( "trzy" , w/2 , 400 );
 
     SDL_RenderPresent( renderer );
 }

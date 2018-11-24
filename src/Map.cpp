@@ -7,6 +7,8 @@ Map::Map( SDL_Renderer* r )
 
 void Map::loadFromFile( std::vector<GameObject*> * gameObjects )
 {
+    auto* blocktexture = new Texture( renderer , "assets/block2.png" );
+
     std::ifstream infile("assets/maps/map2.txt");
     int w,h;
     infile >> w >> h;
@@ -20,8 +22,10 @@ void Map::loadFromFile( std::vector<GameObject*> * gameObjects )
             if (c == '#')
             {
                 auto * wall = new Wall( renderer , 32+j*64 , 32+i*64, 64, 64 );
+                wall->setTexture( blocktexture );
                 gameObjects->push_back(wall);
             }
         }
     }
+    infile.close();
 }

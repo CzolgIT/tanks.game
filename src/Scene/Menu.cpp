@@ -49,33 +49,37 @@ void Menu::handleEvents( float frameTime )
 
 void Menu::draw( float frameTime )
 {
+    int w = configuration->getDisplayMode()->w;
+    int h = configuration->getDisplayMode()->h;
+    float s = configuration->getScale();
 
     SDL_SetRenderDrawColor( renderer, 0xFF, 0xFF, 0xFF, 0xFF );
     SDL_RenderClear( renderer );
     text->setAlignment( true );
 
     text->setColor( C_RED );
-    text->setSize( 80 );
-    text->draw( "Tanks" , configuration->getResolutionWidth()/2 , 50 );
-    text->draw( "Game" , configuration->getResolutionWidth()/2 , 130 );
+    text->setSize( (int)((float)80*s) );
+    text->draw( "Tanks" , w/2 , (int)((float)50*s) );
+    text->draw( "Game" , w/2 , (int)((float)130*s) );
 
     text->setColor( C_BLACK );
     text->setSize( 40 );
 
-    text->draw( std::to_string(configuration->getResolutionWidth()) , 50 , 10 );
-    text->draw( std::to_string(configuration->getResolutionHeight()) , 50 , 40 );
+    text->draw( std::to_string( w ) , 50 , 10 );
+    text->draw( std::to_string( h ) , 50 , 40 );
+    text->draw( std::to_string( s ) , 150 , 70 );
 
-    text->draw( "Multiplayer" , configuration->getResolutionWidth()/2 , 280 );
-    text->draw( "Singleplayer" , configuration->getResolutionWidth()/2 , 340 );
-    text->draw( "Settings" , configuration->getResolutionWidth()/2 , 400 );
-    text->draw( "Exit" , configuration->getResolutionWidth()/2 , 460 );
+    text->draw( "Multiplayer" , w/2 , 280 );
+    text->draw( "Singleplayer" , w/2 , 340 );
+    text->draw( "Settings" , w/2 , 400 );
+    text->draw( "Exit" , w/2 , 460 );
 
     switch( selected )
     {
-        case 1: text->draw( "- Multiplayer -" , configuration->getResolutionWidth()/2 , 280 ); break;
-        case 2: text->draw( "- Singleplayer -" , configuration->getResolutionWidth()/2 , 340 ); break;
-        case 3: text->draw( "- Settings -" , configuration->getResolutionWidth()/2 , 400 ); break;
-        case 4: text->draw( "- Exit -" , configuration->getResolutionWidth()/2 , 460 ); break;
+        case 1: text->draw( "- Multiplayer -" , w/2 , 280 ); break;
+        case 2: text->draw( "- Singleplayer -" , w/2 , 340 ); break;
+        case 3: text->draw( "- Settings -" , w/2 , 400 ); break;
+        case 4: text->draw( "- Exit -" , w/2 , 460 ); break;
     }
 
     SDL_RenderPresent( renderer );
