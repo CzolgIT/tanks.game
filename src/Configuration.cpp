@@ -106,7 +106,8 @@ void Configuration::readFile()
         if (key == "FULLSCREEN")
         {
             infile >> sval;
-            this->acceleration = !(sval == "NO");
+            std::cout << sval << std::endl;
+            this->fullscreen = !(sval == "NO");
         } else
             infile >> sval;
     }
