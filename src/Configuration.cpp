@@ -9,7 +9,8 @@ void Configuration::init(SDL_Window* window)
 {
     this->window = window;
     setQuality( quality );
-    setDisplayMode( &this->displayMode );
+    SDL_GetDisplayMode(0, 0, this->displayMode);
+    setDisplayMode( this->displayMode );
     setFullscreen( isFullscreen() );
 }
 void Configuration::setQuality( float quality )
@@ -21,8 +22,8 @@ void Configuration::setQuality( float quality )
 void Configuration::setDisplayMode( SDL_DisplayMode* displayMode )
 {
     SDL_SetWindowDisplayMode( window , displayMode );
-    SDL_GetWindowDisplayMode( window , displayMode );
-    this->displayMode = *displayMode;
+    //SDL_GetWindowDisplayMode( window , displayMode );
+    this->displayMode = displayMode;
     this->scale = ((float)displayMode->w + (float)displayMode->h) / 2000;
     writeFile();
 }
@@ -44,7 +45,7 @@ void Configuration::setVsync(bool vsync)
 }
 
 float Configuration::getQuality() { return quality; }
-SDL_DisplayMode* Configuration::getDisplayMode() { return &displayMode; }
+SDL_DisplayMode* Configuration::getDisplayMode() { return displayMode; }
 bool Configuration::isFullscreen() { return fullscreen; }
 bool Configuration::getAcceleration() { return acceleration; }
 bool Configuration::getVsync() { return vsync; }
@@ -63,7 +64,10 @@ void Configuration::readFile()
     this->quality = 1;
     this->acceleration = true;
     this->vsync = true;
-    this->displayMode = { SDL_PIXELFORMAT_UNKNOWN, 1920, 1080, 60, nullptr };
+
+    this->displayMode = new SDL_DisplayMode{ SDL_PIXELFORMAT_UNKNOWN, 1300, 700, 0, nullptr };
+    //SDL_GetDisplayMode(0, 0, this->displayMode); // ładuje domyślną rozdzielczość
+
     this->fullscreen = true;
 
     // load from file
@@ -81,32 +85,32 @@ void Configuration::readFile()
         if (key == "QUALITY")
         {
             infile >> fval;
-            this->quality = fval;
+            //this->quality = fval;
         } else
         if (key == "ACCELERATION")
         {
             infile >> sval;
-            this->acceleration = !(sval == "NO");
+            //this->acceleration = !(sval == "NO");
         } else
         if (key == "VSYNC")
         {
             infile >> sval;
-            this->vsync = !(sval == "NO");
+            //this->vsync = !(sval == "NO");
         } else
         if (key == "WIDTH")
         {
             infile >> ival;
-            this->displayMode.w = ival;
+            //this->displayMode.w = ival;
         } else
         if (key == "HEIGHT")
         {
             infile >> ival;
-            this->displayMode.h = ival;
+            //this->displayMode.h = ival;
         } else
         if (key == "FULLSCREEN")
         {
             infile >> sval;
-            this->acceleration = !(sval == "NO");
+            //this->fullscreen = !(sval == "NO");
         } else
             infile >> sval;
     }

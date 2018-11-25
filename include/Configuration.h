@@ -30,7 +30,7 @@ private:
     SDL_Window* window;
 
     float quality; // 0 - 1
-    SDL_DisplayMode displayMode;
+    SDL_DisplayMode* displayMode;
     bool fullscreen;
     bool acceleration;
     bool vsync;
