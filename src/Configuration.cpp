@@ -9,9 +9,9 @@ void Configuration::init(SDL_Window* window)
 {
     this->window = window;
     setQuality( quality );
-    SDL_GetDisplayMode(0, 0, this->displayMode);
     setDisplayMode( this->displayMode );
     setFullscreen( isFullscreen() );
+    SDL_GL_SetSwapInterval( -1 );
 }
 void Configuration::setQuality( float quality )
 {
@@ -21,10 +21,25 @@ void Configuration::setQuality( float quality )
 }
 void Configuration::setDisplayMode( SDL_DisplayMode* displayMode )
 {
-    SDL_SetWindowDisplayMode( window , displayMode );
-    //SDL_GetWindowDisplayMode( window , displayMode );
-    this->displayMode = displayMode;
-    this->scale = ((float)displayMode->w + (float)displayMode->h) / 2000;
+    if (fullscreen)
+    {
+        if (SDL_GetClosestDisplayMode(0, displayMode, this->displayMode) == nullptr)
+            SDL_GetDisplayMode(0, 0, this->displayMode);
+        SDL_SetWindowDisplayMode(window, this->displayMode);
+    }
+    if (!fullscreen)
+    {
+        SDL_DisplayMode* mode = new SDL_DisplayMode{ SDL_PIXELFORMAT_UNKNOWN, 10000, 10000, 0, nullptr };
+        SDL_GetDesktopDisplayMode(0, mode);
+        if (this->displayMode->w < 640) this->displayMode->w = 640;
+        if (this->displayMode->h < 480) this->displayMode->h = 480;
+        if (this->displayMode->w > mode->w) this->displayMode->w = mode->w;
+        if (this->displayMode->h > mode->h) this->displayMode->h = mode->h;
+        SDL_SetWindowPosition( window , 0 , 0 );
+        SDL_SetWindowSize(window, this->displayMode->w, this->displayMode->h);
+        SDL_GetWindowSize(window, &this->displayMode->w, &this->displayMode->h);
+    }
+    this->scale = ((float)this->displayMode->w + (float)this->displayMode->h) / 2000;
     writeFile();
 }
 void Configuration::setFullscreen( bool fullscreen )
@@ -64,10 +79,8 @@ void Configuration::readFile()
     this->quality = 1;
     this->acceleration = true;
     this->vsync = true;
-
-    this->displayMode = new SDL_DisplayMode{ SDL_PIXELFORMAT_UNKNOWN, 1300, 700, 0, nullptr };
-    //SDL_GetDisplayMode(0, 0, this->displayMode); // ładuje domyślną rozdzielczość
-
+        // it should be over all possible resolutions
+        this->displayMode = new SDL_DisplayMode{ SDL_PIXELFORMAT_UNKNOWN, 10000, 10000, 0, nullptr };
     this->fullscreen = true;
 
     // load from file
@@ -85,32 +98,32 @@ void Configuration::readFile()
         if (key == "QUALITY")
         {
             infile >> fval;
-            //this->quality = fval;
+            this->quality = fval;
         } else
         if (key == "ACCELERATION")
         {
             infile >> sval;
-            //this->acceleration = !(sval == "NO");
+            this->acceleration = (sval != "NO");
         } else
         if (key == "VSYNC")
         {
             infile >> sval;
-            //this->vsync = !(sval == "NO");
+            this->vsync = (sval != "NO");
         } else
         if (key == "WIDTH")
         {
             infile >> ival;
-            //this->displayMode.w = ival;
+            this->displayMode->w = ival;
         } else
         if (key == "HEIGHT")
         {
             infile >> ival;
-            //this->displayMode.h = ival;
+            this->displayMode->h = ival;
         } else
         if (key == "FULLSCREEN")
         {
             infile >> sval;
-            //this->fullscreen = !(sval == "NO");
+            this->fullscreen = (sval != "NO");
         } else
             infile >> sval;
     }

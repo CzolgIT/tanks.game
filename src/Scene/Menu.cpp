@@ -66,9 +66,9 @@ void Menu::draw( float frameTime )
     text->setColor( C_BLACK );
     text->setSize( 2*j );
 
-    text->draw( std::to_string( w ) , 50 , 10 );
-    text->draw( std::to_string( h ) , 50 , 40 );
-    text->draw( std::to_string( s ) , 150 , 70 );
+    text->draw( std::to_string( w ) , 6*j , j );
+    text->draw( std::to_string( h ) , 6*j , 3*j );
+    text->draw( std::to_string( s ) , 6*j , 5*j );
 
     text->draw( "Multiplayer" , w/2 , 18*j );
     text->draw( "Singleplayer" , w/2 , 21*j );
