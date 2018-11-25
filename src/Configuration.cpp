@@ -11,7 +11,6 @@ void Configuration::init(SDL_Window* window)
     setQuality( quality );
     setDisplayMode( this->displayMode );
     setFullscreen( isFullscreen() );
-    SDL_GL_SetSwapInterval( -1 );
 }
 void Configuration::setQuality( float quality )
 {
