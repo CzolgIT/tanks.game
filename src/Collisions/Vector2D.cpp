@@ -64,12 +64,26 @@ Vector2D& Vector2D::operator/=(const Vector2D& vec)
 	return this->Divide(vec);
 }
 
+Vector2D& Vector2D::operator*(const Vector2D& vec)
+{
+	return this->Multiply(vec);
+}
+
 Vector2D& Vector2D::operator*(const float& i)
 {
 	this->x *= i;
 	this->y *= i;
 
 	return *this;
+}
+
+std::string Vector2D::toString()
+{
+    std::ostringstream os;
+    os<<this->x;
+    os<<", ";
+    os<<this->y;
+    return os.str();
 }
 
 Vector2D& Vector2D::Perp()

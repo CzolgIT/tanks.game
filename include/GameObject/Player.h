@@ -19,6 +19,8 @@ public:
         blocked.y += vec.y;
     }
 
+
+
 private:
 
     float accelerate( int scanCode , float what , float from , float to , float timeStep );
@@ -33,4 +35,3 @@ private:
 
     TankSprite* sprite;
 };
-

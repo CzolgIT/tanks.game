@@ -101,12 +101,16 @@ void Manager::CheckColliders()
                     if (auto *p = dynamic_cast<Player *>(gameObjects[i])) {
                         if (auto *b = dynamic_cast<Bullet *>(gameObjects[j])) {
 
-                        } else p->PushOut(col * 2);
-
+                        } else{
+                             p->PushOut(col * 2);
+                        }
                     } else if (auto *p = dynamic_cast<Player *>(gameObjects[j])) {
                         if (auto *b = dynamic_cast<Bullet *>(gameObjects[i])) {
 
-                        } else p->PushOut(col * 2);
+                        } else{
+                              p->PushOut(col * 2);
+
+                        }
                     } else if (auto *b = dynamic_cast<Bullet *>(gameObjects[i])) {
                         b->setToBeDestroyed();
                     } else if (auto *b = dynamic_cast<Bullet *>(gameObjects[j])) {

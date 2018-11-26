@@ -17,6 +17,9 @@ public:
 	Vector2D& operator-=(const Vector2D& vec);
 	Vector2D& operator*=(const Vector2D& vec);
     Vector2D& operator/=(const Vector2D& vec);
+    std::string toString();
+
+    Vector2D& operator *(const Vector2D& vec);
 
     Vector2D& operator*(const float& i);
 
