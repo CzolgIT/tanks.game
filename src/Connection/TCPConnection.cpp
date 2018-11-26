@@ -3,20 +3,20 @@
 TCPConnection::TCPConnection() :
 senderThread(nullptr)
 {
-    close_thread = false;
+    closeThread = false;
     socketSet = SDLNet_AllocSocketSet(1);
 }
 
 TCPConnection::~TCPConnection()
 {
-    close_thread = true;
+    closeThread = true;
     if(senderThread)
         senderThread->join();
     
     SDLNet_FreeSocketSet(socketSet);
 }
 
-bool TCPConnection::connectToServer(std::string host, Uint16 port)
+bool TCPConnection::connectToServer(Player& player, std::string host, Uint16 port)
 {
     // Resolve the server name
     if (SDLNet_ResolveHost(&ipAddress, host.c_str(), port))
@@ -57,8 +57,10 @@ bool TCPConnection::connectToServer(std::string host, Uint16 port)
     }
     if(response.getResponse() == JR_OK){
         std::cout << "The connection to the server was successful! : " << (int)response.getId() << "\n";
-        setId(response.getId());
+//        setId(response.getId());
+        player.id = response.getId();
         SDLNet_TCP_AddSocket(socketSet,socket);
+        connectionGood = true;
         return true;
 
     }
@@ -67,18 +69,65 @@ bool TCPConnection::connectToServer(std::string host, Uint16 port)
     
 }
 
-void TCPConnection::setId(Uint8 givenId) {
-    id = givenId;
+void TCPConnection::sendPackets() {
+    while(!closeThread){
+
+        if
+
+
+    }
 }
 
-Uint8 TCPConnection::getId() {
-    return id;
-}
-
-bool TCPConnection::disconnectFromServer() {
-    PlayerDisconnectedPacket playerDisconnectedPacket(getId());
+bool TCPConnection::disconnectFromServer(Player& player) {
+    PlayerDisconnectedPacket playerDisconnectedPacket(player.id);
     if(SDLNet_TCP_Send(socket,playerDisconnectedPacket.getData(),playerDisconnectedPacket.getSize())>0){
-        std::cout << "Player o ID: " << (int)getId() << " wysłał zapytanie do opuszczenia serwera" << std::endl;
+        std::cout << "Player o ID: " << (int)player.id << " wysłał zapytanie do opuszczenia serwera" << std::endl;
     }
     return true;
+}
+
+void TCPConnection::sendPacket() {
+
+    if(!packetQueue.empty()){
+        queueMtx.lock();
+
+        //remove the packet
+        std::unique_ptr<BasePacket> packet = std::move(packetQueue.front());
+        packetQueue.pop();
+
+        queueMtx.unlock();
+
+        //send the front packet
+
+        if(SDLNet_TCP_Send(socket,packet->getData(),packet->getSize())<(int)packet->getSize()){
+            connectionGood = false;
+        }
+    }
+
+
+}
+
+std::unique_ptr<BasePacket> TCPConnection::getNextPacket() {
+    return std::unique_ptr<BasePacket>();
+}
+
+void TCPConnection::startSenderThread() {
+
+    if(senderThread == nullptr)
+        senderThread = new std::thread(std::mem_fun(&TCPConnection::sendPackets),this);
+
+
+}
+
+void TCPConnection::queuePacket(BasePacket *packet) {
+
+    queueMtx.lock();
+    packetQueue.push(std::unique_ptr<BasePacket>(packet));
+    queueMtx.unlock();
+
+
+}
+
+bool TCPConnection::isConnectionGood() {
+    return false;
 }

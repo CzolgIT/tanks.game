@@ -11,6 +11,8 @@ public:
     void draw( int x0 , int y0 );
     int getTowDir();
 
+    Uint8 id;
+
     SDL_Point shootPosition();
 
     void PushOut(Vector2D vec)
@@ -32,6 +34,8 @@ private:
     float moveSpeed , directionSpeed , towerSpeed;
     float direction , towerDirection;
     int iDirection , iTowerDirection; // net optimized
+
+
 
     TankSprite* sprite;
 };
