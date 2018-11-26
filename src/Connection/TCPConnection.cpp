@@ -202,7 +202,7 @@ void TCPConnection::startSenderThread() {
 
 }
 
-void TCPConnection::queuePacket(BasePacket *packet) {
+void TCPConnection::addPacketToQueue(BasePacket *packet) {
 
     queueMtx.lock();
     packetQueue.push(std::unique_ptr<BasePacket>(packet));

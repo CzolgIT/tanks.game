@@ -13,7 +13,7 @@ public:
 
     bool isConnectionGood();
 
-    void queuePacket(BasePacket* packet);
+    void addPacketToQueue(BasePacket *packet);
 
     void startSenderThread();
 

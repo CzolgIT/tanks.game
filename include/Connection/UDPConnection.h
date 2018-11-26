@@ -12,8 +12,8 @@ public:
     UDPConnection();
     ~UDPConnection();
 
-    //returns true if a connection was established, or false if failed to connect
-    bool connect(std::string host, Uint16 port);
+    //returns true if a connection was established, or false if failed to connectToServer
+    bool connectToServer(std::string host, Uint16 port);
 
     //returns false if something went wrong
     bool isConnectionGood();

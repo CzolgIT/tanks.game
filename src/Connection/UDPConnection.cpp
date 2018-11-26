@@ -19,7 +19,7 @@ UDPConnection::~UDPConnection() {
 
 }
 
-bool UDPConnection::connect(std::string host, Uint16 port) {
+bool UDPConnection::connectToServer(std::string host, Uint16 port) {
     //resolve server name
 
     if(SDLNet_ResolveHost(&ipAddress, host.c_str(),port)== -1){

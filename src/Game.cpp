@@ -41,11 +41,13 @@ void Game::Update()
             currentScene = new Settings(renderer, text , configuration );
             break;
         case 4: // Multiplayer-run
-            netManager->disconnectPlayer();
+//            netManager->disconnectPlayer();
+//todo: put player here
             currentScene = new Menu(renderer, text , configuration );
             break;
         default:
-            netManager->disconnectPlayer();
+//            netManager->disconnectPlayer();
+//todo: put player here
             running = false;
             break;
     }

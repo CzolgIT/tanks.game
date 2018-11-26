@@ -11,7 +11,7 @@ public:
     ~NetManager();
     bool activate();
     bool connect(Player& player, std::string host, Uint16 port, Uint32& globalTime);
-    bool disconnectPlayer();
+    bool disconnectPlayer(Player& player);
     bool isConnected();
 
     void read();
