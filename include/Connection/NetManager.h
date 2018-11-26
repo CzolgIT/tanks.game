@@ -16,6 +16,7 @@ private:
 
     bool connected;
     TCPConnection tcpConnection;
+    UDPConnection udpConnection;
 };
 
 #endif /* NetManager_h */

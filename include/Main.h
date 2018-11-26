@@ -13,6 +13,7 @@
 #include <thread>
 #include <atomic>
 #include <algorithm>
+#include <mutex>
 
 #ifdef __APPLE__
     #include <SDL2/SDL.h>
@@ -36,6 +37,7 @@
 #include "Connection/JoinRequestPacket.h"
 #include "Connection/UniversalPacket.h"
 #include "Connection/PlayerDisconnectedPacket.h"
+#include "Connection/UDPConnection.h"
 #include "Connection/TCPConnection.h"
 #include "Connection/NetManager.h"
 #include "Graphics/Text.h"
