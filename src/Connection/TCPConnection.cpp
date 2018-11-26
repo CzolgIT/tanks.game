@@ -128,10 +128,61 @@ std::unique_ptr<BasePacket> TCPConnection::getNextPacket() {
         if(SDLNet_SocketReady(socket)){
 
             //read the first byte
-            if(SDLNet_TCP_Recv(socket,packe))
+            if(SDLNet_TCP_Recv(socket,uniPacket.getData(),1)>0){
+
+                //read first byte
+
+                int bytesRemaining;
+                switch(*uniPacket.getData())
+                {
+                    case PT_HEARTBEAT:
+                        //hearbeat
+                        break;
+                    case PT_JOIN_REQUEST:
+                        bytesRemaining = JOINREQUEST_PACKET_SIZE - 1;
+                        break;
+                    case PT_JOIN_RESPONSE:
+                        bytesRemaining = JOIN_RESPONSE_PACKET_SIZE - 1;
+                        break;
+                    case PT_PLAYER_DISCONNECTED:
+                        bytesRemaining = PLAYERDISCONNECTED_PACKET_SIZE -1;
+                        break;
+                    default:
+                        std::cout<<"TCP unknown packet size!"<<std::endl;
+                        bytesRemaining = uniPacket.getSize() -1;
+                        break;
+                }
+
+                //rest of the packet
+                Uint8* packetContents = uniPacket.getData();
+                packetContents++;
+                if(SDLNet_TCP_Recv(socket,packetContents,bytesRemaining)<0){
+                    std::cout << "TCP could not get packet contents" << std::endl;
+                }
+
+                std::unique_ptr<BasePacket> received = uniPacket.createFromContents();
+                if(received){
+                    return received;
+                }
+                else{
+                    std::cout << "TCP Packet type not recognised" << std::endl;
+                    return nullptr;
+                }
 
 
 
+            }
+            else{
+                std::cout << "SDLNet_TCP_Recv: " << SDLNet_GetError() << std::endl;
+                connectionGood = false;
+                return nullptr;
+            }
+
+
+
+        }
+        else{
+            return nullptr;
         }
 
 
