@@ -54,11 +54,16 @@ void Menu::draw( float frameTime )
     int j = (int)((float)h/36);
     float s = configuration->getScale();
 
-    SDL_SetRenderDrawColor( renderer, 0xFF, 0xFF, 0xFF, 0xFF );
+    SDL_SetRenderDrawColor( renderer, 215, 226, 175, 0xFF );
     SDL_RenderClear( renderer );
     text->setAlignment( true );
 
-    text->setColor( C_RED );
+    text->setColor( C_BLACK );
+    text->setSize( 4*j+1 );
+    text->draw( "Tanks" , w/2+3 , 6*j+3 );
+    text->draw( "Game" , w/2+3 , 10*j+3 );
+
+    text->setColor( C_WHITE );
     text->setSize( 4*j );
     text->draw( "Tanks" , w/2 , 6*j );
     text->draw( "Game" , w/2 , 10*j );

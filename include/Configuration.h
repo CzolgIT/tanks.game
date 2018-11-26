@@ -12,6 +12,7 @@ public:
 
     void setQuality( float quality );
     void setDisplayMode( SDL_DisplayMode* displayMode );
+        void setWindowSize();
     void setFullscreen( bool fullscreen );
     void setAcceleration( bool acceleration );
     void setVsync( bool vsync );

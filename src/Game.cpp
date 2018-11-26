@@ -5,7 +5,7 @@ Game::Game()
     configuration = new Configuration();
     SDL_Init( SDL_INIT_VIDEO );
     IMG_Init( IMG_INIT_PNG );
-    window = SDL_CreateWindow("Tanks Game",SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED,800,600,SDL_WINDOW_SHOWN|SDL_WINDOW_RESIZABLE);
+    window = SDL_CreateWindow("Tanks Game",SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED,800,600,SDL_WINDOW_SHOWN);
     configuration->init( window );
     renderer = SDL_CreateRenderer( window, -1, configuration->getRendererFlags() );
     text = new Text( renderer , FONT_FILE );

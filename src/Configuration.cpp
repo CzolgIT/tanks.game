@@ -20,6 +20,7 @@ void Configuration::setQuality( float quality )
 }
 void Configuration::setDisplayMode( SDL_DisplayMode* displayMode )
 {
+    this->displayMode = displayMode;
     if (fullscreen)
     {
         if (SDL_GetClosestDisplayMode(0, displayMode, this->displayMode) == nullptr)
@@ -28,18 +29,22 @@ void Configuration::setDisplayMode( SDL_DisplayMode* displayMode )
     }
     if (!fullscreen)
     {
-        SDL_DisplayMode* mode = new SDL_DisplayMode{ SDL_PIXELFORMAT_UNKNOWN, 10000, 10000, 0, nullptr };
-        SDL_GetDesktopDisplayMode(0, mode);
-        if (this->displayMode->w < 640) this->displayMode->w = 640;
-        if (this->displayMode->h < 480) this->displayMode->h = 480;
-        if (this->displayMode->w > mode->w) this->displayMode->w = mode->w;
-        if (this->displayMode->h > mode->h) this->displayMode->h = mode->h;
-        SDL_SetWindowPosition( window , 0 , 0 );
-        SDL_SetWindowSize(window, this->displayMode->w, this->displayMode->h);
-        SDL_GetWindowSize(window, &this->displayMode->w, &this->displayMode->h);
+        setWindowSize();
     }
     this->scale = ((float)this->displayMode->w + (float)this->displayMode->h) / 2000;
     writeFile();
+}
+void Configuration::setWindowSize()
+{
+    auto* mode = new SDL_DisplayMode{ SDL_PIXELFORMAT_UNKNOWN, 10000, 10000, 0, nullptr };
+    SDL_GetDesktopDisplayMode(0, mode);
+    if (this->displayMode->w < 640) this->displayMode->w = 640;
+    if (this->displayMode->h < 480) this->displayMode->h = 480;
+    if (this->displayMode->w > mode->w) this->displayMode->w = mode->w;
+    if (this->displayMode->h > mode->h) this->displayMode->h = mode->h;
+    SDL_SetWindowPosition( window , 0 , 0 );
+    SDL_SetWindowSize(window, this->displayMode->w, this->displayMode->h);
+    SDL_GetWindowSize(window, &this->displayMode->w, &this->displayMode->h);
 }
 void Configuration::setFullscreen( bool fullscreen )
 {
