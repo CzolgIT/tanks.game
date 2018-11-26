@@ -72,10 +72,23 @@ bool TCPConnection::connectToServer(Player& player, std::string host, Uint16 por
 void TCPConnection::sendPackets() {
     while(!closeThread){
 
-        if
+        if(!packetQueue.empty()){
+            queueMtx.lock();
+
+            std::unique_ptr<BasePacket> packet = std::move(packetQueue.front());
+            packetQueue.pop();
+
+            queueMtx.unlock();
+
+            if(SDLNet_TCP_Send(socket,packet->getData(),packet->getSize()) < (int)packet->getSize()){
+                connectionGood = false;
+            }
+        }
 
 
     }
+
+    std::cout << "TCP thread closed" << std::endl;
 }
 
 bool TCPConnection::disconnectFromServer(Player& player) {
@@ -108,7 +121,26 @@ void TCPConnection::sendPacket() {
 }
 
 std::unique_ptr<BasePacket> TCPConnection::getNextPacket() {
-    return std::unique_ptr<BasePacket>();
+
+    //check the sockets for readiness
+
+    if(SDLNet_CheckSockets(socketSet,0)>0){
+        if(SDLNet_SocketReady(socket)){
+
+            //read the first byte
+            if(SDLNet_TCP_Recv(socket,packe))
+
+
+
+        }
+
+
+
+
+    }
+
+
+
 }
 
 void TCPConnection::startSenderThread() {
