@@ -9,6 +9,7 @@ public:
 
     NetManager();
     bool activate();
+    bool connect();
     bool disconnectPlayer();
     bool isConnected();
 
