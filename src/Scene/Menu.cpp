@@ -17,7 +17,6 @@ void Menu::handleEvents( float frameTime )
             flagReturn = -1;
             break;
         }
-
         if( eventHandler.type == SDL_KEYDOWN && eventHandler.key.repeat == 0 )
         {
             switch( eventHandler.key.keysym.sym )
@@ -64,7 +63,7 @@ void Menu::draw( float frameTime )
     auto* lgc = new SDL_Rect{0,0,logo->getWidth(),logo->getHeight()};
     auto* btc = new SDL_Rect{0,0,button->getWidth(),button->getHeight()};
 
-    logo->render( renderer , w/2-logo->getWidth()*j/240,4*j, lgc ,0 , nullptr , SDL_FLIP_NONE , (float)j/120 );
+    logo->render( renderer , w/2-logo->getWidth()*j/200,3*j, lgc ,0 , nullptr , SDL_FLIP_NONE , (float)j/100 );
 
     button->render( renderer , w/2-button->getWidth()*j/170,17*j, btc ,0 , nullptr , SDL_FLIP_NONE , (float)j/85 );
     button->render( renderer , w/2-button->getWidth()*j/170,21*j, btc ,0 , nullptr , SDL_FLIP_NONE , (float)j/85 );

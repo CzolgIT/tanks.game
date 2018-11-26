@@ -17,7 +17,7 @@ TankSprite::TankSprite( SDL_Renderer* r , int color )
     spriteBody = new Sprite( renderer , texture , 96+(color>2 ? 122 : 0) , ((color+1)%2)*171 , 122 , 171 , 61*TANKSCALE , 84*TANKSCALE );
     spriteTower = new Sprite( renderer , texture , 0 , (color-1)*128 , 96 , 128 , 48*TANKSCALE , 64*TANKSCALE );
     spriteBarrel = new Sprite( renderer , texture , 42+(54*color) , 171+171 , 54 , 131 , 27*TANKSCALE , 105*TANKSCALE );
-    step = 0;
+    step = 1;
 }
 
 void TankSprite::draw( int x , int y , int dir , int dirT , int move )
