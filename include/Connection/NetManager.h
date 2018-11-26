@@ -9,9 +9,12 @@ public:
 
     NetManager();
     bool activate();
-    bool connect();
+    bool connect(Player& player, std::string host, Uint16 port, Uint32& globalTime);
     bool disconnectPlayer();
     bool isConnected();
+
+    void tcpSend(BasePacket* packet);
+    void udpSend(BasePacket* packet);
 
 private:
 
