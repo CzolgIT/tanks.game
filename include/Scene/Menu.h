@@ -14,6 +14,8 @@ public:
 private:
 
     int selected;
+    Texture* button;
+    Texture* logo;
 
 };
 

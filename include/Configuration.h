@@ -22,6 +22,7 @@ public:
     bool isFullscreen();
     bool getAcceleration();
     bool getVsync();
+    bool getDebug();
 
         Uint32 getRendererFlags();
         float getScale();
@@ -35,6 +36,7 @@ private:
     bool fullscreen;
     bool acceleration;
     bool vsync;
+    bool debug;
 
         Uint32 rendererFlags;
         float scale;

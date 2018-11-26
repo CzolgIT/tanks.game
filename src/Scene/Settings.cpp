@@ -22,7 +22,7 @@ void  Settings::handleEvents( float frameTime )
             switch( eventHandler.key.keysym.sym )
             {
                 case SDLK_ESCAPE:
-                    flagReturn = -1;
+                    flagReturn = 0;
                     running = false;
                     break;
                     /*

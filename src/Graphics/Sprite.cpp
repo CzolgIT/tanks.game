@@ -18,5 +18,5 @@ void Sprite::draw( float x , float y , double angle )
 {
     if (texture== nullptr )
         printf("nic z tego");
-    texture->render( renderer , x, y , &clip , angle - 90 , &center );
+    texture->render( renderer , x, y , &clip , angle - 90 , &center , SDL_FLIP_NONE , TANKSCALE);
 }

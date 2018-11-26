@@ -205,7 +205,7 @@ void Texture::setAlpha( Uint8 alpha )
     SDL_SetTextureAlphaMod( mTexture, alpha );
 }
 
-void Texture::render( SDL_Renderer* gRenderer , float x, float y, SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip flip )
+void Texture::render( SDL_Renderer* gRenderer , float x, float y, SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip flip , float scale)
 {
     //Set rendering space and render to screen
     SDL_Rect renderQuad = { (int)x, (int)y, mWidth, mHeight };
@@ -213,8 +213,8 @@ void Texture::render( SDL_Renderer* gRenderer , float x, float y, SDL_Rect* clip
     //Set clip rendering dimensions
     if( clip != nullptr )
     {
-        renderQuad.w = (int)((double)clip->w * TANKSCALE);
-        renderQuad.h = (int)((double)clip->h * TANKSCALE);
+        renderQuad.w = (int)((double)clip->w * scale);
+        renderQuad.h = (int)((double)clip->h * scale);
     }
     
     //Render to screen

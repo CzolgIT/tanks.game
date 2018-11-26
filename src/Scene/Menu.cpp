@@ -3,6 +3,8 @@
 Menu::Menu( SDL_Renderer* r , Text* t , Configuration* c ) : Scene( r , t , c )
 {
     selected = 1;
+    logo = new Texture( renderer , "assets/logo.png" );
+    button = new Texture( renderer , "assets/button.png" );
 }
 
 void Menu::handleEvents( float frameTime )
@@ -51,6 +53,7 @@ void Menu::draw( float frameTime )
 {
     int w = configuration->getDisplayMode()->w;
     int h = configuration->getDisplayMode()->h;
+    int f = configuration->getDisplayMode()->refresh_rate;
     int j = (int)((float)h/36);
     float s = configuration->getScale();
 
@@ -58,36 +61,39 @@ void Menu::draw( float frameTime )
     SDL_RenderClear( renderer );
     text->setAlignment( true );
 
-    text->setColor( C_BLACK );
-    text->setSize( 4*j+1 );
-    text->draw( "Tanks" , w/2+3 , 6*j+3 );
-    text->draw( "Game" , w/2+3 , 10*j+3 );
+    auto* lgc = new SDL_Rect{0,0,logo->getWidth(),logo->getHeight()};
+    auto* btc = new SDL_Rect{0,0,button->getWidth(),button->getHeight()};
+
+    logo->render( renderer , w/2-logo->getWidth()*j/240,4*j, lgc ,0 , nullptr , SDL_FLIP_NONE , (float)j/120 );
+
+    button->render( renderer , w/2-button->getWidth()*j/170,17*j, btc ,0 , nullptr , SDL_FLIP_NONE , (float)j/85 );
+    button->render( renderer , w/2-button->getWidth()*j/170,21*j, btc ,0 , nullptr , SDL_FLIP_NONE , (float)j/85 );
+    button->render( renderer , w/2-button->getWidth()*j/170,25*j, btc ,0 , nullptr , SDL_FLIP_NONE , (float)j/85 );
+    button->render( renderer , w/2-button->getWidth()*j/170,29*j, btc ,0 , nullptr , SDL_FLIP_NONE , (float)j/85 );
 
     text->setColor( C_WHITE );
-    text->setSize( 4*j );
-    text->draw( "Tanks" , w/2 , 6*j );
-    text->draw( "Game" , w/2 , 10*j );
-
-    text->setColor( C_BLACK );
-    text->setSize( 2*j );
-
-    text->draw( std::to_string( w ) , 6*j , j );
-    text->draw( std::to_string( h ) , 6*j , 3*j );
-    text->draw( std::to_string( s ) , 6*j , 5*j );
+    text->setSize( int(1.7*(float)j) );
 
     text->draw( "Multiplayer" , w/2 , 18*j );
-    text->draw( "Singleplayer" , w/2 , 21*j );
-    text->draw( "Settings" , w/2 , 24*j );
-    text->draw( "Exit" , w/2 , 27*j );
+    text->draw( "Singleplayer" , w/2 , 22*j );
+    text->draw( "Settings" , w/2 , 26*j );
+    text->draw( "Exit" , w/2 , 30*j );
 
     switch( selected )
     {
         case 1: text->draw( "- Multiplayer -" , w/2 , 18*j ); break;
-        case 2: text->draw( "- Singleplayer -" , w/2 , 21*j ); break;
-        case 3: text->draw( "- Settings -" , w/2 , 24*j ); break;
-        case 4: text->draw( "- Exit -" , w/2 , 27*j ); break;
+        case 2: text->draw( "- Singleplayer -" , w/2 , 22*j ); break;
+        case 3: text->draw( "- Settings -" , w/2 , 26*j ); break;
+        case 4: text->draw( "- Exit -" , w/2 , 30*j ); break;
     }
 
+    if (configuration->getDebug())
+    {
+        text->setAlignment( false );
+        text->setColor( C_BLACK );
+        text->setSize( j );
+        text->draw( std::to_string( w )+std::string(" x ")+std::to_string( h )+std::string("  ")+std::to_string( f )+std::string("Hz") , j/6 , 35*j );
+    }
     SDL_RenderPresent( renderer );
 
 }

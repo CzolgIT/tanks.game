@@ -17,5 +17,5 @@ void Background::draw( int x , int y )
     for(int i=0; i<8; i++)
         for(int j=0; j<8; j++)
             texture->render( renderer , x+(i*(int)((double)width*TANKSCALE)) ,
-                    y+(j*(int)((double)height*TANKSCALE)) , &clip );
+                    y+(j*(int)((double)height*TANKSCALE)) , &clip ,0 , NULL , SDL_FLIP_NONE , 0.5);
 }

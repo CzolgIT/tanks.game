@@ -3,22 +3,22 @@
 Bullet::Bullet( SDL_Renderer* r , int x, int y, int dir)
         : GameObject(r, x, y, 12, 36 , DYNAMIC )
 {
-    direction = dir;
+    direction = dir-90;
     texture = new Texture( renderer , "assets/bullet.png" );
-    collider = new Collider(x,y,width,height, direction);
+    //collider = new Collider(x,y,width,height, direction);
 }
 
 void Bullet::draw( int x0, int y0 )
 {
-    auto* bull = new SDL_Rect{0,0,12,36};
+    auto* bull = new SDL_Rect{0,0,width,height};
 
-    texture->render(renderer , x0+x-(width*TANKSCALE/2) , y0+y-(height*TANKSCALE/2) , bull , direction-90 );
+    texture->render(renderer , x0+x-(width*TANKSCALE/2) , y0+y-(height*TANKSCALE/2) , bull , direction , nullptr , SDL_FLIP_NONE ,TANKSCALE);
 }
 
 void Bullet::move( float timeStep )
 {
-    x -= (cos(direction *M_PI/180) * BULLETSPEED * timeStep);
-    y -= (sin(direction *M_PI/180) * BULLETSPEED * timeStep);
+    x -= (cos((direction+90) *M_PI/180) * BULLETSPEED * timeStep);
+    y -= (sin((direction+90) *M_PI/180) * BULLETSPEED * timeStep);
 
     if( x < (int)((double)width/2) ||
         x > 2048 - (int)((double)width/2) ||
