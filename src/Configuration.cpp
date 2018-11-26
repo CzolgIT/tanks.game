@@ -37,7 +37,7 @@ void Configuration::setDisplayMode( SDL_DisplayMode* displayMode )
 }
 void Configuration::setWindowSize()
 {
-    auto* mode = new SDL_DisplayMode{ SDL_PIXELFORMAT_UNKNOWN, 10000, 10000, 0, nullptr };
+    auto* mode = new SDL_DisplayMode{ SDL_PIXELFORMAT_UNKNOWN, 0, 0, 0, nullptr };
     SDL_GetDesktopDisplayMode(0, mode);
     if (this->displayMode->w < 640) this->displayMode->w = 640;
     if (this->displayMode->h < 480) this->displayMode->h = 480;
