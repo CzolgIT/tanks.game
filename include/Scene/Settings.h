@@ -16,6 +16,7 @@ private:
 
     std::vector<SDL_DisplayMode*> displayModeList;
     int selected;
+    Button* button[5];
 
 };
 

@@ -65,9 +65,9 @@ void Menu::draw()
     SDL_RenderClear( Game::renderer );
 
     Game::textManager->draw("Tanks", w/2-j/2+j/6 , 2.5*j , 6 * j , C_BLACK, true);
-    Game::textManager->draw("Game", w/2-j/2+j/6 , 8.5*j , 6 * j , C_BLACK, true);
+    Game::textManager->draw("game", w/2-j/2+j/6 , 8.5*j , 6 * j , C_BLACK, true);
     Game::textManager->draw("Tanks", w/2-j/2 , 2.5*j-j/6 , 6 * j , C_WHITE, true);
-    Game::textManager->draw("Game", w/2-j/2 , 8.5*j-j/6 , 6 * j , C_WHITE, true);
+    Game::textManager->draw("game", w/2-j/2 , 8.5*j-j/6 , 6 * j , C_WHITE, true);
 
     button[0]->draw( selected == 1 );
     button[1]->draw( selected == 2 );

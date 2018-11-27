@@ -10,6 +10,12 @@ Button::Button( std::string name, int x, int y, float scale, bool center=false)
     this->scale = scale;
     this->center = center;
     this->clip = new SDL_Rect{0,0,Game::textureManager->button->getWidth(),Game::textureManager->button->getHeight()};
+
+    this->textb = new TextStatic( this->name , x , y + scale + scale/10 , 1.6*scale , C_BLACK );
+    this->textw = new TextStatic( this->name , x-scale/10 , y + scale-scale/10 + scale/10 , 1.6*scale , C_WHITE );
+
+    this->textActiveb = new TextStatic( "+ " + this->name + " +" , x , y + scale , 1.7*scale , C_BLACK );
+    this->textActivew = new TextStatic( "+ " + this->name + " +" , x-scale/10 , y + scale-scale/10 , 1.7*scale , C_WHITE );
 }
 
 void Button::draw(bool active) {
@@ -20,13 +26,13 @@ void Button::draw(bool active) {
 
     if (active)
     {
-        Game::textManager->draw(std::string("< ") + name + std::string(" >"), x, y + scale, 1.7 * scale, C_BLACK, true);
-        Game::textManager->draw(std::string("< ") + name + std::string(" >"), x-scale/10, y + scale-scale/10, 1.7 * scale, C_WHITE, true);
+        textActiveb->draw();
+        textActivew->draw();
     }
     else
     {
-        Game::textManager->draw(name, x, y + scale + scale/10, 1.6 * scale, C_BLACK, true);
-        Game::textManager->draw(name, x-scale/10, y + scale-scale/10 + scale/10, 1.6 * scale, C_WHITE, true);
+        textb->draw();
+        textw->draw();
     }
 
 

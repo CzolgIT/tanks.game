@@ -10,7 +10,6 @@ public:
     TextureManager();
 
     // user interface
-    Texture* logo;
     Texture* button;
 
     // map elements

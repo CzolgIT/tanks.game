@@ -3,7 +3,6 @@
 TextureManager::TextureManager()
 {
     // user interface
-    this->logo = new Texture( "assets/logo.png" );
     this->button = new Texture( "assets/button.png" );
 
     // map elements

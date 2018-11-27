@@ -4,6 +4,15 @@ Settings::Settings() : Scene()
 {
     selected=1;
     loadDisplayModes();
+
+    int scale = (int)((float)Game::configuration->getDisplayMode()->h/36);
+    int center = Game::configuration->getDisplayMode()->w/2;
+
+    button[0] = new Button( "graphics" , center , 14*scale , scale , true );
+    button[1] = new Button( "audio" , center , 18*scale , scale , true );
+    button[2] = new Button( "controller" , center , 22*scale , scale , true );
+    button[3] = new Button( "game" , center , 26*scale , scale , true );
+    button[4] = new Button( "back" , center , 30*scale , scale , true );
 }
 
 void  Settings::handleEvents()
@@ -60,26 +69,12 @@ void Settings::draw()
     auto* btc = new SDL_Rect{0,0,Game::textureManager->button->getWidth(),Game::textureManager->button->getHeight()};
 
     int center = w/2-Game::textureManager->button->getWidth()*j/170;
-    Game::textureManager->button->render( center ,14*j, btc ,0 , nullptr , SDL_FLIP_NONE , (float)j/85 );
-    Game::textureManager->button->render( center ,18*j, btc ,0 , nullptr , SDL_FLIP_NONE , (float)j/85 );
-    Game::textureManager->button->render( center ,22*j, btc ,0 , nullptr , SDL_FLIP_NONE , (float)j/85 );
-    Game::textureManager->button->render( center ,26*j, btc ,0 , nullptr , SDL_FLIP_NONE , (float)j/85 );
-    Game::textureManager->button->render( center ,30*j, btc ,0 , nullptr , SDL_FLIP_NONE , (float)j/85 );
 
-    Game::textManager->draw( "graphics" , w/2 , 15*j , int(1.7*(float)j) , C_WHITE , true );
-    Game::textManager->draw( "audio" , w/2 , 19*j , int(1.7*(float)j) , C_WHITE , true );
-    Game::textManager->draw( "controller" , w/2 , 23*j , int(1.7*(float)j) , C_WHITE , true );
-    Game::textManager->draw( "game" , w/2 , 27*j , int(1.7*(float)j) , C_WHITE , true );
-    Game::textManager->draw( "back" , w/2 , 31*j , int(1.7*(float)j) , C_WHITE , true );
-
-    switch( selected )
-    {
-        case 1: Game::textManager->draw( "- graphics -" , w/2 , 15*j , int(1.7*(float)j) , C_WHITE , true ); break;
-        case 2: Game::textManager->draw( "- audio -" , w/2 , 19*j , int(1.7*(float)j) , C_WHITE , true ); break;
-        case 3: Game::textManager->draw( "- controller -" , w/2 , 23*j , int(1.7*(float)j) , C_WHITE , true ); break;
-        case 4: Game::textManager->draw( "- game -" , w/2 , 27*j , int(1.7*(float)j) , C_WHITE , true ); break;
-        case 5: Game::textManager->draw( "- back -" , w/2 , 31*j , int(1.7*(float)j) , C_WHITE , true ); break;
-    }
+    button[0]->draw( selected == 1 );
+    button[1]->draw( selected == 2 );
+    button[2]->draw( selected == 3 );
+    button[3]->draw( selected == 4 );
+    button[4]->draw( selected == 5 );
 
     Game::debugger->draw();
     SDL_RenderPresent( Game::renderer );

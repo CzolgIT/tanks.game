@@ -38,11 +38,6 @@
 #include "Connection/TCPConnection.h"
 #include "Connection/NetManager.h"
 
-#include "Text/Letter.h"
-#include "Text/Font.h"
-#include "Text/TextManager.h"
-#include "Text/TextStatic.h"
-
 #include "Graphics/Texture.h"
 #include "Graphics/Debugger.h"
 #include "Graphics/TextureManager.h"
@@ -50,6 +45,11 @@
 #include "Graphics/TankSprite.h"
 #include "Graphics/Button.h"
 #include "Graphics/Background.h"
+
+#include "Text/Letter.h"
+#include "Text/Font.h"
+#include "Text/TextManager.h"
+#include "Text/TextStatic.h"
 
 #include "GameObject/GameObject.h"
 #include "GameObject/Player.h"
