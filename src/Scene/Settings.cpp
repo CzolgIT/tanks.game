@@ -3,16 +3,12 @@
 Settings::Settings() : Scene()
 {
     selected=1;
-    loadDisplayModes();
 
-    int scale = (int)((float)Game::configuration->getDisplayMode()->h/36);
-    int center = Game::configuration->getDisplayMode()->w/2;
-
-    button[0] = new Button( "graphics" , center , 14*scale , scale , true );
-    button[1] = new Button( "audio" , center , 18*scale , scale , true );
-    button[2] = new Button( "controller" , center , 22*scale , scale , true );
-    button[3] = new Button( "game" , center , 26*scale , scale , true );
-    button[4] = new Button( "back" , center , 30*scale , scale , true );
+    button[0] = new Button( "video" , 14 );
+    button[1] = new Button( "audio" , 18 );
+    button[2] = new Button( "controller" , 22 );
+    button[3] = new Button( "game" , 26 );
+    button[4] = new Button( "back" , 30 );
 }
 
 void  Settings::handleEvents()
@@ -59,16 +55,13 @@ void Settings::draw()
 {
     int w = Game::configuration->getDisplayMode()->w;
     int h = Game::configuration->getDisplayMode()->h;
-    int f = Game::configuration->getDisplayMode()->refresh_rate;
     int j = (int)((float)h/36);
-    float s = Game::configuration->getScale();
 
     SDL_SetRenderDrawColor( Game::renderer, 215, 226, 175, 0xFF );
     SDL_RenderClear( Game::renderer );
 
-    auto* btc = new SDL_Rect{0,0,Game::textureManager->button->getWidth(),Game::textureManager->button->getHeight()};
-
-    int center = w/2-Game::textureManager->button->getWidth()*j/170;
+    Game::textManager->draw("Settings", w/2-j/2+j/6 , 5*j , 4 * j , C_BLACK, true);
+    Game::textManager->draw("Settings", w/2-j/2 , 5*j-j/6 , 4 * j , C_WHITE, true);
 
     button[0]->draw( selected == 1 );
     button[1]->draw( selected == 2 );
@@ -80,14 +73,3 @@ void Settings::draw()
     SDL_RenderPresent( Game::renderer );
 }
 
-void Settings::loadDisplayModes()
-{
-    displayModeList.clear();
-    int n = SDL_GetNumDisplayModes(0);
-    SDL_DisplayMode mode = { SDL_PIXELFORMAT_UNKNOWN, 0, 0, 0, nullptr };
-    for(int i=0; i< n ; i++)
-    {
-        SDL_GetDisplayMode(0, i, &mode);
-        displayModeList.push_back(&mode);
-    }
-}

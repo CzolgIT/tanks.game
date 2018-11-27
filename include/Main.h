@@ -58,6 +58,7 @@
 
 #include "Scene/Scene.h"
 #include "Scene/Settings.h"
+#include "Scene/SettingsVideo.h"
 #include "Scene/Room.h"
 #include "Scene/Menu.h"
 #include "Scene/Manager.h"

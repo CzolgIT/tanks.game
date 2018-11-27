@@ -120,6 +120,7 @@ bool Texture::loadFromRenderedText( TTF_Font *gFont , std::string textureText , 
     }
     else
     {
+
         printf( "Unable to render text surface! SDL_ttf Error: %s\n", TTF_GetError() );
     }
     

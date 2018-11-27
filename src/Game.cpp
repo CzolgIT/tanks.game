@@ -51,7 +51,7 @@ void Game::Update()
             currentScene = new Settings();
             break;
         case 4: // Settings - Graphics
-            currentScene = new Settings();
+            currentScene = new SettingsVideo();
             break;
         case 5: // Settings - Audio
             currentScene = new Settings();

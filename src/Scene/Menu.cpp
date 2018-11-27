@@ -5,13 +5,10 @@ Menu::Menu() : Scene()
     Game::netManager->disconnectPlayer();
     selected = 1;
 
-    int scale = (int)((float)Game::configuration->getDisplayMode()->h/36);
-    int center = Game::configuration->getDisplayMode()->w/2;
-
-    button[0] = new Button( "multiplayer" , center , 17*scale , scale , true );
-    button[1] = new Button( "singleplayer" , center , 21*scale , scale , true );
-    button[2] = new Button( "settings" , center , 25*scale , scale , true );
-    button[3] = new Button( "exit" , center , 29*scale , scale , true );
+    button[0] = new Button( "multiplayer" , 17 );
+    button[1] = new Button( "singleplayer" , 21 );
+    button[2] = new Button( "settings" , 25 );
+    button[3] = new Button( "exit" , 29 );
 }
 
 void Menu::handleEvents()
@@ -64,10 +61,10 @@ void Menu::draw()
     SDL_SetRenderDrawColor( Game::renderer, 215, 226, 175, 0xFF );
     SDL_RenderClear( Game::renderer );
 
-    Game::textManager->draw("Tanks", w/2-j/2+j/6 , 2.5*j , 6 * j , C_BLACK, true);
-    Game::textManager->draw("game", w/2-j/2+j/6 , 8.5*j , 6 * j , C_BLACK, true);
-    Game::textManager->draw("Tanks", w/2-j/2 , 2.5*j-j/6 , 6 * j , C_WHITE, true);
-    Game::textManager->draw("game", w/2-j/2 , 8.5*j-j/6 , 6 * j , C_WHITE, true);
+    Game::textManager->draw("Tanks", w/2-0.3*j , 2.5*j , 6 * j , C_BLACK, true);
+    Game::textManager->draw("Game", w/2-0.3*j , 8.5*j , 6 * j , C_BLACK, true);
+    Game::textManager->draw("Tanks", w/2-0.5*j , 2.3*j , 6 * j , C_WHITE, true);
+    Game::textManager->draw("Game", w/2-0.5*j , 8.3*j , 6 * j , C_WHITE, true);
 
     button[0]->draw( selected == 1 );
     button[1]->draw( selected == 2 );

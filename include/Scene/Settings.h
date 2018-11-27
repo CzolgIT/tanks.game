@@ -10,11 +10,9 @@ public:
     Settings();
     void handleEvents();
     void draw();
-    void loadDisplayModes();
 
 private:
 
-    std::vector<SDL_DisplayMode*> displayModeList;
     int selected;
     Button* button[5];
 

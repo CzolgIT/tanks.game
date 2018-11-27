@@ -7,12 +7,14 @@ class TextStatic
 {
 public:
 
-    TextStatic( std::string str , int x , int y , int size , SDL_Color color);
+    TextStatic( std::string str , int x , int y , int size , int shadow=0 );
     void draw();
 
 private:
 
-    Texture* texture;
+    Texture* black;
+    Texture* white;
+    int shadow;
     int x,y;
 
 };
