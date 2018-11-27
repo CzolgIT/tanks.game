@@ -73,17 +73,17 @@ void Menu::draw( float frameTime )
     text->setColor( C_WHITE );
     text->setSize( int(1.7*(float)j) );
 
-    text->draw( "Multiplayer" , w/2 , 18*j );
-    text->draw( "Singleplayer" , w/2 , 22*j );
-    text->draw( "Settings" , w/2 , 26*j );
-    text->draw( "Exit" , w/2 , 30*j );
+    text->draw( "multiplayer" , w/2 , 18*j );
+    text->draw( "singleplayer" , w/2 , 22*j );
+    text->draw( "settings" , w/2 , 26*j );
+    text->draw( "exit" , w/2 , 30*j );
 
     switch( selected )
     {
-        case 1: text->draw( "- Multiplayer -" , w/2 , 18*j ); break;
-        case 2: text->draw( "- Singleplayer -" , w/2 , 22*j ); break;
-        case 3: text->draw( "- Settings -" , w/2 , 26*j ); break;
-        case 4: text->draw( "- Exit -" , w/2 , 30*j ); break;
+        case 1: text->draw( "- multiplayer -" , w/2 , 18*j ); break;
+        case 2: text->draw( "- singleplayer -" , w/2 , 22*j ); break;
+        case 3: text->draw( "- settings -" , w/2 , 26*j ); break;
+        case 4: text->draw( "- exit -" , w/2 , 30*j ); break;
     }
 
     if (configuration->getDebug())

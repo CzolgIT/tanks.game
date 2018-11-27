@@ -5,7 +5,7 @@ Game::Game()
     configuration = new Configuration();
     SDL_Init( SDL_INIT_VIDEO );
     IMG_Init( IMG_INIT_PNG );
-    window = SDL_CreateWindow("Tanks Game",SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED,800,600,SDL_WINDOW_SHOWN);
+    window = SDL_CreateWindow("Tanks Game",SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED,800,600,SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
     configuration->init( window );
     renderer = SDL_CreateRenderer( window, -1, configuration->getRendererFlags() );
     text = new Text( renderer , FONT_FILE );
@@ -40,7 +40,19 @@ void Game::Update()
         case 3: // Settings
             currentScene = new Settings(renderer, text , configuration );
             break;
-        case 4: // Multiplayer-run
+        case 4: // Settings - Graphics
+            currentScene = new Settings(renderer, text , configuration );
+            break;
+        case 5: // Settings - Audio
+            currentScene = new Settings(renderer, text , configuration );
+            break;
+        case 6: // Settings - Control
+            currentScene = new Settings(renderer, text , configuration );
+            break;
+        case 7: // Settings - Game
+            currentScene = new Settings(renderer, text , configuration );
+            break;
+        case 8: // Multiplayer-run
             netManager->disconnectPlayer();
             currentScene = new Menu(renderer, text , configuration );
             break;

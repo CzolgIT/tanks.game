@@ -15,8 +15,10 @@ public:
 private:
 
     std::vector<SDL_DisplayMode*> displayModeList;
-    int resolution;
-    //???
+
+    int selected;
+    Texture* button;
+    Texture* logo;
 
 };
 
