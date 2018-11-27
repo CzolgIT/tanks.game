@@ -5,6 +5,12 @@ Menu::Menu() : Scene()
     Game::netManager->disconnectPlayer();
     selected = 1;
 
+    float j = float(Game::configuration->getDisplayMode()->h)/36;
+    int c = int(double(Game::configuration->getDisplayMode()->w)/2-0.5*j);
+
+    title[0] = new TextStatic( "Tanks" , c , int(2.3*j) , int(6 * j) , int(0.2*j) );
+    title[1] = new TextStatic( "Game" , c , int(8.3*j) , int(6 * j) , int(0.2*j) );
+
     button[0] = new Button( "multiplayer" , 17 );
     button[1] = new Button( "singleplayer" , 21 );
     button[2] = new Button( "settings" , 25 );
@@ -54,17 +60,11 @@ void Menu::handleEvents()
 
 void Menu::draw()
 {
-    int w = Game::configuration->getDisplayMode()->w;
-    int h = Game::configuration->getDisplayMode()->h;
-    int j = (int)((float)h/36);
-
     SDL_SetRenderDrawColor( Game::renderer, 215, 226, 175, 0xFF );
     SDL_RenderClear( Game::renderer );
 
-    Game::textManager->draw("Tanks", w/2-0.3*j , 2.5*j , 6 * j , C_BLACK, true);
-    Game::textManager->draw("Game", w/2-0.3*j , 8.5*j , 6 * j , C_BLACK, true);
-    Game::textManager->draw("Tanks", w/2-0.5*j , 2.3*j , 6 * j , C_WHITE, true);
-    Game::textManager->draw("Game", w/2-0.5*j , 8.3*j , 6 * j , C_WHITE, true);
+    title[0]->draw();
+    title[1]->draw();
 
     button[0]->draw( selected == 1 );
     button[1]->draw( selected == 2 );
