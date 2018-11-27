@@ -19,6 +19,8 @@ public:
     void tcpSend(BasePacket* packet);
     void udpSend(BasePacket* packet);
 
+    bool pollPacket(std::unique_ptr<BasePacket>&packet);
+
 private:
 
     bool syncTimeWithServer(const Player& player, Uint32& globalTime);

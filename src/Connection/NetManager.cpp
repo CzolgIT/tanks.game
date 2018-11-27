@@ -93,7 +93,45 @@ void NetManager::udpSend(BasePacket *packet) {
 
 bool NetManager::syncTimeWithServer(const Player &player, Uint32 &globalTime) {
     //todo: server sync
-    return false;
+    std::cout << "Attempting time sync with server " << std::flush;
+    Uint32 syncStartTime = SDL_GetTicks();
+    Uint32 currentTime = syncStartTime;
+    Uint32 hearbeatTime = 1000;
+    std::unique_ptr<BasePacket> received;
+    while(true){
+
+        if(currentTime - syncStartTime > 11000){
+            std::cout << "\nCould not sync time with server" << std::endl;
+            return false;
+        }
+        if(hearbeatTime>=1000)
+        {
+
+            std::cout << "+" << std::endl;
+            udpConnection.addPacketToQueue(new HeartbeatPacket(player.id));
+            hearbeatTime-=1000;
+
+        }
+
+        read();
+
+        if(pollPacket(received)){
+
+            if(((SyncPacket*)received.get())->getMode() == SYNC_RETURN){
+                udpSend(received.release());
+            }
+            else if(((SyncPacket*)received.get())->getMode() == SYNC_SET){
+                globalTime = ((SyncPacket*)received.get())->getTime();
+                break;
+            }
+
+        }
+
+        hearbeatTime += SDL_GetTicks() - currentTime;
+        currentTime = SDL_GetTicks();
+    }
+    std::cout << "Server set global time to: " << globalTime << "ms" << std::endl;
+    return true;
 }
 
 void NetManager::startSenderThread() {
@@ -109,6 +147,19 @@ void NetManager::sendPackets() {
 
         udpConnection.sendPacket();
     }
+}
+
+bool NetManager::pollPacket(std::unique_ptr<BasePacket> &packet) {
+    if(!packetQueue.empty()){
+
+        packet = std::move(packetQueue.front());
+        packetQueue.pop();
+
+        return true;
+
+    }
+
+    return false;
 }
 
 
