@@ -20,15 +20,14 @@ void Manager::draw()
 
     background->draw( x0 , y0 );
 
-    for (auto &gameObject : gameObjects) {
-        gameObject->draw( x0 , y0 );
+    for (auto &gameObject : gameObjects)
+    {
+        if (gameObject != player)
+            gameObject->draw( x0 , y0 );
     }
+    player->draw( x0 , y0 );
 
-    player->draw( x0 , y0 ); // czolg musi byc rysowany ostatni... nwm jak to rozegrac
-    // narazie rysuje sie dwa razy
-
-    Game::text->draw( "fps: " + std::to_string( Game::stepTime ) ,  500 , 560 );
-
+    Game::debugger->draw();
     SDL_RenderPresent( Game::renderer );
 }
 

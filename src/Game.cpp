@@ -4,7 +4,8 @@ SDL_Renderer* Game::renderer = nullptr;
 NetManager* Game::netManager = nullptr;
 Configuration* Game::configuration = nullptr;
 TextureManager* Game::textureManager = nullptr;
-Text* Game::text = nullptr;
+Debugger* Game::debugger = nullptr;
+TextManager* Game::textManager = nullptr;
 float Game::stepTime = 0;
 
 Game::Game()
@@ -15,9 +16,10 @@ Game::Game()
     window = SDL_CreateWindow("Tanks Game",SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED,800,600,SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
     configuration->init( window );
     renderer = SDL_CreateRenderer( window, -1, configuration->getRendererFlags() );
-    text = new Text( FONT_FILE );
+    textManager = new TextManager();
     netManager = new NetManager();
     textureManager = new TextureManager();
+    debugger = new Debugger();
     stepTimer = new Timer();
     stepTimer->start();
     currentScene = new Menu();

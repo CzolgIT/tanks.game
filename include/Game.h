@@ -16,7 +16,8 @@ public:
     static NetManager* netManager;
     static Configuration* configuration;
     static TextureManager* textureManager;
-    static Text* text;
+    static Debugger* debugger;
+    static TextManager* textManager;
     static float stepTime;
 
 private:

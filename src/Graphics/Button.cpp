@@ -19,11 +19,8 @@ void Button::draw(bool active)
     else
         Game::textureManager->button->render( x , y , clip ,0 , nullptr , SDL_FLIP_NONE , scale );
 
-    Game::text->setColor( C_WHITE );
-    Game::text->setSize( int(1.7*scale) );
-
     if (active)
-        Game::text->draw( std::string("- ")+ name +std::string(" -") , x , y+scale );
+        Game::textManager->draw( std::string("- ")+ name +std::string(" -") , x , y+scale , 1.7*scale, C_WHITE, true );
     else
-        Game::text->draw( name , x , y+scale );
+        Game::textManager->draw( name , x , y+scale , 1.7*scale, C_WHITE, true );
 }

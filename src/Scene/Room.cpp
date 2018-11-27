@@ -63,25 +63,16 @@ void Room::draw()
     sprite[2]->draw( 500 , 280 , dir , dir , 0 );
     sprite[3]->draw( 700 , 280 , dir , dir , 0 );
 
-
-
-    Game::text->setAlignment( true );
-
-    Game::text->setColor( C_RED );
-    Game::text->setSize( 65 );
-    Game::text->draw( "Tanks Game" , 400 , 20 );
-
-    //text->setColor( C_BLACK );
-    Game::text->setSize( 40 );
+    Game::textManager->draw( "Tanks Game" , 400 , 20 ,65 , C_RED , true);
 
     if ( selectedTank == 1 )
-        Game::text->draw( NICKNAME , 100 , 400 );
+        Game::textManager->draw( NICKNAME , 100 , 400 , 40 ,C_BLACK,true);
     if ( selectedTank == 2 )
-        Game::text->draw( NICKNAME , 300 , 400 );
+        Game::textManager->draw( NICKNAME , 300 , 400 , 40 ,C_BLACK,true);
     if ( selectedTank == 3 )
-        Game::text->draw( NICKNAME , 500 , 400 );
+        Game::textManager->draw( NICKNAME , 500 , 400 , 40 ,C_BLACK,true);
     if ( selectedTank == 4 )
-        Game::text->draw( NICKNAME , 700 , 400 );
+        Game::textManager->draw( NICKNAME , 700 , 400 , 40 ,C_BLACK,true);
 
     /*
 
@@ -106,5 +97,6 @@ void Room::draw()
         text->draw( "Back" , 400 , 540 );
     }
 */
-     SDL_RenderPresent( Game::renderer );
+    Game::debugger->draw();
+    SDL_RenderPresent( Game::renderer );
 }

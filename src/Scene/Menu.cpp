@@ -59,12 +59,10 @@ void Menu::draw()
 {
     int w = Game::configuration->getDisplayMode()->w;
     int h = Game::configuration->getDisplayMode()->h;
-    int f = Game::configuration->getDisplayMode()->refresh_rate;
     int j = (int)((float)h/36);
 
     SDL_SetRenderDrawColor( Game::renderer, 215, 226, 175, 0xFF );
     SDL_RenderClear( Game::renderer );
-    Game::text->setAlignment( true );
 
     auto* lgc = new SDL_Rect{0,0,Game::textureManager->logo->getWidth(),Game::textureManager->logo->getHeight()};
     Game::textureManager->logo->render( w/2-Game::textureManager->logo->getWidth()*j/200,3*j, lgc ,0 , nullptr , SDL_FLIP_NONE , (float)j/100 );
@@ -74,13 +72,6 @@ void Menu::draw()
     button[2]->draw( selected == 3 );
     button[3]->draw( selected == 4 );
 
-    if (Game::configuration->getDebug())
-    {
-        Game::text->setAlignment( false );
-        Game::text->setColor( C_BLACK );
-        Game::text->setSize( j );
-        Game::text->draw( std::to_string( w )+std::string(" x ")+std::to_string( h )+std::string("  ")+std::to_string( f )+std::string("Hz") , j/6 , 35*j );
-    }
+    Game::debugger->draw();
     SDL_RenderPresent( Game::renderer );
-
 }

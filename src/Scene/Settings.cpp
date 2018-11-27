@@ -56,7 +56,6 @@ void Settings::draw()
 
     SDL_SetRenderDrawColor( Game::renderer, 215, 226, 175, 0xFF );
     SDL_RenderClear( Game::renderer );
-    Game::text->setAlignment( true );
 
     auto* btc = new SDL_Rect{0,0,Game::textureManager->button->getWidth(),Game::textureManager->button->getHeight()};
 
@@ -67,31 +66,22 @@ void Settings::draw()
     Game::textureManager->button->render( center ,26*j, btc ,0 , nullptr , SDL_FLIP_NONE , (float)j/85 );
     Game::textureManager->button->render( center ,30*j, btc ,0 , nullptr , SDL_FLIP_NONE , (float)j/85 );
 
-    Game::text->setColor( C_WHITE );
-    Game::text->setSize( int(1.7*(float)j) );
-
-    Game::text->draw( "graphics" , w/2 , 15*j );
-    Game::text->draw( "audio" , w/2 , 19*j );
-    Game::text->draw( "controller" , w/2 , 23*j );
-    Game::text->draw( "game" , w/2 , 27*j );
-    Game::text->draw( "back" , w/2 , 31*j );
+    Game::textManager->draw( "graphics" , w/2 , 15*j , int(1.7*(float)j) , C_WHITE , true );
+    Game::textManager->draw( "audio" , w/2 , 19*j , int(1.7*(float)j) , C_WHITE , true );
+    Game::textManager->draw( "controller" , w/2 , 23*j , int(1.7*(float)j) , C_WHITE , true );
+    Game::textManager->draw( "game" , w/2 , 27*j , int(1.7*(float)j) , C_WHITE , true );
+    Game::textManager->draw( "back" , w/2 , 31*j , int(1.7*(float)j) , C_WHITE , true );
 
     switch( selected )
     {
-        case 1: Game::text->draw( "- graphics -" , w/2 , 15*j ); break;
-        case 2: Game::text->draw( "- audio -" , w/2 , 19*j ); break;
-        case 3: Game::text->draw( "- controller -" , w/2 , 23*j ); break;
-        case 4: Game::text->draw( "- game -" , w/2 , 27*j ); break;
-        case 5: Game::text->draw( "- back -" , w/2 , 31*j ); break;
+        case 1: Game::textManager->draw( "- graphics -" , w/2 , 15*j , int(1.7*(float)j) , C_WHITE , true ); break;
+        case 2: Game::textManager->draw( "- audio -" , w/2 , 19*j , int(1.7*(float)j) , C_WHITE , true ); break;
+        case 3: Game::textManager->draw( "- controller -" , w/2 , 23*j , int(1.7*(float)j) , C_WHITE , true ); break;
+        case 4: Game::textManager->draw( "- game -" , w/2 , 27*j , int(1.7*(float)j) , C_WHITE , true ); break;
+        case 5: Game::textManager->draw( "- back -" , w/2 , 31*j , int(1.7*(float)j) , C_WHITE , true ); break;
     }
 
-    if (Game::configuration->getDebug())
-    {
-        Game::text->setAlignment( false );
-        Game::text->setColor( C_BLACK );
-        Game::text->setSize( j );
-        Game::text->draw( std::to_string( w )+std::string(" x ")+std::to_string( h )+std::string("  ")+std::to_string( f )+std::string("Hz") , j/6 , 35*j );
-    }
+    Game::debugger->draw();
     SDL_RenderPresent( Game::renderer );
 }
 

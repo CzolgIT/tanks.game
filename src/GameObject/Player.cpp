@@ -2,9 +2,6 @@
 
 Player::Player( float x , float y , int color ) : GameObject( x,y,(int)((double)170*TANKSCALE),(int)((double)130*TANKSCALE) , DYNAMIC )
 {
-    text = Game::text;
-
-
     direction=90;
     towerDirection=90;
 
@@ -16,7 +13,6 @@ Player::Player( float x , float y , int color ) : GameObject( x,y,(int)((double)
     collider = new Collider(x,y,width,height, direction);
 
     blocked = {0,0};
-
 }
 
 void Player::handleEvent( SDL_Event& e )
@@ -134,12 +130,12 @@ void Player::draw( int x0 , int y0 )
 
     sprite->draw( SCR_W/2 , SCR_H/2 , iDirection , iTowerDirection , (int)moveSpeed );
 
-    text->draw( "x: " + std::to_string( x ) ,  150 , 500 );
-    text->draw( "y: " + std::to_string( y ) ,  150 , 530 );
-    text->draw( "sp: " + std::to_string( moveSpeed ) ,  150 , 560 );
+    Game::textManager->draw( "x: " + std::to_string( x ) ,  150 , 500 );
+    Game::textManager->draw( "y: " + std::to_string( y ) ,  150 , 530 );
+    Game::textManager->draw( "sp: " + std::to_string( moveSpeed ) ,  150 , 560 );
 
-    text->draw( "xblock: " + std::to_string( blocked.x ) ,  550 , 500 );
-    text->draw( "yblock: " + std::to_string( blocked.y ) ,  550 , 530 );
+    Game::textManager->draw( "xblock: " + std::to_string( blocked.x ) ,  550 , 500 );
+    Game::textManager->draw( "yblock: " + std::to_string( blocked.y ) ,  550 , 530 );
     blocked.x =0;
     blocked.y = 0;
 }

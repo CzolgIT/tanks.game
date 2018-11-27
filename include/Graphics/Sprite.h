@@ -18,4 +18,4 @@ private:
     
 };
 
-#endif /* Sprite_h */
+#endif

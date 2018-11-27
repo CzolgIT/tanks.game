@@ -25,8 +25,6 @@ private:
 
     float accelerate( int scanCode , float what , float from , float to , float timeStep );
 
-    Text* text;
-
     Vector2D blocked;
 
     float moveSpeed , directionSpeed , towerSpeed;
