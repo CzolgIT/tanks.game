@@ -12,6 +12,7 @@ Game::Game()
     renderer = SDL_CreateRenderer( window, -1, configuration->getRendererFlags() );
     text = new Text( renderer , FONT_FILE );
     netManager = new NetManager();
+    textureManager = new TextureManager( renderer );
     stepTimer = new Timer();
     stepTimer->start();
     currentScene = new Menu(text , configuration);

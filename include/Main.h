@@ -41,6 +41,7 @@
 #include "Graphics/Text.h"
 #include "Map.h"
 #include "Timer.h"
+#include "Graphics/TextureManager.h"
 #include "Graphics/Sprite.h"
 #include "Graphics/TankSprite.h"
 #include "Graphics/Button.h"

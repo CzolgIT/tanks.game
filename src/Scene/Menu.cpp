@@ -4,7 +4,17 @@ Menu::Menu(Text* t , Configuration* c ) : Scene( t , c )
 {
     selected = 1;
     logo = new Texture( renderer , "assets/logo.png" );
-    button = new Texture( renderer , "assets/button.png" );
+
+    int h = configuration->getDisplayMode()->h;
+    int j = (int)((float)h/36);
+
+    auto* texbut = new Texture( renderer , "assets/button.png" );
+
+    button[0] = new Button( renderer , texbut , text , "multiplayer" , configuration->getDisplayMode()->w/2 , 17*j , j , true );
+    button[1] = new Button( renderer , texbut , text , "singleplayer" , configuration->getDisplayMode()->w/2 , 21*j , j , true );
+    button[2] = new Button( renderer , texbut , text , "settings" , configuration->getDisplayMode()->w/2 , 25*j , j , true );
+    button[3] = new Button( renderer , texbut , text , "exit" , configuration->getDisplayMode()->w/2 , 29*j , j , true );
+
 }
 
 void Menu::handleEvents( float frameTime )
@@ -61,30 +71,12 @@ void Menu::draw( float frameTime )
     text->setAlignment( true );
 
     auto* lgc = new SDL_Rect{0,0,logo->getWidth(),logo->getHeight()};
-    auto* btc = new SDL_Rect{0,0,button->getWidth(),button->getHeight()};
-
     logo->render( renderer , w/2-logo->getWidth()*j/200,3*j, lgc ,0 , nullptr , SDL_FLIP_NONE , (float)j/100 );
 
-    button->render( renderer , w/2-button->getWidth()*j/170,17*j, btc ,0 , nullptr , SDL_FLIP_NONE , (float)j/85 );
-    button->render( renderer , w/2-button->getWidth()*j/170,21*j, btc ,0 , nullptr , SDL_FLIP_NONE , (float)j/85 );
-    button->render( renderer , w/2-button->getWidth()*j/170,25*j, btc ,0 , nullptr , SDL_FLIP_NONE , (float)j/85 );
-    button->render( renderer , w/2-button->getWidth()*j/170,29*j, btc ,0 , nullptr , SDL_FLIP_NONE , (float)j/85 );
-
-    text->setColor( C_WHITE );
-    text->setSize( int(1.7*(float)j) );
-
-    text->draw( "multiplayer" , w/2 , 18*j );
-    text->draw( "singleplayer" , w/2 , 22*j );
-    text->draw( "settings" , w/2 , 26*j );
-    text->draw( "exit" , w/2 , 30*j );
-
-    switch( selected )
-    {
-        case 1: text->draw( "- multiplayer -" , w/2 , 18*j ); break;
-        case 2: text->draw( "- singleplayer -" , w/2 , 22*j ); break;
-        case 3: text->draw( "- settings -" , w/2 , 26*j ); break;
-        case 4: text->draw( "- exit -" , w/2 , 30*j ); break;
-    }
+    button[0]->draw( selected == 1 );
+    button[1]->draw( selected == 2 );
+    button[2]->draw( selected == 3 );
+    button[3]->draw( selected == 4 );
 
     if (configuration->getDebug())
     {
