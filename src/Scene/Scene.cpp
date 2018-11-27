@@ -1,10 +1,10 @@
 #include "Main.h"
 
-Scene::Scene( SDL_Renderer* r , Text* t , Configuration* c )
+Scene::Scene(Text* t , Configuration* c )
 {
     running = true;
     flagReturn = 1;
-    this->renderer = r;
+    this->renderer = Game::renderer;
     this->text = t;
     this->configuration = c;
 }

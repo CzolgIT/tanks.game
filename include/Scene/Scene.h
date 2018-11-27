@@ -7,7 +7,7 @@ class Scene
 {
 public:
 
-    Scene( SDL_Renderer* r , Text* t , Configuration* c );
+    Scene(Text* t , Configuration* c );
     bool isRunning() { return running; }
     void update( float frameTime );
         virtual void handleEvents( float frameTime ){}

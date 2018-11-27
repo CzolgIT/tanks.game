@@ -7,7 +7,7 @@ class Manager : public Scene
 {
 public:
 
-    Manager(SDL_Renderer * r, Text* t , Configuration* c);
+    Manager(Text* t , Configuration* c);
     void handleEvents( float frameTime );
     void draw( float frameTime );
     void CheckColliders();

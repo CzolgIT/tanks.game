@@ -7,7 +7,7 @@ class Room : public Scene
 {
 public:
 
-    Room( SDL_Renderer* r , Text* t , Configuration* c , NetManager* net);
+    Room(Text* t , Configuration* c , NetManager* net);
     void handleEvents( float frameTime );
     void draw( float frameTime );
 

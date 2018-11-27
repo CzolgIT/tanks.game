@@ -1,6 +1,6 @@
 #include "Main.h"
 
-Room::Room( SDL_Renderer* r , Text* t , Configuration* c , NetManager* net) : Scene( r , t , c )
+Room::Room(Text* t , Configuration* c , NetManager* net) : Scene( t , c )
 {
     selectedTank = 1;
     dir=0;

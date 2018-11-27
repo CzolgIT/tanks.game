@@ -11,11 +11,12 @@ public:
     ~Game();
     void Update();
     bool isRunning() { return running; }
+    static SDL_Renderer* renderer;
 
 private:
 
     SDL_Window* window;
-    SDL_Renderer* renderer;
+
     Configuration* configuration;
     Timer* stepTimer;
     Text* text;

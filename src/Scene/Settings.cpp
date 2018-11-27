@@ -1,6 +1,6 @@
 #include "Main.h"
 
-Settings::Settings( SDL_Renderer* r , Text* t , Configuration* c ) : Scene( r , t , c )
+Settings::Settings(Text* t , Configuration* c ) : Scene(t , c )
 {
     selected=1;
     logo = new Texture( renderer , "assets/logo.png" );

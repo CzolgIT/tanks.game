@@ -1,6 +1,6 @@
 #include "Main.h"
 
-Manager::Manager(SDL_Renderer * r, Text* t , Configuration* c): Scene( r , t , c )
+Manager::Manager(Text* t , Configuration* c): Scene(t , c )
 {
     background = new Background( renderer );
     player = new Player( renderer , text , 128 , 128 , 1 );

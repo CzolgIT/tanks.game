@@ -1,6 +1,6 @@
 #include "Main.h"
 
-Menu::Menu( SDL_Renderer* r , Text* t , Configuration* c ) : Scene( r , t , c )
+Menu::Menu(Text* t , Configuration* c ) : Scene( t , c )
 {
     selected = 1;
     logo = new Texture( renderer , "assets/logo.png" );

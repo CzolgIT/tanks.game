@@ -1,5 +1,7 @@
 #include "Main.h"
 
+SDL_Renderer* Game::renderer = nullptr;
+
 Game::Game()
 {
     configuration = new Configuration();
@@ -12,7 +14,7 @@ Game::Game()
     netManager = new NetManager();
     stepTimer = new Timer();
     stepTimer->start();
-    currentScene = new Menu(renderer, text , configuration);
+    currentScene = new Menu(text , configuration);
     running = true;
 }
 
@@ -29,32 +31,32 @@ void Game::Update()
     switch( flag )
     {
         case 0: // Menu
-            currentScene = new Menu(renderer, text, configuration);
+            currentScene = new Menu(text, configuration);
             break;
         case 1: // Multiplayer
-            currentScene = new Room(renderer, text, configuration , netManager);
+            currentScene = new Room(text, configuration , netManager);
             break;
         case 2: // Singleplayer
-            currentScene = new Manager(renderer, text, configuration );
+            currentScene = new Manager(text, configuration );
             break;
         case 3: // Settings
-            currentScene = new Settings(renderer, text , configuration );
+            currentScene = new Settings(text , configuration );
             break;
         case 4: // Settings - Graphics
-            currentScene = new Settings(renderer, text , configuration );
+            currentScene = new Settings(text , configuration );
             break;
         case 5: // Settings - Audio
-            currentScene = new Settings(renderer, text , configuration );
+            currentScene = new Settings(text , configuration );
             break;
         case 6: // Settings - Control
-            currentScene = new Settings(renderer, text , configuration );
+            currentScene = new Settings(text , configuration );
             break;
         case 7: // Settings - Game
-            currentScene = new Settings(renderer, text , configuration );
+            currentScene = new Settings( text , configuration );
             break;
         case 8: // Multiplayer-run
             netManager->disconnectPlayer();
-            currentScene = new Menu(renderer, text , configuration );
+            currentScene = new Menu(text , configuration );
             break;
         default:
             netManager->disconnectPlayer();
