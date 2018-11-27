@@ -1,18 +1,15 @@
 #include "Main.h"
 
-Bullet::Bullet( SDL_Renderer* r , int x, int y, int dir)
-        : GameObject(r, x, y, 12, 36 , DYNAMIC )
+Bullet::Bullet( int x, int y, int dir) : GameObject( x , y , 12 , 36 , DYNAMIC )
 {
     direction = dir-90;
-    texture = new Texture( renderer , "assets/bullet.png" );
     //collider = new Collider(x,y,width,height, direction);
 }
 
 void Bullet::draw( int x0, int y0 )
 {
     auto* bull = new SDL_Rect{0,0,width,height};
-
-    texture->render(renderer , x0+x-(width*TANKSCALE/2) , y0+y-(height*TANKSCALE/2) , bull , direction , nullptr , SDL_FLIP_NONE ,TANKSCALE);
+    Game::textureManager->bullet->render( x0+x-(width*TANKSCALE/2) , y0+y-(height*TANKSCALE/2) , bull , direction , nullptr , SDL_FLIP_NONE ,TANKSCALE);
 }
 
 void Bullet::move( float timeStep )

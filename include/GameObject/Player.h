@@ -5,7 +5,7 @@ class Player: public GameObject
 {
 public:
 
-    Player( SDL_Renderer* r , Text* t , float x , float y , int color ) ;
+    Player( float x , float y , int color ) ;
     void handleEvent( SDL_Event& e );
     void move( float timeStep );
     void draw( int x0 , int y0 );

@@ -1,19 +1,19 @@
 #include "Main.h"
 
-Manager::Manager(Text* t , Configuration* c): Scene(t , c )
+Manager::Manager(): Scene()
 {
-    background = new Background( renderer );
-    player = new Player( renderer , text , 128 , 128 , 1 );
+    background = new Background();
+    player = new Player( 128 , 128 , 1 );
     gameObjects.push_back(player);
-    auto map = new Map( renderer );
+    auto map = new Map();
     map->loadFromFile( &gameObjects );
     std::cout << "Zaczyna sie gra" << std::endl;
 }
 
-void Manager::draw( float frameTime )
+void Manager::draw()
 {
-    SDL_SetRenderDrawColor( renderer, 0xFF, 0xFF, 0xFF, 0xFF );
-    SDL_RenderClear( renderer );
+    SDL_SetRenderDrawColor( Game::renderer, 0xFF, 0xFF, 0xFF, 0xFF );
+    SDL_RenderClear( Game::renderer );
 
     auto x0 = (int)((float)SCR_W/2-player->getX());
     auto y0 = (int)((float)SCR_H/2-player->getY());
@@ -27,14 +27,14 @@ void Manager::draw( float frameTime )
     player->draw( x0 , y0 ); // czolg musi byc rysowany ostatni... nwm jak to rozegrac
     // narazie rysuje sie dwa razy
 
-    text->draw( "fps: " + std::to_string( frameTime ) ,  500 , 560 );
+    Game::text->draw( "fps: " + std::to_string( Game::stepTime ) ,  500 , 560 );
 
-    SDL_RenderPresent( renderer );
+    SDL_RenderPresent( Game::renderer );
 }
 
-void Manager::handleEvents( float frameTime )
+void Manager::handleEvents()
 {
-
+    SDL_Event eventHandler;
     while ( SDL_PollEvent( &eventHandler ) != 0 )
     {
         if ( eventHandler.type == SDL_QUIT )
@@ -55,7 +55,7 @@ void Manager::handleEvents( float frameTime )
             if (eventHandler.key.keysym.sym == SDLK_SPACE)
             {
                 SDL_Point punkt = player->shootPosition();
-                auto* bullet = new Bullet(renderer, punkt.x , punkt.y , player->getTowDir());
+                auto* bullet = new Bullet(punkt.x , punkt.y , player->getTowDir());
                 gameObjects.push_back(bullet);
             }
         }
@@ -73,7 +73,7 @@ void Manager::handleEvents( float frameTime )
             gameObjects.erase(std::remove(gameObjects.begin(), gameObjects.end(), gameObject), gameObjects.end());
         }
         else
-            gameObject->move( frameTime );
+            gameObject->move( Game::stepTime );
     }
 }
 

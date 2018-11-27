@@ -7,7 +7,7 @@ class Text
 {
 public:
 
-    Text( SDL_Renderer* r , std::string f );
+    Text( std::string f );
     ~Text();
 
     void draw( std::string str , int x , int y );
@@ -20,7 +20,6 @@ public:
 
 private:
 
-    SDL_Renderer* renderer;
     std::string fontPath;
 
     // znaki od 32 do 126

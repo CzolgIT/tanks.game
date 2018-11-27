@@ -7,14 +7,14 @@ class TextureManager
 {
 public:
 
-    explicit TextureManager( SDL_Renderer* r );
+    TextureManager();
 
     // user interface
     Texture* logo;
     Texture* button;
 
     // map elements
-    Texture* block;
+    Texture* wall;
     Texture* background;
 
     // tank sprites

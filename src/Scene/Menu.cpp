@@ -1,23 +1,20 @@
 #include "Main.h"
 
-Menu::Menu(Text* t , Configuration* c ) : Scene( t , c )
+Menu::Menu() : Scene()
 {
+    Game::netManager->disconnectPlayer();
     selected = 1;
-    logo = new Texture( renderer , "assets/logo.png" );
 
-    int h = configuration->getDisplayMode()->h;
-    int j = (int)((float)h/36);
+    int scale = (int)((float)Game::configuration->getDisplayMode()->h/36);
+    int center = Game::configuration->getDisplayMode()->w/2;
 
-    auto* texbut = new Texture( renderer , "assets/button.png" );
-
-    button[0] = new Button( renderer , texbut , text , "multiplayer" , configuration->getDisplayMode()->w/2 , 17*j , j , true );
-    button[1] = new Button( renderer , texbut , text , "singleplayer" , configuration->getDisplayMode()->w/2 , 21*j , j , true );
-    button[2] = new Button( renderer , texbut , text , "settings" , configuration->getDisplayMode()->w/2 , 25*j , j , true );
-    button[3] = new Button( renderer , texbut , text , "exit" , configuration->getDisplayMode()->w/2 , 29*j , j , true );
-
+    button[0] = new Button( "multiplayer" , center , 17*scale , scale , true );
+    button[1] = new Button( "singleplayer" , center , 21*scale , scale , true );
+    button[2] = new Button( "settings" , center , 25*scale , scale , true );
+    button[3] = new Button( "exit" , center , 29*scale , scale , true );
 }
 
-void Menu::handleEvents( float frameTime )
+void Menu::handleEvents()
 {
     while( SDL_PollEvent( &eventHandler ) != 0 )
     {
@@ -58,33 +55,32 @@ void Menu::handleEvents( float frameTime )
 
 }
 
-void Menu::draw( float frameTime )
+void Menu::draw()
 {
-    int w = configuration->getDisplayMode()->w;
-    int h = configuration->getDisplayMode()->h;
-    int f = configuration->getDisplayMode()->refresh_rate;
+    int w = Game::configuration->getDisplayMode()->w;
+    int h = Game::configuration->getDisplayMode()->h;
+    int f = Game::configuration->getDisplayMode()->refresh_rate;
     int j = (int)((float)h/36);
-    float s = configuration->getScale();
 
-    SDL_SetRenderDrawColor( renderer, 215, 226, 175, 0xFF );
-    SDL_RenderClear( renderer );
-    text->setAlignment( true );
+    SDL_SetRenderDrawColor( Game::renderer, 215, 226, 175, 0xFF );
+    SDL_RenderClear( Game::renderer );
+    Game::text->setAlignment( true );
 
-    auto* lgc = new SDL_Rect{0,0,logo->getWidth(),logo->getHeight()};
-    logo->render( renderer , w/2-logo->getWidth()*j/200,3*j, lgc ,0 , nullptr , SDL_FLIP_NONE , (float)j/100 );
+    auto* lgc = new SDL_Rect{0,0,Game::textureManager->logo->getWidth(),Game::textureManager->logo->getHeight()};
+    Game::textureManager->logo->render( w/2-Game::textureManager->logo->getWidth()*j/200,3*j, lgc ,0 , nullptr , SDL_FLIP_NONE , (float)j/100 );
 
     button[0]->draw( selected == 1 );
     button[1]->draw( selected == 2 );
     button[2]->draw( selected == 3 );
     button[3]->draw( selected == 4 );
 
-    if (configuration->getDebug())
+    if (Game::configuration->getDebug())
     {
-        text->setAlignment( false );
-        text->setColor( C_BLACK );
-        text->setSize( j );
-        text->draw( std::to_string( w )+std::string(" x ")+std::to_string( h )+std::string("  ")+std::to_string( f )+std::string("Hz") , j/6 , 35*j );
+        Game::text->setAlignment( false );
+        Game::text->setColor( C_BLACK );
+        Game::text->setSize( j );
+        Game::text->draw( std::to_string( w )+std::string(" x ")+std::to_string( h )+std::string("  ")+std::to_string( f )+std::string("Hz") , j/6 , 35*j );
     }
-    SDL_RenderPresent( renderer );
+    SDL_RenderPresent( Game::renderer );
 
 }

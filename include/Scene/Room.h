@@ -7,9 +7,9 @@ class Room : public Scene
 {
 public:
 
-    Room(Text* t , Configuration* c , NetManager* net);
-    void handleEvents( float frameTime );
-    void draw( float frameTime );
+    Room();
+    void handleEvents();
+    void draw();
 
 private:
 

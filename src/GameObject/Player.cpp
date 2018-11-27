@@ -1,8 +1,9 @@
 #include "Main.h"
 
-Player::Player( SDL_Renderer* r , Text* t , float x , float y , int color ) : GameObject(r,x,y,(int)((double)170*TANKSCALE),(int)((double)130*TANKSCALE) , DYNAMIC )
+Player::Player( float x , float y , int color ) : GameObject( x,y,(int)((double)170*TANKSCALE),(int)((double)130*TANKSCALE) , DYNAMIC )
 {
-    text = t;
+    text = Game::text;
+
 
     direction=90;
     towerDirection=90;
@@ -11,7 +12,7 @@ Player::Player( SDL_Renderer* r , Text* t , float x , float y , int color ) : Ga
     directionSpeed = 0;
     towerSpeed = 0;
 
-    sprite = new TankSprite( renderer , color );
+    sprite = new TankSprite( color );
     collider = new Collider(x,y,width,height, direction);
 
     blocked = {0,0};
@@ -175,7 +176,7 @@ SDL_Point Player::shootPosition()
 {
 
     SDL_Point punkt;
-    punkt.x = (int)(x+(cos(iDirection *M_PI/180) * -50));
-    punkt.y = (int)(y+(sin(iDirection *M_PI/180) * -50));
+    punkt.x = (int)(x+(cos(iTowerDirection *M_PI/180) * -50));
+    punkt.y = (int)(y+(sin(iTowerDirection *M_PI/180) * -50));
     return punkt;
 }

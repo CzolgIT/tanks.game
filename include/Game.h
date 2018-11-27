@@ -11,17 +11,18 @@ public:
     ~Game();
     void Update();
     bool isRunning() { return running; }
+
     static SDL_Renderer* renderer;
+    static NetManager* netManager;
+    static Configuration* configuration;
+    static TextureManager* textureManager;
+    static Text* text;
+    static float stepTime;
 
 private:
 
     SDL_Window* window;
-
-    Configuration* configuration;
     Timer* stepTimer;
-    Text* text;
-    NetManager* netManager;
-    TextureManager* textureManager;
     Scene * currentScene;
     bool running;
 

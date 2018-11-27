@@ -11,10 +11,11 @@ enum ObjectType : Uint8{
 class GameObject
 {
 public:
-    GameObject(SDL_Renderer * ren, float x, float y, int width, int height , ObjectType type);
+
+    GameObject( float x, float y, int width, int height , ObjectType type);
     // virtual void Start() // not used
     virtual void update(){}
-    virtual void move(float timeStep){}
+    virtual void move( float timeStep ){}
     virtual void draw( int x0 , int y0 ){}
     virtual void handleEvent(SDL_Event& e){}
     virtual void destroy();
@@ -27,9 +28,10 @@ public:
     ObjectType getType();
     bool shouldBeDestroy(){ return toDestroy; }
     void setToBeDestroyed(){ toDestroy = true; }
+
 protected:
+
     Collider * collider;
-    SDL_Renderer* renderer;
     float x,y;
     int width,height;
     bool toDestroy = false;
@@ -37,4 +39,4 @@ protected:
 
 };
 
-#endif /* GameObject_h */
+#endif

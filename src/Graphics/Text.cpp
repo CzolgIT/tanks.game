@@ -2,12 +2,11 @@
 
 #include "Main.h"
 
-Text::Text( SDL_Renderer* r , std::string f )
+Text::Text( std::string f )
 {
     TTF_Init();
 
-    renderer = r;
-    fontPath = std::move(f);
+    fontPath = f;
     // default values
     size = 32;
     color = { 55, 0, 0 };
@@ -28,8 +27,10 @@ void Text::draw( std::string str , int x , int y )
         posx -= (getWidth( str )/2);
     int posy = y;
     for (char i : str) {
-        letter[(int) i][size]->render( renderer , posx , posy );
-        posx += letter[(int) i][size]->getWidth();
+        if (i > 31 && i<127) {
+            letter[(int) i][size]->render( posx , posy );
+            posx += letter[(int) i][size]->getWidth();
+        }
     }
 }
 
@@ -60,7 +61,7 @@ void Text::newCollection()
     {
         str[0] = (char)i;
         letter[i][size] = new Texture;
-        letter[i][size]->loadFromRenderedText( renderer , font , str , color );
+        letter[i][size]->loadFromRenderedText( font , str , color );
     }
     TTF_CloseFont( font );
 }

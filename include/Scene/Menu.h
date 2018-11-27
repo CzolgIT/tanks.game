@@ -7,15 +7,14 @@ class Menu : public Scene
 {
 public:
 
-    Menu(Text* t , Configuration* c );
-    void handleEvents( float frameTime );
-    void draw( float frameTime );
+    Menu();
+    void handleEvents();
+    void draw();
 
 private:
 
     int selected;
     Button* button[4];
-    Texture* logo;
 
 };
 

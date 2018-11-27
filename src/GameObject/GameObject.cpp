@@ -1,12 +1,11 @@
 #include "Main.h"
 
-GameObject::GameObject(SDL_Renderer * ren, float x, float y, int width, int height , ObjectType type)
+GameObject::GameObject( float x , float y , int width , int height , ObjectType type )
 {
     this->x = x;
     this->y = y;
     this->width = width;
     this->height = height;
-    this->renderer = ren;
     this->collider = new Collider(x,y, width, height);
     this->type = type;
 }

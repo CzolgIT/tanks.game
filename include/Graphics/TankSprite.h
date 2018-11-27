@@ -7,14 +7,10 @@ class TankSprite
 {
 public:
 
-    explicit TankSprite( SDL_Renderer* r , int color = 1);
+    explicit TankSprite( int color = 1);
     void draw( int x , int y , int dir , int dirT , int move );
     
 private:
-    
-    SDL_Renderer* renderer;
-
-    Texture* texTower;
 
     Sprite* spriteTrackLeft[5];
     Sprite* spriteTrackRight[5];

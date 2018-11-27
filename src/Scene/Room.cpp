@@ -1,23 +1,23 @@
 #include "Main.h"
 
-Room::Room(Text* t , Configuration* c , NetManager* net) : Scene( t , c )
+Room::Room() : Scene()
 {
     selectedTank = 1;
     dir=0;
-    netManager = net;
+    this->netManager = Game::netManager;
     if (!netManager->activate())
     {
         flagReturn = 0;
         running = false;
     }
 
-    sprite[0] = new TankSprite( renderer , 1 );
-    sprite[1] = new TankSprite( renderer , 2 );
-    sprite[2] = new TankSprite( renderer , 3 );
-    sprite[3] = new TankSprite( renderer , 4 );
+    sprite[0] = new TankSprite( 1 );
+    sprite[1] = new TankSprite( 2 );
+    sprite[2] = new TankSprite( 3 );
+    sprite[3] = new TankSprite( 4 );
 }
 
-void  Room::handleEvents( float frameTime )
+void  Room::handleEvents()
 {
     while( SDL_PollEvent( &eventHandler ) != 0 )
     {
@@ -39,7 +39,7 @@ void  Room::handleEvents( float frameTime )
                     break;
                 case SDLK_RETURN:
 
-                    flagReturn = 4; // tu byl selectedtank, ale tworzenie czolgu bedzie musialo byc juz w tej klasie
+                    flagReturn = 8; // tu byl selectedtank, ale tworzenie czolgu bedzie musialo byc juz w tej klasie
                     running = false;
                     break;
                 //case SDLK_UP: if (selected == 1 ) selected = 5; else selected=1; break;
@@ -51,10 +51,10 @@ void  Room::handleEvents( float frameTime )
     }
 }
 
-void Room::draw( float frameTime )
+void Room::draw()
 {
-    SDL_SetRenderDrawColor( renderer, 0xFF, 0xFF, 0xFF, 0xFF );
-    SDL_RenderClear( renderer );
+    SDL_SetRenderDrawColor( Game::renderer, 0xFF, 0xFF, 0xFF, 0xFF );
+    SDL_RenderClear( Game::renderer );
 
     dir+=0.2;
     if (dir>=360) dir-=360;
@@ -65,23 +65,23 @@ void Room::draw( float frameTime )
 
 
 
-    text->setAlignment( true );
+    Game::text->setAlignment( true );
 
-    text->setColor( C_RED );
-    text->setSize( 65 );
-    text->draw( "Tanks Game" , 400 , 20 );
+    Game::text->setColor( C_RED );
+    Game::text->setSize( 65 );
+    Game::text->draw( "Tanks Game" , 400 , 20 );
 
     //text->setColor( C_BLACK );
-    text->setSize( 40 );
+    Game::text->setSize( 40 );
 
     if ( selectedTank == 1 )
-        text->draw( NICKNAME , 100 , 400 );
+        Game::text->draw( NICKNAME , 100 , 400 );
     if ( selectedTank == 2 )
-        text->draw( NICKNAME , 300 , 400 );
+        Game::text->draw( NICKNAME , 300 , 400 );
     if ( selectedTank == 3 )
-        text->draw( NICKNAME , 500 , 400 );
+        Game::text->draw( NICKNAME , 500 , 400 );
     if ( selectedTank == 4 )
-        text->draw( NICKNAME , 700 , 400 );
+        Game::text->draw( NICKNAME , 700 , 400 );
 
     /*
 
@@ -106,5 +106,5 @@ void Room::draw( float frameTime )
         text->draw( "Back" , 400 , 540 );
     }
 */
-     SDL_RenderPresent( renderer );
+     SDL_RenderPresent( Game::renderer );
 }

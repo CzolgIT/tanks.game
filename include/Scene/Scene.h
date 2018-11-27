@@ -7,20 +7,17 @@ class Scene
 {
 public:
 
-    Scene(Text* t , Configuration* c );
+    Scene();
     bool isRunning() { return running; }
-    void update( float frameTime );
-        virtual void handleEvents( float frameTime ){}
-        virtual void draw( float frameTime ){}
+    void update();
+        virtual void handleEvents(){}
+        virtual void draw(){}
     int getFlag() { return flagReturn ;}
 
 protected:
 
-    bool running;
-    SDL_Renderer* renderer;
     SDL_Event eventHandler;
-    Text* text;
-    Configuration* configuration;
+    bool running;
     int flagReturn;
 
 };

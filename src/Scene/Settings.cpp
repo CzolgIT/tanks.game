@@ -1,15 +1,12 @@
 #include "Main.h"
 
-Settings::Settings(Text* t , Configuration* c ) : Scene(t , c )
+Settings::Settings() : Scene()
 {
     selected=1;
-    logo = new Texture( renderer , "assets/logo.png" );
-    button = new Texture( renderer , "assets/button.png" );
-
     loadDisplayModes();
 }
 
-void  Settings::handleEvents( float frameTime )
+void  Settings::handleEvents()
 {
     while( SDL_PollEvent( &eventHandler ) != 0 )
     {
@@ -49,55 +46,53 @@ void  Settings::handleEvents( float frameTime )
     }
 }
 
-void Settings::draw( float frameTime )
+void Settings::draw()
 {
-    int w = configuration->getDisplayMode()->w;
-    int h = configuration->getDisplayMode()->h;
-    int f = configuration->getDisplayMode()->refresh_rate;
+    int w = Game::configuration->getDisplayMode()->w;
+    int h = Game::configuration->getDisplayMode()->h;
+    int f = Game::configuration->getDisplayMode()->refresh_rate;
     int j = (int)((float)h/36);
-    float s = configuration->getScale();
+    float s = Game::configuration->getScale();
 
-    SDL_SetRenderDrawColor( renderer, 215, 226, 175, 0xFF );
-    SDL_RenderClear( renderer );
-    text->setAlignment( true );
+    SDL_SetRenderDrawColor( Game::renderer, 215, 226, 175, 0xFF );
+    SDL_RenderClear( Game::renderer );
+    Game::text->setAlignment( true );
 
-    auto* lgc = new SDL_Rect{0,0,logo->getWidth(),logo->getHeight()};
-    auto* btc = new SDL_Rect{0,0,button->getWidth(),button->getHeight()};
+    auto* btc = new SDL_Rect{0,0,Game::textureManager->button->getWidth(),Game::textureManager->button->getHeight()};
 
-    //logo->render( renderer , w/2-logo->getWidth()*j/200,3*j, lgc ,0 , nullptr , SDL_FLIP_NONE , (float)j/100 );
+    int center = w/2-Game::textureManager->button->getWidth()*j/170;
+    Game::textureManager->button->render( center ,14*j, btc ,0 , nullptr , SDL_FLIP_NONE , (float)j/85 );
+    Game::textureManager->button->render( center ,18*j, btc ,0 , nullptr , SDL_FLIP_NONE , (float)j/85 );
+    Game::textureManager->button->render( center ,22*j, btc ,0 , nullptr , SDL_FLIP_NONE , (float)j/85 );
+    Game::textureManager->button->render( center ,26*j, btc ,0 , nullptr , SDL_FLIP_NONE , (float)j/85 );
+    Game::textureManager->button->render( center ,30*j, btc ,0 , nullptr , SDL_FLIP_NONE , (float)j/85 );
 
-    button->render( renderer , w/2-button->getWidth()*j/170,14*j, btc ,0 , nullptr , SDL_FLIP_NONE , (float)j/85 );
-    button->render( renderer , w/2-button->getWidth()*j/170,18*j, btc ,0 , nullptr , SDL_FLIP_NONE , (float)j/85 );
-    button->render( renderer , w/2-button->getWidth()*j/170,22*j, btc ,0 , nullptr , SDL_FLIP_NONE , (float)j/85 );
-    button->render( renderer , w/2-button->getWidth()*j/170,26*j, btc ,0 , nullptr , SDL_FLIP_NONE , (float)j/85 );
-    button->render( renderer , w/2-button->getWidth()*j/170,30*j, btc ,0 , nullptr , SDL_FLIP_NONE , (float)j/85 );
+    Game::text->setColor( C_WHITE );
+    Game::text->setSize( int(1.7*(float)j) );
 
-    text->setColor( C_WHITE );
-    text->setSize( int(1.7*(float)j) );
-
-    text->draw( "graphics" , w/2 , 15*j );
-    text->draw( "audio" , w/2 , 19*j );
-    text->draw( "controller" , w/2 , 23*j );
-    text->draw( "game" , w/2 , 27*j );
-    text->draw( "back" , w/2 , 31*j );
+    Game::text->draw( "graphics" , w/2 , 15*j );
+    Game::text->draw( "audio" , w/2 , 19*j );
+    Game::text->draw( "controller" , w/2 , 23*j );
+    Game::text->draw( "game" , w/2 , 27*j );
+    Game::text->draw( "back" , w/2 , 31*j );
 
     switch( selected )
     {
-        case 1: text->draw( "- graphics -" , w/2 , 15*j ); break;
-        case 2: text->draw( "- audio -" , w/2 , 19*j ); break;
-        case 3: text->draw( "- controller -" , w/2 , 23*j ); break;
-        case 4: text->draw( "- game -" , w/2 , 27*j ); break;
-        case 5: text->draw( "- back -" , w/2 , 31*j ); break;
+        case 1: Game::text->draw( "- graphics -" , w/2 , 15*j ); break;
+        case 2: Game::text->draw( "- audio -" , w/2 , 19*j ); break;
+        case 3: Game::text->draw( "- controller -" , w/2 , 23*j ); break;
+        case 4: Game::text->draw( "- game -" , w/2 , 27*j ); break;
+        case 5: Game::text->draw( "- back -" , w/2 , 31*j ); break;
     }
 
-    if (configuration->getDebug())
+    if (Game::configuration->getDebug())
     {
-        text->setAlignment( false );
-        text->setColor( C_BLACK );
-        text->setSize( j );
-        text->draw( std::to_string( w )+std::string(" x ")+std::to_string( h )+std::string("  ")+std::to_string( f )+std::string("Hz") , j/6 , 35*j );
+        Game::text->setAlignment( false );
+        Game::text->setColor( C_BLACK );
+        Game::text->setSize( j );
+        Game::text->draw( std::to_string( w )+std::string(" x ")+std::to_string( h )+std::string("  ")+std::to_string( f )+std::string("Hz") , j/6 , 35*j );
     }
-    SDL_RenderPresent( renderer );
+    SDL_RenderPresent( Game::renderer );
 }
 
 void Settings::loadDisplayModes()
