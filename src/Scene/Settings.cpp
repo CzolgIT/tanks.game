@@ -2,9 +2,11 @@
 
 Settings::Settings( SDL_Renderer* r , Text* t , Configuration* c ) : Scene( r , t , c )
 {
-    this->resolution = 1;
-    loadDisplayModes();
+    selected=1;
+    logo = new Texture( renderer , "assets/logo.png" );
+    button = new Texture( renderer , "assets/button.png" );
 
+    loadDisplayModes();
 }
 
 void  Settings::handleEvents( float frameTime )
@@ -25,25 +27,23 @@ void  Settings::handleEvents( float frameTime )
                     flagReturn = 0;
                     running = false;
                     break;
-                    /*
                 case SDLK_RETURN:
-                    if (selected == 4)
-                        flagReturn = -1;
+                    if (selected == 5)
+                        flagReturn = 0;
                     else
-                        flagReturn = selected;
+                        flagReturn = 3+selected;
                     running = false;
                     break;
                 case SDLK_UP:
                     if (selected == 1 )
-                        selected = 4;
+                        selected = 5;
                     else selected--;
                     break;
                 case SDLK_DOWN:
-                    if (selected == 4 )
+                    if (selected == 5 )
                         selected = 1;
                     else selected++;
                     break;
-                     */
             }
         }
     }
@@ -53,26 +53,50 @@ void Settings::draw( float frameTime )
 {
     int w = configuration->getDisplayMode()->w;
     int h = configuration->getDisplayMode()->h;
+    int f = configuration->getDisplayMode()->refresh_rate;
+    int j = (int)((float)h/36);
     float s = configuration->getScale();
 
-    SDL_SetRenderDrawColor( renderer, 0xFF, 0xFF, 0xFF, 0xFF );
+    SDL_SetRenderDrawColor( renderer, 215, 226, 175, 0xFF );
     SDL_RenderClear( renderer );
     text->setAlignment( true );
 
-    text->setColor( C_RED );
-    text->setSize( 80 );
-    text->draw( "Settings" , w/2 , 50 );
+    auto* lgc = new SDL_Rect{0,0,logo->getWidth(),logo->getHeight()};
+    auto* btc = new SDL_Rect{0,0,button->getWidth(),button->getHeight()};
 
-    text->setColor( C_BLACK );
-    text->setSize( 40 );
+    //logo->render( renderer , w/2-logo->getWidth()*j/200,3*j, lgc ,0 , nullptr , SDL_FLIP_NONE , (float)j/100 );
 
-    text->draw( std::to_string(w) , 50 , 10 );
-    text->draw( std::to_string(h) , 50 , 40 );
+    button->render( renderer , w/2-button->getWidth()*j/170,14*j, btc ,0 , nullptr , SDL_FLIP_NONE , (float)j/85 );
+    button->render( renderer , w/2-button->getWidth()*j/170,18*j, btc ,0 , nullptr , SDL_FLIP_NONE , (float)j/85 );
+    button->render( renderer , w/2-button->getWidth()*j/170,22*j, btc ,0 , nullptr , SDL_FLIP_NONE , (float)j/85 );
+    button->render( renderer , w/2-button->getWidth()*j/170,26*j, btc ,0 , nullptr , SDL_FLIP_NONE , (float)j/85 );
+    button->render( renderer , w/2-button->getWidth()*j/170,30*j, btc ,0 , nullptr , SDL_FLIP_NONE , (float)j/85 );
 
-    text->draw( "raz" , w/2 , 280 );
-    text->draw( "dwa" , w/2 , 340 );
-    text->draw( "trzy" , w/2 , 400 );
+    text->setColor( C_WHITE );
+    text->setSize( int(1.7*(float)j) );
 
+    text->draw( "graphics" , w/2 , 15*j );
+    text->draw( "audio" , w/2 , 19*j );
+    text->draw( "controller" , w/2 , 23*j );
+    text->draw( "game" , w/2 , 27*j );
+    text->draw( "back" , w/2 , 31*j );
+
+    switch( selected )
+    {
+        case 1: text->draw( "- graphics -" , w/2 , 15*j ); break;
+        case 2: text->draw( "- audio -" , w/2 , 19*j ); break;
+        case 3: text->draw( "- controller -" , w/2 , 23*j ); break;
+        case 4: text->draw( "- game -" , w/2 , 27*j ); break;
+        case 5: text->draw( "- back -" , w/2 , 31*j ); break;
+    }
+
+    if (configuration->getDebug())
+    {
+        text->setAlignment( false );
+        text->setColor( C_BLACK );
+        text->setSize( j );
+        text->draw( std::to_string( w )+std::string(" x ")+std::to_string( h )+std::string("  ")+std::to_string( f )+std::string("Hz") , j/6 , 35*j );
+    }
     SDL_RenderPresent( renderer );
 }
 
