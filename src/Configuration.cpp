@@ -19,7 +19,7 @@ void Configuration::setQuality( float quality )
     writeFile();
 }
 
-// todo:trzeba umożliwić graczowi zmianę rozmiaru okna
+// todo: trzeba umożliwić graczowi zmianę rozmiaru okna
 // dzięki temu wysokość w trybie okna sama się ograniczy do pulpitu
 
 void Configuration::setDisplayMode( SDL_DisplayMode* displayMode )

@@ -20,6 +20,7 @@ private:
     Timer* stepTimer;
     Text* text;
     NetManager* netManager;
+    TextureManager* textureManager;
     Scene * currentScene;
     bool running;
 
