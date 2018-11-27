@@ -15,8 +15,8 @@ void Manager::draw()
     SDL_SetRenderDrawColor( Game::renderer, 0xFF, 0xFF, 0xFF, 0xFF );
     SDL_RenderClear( Game::renderer );
 
-    auto x0 = (int)((float)SCR_W/2-player->getX());
-    auto y0 = (int)((float)SCR_H/2-player->getY());
+    auto x0 = (int)((float)Game::configuration->getDisplayMode()->w/2-player->getX());
+    auto y0 = (int)((float)Game::configuration->getDisplayMode()->h/2-player->getY());
 
     background->draw( x0 , y0 );
 

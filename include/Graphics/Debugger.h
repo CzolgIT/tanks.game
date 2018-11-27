@@ -10,6 +10,11 @@ public:
     Debugger();
     void draw();
 
+private:
+
+    float second;
+    int count, fps;
+
 };
 
 #endif

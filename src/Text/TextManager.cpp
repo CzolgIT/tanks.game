@@ -7,6 +7,7 @@ TextManager::TextManager()
 
 TextManager::~TextManager()
 {
+
     TTF_Quit();
 }
 
@@ -34,12 +35,3 @@ void TextManager::draw(std::string str, int x, int y, int size, SDL_Color color,
         newFont->draw(str, x, y, center);
     }
 }
-/*
-int Text::getWidth( std::string str )
-{
-    int width = 0;
-    for (char i : str)
-        width += letter[(int) i][size]->getWidth();
-    return width;
-}
-*/

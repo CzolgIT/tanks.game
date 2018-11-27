@@ -17,7 +17,9 @@ public:
 private:
 
     char character;
-    Texture* texture;
+    SDL_Rect rect;
+    int w,h;
+    SDL_Texture* texture;
 
 };
 

@@ -64,8 +64,10 @@ void Menu::draw()
     SDL_SetRenderDrawColor( Game::renderer, 215, 226, 175, 0xFF );
     SDL_RenderClear( Game::renderer );
 
-    auto* lgc = new SDL_Rect{0,0,Game::textureManager->logo->getWidth(),Game::textureManager->logo->getHeight()};
-    Game::textureManager->logo->render( w/2-Game::textureManager->logo->getWidth()*j/200,3*j, lgc ,0 , nullptr , SDL_FLIP_NONE , (float)j/100 );
+    Game::textManager->draw("Tanks", w/2-j/2+j/6 , 2.5*j , 6 * j , C_BLACK, true);
+    Game::textManager->draw("Game", w/2-j/2+j/6 , 8.5*j , 6 * j , C_BLACK, true);
+    Game::textManager->draw("Tanks", w/2-j/2 , 2.5*j-j/6 , 6 * j , C_WHITE, true);
+    Game::textManager->draw("Game", w/2-j/2 , 8.5*j-j/6 , 6 * j , C_WHITE, true);
 
     button[0]->draw( selected == 1 );
     button[1]->draw( selected == 2 );

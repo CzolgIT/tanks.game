@@ -128,7 +128,7 @@ void Player::draw( int x0 , int y0 )
     }
     */
 
-    sprite->draw( SCR_W/2 , SCR_H/2 , iDirection , iTowerDirection , (int)moveSpeed );
+    sprite->draw( Game::configuration->getDisplayMode()->w/2 , Game::configuration->getDisplayMode()->h/2 , iDirection , iTowerDirection , (int)moveSpeed );
 
     Game::textManager->draw( "x: " + std::to_string( x ) ,  150 , 500 );
     Game::textManager->draw( "y: " + std::to_string( y ) ,  150 , 530 );
