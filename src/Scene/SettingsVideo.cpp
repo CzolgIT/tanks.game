@@ -2,16 +2,20 @@
 
 SettingsVideo::SettingsVideo() : Scene()
 {
-    selected=1;
-    loadDisplayModes();
+    this->selected = 1;
+    this->newDisplayMode = Game::configuration->getDisplayMode();
+    this->newFullscreen = Game::configuration->isFullscreen();
+    this->newQuality = Game::configuration->getQuality();
+    this->newVsync = Game::configuration->getVsync();
 
-    title = new TextStatic( "Video" , 5 , 4 , 0.2 );
+    title = new TextStatic( "Video" , 3 , 4 , 0.2 );
 
-    button[0] = new Button( "resolution" , 14 , "1920 x 1080 60hz");
-    button[1] = new Button( "fullscreen" , 18 , Game::configuration->isFullscreen() ? "yes" : "no" );
-    button[2] = new Button( "quality" , 22 , "1.0" );
-    button[3] = new Button( "vsync" , 26 , "yes");
-    button[4] = new Button( "back" , 30 );
+    button[0] = new Button( "resolution" , 9.5 , strActualDisplayMode());
+    button[1] = new Button( "fullscreen" , 13.5 , Game::configuration->isFullscreen() ? "yes" : "no" );
+    button[2] = new Button( "quality" , 17.5 , "1.0" );
+    button[3] = new Button( "vsync" , 21.5 , "yes");
+    button[4] = new Button( "max fps" , 25.5 , "unlimited");
+    button[5] = new Button( "back" , 30 );
 }
 
 void  SettingsVideo::handleEvents()
@@ -33,7 +37,7 @@ void  SettingsVideo::handleEvents()
                     running = false;
                     break;
                 case SDLK_RETURN:
-                    if (selected == 5)
+                    if (selected == 6)
                         flagReturn = 3;
                     else
                     {
@@ -44,11 +48,11 @@ void  SettingsVideo::handleEvents()
                     break;
                 case SDLK_UP:
                     if (selected == 1 )
-                        selected = 5;
+                        selected = 6;
                     else selected--;
                     break;
                 case SDLK_DOWN:
-                    if (selected == 5 )
+                    if (selected == 6 )
                         selected = 1;
                     else selected++;
                     break;
@@ -61,6 +65,8 @@ void  SettingsVideo::handleEvents()
                         {
                             Game::configuration->setFullscreen(true);
                             button[1]->setComment("yes");
+                            button[0]->setComment(strActualDisplayMode());
+                            std::cout << "yes";
                         }
                     }
                     if (selected == 3 ){}
@@ -75,6 +81,8 @@ void  SettingsVideo::handleEvents()
                         {
                             Game::configuration->setFullscreen(false);
                             button[1]->setComment("no");
+                            button[0]->setComment(strActualDisplayMode());
+                            std::cout << "no";
                         }
                     }
                     if (selected == 3 ){}
@@ -112,4 +120,10 @@ void SettingsVideo::loadDisplayModes()
         SDL_GetDisplayMode(0, i, &mode);
         displayModeList.push_back(&mode);
     }
+}
+
+std::string SettingsVideo::strActualDisplayMode()
+{
+    return std::to_string(Game::configuration->getDisplayMode()->w) + " x " + std::to_string(Game::configuration->getDisplayMode()->h) + " " +
+        std::to_string(Game::configuration->getDisplayMode()->refresh_rate) + "hz";
 }

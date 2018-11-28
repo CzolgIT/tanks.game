@@ -17,7 +17,6 @@ Game::Game()
     configuration->init( window );
     renderer = SDL_CreateRenderer( window, -1, configuration->getRendererFlags() );
     textManager = new TextManager();
-    netManager = new NetManager();
     textureManager = new TextureManager();
     debugger = new Debugger();
     stepTimer = new Timer();
@@ -66,7 +65,8 @@ void Game::Update()
             currentScene = new Menu();
             break;
         default:
-            netManager->disconnectPlayer();
+            if (netManager!=nullptr)
+                netManager->disconnectPlayer();
             running = false;
             break;
     }

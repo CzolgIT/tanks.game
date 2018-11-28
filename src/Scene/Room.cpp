@@ -2,6 +2,8 @@
 
 Room::Room() : Scene()
 {
+    Game::netManager = new NetManager();
+
     selectedTank = 1;
     dir=0;
     this->netManager = Game::netManager;

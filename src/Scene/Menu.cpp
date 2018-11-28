@@ -2,7 +2,8 @@
 
 Menu::Menu() : Scene()
 {
-    Game::netManager->disconnectPlayer();
+    if (Game::netManager != nullptr)
+        Game::netManager->disconnectPlayer();
     selected = 1;
 
     title[0] = new TextStatic( "Tanks" , 2.3 , 6 , 0.2 );

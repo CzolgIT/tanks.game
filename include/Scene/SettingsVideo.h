@@ -11,6 +11,7 @@ public:
     void handleEvents();
     void draw();
     void loadDisplayModes();
+    std::string strActualDisplayMode();
 
 private:
 
@@ -18,6 +19,11 @@ private:
     int selected;
     TextStatic* title;
     Button* button[5];
+
+    SDL_DisplayMode* newDisplayMode;
+    bool newFullscreen;
+    float newQuality;
+    bool newVsync;
 
 };
 

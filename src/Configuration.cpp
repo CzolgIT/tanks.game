@@ -54,7 +54,18 @@ void Configuration::setWindowSize()
 }
 void Configuration::setFullscreen( bool fullscreen )
 {
-    fullscreen ? SDL_SetWindowFullscreen( window, SDL_TRUE ) : SDL_SetWindowFullscreen( window, SDL_FALSE );
+    if (fullscreen)
+    {
+        SDL_SetWindowFullscreen( window, SDL_TRUE );
+
+    }
+    else
+    {
+        SDL_SetWindowFullscreen( window, SDL_FALSE );
+        setWindowSize();
+    }
+
+    setDisplayMode( this->displayMode );
     this->fullscreen = fullscreen;
     writeFile();
 }
