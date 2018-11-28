@@ -3,6 +3,7 @@
 NetManager::NetManager()
 {
     SDLNet_Init();
+    connected = false;
 }
 
 bool NetManager::activate()
