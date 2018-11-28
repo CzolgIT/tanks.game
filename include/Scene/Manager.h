@@ -3,7 +3,7 @@
 
 #include "Main.h"
 
-class Manager : public Scene
+class Manager : public _Scene
 {
 public:
 
@@ -15,7 +15,7 @@ public:
 private:
 
     Background* background = nullptr;
-    std::vector<GameObject*> gameObjects;
+    std::vector<_GameObject*> gameObjects;
     Player* player;
 
 };

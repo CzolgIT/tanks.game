@@ -3,11 +3,11 @@
 
 #include "Main.h"
 
-class Scene
+class _Scene
 {
 public:
 
-    Scene();
+    _Scene();
     bool isRunning() { return running; }
     void update();
         virtual void handleEvents(){}

@@ -1,6 +1,6 @@
 #include "Main.h"
 
-Room::Room() : Scene()
+Room::Room() : _Scene()
 {
     Game::netManager = new NetManager();
 

@@ -1,6 +1,6 @@
 #include "Main.h"
 
-Manager::Manager(): Scene()
+Manager::Manager(): _Scene()
 {
     background = new Background();
     player = new Player( 128 , 128 , 1 );
@@ -48,7 +48,7 @@ void Manager::handleEvents()
             if (eventHandler.key.keysym.sym == SDLK_ESCAPE)
             {
                 running = false;
-                flagReturn = -1;
+                flagReturn = 0;
                 break;
             }
             if (eventHandler.key.keysym.sym == SDLK_SPACE)

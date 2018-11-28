@@ -3,7 +3,7 @@
 
 #include "Main.h"
 
-class Room : public Scene
+class Room : public _Scene
 {
 public:
 

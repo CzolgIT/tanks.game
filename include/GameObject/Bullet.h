@@ -3,7 +3,7 @@
 
 #include "Main.h"
 
-class Bullet: public GameObject
+class Bullet: public _GameObject
 {
 public:
 

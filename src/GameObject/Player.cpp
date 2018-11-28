@@ -1,6 +1,6 @@
 #include "Main.h"
 
-Player::Player( float x , float y , int color ) : GameObject( x,y,(int)((double)170*TANKSCALE),(int)((double)130*TANKSCALE) , DYNAMIC )
+Player::Player( float x , float y , int color ) : _GameObject( x,y,(int)((double)170*TANKSCALE),(int)((double)130*TANKSCALE) , DYNAMIC )
 {
     direction=90;
     towerDirection=90;

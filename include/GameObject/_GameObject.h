@@ -8,11 +8,11 @@ enum ObjectType : Uint8{
     DYNAMIC = 1
 };
 
-class GameObject
+class _GameObject
 {
 public:
 
-    GameObject( float x, float y, int width, int height , ObjectType type);
+    _GameObject( float x, float y, int width, int height , ObjectType type);
     // virtual void Start() // not used
     virtual void update(){}
     virtual void move( float timeStep ){}

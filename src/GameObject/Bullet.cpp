@@ -1,6 +1,6 @@
 #include "Main.h"
 
-Bullet::Bullet( int x, int y, int dir) : GameObject( x , y , 12 , 36 , DYNAMIC )
+Bullet::Bullet( int x, int y, int dir) : _GameObject( x , y , 12 , 36 , DYNAMIC )
 {
     direction = dir-90;
     //collider = new Collider(x,y,width,height, direction);

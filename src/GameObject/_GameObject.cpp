@@ -1,6 +1,6 @@
 #include "Main.h"
 
-GameObject::GameObject( float x , float y , int width , int height , ObjectType type )
+_GameObject::_GameObject( float x , float y , int width , int height , ObjectType type )
 {
     this->x = x;
     this->y = y;
@@ -10,33 +10,33 @@ GameObject::GameObject( float x , float y , int width , int height , ObjectType 
     this->type = type;
 }
 
-Collider * GameObject::getCollider(){
+Collider * _GameObject::getCollider(){
 
     return collider;
 }
 
-void GameObject::destroy()
+void _GameObject::destroy()
 {
 
 }
 
-float GameObject::getX()
+float _GameObject::getX()
 {
     return x;
 }
-float GameObject::getY()
+float _GameObject::getY()
 {
     return y;
 }
-int GameObject::getW()
+int _GameObject::getW()
 {
     return width;
 }
-int GameObject::getH()
+int _GameObject::getH()
 {
     return height;
 }
-ObjectType GameObject::getType()
+ObjectType _GameObject::getType()
 {
     return type;
 }

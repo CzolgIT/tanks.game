@@ -1,21 +1,19 @@
 #include "Main.h"
 
-SettingsVideo::SettingsVideo() : Scene()
+SettingsVideo::SettingsVideo() : _Scene()
 {
     this->selected = 1;
     this->newDisplayMode = Game::configuration->getDisplayMode();
-    this->newFullscreen = Game::configuration->isFullscreen();
-    this->newQuality = Game::configuration->getQuality();
-    this->newVsync = Game::configuration->getVsync();
 
-    title = new TextStatic( "Video" , 3 , 4 , 0.2 );
-
-    button[0] = new Button( "resolution" , 9.5 , strActualDisplayMode());
-    button[1] = new Button( "fullscreen" , 13.5 , Game::configuration->isFullscreen() ? "yes" : "no" );
-    button[2] = new Button( "quality" , 17.5 , "1.0" );
-    button[3] = new Button( "vsync" , 21.5 , "yes");
-    button[4] = new Button( "max fps" , 25.5 , "unlimited");
-    button[5] = new Button( "back" , 30 );
+    title = nullptr;
+    info = nullptr;
+    button[0] = nullptr;
+    button[1] = nullptr;
+    button[2] = nullptr;
+    button[3] = nullptr;
+    button[4] = nullptr;
+    button[5] = nullptr;
+    updateGUI();
 }
 
 void  SettingsVideo::handleEvents()
@@ -60,33 +58,63 @@ void  SettingsVideo::handleEvents()
                     if (selected == 1 ){}
                         // change res;
                     if (selected == 2 )
-                    {
-                        if (!Game::configuration->isFullscreen())
+                        if (Game::configuration->isFullscreen())
                         {
-                            Game::configuration->setFullscreen(true);
-                            button[1]->setComment("yes");
-                            button[0]->setComment(strActualDisplayMode());
-                            std::cout << "yes";
+                            Game::configuration->setFullscreen(false);
+                            updateGUI();
+                        }
+                    if (selected == 3 )
+                    {
+                        if ( Game::configuration->getQuality() == 0.5 )
+                        {
+                            Game::configuration->setQuality( 0 );
+                            updateGUI();
+                        }
+                        if ( Game::configuration->getQuality() == 1 )
+                        {
+                            Game::configuration->setQuality( 0.5 );
+                            updateGUI();
                         }
                     }
-                    if (selected == 3 ){}
-                        // change res;
+                    if (selected == 4 )
+                    {
+                        if (Game::configuration->getVsync())
+                        {
+                            Game::configuration->setVsync(false);
+                            info = new TextStatic( "restart required" , 6 , 1 , 0.1 );
+                            updateGUI();
+                        }
+                    }
                     break;
                 case SDLK_RIGHT:
                     if (selected == 1 ){}
                     // change res;
                     if (selected == 2 )
-                    {
-                        if (Game::configuration->isFullscreen())
+                        if (!Game::configuration->isFullscreen())
                         {
-                            Game::configuration->setFullscreen(false);
-                            button[1]->setComment("no");
-                            button[0]->setComment(strActualDisplayMode());
-                            std::cout << "no";
+                            Game::configuration->setFullscreen(true);
+                            updateGUI();
+                        }
+                    if (selected == 3 )
+                    {
+                        if (Game::configuration->getQuality() == 0.5)
+                        {
+                            Game::configuration->setQuality(1);
+                            updateGUI();
+                        }
+                        if (Game::configuration->getQuality() == 0)
+                        {
+                            Game::configuration->setQuality(0.5);
+                            updateGUI();
                         }
                     }
-                    if (selected == 3 ){}
-                    // change res;
+                    if (selected == 4 )
+                        if (!Game::configuration->getVsync())
+                        {
+                            Game::configuration->setVsync(true);
+                            info = new TextStatic( "restart required" , 6 , 1 , 0.1 );
+                            updateGUI();
+                        }
                     break;
             }
         }
@@ -100,11 +128,14 @@ void SettingsVideo::draw()
 
     title->draw();
 
+    if (info!= nullptr) info->draw();
+
     button[0]->draw( selected == 1 , true , true );
-    button[1]->draw( selected == 2 , !Game::configuration->isFullscreen() , Game::configuration->isFullscreen() );
-    button[2]->draw( selected == 3 , true , false );
-    button[3]->draw( selected == 4 , true , false );
-    button[4]->draw( selected == 5 );
+    button[1]->draw( selected == 2 , Game::configuration->isFullscreen() , !Game::configuration->isFullscreen() );
+    button[2]->draw( selected == 3 , Game::configuration->getQuality()>0 , Game::configuration->getQuality()<1 );
+    button[3]->draw( selected == 4 , Game::configuration->getVsync() , !Game::configuration->getVsync() );
+    button[4]->draw( selected == 5 , true , true );
+    button[5]->draw( selected == 6 );
 
     Game::debugger->draw();
     SDL_RenderPresent( Game::renderer );
@@ -126,4 +157,35 @@ std::string SettingsVideo::strActualDisplayMode()
 {
     return std::to_string(Game::configuration->getDisplayMode()->w) + " x " + std::to_string(Game::configuration->getDisplayMode()->h) + " " +
         std::to_string(Game::configuration->getDisplayMode()->refresh_rate) + "hz";
+}
+
+void SettingsVideo::updateGUI()
+{
+    if (info!= nullptr)
+    {
+        delete (info);
+        info = new TextStatic( "restart required" , 7 , 1 , 0.1 );
+    }
+
+
+    if (title != nullptr) delete(title);
+    if (button[0] != nullptr) delete(button[0]);
+    if (button[1] != nullptr) delete(button[1]);
+    if (button[2] != nullptr) delete(button[2]);
+    if (button[3] != nullptr) delete(button[3]);
+    if (button[4] != nullptr) delete(button[4]);
+    if (button[5] != nullptr) delete(button[5]);
+
+    std::string q;
+    if (Game::configuration->getQuality() == 0) q="low";
+    if (Game::configuration->getQuality() == 0.5) q="medium";
+    if (Game::configuration->getQuality() == 1) q="high";
+
+    title = new TextStatic( "Video" , 3 , 4 , 0.2 );
+    button[0] = new Button( "resolution" , 9.5 , strActualDisplayMode());
+    button[1] = new Button( "fullscreen" , 13.5 , Game::configuration->isFullscreen() ? "yes" : "no" );
+    button[2] = new Button( "quality" , 17.5 , q );
+    button[3] = new Button( "vsync" , 21.5 , Game::configuration->getVsync() ? "yes" : "no" );
+    button[4] = new Button( "max fps" , 25.5 , "option disabled");
+    button[5] = new Button( "back" , 30 );
 }

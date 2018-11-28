@@ -32,7 +32,7 @@ void Configuration::setDisplayMode( SDL_DisplayMode* displayMode )
             SDL_GetDisplayMode(0, 0, this->displayMode);
         SDL_SetWindowDisplayMode(window, this->displayMode);
     }
-    if (!fullscreen)
+    else
     {
         setWindowSize();
     }
@@ -52,20 +52,24 @@ void Configuration::setWindowSize()
     SDL_GetCurrentDisplayMode(0,displayMode);
     SDL_GetWindowSize(window, &this->displayMode->w, &this->displayMode->h);
 }
+void Configuration::resizeWindow()
+{
+    SDL_GetWindowSize(window, &this->displayMode->w, &this->displayMode->h);
+
+}
 void Configuration::setFullscreen( bool fullscreen )
 {
     if (fullscreen)
     {
         SDL_SetWindowFullscreen( window, SDL_TRUE );
-
+        setDisplayMode( this->displayMode );
     }
     else
     {
         SDL_SetWindowFullscreen( window, SDL_FALSE );
-        setWindowSize();
+        SDL_GetWindowSize(window, &this->displayMode->w, &this->displayMode->h);
+        this->scale = ((float)this->displayMode->w + (float)this->displayMode->h) / 2000;
     }
-
-    setDisplayMode( this->displayMode );
     this->fullscreen = fullscreen;
     writeFile();
 }

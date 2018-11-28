@@ -1,16 +1,16 @@
 #include "Main.h"
 
-Settings::Settings() : Scene()
+Settings::Settings() : _Scene()
 {
     selected=1;
 
     title = new TextStatic( "Settings" , 5 , 4 , 0.2 );
 
-    button[0] = new Button( "video" , 14 );
-    button[1] = new Button( "audio" , 18 );
-    button[2] = new Button( "controller" , 22 );
-    button[3] = new Button( "game" , 26 );
-    button[4] = new Button( "back" , 30 );
+    button[0] = new Button( "video" , 13.5 );
+    button[1] = new Button( "audio" , 17.5 );
+    button[2] = new Button( "controller" , 21.5 );
+    button[3] = new Button( "game" , 25.5 );
+    button[4] = new Button( "back" , 31 );
 }
 
 void  Settings::handleEvents()

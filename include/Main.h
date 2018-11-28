@@ -43,20 +43,22 @@
 #include "Graphics/TextureManager.h"
 #include "Graphics/Sprite.h"
 #include "Graphics/TankSprite.h"
-#include "Graphics/Button.h"
 #include "Graphics/Background.h"
 
 #include "Text/Letter.h"
 #include "Text/Font.h"
 #include "Text/TextManager.h"
-#include "Text/TextStatic.h"
 
-#include "GameObject/GameObject.h"
+#include "GUIElement/_Element.h"
+#include "GUIElement/TextStatic.h"
+#include "GUIElement/Button.h"
+
+#include "GameObject/_GameObject.h"
 #include "GameObject/Player.h"
 #include "GameObject/Bullet.h"
 #include "GameObject/Wall.h"
 
-#include "Scene/Scene.h"
+#include "Scene/_Scene.h"
 #include "Scene/Settings.h"
 #include "Scene/SettingsVideo.h"
 #include "Scene/Room.h"
@@ -69,7 +71,6 @@
 #include "Game.h"
 
 #define delete_object(x) {delete x; x = nullptr;}
-
 
 const char NICKNAME[] = "Player";
 #define SERVERIP "153.19.7.230"

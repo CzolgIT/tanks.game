@@ -1,7 +1,7 @@
 #ifndef Button_h
 #define Button_h
 
-#include <Text/TextStatic.h>
+#include <GUIElement/TextStatic.h>
 #include "Main.h"
 
 class Button

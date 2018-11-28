@@ -3,7 +3,7 @@
 
 #include "Main.h"
 
-class SettingsVideo : public Scene
+class SettingsVideo : public _Scene
 {
 public:
 
@@ -12,13 +12,15 @@ public:
     void draw();
     void loadDisplayModes();
     std::string strActualDisplayMode();
+    void updateGUI();
 
 private:
 
     std::vector<SDL_DisplayMode*> displayModeList;
     int selected;
     TextStatic* title;
-    Button* button[5];
+    TextStatic* info;
+    Button* button[6];
 
     SDL_DisplayMode* newDisplayMode;
     bool newFullscreen;

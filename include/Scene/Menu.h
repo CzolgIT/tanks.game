@@ -3,7 +3,7 @@
 
 #include "Main.h"
 
-class Menu : public Scene
+class Menu : public _Scene
 {
 public:
 
@@ -16,6 +16,7 @@ private:
     int selected;
     TextStatic* title[2];
     Button* button[4];
+    void updateGUI();
 
 };
 

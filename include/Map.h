@@ -8,7 +8,7 @@ class Map
 public:
 
     explicit Map();
-    void loadFromFile( std::vector<GameObject*> * gameObjects );
+    void loadFromFile( std::vector<_GameObject*> * gameObjects );
 
 };
 

@@ -1,12 +1,12 @@
 #include "Main.h"
 
-Scene::Scene()
+_Scene::_Scene()
 {
     running = true;
     flagReturn = 1;
 }
 
-void Scene::update()
+void _Scene::update()
 {
     handleEvents();
     draw();

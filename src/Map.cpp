@@ -2,7 +2,7 @@
 
 Map::Map() {}
 
-void Map::loadFromFile( std::vector<GameObject*> * gameObjects )
+void Map::loadFromFile( std::vector<_GameObject*> * gameObjects )
 {
     std::ifstream infile("assets/maps/map2.txt");
     int w,h;

@@ -3,7 +3,7 @@
 
 #include "Main.h"
 
-class Settings : public Scene
+class Settings : public _Scene
 {
 public:
 

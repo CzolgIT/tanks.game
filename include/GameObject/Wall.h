@@ -3,7 +3,7 @@
 
 #include "Main.h"
 
-class Wall : public GameObject
+class Wall : public _GameObject
 {
 public:
 

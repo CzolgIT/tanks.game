@@ -1,7 +1,7 @@
 #ifndef TextManager_h
 #define TextManager_h
 
-#include "Text/TextStatic.h"
+//#include "GUIElement/TextStatic.h"
 #include "Main.h"
 
 class TextManager

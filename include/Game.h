@@ -24,7 +24,7 @@ private:
 
     SDL_Window* window;
     Timer* stepTimer;
-    Scene * currentScene;
+    _Scene * currentScene;
     bool running;
 
 };
