@@ -7,7 +7,7 @@ class TextStatic
 {
 public:
 
-    TextStatic( std::string str , int x , int y , int size , int shadow=0 );
+    TextStatic( std::string str , float y , float size , float shadow=-1 , float x=-1 );
     void draw();
 
 private:

@@ -4,6 +4,8 @@ Settings::Settings() : Scene()
 {
     selected=1;
 
+    title = new TextStatic( "Settings" , 5 , 4 , 0.2 );
+
     button[0] = new Button( "video" , 14 );
     button[1] = new Button( "audio" , 18 );
     button[2] = new Button( "controller" , 22 );
@@ -53,15 +55,10 @@ void  Settings::handleEvents()
 
 void Settings::draw()
 {
-    int w = Game::configuration->getDisplayMode()->w;
-    int h = Game::configuration->getDisplayMode()->h;
-    int j = (int)((float)h/36);
-
     SDL_SetRenderDrawColor( Game::renderer, 215, 226, 175, 0xFF );
     SDL_RenderClear( Game::renderer );
 
-    Game::textManager->draw("Settings", w/2-j/2+j/6 , 5*j , 4 * j , C_BLACK, true);
-    Game::textManager->draw("Settings", w/2-j/2 , 5*j-j/6 , 4 * j , C_WHITE, true);
+    title->draw();
 
     button[0]->draw( selected == 1 );
     button[1]->draw( selected == 2 );

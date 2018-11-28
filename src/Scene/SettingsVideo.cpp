@@ -5,10 +5,12 @@ SettingsVideo::SettingsVideo() : Scene()
     selected=1;
     loadDisplayModes();
 
-    button[0] = new Button( "resolution" , 14 , true , "1920 x 1080 60hz");
-    button[1] = new Button( "fullscreen" , 18 , true , Game::configuration->isFullscreen() ? "yes" : "no" );
-    button[2] = new Button( "quality" , 22 , true , "1.0" );
-    button[3] = new Button( "vsync" , 26 , true , "yes");
+    title = new TextStatic( "Video" , 5 , 4 , 0.2 );
+
+    button[0] = new Button( "resolution" , 14 , "1920 x 1080 60hz");
+    button[1] = new Button( "fullscreen" , 18 , Game::configuration->isFullscreen() ? "yes" : "no" );
+    button[2] = new Button( "quality" , 22 , "1.0" );
+    button[3] = new Button( "vsync" , 26 , "yes");
     button[4] = new Button( "back" , 30 );
 }
 
@@ -85,15 +87,10 @@ void  SettingsVideo::handleEvents()
 
 void SettingsVideo::draw()
 {
-    int w = Game::configuration->getDisplayMode()->w;
-    int h = Game::configuration->getDisplayMode()->h;
-    int j = (int)((float)h/36);
-
     SDL_SetRenderDrawColor( Game::renderer, 215, 226, 175, 0xFF );
     SDL_RenderClear( Game::renderer );
 
-    Game::textManager->draw("Video", w/2-j/2+j/6 , 5*j , 4 * j , C_BLACK, true);
-    Game::textManager->draw("Video", w/2-j/2 , 5*j-j/6 , 4 * j , C_WHITE, true);
+    title->draw();
 
     button[0]->draw( selected == 1 , true , true );
     button[1]->draw( selected == 2 , !Game::configuration->isFullscreen() , Game::configuration->isFullscreen() );

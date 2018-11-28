@@ -8,7 +8,7 @@ class Button
 {
 public:
 
-    Button( std::string name , int yy , bool extended=false , std::string comm="" , int xx = -1 , bool center = true);
+    Button( std::string name , float yy , std::string comm="" , float xx = -1 , bool center = true);
     void draw( bool active , bool prev=false , bool next=false );
     void setComment( std::string str );
 
@@ -19,7 +19,7 @@ private:
     TextStatic *change[4];
 
     bool extended;
-    int x,y;
+    float x,y;
     float scale;
     bool center;
     SDL_Rect* clip;

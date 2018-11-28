@@ -14,6 +14,7 @@ public:
 private:
 
     int selected;
+    TextStatic* title;
     Button* button[5];
 
 };
