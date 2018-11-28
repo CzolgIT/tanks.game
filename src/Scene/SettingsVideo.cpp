@@ -164,7 +164,7 @@ void SettingsVideo::updateGUI()
     if (info!= nullptr)
     {
         delete (info);
-        info = new TextStatic( "restart required" , 7 , 1 , 0.1 );
+        info = new TextStatic( "restart required" , 32 , 7 , 1 , 0.1 );
     }
 
 
@@ -181,11 +181,11 @@ void SettingsVideo::updateGUI()
     if (Game::configuration->getQuality() == 0.5) q="medium";
     if (Game::configuration->getQuality() == 1) q="high";
 
-    title = new TextStatic( "Video" , 3 , 4 , 0.2 );
-    button[0] = new Button( "resolution" , 9.5 , strActualDisplayMode());
-    button[1] = new Button( "fullscreen" , 13.5 , Game::configuration->isFullscreen() ? "yes" : "no" );
-    button[2] = new Button( "quality" , 17.5 , q );
-    button[3] = new Button( "vsync" , 21.5 , Game::configuration->getVsync() ? "yes" : "no" );
-    button[4] = new Button( "max fps" , 25.5 , "option disabled");
-    button[5] = new Button( "back" , 30 );
+    title = new TextStatic( "Video" , 32 , 3 , 4 , 0.2 );
+    button[0] = new Button( "resolution" , 32 , 9.5 , strActualDisplayMode());
+    button[1] = new Button( "fullscreen" , 32 , 13.5 , Game::configuration->isFullscreen() ? "yes" : "no" );
+    button[2] = new Button( "quality" , 32 , 17.5 , q );
+    button[3] = new Button( "vsync" , 32 , 21.5 , Game::configuration->getVsync() ? "yes" : "no" );
+    button[4] = new Button( "max fps" , 32 , 25.5 , "option disabled");
+    button[5] = new Button( "back" , 32 , 30 );
 }

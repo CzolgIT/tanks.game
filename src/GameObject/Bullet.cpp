@@ -3,13 +3,12 @@
 Bullet::Bullet( int x, int y, int dir) : _GameObject( x , y , 12 , 36 , DYNAMIC )
 {
     direction = dir-90;
-    //collider = new Collider(x,y,width,height, direction);
 }
 
 void Bullet::draw( int x0, int y0 )
 {
     auto* bull = new SDL_Rect{0,0,width,height};
-    Game::textureManager->bullet->render( x0+x-(width*TANKSCALE/2) , y0+y-(height*TANKSCALE/2) , bull , direction , nullptr , SDL_FLIP_NONE ,TANKSCALE);
+    Game::textureManager->bullet->draw(x0 + x - (width * TANKSCALE / 2), y0 + y - (height * TANKSCALE / 2), TANKSCALE ,bull,direction);
 }
 
 void Bullet::move( float timeStep )

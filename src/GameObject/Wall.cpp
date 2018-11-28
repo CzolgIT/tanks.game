@@ -7,5 +7,5 @@ Wall::Wall( int x , int y , int width , int height ) : _GameObject( x , y , widt
 
 void Wall::draw( int x0 , int y0 )
 {
-    Game::textureManager->wall->render(x0 + x - width / 2, y0 + y - height / 2);
+    Game::textureManager->wall->draw(x0 + x - width / 2, y0 + y - height / 2);
 }

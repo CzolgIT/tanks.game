@@ -1,36 +1,28 @@
-#include <utility>
-
 #include "Main.h"
 
-Button::Button( std::string name, float yy, std::string comm, float xx, bool center)
+Button::Button( std::string name , float x , float y , std::string subtext ) : _Element( name , x , y )
 {
-    this->extended = (!comm.empty());
-    this->scale = (float)Game::configuration->getDisplayMode()->h/36;
-    this->x = (xx == -1) ? float(Game::configuration->getDisplayMode()->w)/2 : x;
-    this->y = yy;
-    this->center = center;
     this->clip = new SDL_Rect{0,0,Game::textureManager->button->getWidth(),Game::textureManager->button->getHeight()};
     float add =0;
 
-    if (!comm.empty())
+    if (!subtext.empty())
     {
         add = (0.125);
-        this->comment[0] = new TextStatic( comm , y + 2 , 1 );
-        this->comment[1] = new TextStatic( comm , y + 1.9 , 1.1 );
-        this->change[0] = new TextStatic( "<" , y + 1.9 , 1 , -1 , x-scale*6 );
-        this->change[1] = new TextStatic( ">" , y + 1.9 , 1 , -1 , x+scale*6 );
+        this->comment[0] = new TextStatic( subtext , x , y + 2 , 1 );
+        this->comment[1] = new TextStatic( subtext , x , y + 1.9 , 1.1 );
+        this->change[0] = new TextStatic( "<" , x-6 , y + 1.9 , 1 );
+        this->change[1] = new TextStatic( ">" , x+6 , y + 1.9 , 1 );
     }
-    this->text[0] = new TextStatic( name , y + 0.9 -add*4 , 1.6-add );
-    this->text[1] = new TextStatic( "+ " + name + " +" , y + 0.8-add*4 , 1.7-add );
+    this->text[0] = new TextStatic( name , x , y + 0.9 -add*4 , 1.6-add );
+    this->text[1] = new TextStatic( "+ " + name + " +" , x , y + 0.8-add*4 , 1.7-add );
 
 }
 
-void Button::draw(bool active , bool prev , bool next ) {
-    if (center)
-        Game::textureManager->button->render(x - (int) ((float) clip->w * scale / 170), y*scale, clip, 0, nullptr, SDL_FLIP_NONE, scale / 85);
-    else
-        Game::textureManager->button->render(x, y*scale, clip, 0, nullptr, SDL_FLIP_NONE, scale);
-    if(extended)
+void Button::draw( bool active , bool prev , bool next )
+{
+    Game::textureManager->button->draw(x * xScale, y * yScale, yScale/85 );
+
+    if(!subtext.empty())
     {
         if (active)
         {
@@ -47,4 +39,9 @@ void Button::draw(bool active , bool prev , bool next ) {
         text[1]->draw();
     else
         text[0]->draw();
+}
+void Button::updateScale()
+{
+    this->xScale = float(Game::configuration->getDisplayMode()->w)/64;
+    this->yScale = float(Game::configuration->getDisplayMode()->h)/36;
 }

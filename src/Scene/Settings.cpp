@@ -4,13 +4,13 @@ Settings::Settings() : _Scene()
 {
     selected=1;
 
-    title = new TextStatic( "Settings" , 5 , 4 , 0.2 );
+    title = new TextStatic( "Settings" , 32 , 5 , 4 , 0.2 );
 
-    button[0] = new Button( "video" , 13.5 );
-    button[1] = new Button( "audio" , 17.5 );
-    button[2] = new Button( "controller" , 21.5 );
-    button[3] = new Button( "game" , 25.5 );
-    button[4] = new Button( "back" , 31 );
+    button[0] = new Button( "video" , 32 , 13.5 );
+    button[1] = new Button( "audio" , 32 , 17.5 );
+    button[2] = new Button( "controller" , 32 , 21.5 );
+    button[3] = new Button( "game" , 32 , 25.5 );
+    button[4] = new Button( "back" , 32 , 31 );
 }
 
 void  Settings::handleEvents()

@@ -1,3 +1,5 @@
+#include <utility>
+
 #include "Main.h"
 
 Texture::Texture()
@@ -7,20 +9,25 @@ Texture::Texture()
     mHeight = 0;
     mPixels = nullptr;
     mPitch = 0;
+    alignCenter = false;
 }
-Texture::Texture( std::string path ) : Texture()
+Texture::Texture( std::string path )
 {
-    loadFromFile( path );
+    mTexture = nullptr;
+    mWidth = 0;
+    mHeight = 0;
+    mPixels = nullptr;
+    mPitch = 0;
+    alignCenter = false;
+    loadFromFile( std::move(path) );
 }
 Texture::~Texture()
 {
-    free();
+    SDL_DestroyTexture( mTexture );
 }
 
 bool Texture::loadFromFile( std::string path )
 {
-    free();
-    
     //The final texture
     SDL_Texture* newTexture = nullptr;
     
@@ -130,20 +137,6 @@ bool Texture::loadFromRenderedText( TTF_Font *gFont , std::string textureText , 
 }
 
 
-void Texture::free()
-{
-    //Free texture if it exists
-    if( mTexture != nullptr )
-    {
-        SDL_DestroyTexture( mTexture );
-        mTexture = nullptr;
-        mWidth = 0;
-        mHeight = 0;
-        mPixels = nullptr;
-        mPitch = 0;
-    }
-}
-
 void Texture::setColor( Uint8 red, Uint8 green, Uint8 blue )
 {
     //Modulate texture rgb
@@ -162,20 +155,27 @@ void Texture::setAlpha( Uint8 alpha )
     SDL_SetTextureAlphaMod( mTexture, alpha );
 }
 
-void Texture::render( float x, float y, SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip flip , float scale)
+void Texture::setAlignCenter(bool center)
 {
-    //Set rendering space and render to screen
-    SDL_Rect renderQuad = { (int)x, (int)y, mWidth, mHeight };
-    
-    //Set clip rendering dimensions
-    if( clip != nullptr )
+    this->alignCenter = center;
+}
+
+void Texture::draw(float x, float y, float scale, SDL_Rect *clip, double angle, SDL_Point *center)
+{
+    if (clip==nullptr)
     {
-        renderQuad.w = (int)((double)clip->w * scale);
-        renderQuad.h = (int)((double)clip->h * scale);
+        clip = new SDL_Rect{0,0,mWidth,mHeight};
     }
+
+    //Set rendering space and render to screen
+    if (alignCenter)
+        x = x - scale*mWidth/2;
+    SDL_Rect renderQuad = { (int)x, (int)y, int(float(clip->w)*scale), int(float(clip->h)*scale) };
+
+
     
     //Render to screen
-    SDL_RenderCopyEx( Game::renderer , mTexture, clip, &renderQuad, angle, center, flip );
+    SDL_RenderCopyEx( Game::renderer , mTexture, clip, &renderQuad, angle, center, SDL_FLIP_NONE );
 }
 
 int Texture::getWidth()

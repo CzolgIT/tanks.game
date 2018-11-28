@@ -4,6 +4,7 @@ TextureManager::TextureManager()
 {
     // user interface
     this->button = new Texture( "assets/button.png" );
+    this->button->setAlignCenter( true );
 
     // map elements
     this->wall = new Texture( "assets/block2.png" );

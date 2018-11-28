@@ -92,11 +92,11 @@ void Menu::updateGUI()
     if (button[2] != nullptr) delete(button[2]);
     if (button[3] != nullptr) delete(button[3]);
 
-    title[0] = new TextStatic( "Tanks" , 2.3 , 6 , 0.2 );
-    title[1] = new TextStatic( "Game" , 8.3 , 6 , 0.2 );
+    title[0] = new TextStatic( "Tanks" , 32 , 2.3 , 6 , 0.2 );
+    title[1] = new TextStatic( "Game" , 32 , 8.3 , 6 , 0.2 );
 
-    button[0] = new Button( "multiplayer" , 17.5 );
-    button[1] = new Button( "singleplayer" , 21.5 );
-    button[2] = new Button( "settings" , 25.5 );
-    button[3] = new Button( "exit" , 31 );
+    button[0] = new Button( "multiplayer" , 32 , 17.5 );
+    button[1] = new Button( "singleplayer" , 32 , 21.5 );
+    button[2] = new Button( "settings" , 32 , 25.5 );
+    button[3] = new Button( "exit" , 32 , 31 );
 }

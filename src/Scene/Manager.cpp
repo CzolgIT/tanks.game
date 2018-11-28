@@ -85,35 +85,38 @@ void Manager::CheckColliders()
     {
         for (int j = i+1; j < gameObjects.size(); j++)
         {
-            double diagonal1 = sqrt( pow(gameObjects[i]->getW()/2,2) + pow(gameObjects[i]->getH()/2,2) );
-            double diagonal2 = sqrt( pow(gameObjects[j]->getW()/2,2) + pow(gameObjects[j]->getH()/2,2) );
-            double distance = sqrt( pow(gameObjects[j]->getX()-gameObjects[i]->getX(),2) + pow(gameObjects[j]->getY()-gameObjects[i]->getY(),2) );
-
-            if ( (distance < diagonal1 + diagonal2) && !(gameObjects[i]->getType()==STATIC && gameObjects[j]->getType()==STATIC) )
+            if (!(gameObjects[i]->getType()==STATIC && gameObjects[j]->getType()==STATIC))
             {
-                col1 = gameObjects[i]->getCollider();
-                col2 = gameObjects[j]->getCollider();
+                double diagonal1 = sqrt( pow(gameObjects[i]->getW()/2,2) + pow(gameObjects[i]->getH()/2,2) );
+                double diagonal2 = sqrt( pow(gameObjects[j]->getW()/2,2) + pow(gameObjects[j]->getH()/2,2) );
+                double distance = sqrt( pow(gameObjects[j]->getX()-gameObjects[i]->getX(),2) + pow(gameObjects[j]->getY()-gameObjects[i]->getY(),2) );
 
-                Vector2D col = Collider::areColliding(col1, col2);
-                if (col.x != 0 || col.y != 0) {
+                if ( (distance < diagonal1 + diagonal2) )
+                {
+                    col1 = gameObjects[i]->getCollider();
+                    col2 = gameObjects[j]->getCollider();
 
-                    if (auto *p = dynamic_cast<Player *>(gameObjects[i])) {
-                        if (auto *b = dynamic_cast<Bullet *>(gameObjects[j])) {
+                    Vector2D col = Collider::areColliding(col1, col2);
+                    if (col.x != 0 || col.y != 0) {
 
-                        } else{
-                             p->PushOut(col * 2);
+                        if (auto *p = dynamic_cast<Player *>(gameObjects[i])) {
+                            if (auto *b = dynamic_cast<Bullet *>(gameObjects[j])) {
+
+                            } else{
+                                p->PushOut(col * 2);
+                            }
+                        } else if (auto *p = dynamic_cast<Player *>(gameObjects[j])) {
+                            if (auto *b = dynamic_cast<Bullet *>(gameObjects[i])) {
+
+                            } else{
+                                p->PushOut(col * 2);
+
+                            }
+                        } else if (auto *b = dynamic_cast<Bullet *>(gameObjects[i])) {
+                            b->setToBeDestroyed();
+                        } else if (auto *b = dynamic_cast<Bullet *>(gameObjects[j])) {
+                            b->setToBeDestroyed();
                         }
-                    } else if (auto *p = dynamic_cast<Player *>(gameObjects[j])) {
-                        if (auto *b = dynamic_cast<Bullet *>(gameObjects[i])) {
-
-                        } else{
-                              p->PushOut(col * 2);
-
-                        }
-                    } else if (auto *b = dynamic_cast<Bullet *>(gameObjects[i])) {
-                        b->setToBeDestroyed();
-                    } else if (auto *b = dynamic_cast<Bullet *>(gameObjects[j])) {
-                        b->setToBeDestroyed();
                     }
                 }
             }
