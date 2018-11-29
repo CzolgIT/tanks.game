@@ -12,7 +12,6 @@ public:
     void draw();
     void loadDisplayModes();
     std::string strActualDisplayMode();
-    void updateGUI();
 
 private:
 
@@ -26,6 +25,8 @@ private:
     bool newFullscreen;
     float newQuality;
     bool newVsync;
+    
+    void updateGUI();
 
 };
 

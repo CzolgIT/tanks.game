@@ -59,10 +59,11 @@
 #include "GameObject/Wall.h"
 
 #include "Scene/_Scene.h"
+#include "Scene/_Menu.h"
 #include "Scene/Settings.h"
 #include "Scene/SettingsVideo.h"
 #include "Scene/Room.h"
-#include "Scene/Menu.h"
+#include "Scene/MainMenu.h"
 #include "Scene/Manager.h"
 
 #include "Map.h"

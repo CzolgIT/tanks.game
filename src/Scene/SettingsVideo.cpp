@@ -130,12 +130,12 @@ void SettingsVideo::draw()
 
     if (info!= nullptr) info->draw();
 
-    button[0]->draw( selected == 1 , true , true );
-    button[1]->draw( selected == 2 , Game::configuration->isFullscreen() , !Game::configuration->isFullscreen() );
-    button[2]->draw( selected == 3 , Game::configuration->getQuality()>0 , Game::configuration->getQuality()<1 );
-    button[3]->draw( selected == 4 , Game::configuration->getVsync() , !Game::configuration->getVsync() );
-    button[4]->draw( selected == 5 , true , true );
-    button[5]->draw( selected == 6 );
+    button[0]->draw();// selected == 1 , true , true );
+    button[1]->draw();// selected == 2 , Game::configuration->isFullscreen() , !Game::configuration->isFullscreen() );
+    button[2]->draw();// selected == 3 , Game::configuration->getQuality()>0 , Game::configuration->getQuality()<1 );
+    button[3]->draw();// selected == 4 , Game::configuration->getVsync() , !Game::configuration->getVsync() );
+    button[4]->draw();// selected == 5 , true , true );
+    button[5]->draw();// selected == 6 );
 
     Game::debugger->draw();
     SDL_RenderPresent( Game::renderer );
@@ -182,10 +182,10 @@ void SettingsVideo::updateGUI()
     if (Game::configuration->getQuality() == 1) q="high";
 
     title = new TextStatic( "Video" , 32 , 3 , 4 , 0.2 );
-    button[0] = new Button( "resolution" , 32 , 9.5 , strActualDisplayMode());
-    button[1] = new Button( "fullscreen" , 32 , 13.5 , Game::configuration->isFullscreen() ? "yes" : "no" );
-    button[2] = new Button( "quality" , 32 , 17.5 , q );
-    button[3] = new Button( "vsync" , 32 , 21.5 , Game::configuration->getVsync() ? "yes" : "no" );
-    button[4] = new Button( "max fps" , 32 , 25.5 , "option disabled");
-    button[5] = new Button( "back" , 32 , 30 );
+    button[0] = new Button( "resolution" , 32 , 9.5 , -10 ,strActualDisplayMode());
+    button[1] = new Button( "fullscreen" , 32 , 13.5 , -10 ,Game::configuration->isFullscreen() ? "yes" : "no" );
+    button[2] = new Button( "quality" , 32 , 17.5 , -10 ,q );
+    button[3] = new Button( "vsync" , 32 , 21.5 , -10 ,Game::configuration->getVsync() ? "yes" : "no" );
+    button[4] = new Button( "max fps" , 32 , 25.5 , -10 ,"option disabled");
+    button[5] = new Button( "back" , 32 , 30 , 3 );
 }

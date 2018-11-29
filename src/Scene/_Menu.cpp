@@ -1,21 +1,12 @@
 #include "Main.h"
 
-Settings::Settings() : _Scene()
+_Menu::_Menu( int maxSelected ) : _Scene()
 {
-    selected=1;
-
-    title = new TextStatic( "Settings" , 32 , 5 , 4 , 0.2 );
-
-    button[0] = new Button( "video" , 32 , 13.5 , 4 );
-    button[1] = new Button( "audio" , 32 , 17.5 , 3 );
-    button[2] = new Button( "controller" , 32 , 21.5 , 3 );
-    button[3] = new Button( "game" , 32 , 25.5 , 3 );
-    button[4] = new Button( "back" , 32 , 31 , 3 );
-
-    button[selected-1]->setActive(true);
+    this->selected = 1;
+    this->maxSelected = maxSelected;
 }
 
-void  Settings::handleEvents()
+void  _Menu::handleEvents()
 {
     while( SDL_PollEvent( &eventHandler ) != 0 )
     {
@@ -34,10 +25,12 @@ void  Settings::handleEvents()
                     running = false;
                     break;
                 case SDLK_RETURN:
-                    if (selected == 5)
-                        flagReturn = 0;
+
+                    if (selected == maxSelected)
+                        flagReturn = flagPrevious ;
                     else
-                        flagReturn = 3+selected;
+                        flagReturn = elements[0]->getFlag();
+
                     running = false;
                     break;
                 case SDLK_UP:
@@ -55,27 +48,19 @@ void  Settings::handleEvents()
     }
 }
 
-void Settings::draw()
+void _Menu::draw()
 {
     SDL_SetRenderDrawColor( Game::renderer, 215, 226, 175, 0xFF );
     SDL_RenderClear( Game::renderer );
 
-    title->draw();
-    button[0]->draw();
-    button[1]->draw();
-    button[2]->draw();
-    button[3]->draw();
-    button[4]->draw();
+    for( _Element* e : elements ) e->draw();
 
     Game::debugger->draw();
     SDL_RenderPresent( Game::renderer );
 }
-void Settings::updateGUI()
+
+void _Menu::updateGUI()
 {
-    title->updateScale();
-    button[0]->updateScale();
-    button[1]->updateScale();
-    button[2]->updateScale();
-    button[3]->updateScale();
-    button[4]->updateScale();
+    for( _Element* e : elements ) e->updateScale();
 }
+

@@ -16,7 +16,8 @@ private:
     int selected;
     TextStatic* title;
     Button* button[5];
-
+    void updateGUI();
+    
 };
 
 #endif

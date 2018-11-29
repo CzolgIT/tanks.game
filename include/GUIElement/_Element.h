@@ -9,7 +9,8 @@ public:
 
     _Element( std::string name , float x , float y ); // x=(0-64) y=(0-36)
     virtual void updateScale(){};
-    virtual void draw(){}
+    virtual void draw(){};
+    virtual int getFlag(){};
 
 protected:
 

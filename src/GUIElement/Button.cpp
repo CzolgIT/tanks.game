@@ -1,35 +1,45 @@
 #include "Main.h"
 
-Button::Button( std::string name , float x , float y , std::string subtext ) : _Element( name , x , y )
+Button::Button( std::string name , float x , float y , int flag , std::string subtext ) : _Element( name , x , y )
 {
-    this->clip = new SDL_Rect{0,0,Game::textureManager->button->getWidth(),Game::textureManager->button->getHeight()};
-    float add =0;
+    this->flag = flag;
+
+    this->active = false;
+    this->leftArrow = false;
+    this->rightArrow = false;
 
     if (!subtext.empty())
     {
-        add = (0.125);
         this->comment[0] = new TextStatic( subtext , x , y + 2 , 1 );
-        this->comment[1] = new TextStatic( subtext , x , y + 1.9 , 1.1 );
-        this->change[0] = new TextStatic( "<" , x-6 , y + 1.9 , 1 );
-        this->change[1] = new TextStatic( ">" , x+6 , y + 1.9 , 1 );
-    }
-    this->text[0] = new TextStatic( name , x , y + 0.9 -add*4 , 1.6-add );
-    this->text[1] = new TextStatic( "+ " + name + " +" , x , y + 0.8-add*4 , 1.7-add );
+        this->comment[1] = new TextStatic( subtext , x , y + float(1.9) , 1.1 );
+        this->change[0] = new TextStatic( "<" , x-6 , y + float(1.9) , 1 );
+        this->change[1] = new TextStatic( ">" , x+6 , y + float(1.9) , 1 );
 
+        this->text[0] = new TextStatic( name , x , y + float(0.5) , 1.3 );
+        this->text[1] = new TextStatic( "+ " + name + " +" , x , y + float(0.4) , 1.4 );
+    }
+    else
+    {
+        this->comment[0] = nullptr;
+        this->comment[1] = nullptr;
+        this->change[0] = nullptr;
+        this->change[1] = nullptr;
+        this->text[0] = new TextStatic( name , x , y + float(0.9) , 1.6 );
+        this->text[1] = new TextStatic( "+ " + name + " +" , x , y + float(0.8), 1.7 );
+    }
 }
 
-void Button::draw( bool active , bool prev , bool next )
+void Button::draw()
 {
     Game::textureManager->button->draw(x * xScale, y * yScale, yScale/85 );
-
-    if(!subtext.empty())
+    if(comment[0] != nullptr)
     {
         if (active)
         {
             comment[1]->draw();
-            if (prev)
+            if (leftArrow)
                 this->change[0]->draw();
-            if (next)
+            if (rightArrow)
                 this->change[1]->draw();
         }
         else
@@ -44,4 +54,20 @@ void Button::updateScale()
 {
     this->xScale = float(Game::configuration->getDisplayMode()->w)/64;
     this->yScale = float(Game::configuration->getDisplayMode()->h)/36;
+
+    if (comment[0] != nullptr)
+    {
+        this->comment[0]->updateScale();
+        this->comment[1]->updateScale();
+        this->change[0]->updateScale();
+        this->change[1]->updateScale();
+    }
+    this->text[0]->updateScale();
+    this->text[1]->updateScale();
 }
+
+void Button::setActive(bool a) { this->active = a; }
+void Button::setLeftArrow(bool l) { this->leftArrow = l; }
+void Button::setRightArrow(bool r) { this->rightArrow = r; }
+
+int Button::getFlag() { return flag; }

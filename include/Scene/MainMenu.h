@@ -1,13 +1,13 @@
-#ifndef Menu_h
-#define Menu_h
+#ifndef MainMenu_h
+#define MainMenu_h
 
 #include "Main.h"
 
-class Menu : public _Scene
+class MainMenu : public _Scene
 {
 public:
 
-    Menu();
+    MainMenu();
     void handleEvents();
     void draw();
 

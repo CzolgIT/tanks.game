@@ -8,24 +8,28 @@ class Button : public _Element
 {
 public:
 
-    Button( std::string name , float x , float y , std::string comm="" );
+    Button( std::string name , float x , float y , int flag , std::string comm="" );
 
-    void draw( bool active , bool prev=false , bool next=false );
+    void draw();
     void updateScale();
-    //void setComment( std::string str );
+
+    int getFlag();
+
+    void setActive(bool a);
+    void setLeftArrow(bool l);
+    void setRightArrow(bool r);
 
 private:
 
-    std::string subtext;
-
+    int flag;
 
     TextStatic *text[2];
     TextStatic *comment[2];
     TextStatic *change[4];
 
-    bool extended;
-    float scale;
-    SDL_Rect* clip;
+    bool active;
+    bool leftArrow;
+    bool rightArrow;
 
 };
 

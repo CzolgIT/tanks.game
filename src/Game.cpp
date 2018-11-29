@@ -21,7 +21,7 @@ Game::Game()
     debugger = new Debugger();
     stepTimer = new Timer();
     stepTimer->start();
-    currentScene = new Menu();
+    currentScene = new MainMenu();
     running = true;
 }
 
@@ -37,8 +37,8 @@ void Game::Update()
     int flag = currentScene->getFlag();
     switch( flag )
     {
-        case 0: // Menu
-            currentScene = new Menu();
+        case 0: // Main Menu
+            currentScene = new MainMenu();
             break;
         case 1: // Multiplayer
             currentScene = new Room();
@@ -62,7 +62,7 @@ void Game::Update()
             currentScene = new Settings();
             break;
         case 8: // Multiplayer-run
-            currentScene = new Menu();
+            currentScene = new MainMenu();
             break;
         default:
             if (netManager!=nullptr)
