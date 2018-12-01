@@ -3,20 +3,11 @@
 
 #include "Main.h"
 
-class MainMenu : public _Scene
+class MainMenu : public _Menu
 {
 public:
 
     MainMenu();
-    void handleEvents();
-    void draw();
-
-private:
-
-    int selected;
-    TextStatic* title[2];
-    Button* button[4];
-    void updateGUI();
 
 };
 

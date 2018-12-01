@@ -2,14 +2,22 @@
 
 _Menu::_Menu( int maxSelected ) : _Scene()
 {
-    this->selected = 1;
-    this->maxSelected = maxSelected;
+    this->selected = 0;
+    this->maxSelected = maxSelected-1;
 }
 
 void  _Menu::handleEvents()
 {
     while( SDL_PollEvent( &eventHandler ) != 0 )
     {
+        if( eventHandler.type == SDL_WINDOWEVENT )
+        {
+            if (eventHandler.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
+            {
+                Game::configuration->resizeWindow();
+                updateGUI();
+            }
+        }
         if( eventHandler.type == SDL_QUIT )
         {
             running = false;
@@ -18,32 +26,29 @@ void  _Menu::handleEvents()
         }
         if( eventHandler.type == SDL_KEYDOWN && eventHandler.key.repeat == 0 )
         {
+            elements[selected]->setActive(false);
             switch( eventHandler.key.keysym.sym )
             {
                 case SDLK_ESCAPE:
-                    flagReturn = 0;
+                    flagReturn = elements[maxSelected]->getFlag();
                     running = false;
                     break;
                 case SDLK_RETURN:
-
-                    if (selected == maxSelected)
-                        flagReturn = flagPrevious ;
-                    else
-                        flagReturn = elements[0]->getFlag();
-
+                    flagReturn = elements[selected]->getFlag();
                     running = false;
                     break;
                 case SDLK_UP:
-                    if (selected == 1 )
-                        selected = 5;
+                    if (selected == 0 )
+                        selected = maxSelected;
                     else selected--;
                     break;
                 case SDLK_DOWN:
-                    if (selected == 5 )
-                        selected = 1;
+                    if (selected == maxSelected )
+                        selected = 0;
                     else selected++;
                     break;
             }
+            elements[selected]->setActive(true);
         }
     }
 }

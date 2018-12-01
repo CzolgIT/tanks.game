@@ -11,9 +11,7 @@ public:
     void handleEvents();
     void draw();
 
-private:
-
-    int flagPrevious;
+protected:
 
     int selected;
     int maxSelected;

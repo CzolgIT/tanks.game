@@ -11,6 +11,7 @@ public:
     virtual void updateScale(){};
     virtual void draw(){};
     virtual int getFlag(){};
+    virtual void setActive( bool a ){};
 
 protected:
 
