@@ -10,8 +10,10 @@ public:
     _Element( std::string name , float x , float y ); // x=(0-64) y=(0-36)
     virtual void updateScale(){};
     virtual void draw(){};
-    virtual int getFlag(){};
+    virtual int getFlag(){ return 0; };
+
     virtual void setActive( bool a ){};
+    virtual void setComment( std::string comment ){};
 
 protected:
 

@@ -12,24 +12,17 @@ public:
 
     void draw();
     void updateScale();
+    void setComment( std::string comment );
 
     int getFlag();
-
     void setActive(bool a);
-    void setLeftArrow(bool l);
-    void setRightArrow(bool r);
 
 private:
 
     int flag;
-
     TextStatic *text[2];
     TextStatic *comment[2];
-    TextStatic *change[4];
-
     bool active;
-    bool leftArrow;
-    bool rightArrow;
 
 };
 

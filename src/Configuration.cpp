@@ -69,8 +69,10 @@ void Configuration::setFullscreen( bool fullscreen )
         SDL_SetWindowFullscreen( window, SDL_FALSE );
         SDL_GetWindowSize(window, &this->displayMode->w, &this->displayMode->h);
         this->scale = ((float)this->displayMode->w + (float)this->displayMode->h) / 2000;
+        SDL_SetWindowPosition( window , 0 , 0 );
     }
     this->fullscreen = fullscreen;
+    setWindowSize();
     writeFile();
 }
 void Configuration::setAcceleration( bool acceleration )

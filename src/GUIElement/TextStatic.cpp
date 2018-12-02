@@ -1,6 +1,8 @@
+#include <utility>
+
 #include "Main.h"
 
-TextStatic::TextStatic( std::string name , float x , float y , float size , float shadow ) : _Element( name , x , y )
+TextStatic::TextStatic( std::string name , float x , float y , float size , float shadow ) : _Element( std::move(name), x , y )
 {
     this->size = size;
     this->shadow = shadow;

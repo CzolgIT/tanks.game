@@ -8,8 +8,12 @@ class _Menu : public _Scene
 public:
 
     _Menu( int maxSelected );
+
     void handleEvents();
     void draw();
+
+    virtual void actionLeft( int s ){};
+    virtual void actionRight( int s ){};
 
 protected:
 

@@ -3,30 +3,22 @@
 
 #include "Main.h"
 
-class SettingsVideo : public _Scene
+class SettingsVideo : public _Menu
 {
 public:
 
     SettingsVideo();
-    void handleEvents();
-    void draw();
-    void loadDisplayModes();
+
+    void actionLeft( int s );
+    void actionRight( int s );
+
     std::string strActualDisplayMode();
+    std::string strActualQuality();
 
 private:
 
     std::vector<SDL_DisplayMode*> displayModeList;
-    int selected;
-    TextStatic* title;
-    TextStatic* info;
-    Button* button[6];
-
     SDL_DisplayMode* newDisplayMode;
-    bool newFullscreen;
-    float newQuality;
-    bool newVsync;
-    
-    void updateGUI();
 
 };
 

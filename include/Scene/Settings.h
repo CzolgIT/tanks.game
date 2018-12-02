@@ -3,21 +3,12 @@
 
 #include "Main.h"
 
-class Settings : public _Scene
+class Settings : public _Menu
 {
 public:
 
     Settings();
-    void handleEvents();
-    void draw();
 
-private:
-
-    int selected;
-    TextStatic* title;
-    Button* button[5];
-    void updateGUI();
-    
 };
 
 #endif

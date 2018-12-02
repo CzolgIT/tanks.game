@@ -47,6 +47,12 @@ void  _Menu::handleEvents()
                         selected = 0;
                     else selected++;
                     break;
+                case SDLK_LEFT:
+                    actionLeft(selected);
+                    break;
+                case SDLK_RIGHT:
+                    actionRight(selected);
+                    break;
             }
             elements[selected]->setActive(true);
         }
