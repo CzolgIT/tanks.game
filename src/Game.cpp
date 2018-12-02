@@ -34,9 +34,9 @@ void Game::Update()
         case 1: // Multiplayer
         {
             currentScene = new Room(renderer, text, configuration , netManager);
-            Player player;
+            Manager *manager = new Manager(renderer, text, configuration);
             Uint32 globalTime = 0;
-            netManager->connect(player,"127.0.0.1",7777,globalTime);
+            netManager->connect(manager->getPlayer(),"127.0.0.1",7777,globalTime);
             break;
         }
         case 2: // Singleplayer

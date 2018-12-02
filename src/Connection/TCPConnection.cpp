@@ -28,7 +28,7 @@ bool TCPConnection::connectToServer(Player& player, std::string host, Uint16 por
     // Establish connection
     socket = SDLNet_TCP_Open(&ipAddress);
     if(!socket){
-        std::cout << "wrong adress: "<< SERVERIP << " : " << SERVERPORT << "\n";
+        std::cout << "wrong adress: "<< host << " : " << port << "\n";
         //SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,"SDLNet_TCP_Open error\n",SDLNet_GetError(),nullptr);
         //std::cerr << "SDLNet_TCP_Open error: " << SDLNet_GetError() << "\n";
         return false;
@@ -135,9 +135,6 @@ std::unique_ptr<BasePacket> TCPConnection::getNextPacket() {
                 int bytesRemaining;
                 switch(*uniPacket.getData())
                 {
-                    case PT_HEARTBEAT:
-                        //hearbeat
-                        break;
                     case PT_JOIN_REQUEST:
                         bytesRemaining = JOINREQUEST_PACKET_SIZE - 1;
                         break;

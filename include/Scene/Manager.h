@@ -12,6 +12,8 @@ public:
     void draw( float frameTime );
     void CheckColliders();
 
+    Player & getPlayer();
+
 private:
 
     Background* background = nullptr;
