@@ -4,7 +4,7 @@ Letter::Letter( char character , std::string path , SDL_Color color , int size )
 {
     this->character = character;
     TTF_Font* font = TTF_OpenFont( path.c_str() , size );
-    std::string let;
+    std::string let = "x";
     let[0] = character;
     SDL_Surface* textSurface = TTF_RenderText_Solid( font, let.c_str() , color );
     this->texture = nullptr;
