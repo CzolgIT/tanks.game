@@ -12,13 +12,8 @@ public:
     void actionLeft( int s );
     void actionRight( int s );
 
-    std::string strActualDisplayMode();
     std::string strActualQuality();
 
-private:
-
-    std::vector<SDL_DisplayMode*> displayModeList;
-    SDL_DisplayMode* newDisplayMode;
 
 };
 
