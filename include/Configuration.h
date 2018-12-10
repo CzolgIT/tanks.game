@@ -11,17 +11,19 @@ public:
     void init( SDL_Window* window );
 
     void setQuality( float quality );
-    void setDisplayMode( SDL_DisplayMode* displayMode );
-        void setWindowSize();
+    //void setDisplayMode( SDL_DisplayMode* displayMode );
+        //void setWindowSize();
     void setFullscreen( bool fullscreen );
     void setAcceleration( bool acceleration );
     void setVsync( bool vsync );
+    void resizeWindow();
 
     float getQuality();
     SDL_DisplayMode* getDisplayMode();
     bool isFullscreen();
     bool getAcceleration();
     bool getVsync();
+    bool getDebug();
 
         Uint32 getRendererFlags();
         float getScale();
@@ -35,6 +37,7 @@ private:
     bool fullscreen;
     bool acceleration;
     bool vsync;
+    bool debug;
 
         Uint32 rendererFlags;
         float scale;

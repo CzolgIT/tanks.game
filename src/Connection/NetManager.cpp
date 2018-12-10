@@ -3,6 +3,7 @@
 NetManager::NetManager() : senderThread(nullptr)
 {
     SDLNet_Init();
+    connected = false;
 }
 
 NetManager::~NetManager() {

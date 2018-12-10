@@ -1,23 +1,21 @@
 #include "Main.h"
 
-TankSprite::TankSprite( SDL_Renderer* r , int color )
+TankSprite::TankSprite( int color )
 {
-    renderer = r;
+    Texture* texTracks = Game::textureManager->tracks;
+    //texTower = Game::textureManager->tower[color];
 
-    Texture* texTracks = new Texture( renderer , "assets/tank/tank_tracks.png" );
-    texTower = new Texture( renderer , std::string("assets/tank/tower")+std::to_string(color)+std::string(".png") );
-
-    Texture* texture = new Texture( renderer , "assets/tex_tank.png" );
+    Texture* texture = new Texture( "assets/tex_tank.png" );
  
     for (int i=0; i<5; i++)
     {
-        spriteTrackLeft[i] = new Sprite( renderer , texTracks , 2+i*35 , 2 , 33 , 158 , 66*TANKSCALE , 80*TANKSCALE );
-        spriteTrackRight[i] = new Sprite( renderer , texTracks , 2+i*35 , 2 , 33 , 158 , -33*TANKSCALE , 80*TANKSCALE );
+        spriteTrackLeft[i] = new Sprite( texTracks , 2+i*35 , 2 , 33 , 158 , 66*TANKSCALE , 80*TANKSCALE );
+        spriteTrackRight[i] = new Sprite( texTracks , 2+i*35 , 2 , 33 , 158 , -33*TANKSCALE , 80*TANKSCALE );
     }
-    spriteBody = new Sprite( renderer , texture , 96+(color>2 ? 122 : 0) , ((color+1)%2)*171 , 122 , 171 , 61*TANKSCALE , 84*TANKSCALE );
-    spriteTower = new Sprite( renderer , texture , 0 , (color-1)*128 , 96 , 128 , 48*TANKSCALE , 64*TANKSCALE );
-    spriteBarrel = new Sprite( renderer , texture , 42+(54*color) , 171+171 , 54 , 131 , 27*TANKSCALE , 105*TANKSCALE );
-    step = 0;
+    spriteBody = new Sprite( texture , 96+(color>2 ? 122 : 0) , ((color+1)%2)*171 , 122 , 171 , 61*TANKSCALE , 84*TANKSCALE );
+    spriteTower = new Sprite( texture , 0 , (color-1)*128 , 96 , 128 , 48*TANKSCALE , 64*TANKSCALE );
+    spriteBarrel = new Sprite( texture , 42+(54*color) , 171+171 , 54 , 131 , 27*TANKSCALE , 105*TANKSCALE );
+    step = 1;
 }
 
 void TankSprite::draw( int x , int y , int dir , int dirT , int move )

@@ -30,18 +30,7 @@
 #include "Collisions/Vector2D.h"
 #include "Collisions/Projection.h"
 #include "Collisions/Collider.h"
-#include "GameObject/GameObject.h"
-#include "Graphics/Texture.h"
-#include "Graphics/Text.h"
-#include "Map.h"
-#include "Timer.h"
-#include "Graphics/Sprite.h"
-#include "Graphics/TankSprite.h"
-#include "GameObject/Player.h"
-#include "GameObject/Bullet.h"
-#include "Graphics/Background.h"
-#include "GameObject/Wall.h"
-#include "Configuration.h"
+
 #include "Connection/BasePacket.h"
 #include "Connection/HeartbeatPacket.h"
 #include "Connection/JoinResponsePacket.h"
@@ -52,27 +41,42 @@
 #include "Connection/UDPConnection.h"
 #include "Connection/TCPConnection.h"
 #include "Connection/NetManager.h"
-#include "Scene/Scene.h"
+
+#include "Graphics/Texture.h"
+#include "Graphics/Debugger.h"
+#include "Graphics/TextureManager.h"
+#include "Graphics/Sprite.h"
+#include "Graphics/TankSprite.h"
+#include "Graphics/Background.h"
+
+#include "Text/Letter.h"
+#include "Text/Font.h"
+#include "Text/TextManager.h"
+
+#include "GUIElement/_Element.h"
+#include "GUIElement/TextStatic.h"
+#include "GUIElement/Button.h"
+
+#include "GameObject/_GameObject.h"
+#include "GameObject/Player.h"
+#include "GameObject/Bullet.h"
+#include "GameObject/Wall.h"
+
+#include "Scene/_Scene.h"
+#include "Scene/_Menu.h"
 #include "Scene/Settings.h"
+#include "Scene/SettingsVideo.h"
 #include "Scene/Room.h"
-#include "Scene/Menu.h"
+#include "Scene/MainMenu.h"
 #include "Scene/Manager.h"
+
+#include "Map.h"
+#include "Timer.h"
+#include "Configuration.h"
 #include "Game.h"
 
 #define delete_object(x) {delete x; x = nullptr;}
 
-// SDL vars
-const int ACCELERATION = 0x00000002;
-const int VSYNC = 0x00000004;
-
-// Screen position and dimensions
-const int SCR_X = 300;
-const int SCR_Y = 300;
-const int SCR_W = 800;
-const int SCR_H = 600;
-
-// Resources
-const char FONT_FILE[] = "assets/font.ttf";
 const char NICKNAME[] = "Player";
 
 #define SERVERIP "153.19.7.230"

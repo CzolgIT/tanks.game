@@ -12,15 +12,19 @@ public:
     void Update();
     bool isRunning() { return running; }
 
+    static SDL_Renderer* renderer;
+    static NetManager* netManager;
+    static Configuration* configuration;
+    static TextureManager* textureManager;
+    static Debugger* debugger;
+    static TextManager* textManager;
+    static float stepTime;
+
 private:
 
     SDL_Window* window;
-    SDL_Renderer* renderer;
-    Configuration* configuration;
     Timer* stepTimer;
-    Text* text;
-    NetManager* netManager;
-    Scene * currentScene;
+    _Scene * currentScene;
     bool running;
 
 };

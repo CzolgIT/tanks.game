@@ -1,9 +1,7 @@
 #include "Main.h"
 
-Player::Player( SDL_Renderer* r , Text* t , float x , float y , int color ) : GameObject(r,x,y,(int)((double)170*TANKSCALE),(int)((double)130*TANKSCALE) , DYNAMIC )
+Player::Player( float x , float y , int color ) : _GameObject( x,y,(int)((double)170*TANKSCALE),(int)((double)130*TANKSCALE) , DYNAMIC )
 {
-    text = t;
-
     direction=90;
     towerDirection=90;
 
@@ -11,11 +9,10 @@ Player::Player( SDL_Renderer* r , Text* t , float x , float y , int color ) : Ga
     directionSpeed = 0;
     towerSpeed = 0;
 
-    sprite = new TankSprite( renderer , color );
+    sprite = new TankSprite( color );
     collider = new Collider(x,y,width,height, direction);
 
     blocked = {0,0};
-
 }
 
 void Player::handleEvent( SDL_Event& e )
@@ -131,14 +128,14 @@ void Player::draw( int x0 , int y0 )
     }
     */
 
-    sprite->draw( SCR_W/2 , SCR_H/2 , iDirection , iTowerDirection , (int)moveSpeed );
+    sprite->draw( Game::configuration->getDisplayMode()->w/2 , Game::configuration->getDisplayMode()->h/2 , iDirection , iTowerDirection , (int)moveSpeed );
 
-    text->draw( "x: " + std::to_string( x ) ,  150 , 500 );
-    text->draw( "y: " + std::to_string( y ) ,  150 , 530 );
-    text->draw( "sp: " + std::to_string( moveSpeed ) ,  150 , 560 );
+    Game::textManager->draw( "x: " + std::to_string( x ) ,  150 , 500 );
+    Game::textManager->draw( "y: " + std::to_string( y ) ,  150 , 530 );
+    Game::textManager->draw( "sp: " + std::to_string( moveSpeed ) ,  150 , 560 );
 
-    text->draw( "xblock: " + std::to_string( blocked.x ) ,  550 , 500 );
-    text->draw( "yblock: " + std::to_string( blocked.y ) ,  550 , 530 );
+    Game::textManager->draw( "xblock: " + std::to_string( blocked.x ) ,  550 , 500 );
+    Game::textManager->draw( "yblock: " + std::to_string( blocked.y ) ,  550 , 530 );
     blocked.x =0;
     blocked.y = 0;
 }
@@ -175,8 +172,8 @@ SDL_Point Player::shootPosition()
 {
 
     SDL_Point punkt;
-    punkt.x = (int)(x+(cos(iDirection *M_PI/180) * -50));
-    punkt.y = (int)(y+(sin(iDirection *M_PI/180) * -50));
+    punkt.x = (int)(x+(cos(iTowerDirection *M_PI/180) * -50));
+    punkt.y = (int)(y+(sin(iTowerDirection *M_PI/180) * -50));
     return punkt;
 }
 

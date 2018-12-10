@@ -3,13 +3,13 @@
 
 #include "Main.h"
 
-class Manager : public Scene
+class Manager : public _Scene
 {
 public:
 
-    Manager(SDL_Renderer * r, Text* t , Configuration* c);
-    void handleEvents( float frameTime );
-    void draw( float frameTime );
+    Manager();
+    void handleEvents();
+    void draw();
     void CheckColliders();
 
     Player & getPlayer();
@@ -17,7 +17,7 @@ public:
 private:
 
     Background* background = nullptr;
-    std::vector<GameObject*> gameObjects;
+    std::vector<_GameObject*> gameObjects;
     Player* player;
 
 };

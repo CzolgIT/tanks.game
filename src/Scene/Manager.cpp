@@ -1,40 +1,39 @@
 #include "Main.h"
 
-Manager::Manager(SDL_Renderer * r, Text* t , Configuration* c): Scene( r , t , c )
+Manager::Manager(): _Scene()
 {
-    background = new Background( renderer );
-    player = new Player( renderer , text , 128 , 128 , 1 );
+    background = new Background();
+    player = new Player( 128 , 128 , 1 );
     gameObjects.push_back(player);
-    auto map = new Map( renderer );
+    auto map = new Map();
     map->loadFromFile( &gameObjects );
     std::cout << "Zaczyna sie gra" << std::endl;
 }
 
-void Manager::draw( float frameTime )
+void Manager::draw()
 {
-    SDL_SetRenderDrawColor( renderer, 0xFF, 0xFF, 0xFF, 0xFF );
-    SDL_RenderClear( renderer );
+    SDL_SetRenderDrawColor( Game::renderer, 0xFF, 0xFF, 0xFF, 0xFF );
+    SDL_RenderClear( Game::renderer );
 
-    auto x0 = (int)((float)SCR_W/2-player->getX());
-    auto y0 = (int)((float)SCR_H/2-player->getY());
+    auto x0 = (int)((float)Game::configuration->getDisplayMode()->w/2-player->getX());
+    auto y0 = (int)((float)Game::configuration->getDisplayMode()->h/2-player->getY());
 
     background->draw( x0 , y0 );
 
-    for (auto &gameObject : gameObjects) {
-        gameObject->draw( x0 , y0 );
+    for (auto &gameObject : gameObjects)
+    {
+        if (gameObject != player)
+            gameObject->draw( x0 , y0 );
     }
+    player->draw( x0 , y0 );
 
-    player->draw( x0 , y0 ); // czolg musi byc rysowany ostatni... nwm jak to rozegrac
-    // narazie rysuje sie dwa razy
-
-    text->draw( "fps: " + std::to_string( frameTime ) ,  500 , 560 );
-
-    SDL_RenderPresent( renderer );
+    Game::debugger->draw();
+    SDL_RenderPresent( Game::renderer );
 }
 
-void Manager::handleEvents( float frameTime )
+void Manager::handleEvents()
 {
-
+    SDL_Event eventHandler;
     while ( SDL_PollEvent( &eventHandler ) != 0 )
     {
         if ( eventHandler.type == SDL_QUIT )
@@ -49,13 +48,13 @@ void Manager::handleEvents( float frameTime )
             if (eventHandler.key.keysym.sym == SDLK_ESCAPE)
             {
                 running = false;
-                flagReturn = -1;
+                flagReturn = 0;
                 break;
             }
             if (eventHandler.key.keysym.sym == SDLK_SPACE)
             {
                 SDL_Point punkt = player->shootPosition();
-                auto* bullet = new Bullet(renderer, punkt.x , punkt.y , player->getTowDir());
+                auto* bullet = new Bullet(punkt.x , punkt.y , player->getTowDir());
                 gameObjects.push_back(bullet);
             }
         }
@@ -73,7 +72,7 @@ void Manager::handleEvents( float frameTime )
             gameObjects.erase(std::remove(gameObjects.begin(), gameObjects.end(), gameObject), gameObjects.end());
         }
         else
-            gameObject->move( frameTime );
+            gameObject->move( Game::stepTime );
     }
 }
 
@@ -86,35 +85,38 @@ void Manager::CheckColliders()
     {
         for (int j = i+1; j < gameObjects.size(); j++)
         {
-            double diagonal1 = sqrt( pow(gameObjects[i]->getW()/2,2) + pow(gameObjects[i]->getH()/2,2) );
-            double diagonal2 = sqrt( pow(gameObjects[j]->getW()/2,2) + pow(gameObjects[j]->getH()/2,2) );
-            double distance = sqrt( pow(gameObjects[j]->getX()-gameObjects[i]->getX(),2) + pow(gameObjects[j]->getY()-gameObjects[i]->getY(),2) );
-
-            if ( (distance < diagonal1 + diagonal2) && !(gameObjects[i]->getType()==STATIC && gameObjects[j]->getType()==STATIC) )
+            if (!(gameObjects[i]->getType()==STATIC && gameObjects[j]->getType()==STATIC))
             {
-                col1 = gameObjects[i]->getCollider();
-                col2 = gameObjects[j]->getCollider();
+                double diagonal1 = sqrt( pow(gameObjects[i]->getW()/2,2) + pow(gameObjects[i]->getH()/2,2) );
+                double diagonal2 = sqrt( pow(gameObjects[j]->getW()/2,2) + pow(gameObjects[j]->getH()/2,2) );
+                double distance = sqrt( pow(gameObjects[j]->getX()-gameObjects[i]->getX(),2) + pow(gameObjects[j]->getY()-gameObjects[i]->getY(),2) );
 
-                Vector2D col = Collider::areColliding(col1, col2);
-                if (col.x != 0 || col.y != 0) {
+                if ( (distance < diagonal1 + diagonal2) )
+                {
+                    col1 = gameObjects[i]->getCollider();
+                    col2 = gameObjects[j]->getCollider();
 
-                    if (auto *p = dynamic_cast<Player *>(gameObjects[i])) {
-                        if (auto *b = dynamic_cast<Bullet *>(gameObjects[j])) {
+                    Vector2D col = Collider::areColliding(col1, col2);
+                    if (col.x != 0 || col.y != 0) {
 
-                        } else{
-                             p->PushOut(col * 2);
+                        if (auto *p = dynamic_cast<Player *>(gameObjects[i])) {
+                            if (auto *b = dynamic_cast<Bullet *>(gameObjects[j])) {
+
+                            } else{
+                                p->PushOut(col * 2);
+                            }
+                        } else if (auto *p = dynamic_cast<Player *>(gameObjects[j])) {
+                            if (auto *b = dynamic_cast<Bullet *>(gameObjects[i])) {
+
+                            } else{
+                                p->PushOut(col * 2);
+
+                            }
+                        } else if (auto *b = dynamic_cast<Bullet *>(gameObjects[i])) {
+                            b->setToBeDestroyed();
+                        } else if (auto *b = dynamic_cast<Bullet *>(gameObjects[j])) {
+                            b->setToBeDestroyed();
                         }
-                    } else if (auto *p = dynamic_cast<Player *>(gameObjects[j])) {
-                        if (auto *b = dynamic_cast<Bullet *>(gameObjects[i])) {
-
-                        } else{
-                              p->PushOut(col * 2);
-
-                        }
-                    } else if (auto *b = dynamic_cast<Bullet *>(gameObjects[i])) {
-                        b->setToBeDestroyed();
-                    } else if (auto *b = dynamic_cast<Bullet *>(gameObjects[j])) {
-                        b->setToBeDestroyed();
                     }
                 }
             }

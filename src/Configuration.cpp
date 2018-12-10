@@ -9,8 +9,7 @@ void Configuration::init(SDL_Window* window)
 {
     this->window = window;
     setQuality( quality );
-    setDisplayMode( this->displayMode );
-    setFullscreen( isFullscreen() );
+    setFullscreen( fullscreen );
 }
 void Configuration::setQuality( float quality )
 {
@@ -18,39 +17,31 @@ void Configuration::setQuality( float quality )
     this->quality = quality;
     writeFile();
 }
-void Configuration::setDisplayMode( SDL_DisplayMode* displayMode )
+void Configuration::resizeWindow()
 {
-    this->displayMode = displayMode;
-    if (fullscreen)
-    {
-        if (SDL_GetClosestDisplayMode(0, displayMode, this->displayMode) == nullptr)
-            SDL_GetDisplayMode(0, 0, this->displayMode);
-        SDL_SetWindowDisplayMode(window, this->displayMode);
-    }
-    if (!fullscreen)
-    {
-        setWindowSize();
-    }
-    this->scale = ((float)this->displayMode->w + (float)this->displayMode->h) / 2000;
-    writeFile();
-}
-void Configuration::setWindowSize()
-{
-    auto* mode = new SDL_DisplayMode{ SDL_PIXELFORMAT_UNKNOWN, 10000, 10000, 0, nullptr };
-    SDL_GetDesktopDisplayMode(0, mode);
-    if (this->displayMode->w < 640) this->displayMode->w = 640;
-    if (this->displayMode->h < 480) this->displayMode->h = 480;
-    if (this->displayMode->w > mode->w) this->displayMode->w = mode->w;
-    if (this->displayMode->h > mode->h) this->displayMode->h = mode->h;
-    SDL_SetWindowPosition( window , 0 , 0 );
-    SDL_SetWindowSize(window, this->displayMode->w, this->displayMode->h);
     SDL_GetWindowSize(window, &this->displayMode->w, &this->displayMode->h);
 }
 void Configuration::setFullscreen( bool fullscreen )
 {
-    fullscreen ? SDL_SetWindowFullscreen( window, SDL_TRUE ) : SDL_SetWindowFullscreen( window, SDL_FALSE );
+    if (!fullscreen)
+    {
+        SDL_ShowCursor(SDL_ENABLE);
+        displayMode->w=800;
+        displayMode->h=600;
+        displayMode->refresh_rate=60;
+        SDL_SetWindowDisplayMode(window, this->displayMode);
+        SDL_SetWindowFullscreen( window, SDL_FALSE );
+        SDL_SetWindowPosition( window , SDL_WINDOWPOS_UNDEFINED , SDL_WINDOWPOS_UNDEFINED );
+    }
+    else
+    {
+        SDL_ShowCursor(SDL_DISABLE);
+        SDL_GetDisplayMode(0, 0, this->displayMode);
+        SDL_SetWindowDisplayMode(window, this->displayMode);
+        SDL_SetWindowFullscreen( window, SDL_TRUE );
+    }
+    this->scale = ((float)this->displayMode->w + (float)this->displayMode->h) / 2000;
     this->fullscreen = fullscreen;
-    writeFile();
 }
 void Configuration::setAcceleration( bool acceleration )
 {
@@ -68,6 +59,7 @@ SDL_DisplayMode* Configuration::getDisplayMode() { return displayMode; }
 bool Configuration::isFullscreen() { return fullscreen; }
 bool Configuration::getAcceleration() { return acceleration; }
 bool Configuration::getVsync() { return vsync; }
+bool Configuration::getDebug() { return debug; }
 
     Uint32 Configuration::getRendererFlags() { return rendererFlags; }
     float Configuration::getScale() { return this->scale; }
@@ -86,6 +78,7 @@ void Configuration::readFile()
         // it should be over all possible resolutions
         this->displayMode = new SDL_DisplayMode{ SDL_PIXELFORMAT_UNKNOWN, 10000, 10000, 0, nullptr };
     this->fullscreen = true;
+    this->debug = false;
 
     // load from file
     std::ifstream infile("config.txt");
@@ -114,20 +107,15 @@ void Configuration::readFile()
             infile >> sval;
             this->vsync = (sval != "NO");
         } else
-        if (key == "WIDTH")
-        {
-            infile >> ival;
-            this->displayMode->w = ival;
-        } else
-        if (key == "HEIGHT")
-        {
-            infile >> ival;
-            this->displayMode->h = ival;
-        } else
         if (key == "FULLSCREEN")
         {
             infile >> sval;
             this->fullscreen = (sval != "NO");
+        } else
+        if (key == "DEBUG")
+        {
+            infile >> sval;
+            this->debug = (sval == "YES");
         } else
             infile >> sval;
     }

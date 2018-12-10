@@ -3,13 +3,13 @@
 
 #include "Main.h"
 
-class Room : public Scene
+class Room : public _Scene
 {
 public:
 
-    Room( SDL_Renderer* r , Text* t , Configuration* c , NetManager* net);
-    void handleEvents( float frameTime );
-    void draw( float frameTime );
+    Room();
+    void handleEvents();
+    void draw();
 
 private:
 
