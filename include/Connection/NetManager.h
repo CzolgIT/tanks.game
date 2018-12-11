@@ -10,8 +10,8 @@ public:
     NetManager();
     ~NetManager();
     bool activate();
-    bool connect(Player& player, std::string host, Uint16 port, Uint32& globalTime);
-    bool disconnectPlayer(Player& player);
+    bool connect(std::string host, Uint16 port, Uint32& globalTime);
+    bool disconnectPlayer();
     bool isConnected();
 
     void read();
@@ -21,9 +21,11 @@ public:
 
     bool pollPacket(std::unique_ptr<BasePacket>&packet);
 
+    NetPlayer* netPlayer;
+
 private:
 
-    bool syncTimeWithServer(const Player& player, Uint32& globalTime);
+    bool syncTimeWithServer(const NetPlayer& player, Uint32& globalTime);
 
     std::queue<std::unique_ptr<BasePacket>> packetQueue;
 

@@ -1,11 +1,11 @@
 #pragma once
 #include "Main.h"
 
-class Player: public GameObject
+class Player: public _GameObject
 {
 public:
 
-    Player( SDL_Renderer* r , Text* t , float x , float y , int color ) ;
+    Player( float x , float y , int color ) ;
     void handleEvent( SDL_Event& e );
     void move( float timeStep );
     void draw( int x0 , int y0 );
@@ -18,9 +18,6 @@ public:
         blocked.x += vec.x;
         blocked.y += vec.y;
     }
-
-
-
 private:
 
     float accelerate( int scanCode , float what , float from , float to , float timeStep );

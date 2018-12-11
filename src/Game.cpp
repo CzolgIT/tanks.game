@@ -41,8 +41,13 @@ void Game::Update()
             currentScene = new MainMenu();
             break;
         case 1: // Multiplayer
+        {
             currentScene = new Room();
+            netManager = new NetManager();
+            Uint32 globalTime = 0;
+            netManager -> connect("127.0.0.1",7777,globalTime);
             break;
+        }
         case 2: // Singleplayer
             currentScene = new Manager();
             break;

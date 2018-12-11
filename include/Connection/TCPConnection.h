@@ -8,8 +8,8 @@ public:
     TCPConnection();
     ~TCPConnection();
     
-    bool connectToServer(Player& player, std::string host, Uint16 port);
-    bool disconnectFromServer(Player& player);
+    bool connectToServer(NetPlayer& player, std::string host, Uint16 port);
+    bool disconnectFromServer(NetPlayer& player);
 
     bool isConnectionGood();
 

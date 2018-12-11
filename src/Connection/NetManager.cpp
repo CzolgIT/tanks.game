@@ -4,6 +4,7 @@ NetManager::NetManager() : senderThread(nullptr)
 {
     SDLNet_Init();
     connected = false;
+    netPlayer = new NetPlayer();
 }
 
 NetManager::~NetManager() {
@@ -21,10 +22,10 @@ bool NetManager::activate()
     return connected;
 }
 
-bool NetManager::disconnectPlayer(Player& player) {
+bool NetManager::disconnectPlayer() {
 
-    if (connected)
-        return tcpConnection.disconnectFromServer(player);
+    if (isConnected())
+        return tcpConnection.disconnectFromServer(reinterpret_cast<NetPlayer &>(netPlayer));
     else
         return false;
 }
@@ -33,9 +34,9 @@ bool NetManager::isConnected(){
     return !(!tcpConnection.isConnectionGood() || !udpConnection.isConnectionGood());
 }
 
-bool NetManager::connect(Player &player, std::string host, Uint16 port, Uint32 &globalTime) {
+bool NetManager::connect(std::string host, Uint16 port, Uint32 &globalTime) {
     std::cout << "Creating TCP connection" << std::endl;
-    if (!tcpConnection.connectToServer(player,host,port))
+    if (!tcpConnection.connectToServer(reinterpret_cast<NetPlayer &>(netPlayer), host, port))
         return false;
 
     if(!udpConnection.connectToServer(host,port))
@@ -46,7 +47,7 @@ bool NetManager::connect(Player &player, std::string host, Uint16 port, Uint32 &
     udpConnection.startSenderThread();
 
     //ping the server
-    if(!syncTimeWithServer(player,globalTime))
+    if(!syncTimeWithServer(reinterpret_cast<const NetPlayer &>(netPlayer), globalTime))
         return false;
 
     //todo: do some stuff
@@ -92,7 +93,7 @@ void NetManager::udpSend(BasePacket *packet) {
     udpConnection.addPacketToQueue(packet);
 }
 
-bool NetManager::syncTimeWithServer(const Player &player, Uint32 &globalTime) {
+bool NetManager::syncTimeWithServer(const NetPlayer &player, Uint32 &globalTime) {
     //todo: server sync
     std::cout << "Attempting time sync with server " << std::flush;
     Uint32 syncStartTime = SDL_GetTicks();
