@@ -13,11 +13,7 @@ public:
 
     SDL_Point shootPosition();
 
-    void PushOut(Vector2D vec)
-    {
-        blocked.x += vec.x;
-        blocked.y += vec.y;
-    }
+    void PushOut(Vector2D vec);
 
 
 

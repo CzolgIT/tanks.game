@@ -20,6 +20,12 @@ void Player::handleEvent( SDL_Event& e )
     // not used anymore
 }
 
+void Player::PushOut(Vector2D vec)
+{
+    blocked.x -= vec.x;
+    blocked.y -= vec.y;
+}
+
 void Player::move( float timeStep )
 {
     // acceleration
@@ -31,50 +37,19 @@ void Player::move( float timeStep )
     towerSpeed = accelerate( SDL_SCANCODE_Z , towerSpeed , 0 , -TANKMAXDIR , timeStep );
 
 
-    double xm = cos(iDirection *M_PI/180) * moveSpeed * timeStep;
-    double ym = sin(iDirection *M_PI/180) * moveSpeed * timeStep;
+    double xm = -cos(iDirection *M_PI/180) * moveSpeed * timeStep;
+    double ym = -sin(iDirection *M_PI/180) * moveSpeed * timeStep;
 
-    /* OPTIONAL PUSHING OUT TANK
-    if (xm > 0 && blocked.x > 0)
-    {
-        if (xm > blocked.x)
-        {
-            x -= xm - blocked.x;
-        }
-    }
-    else if (xm < 0 && blocked.x < 0)
-    {
-        if (xm < blocked.x)
-        {
-            x -= xm - blocked.x;
-        }
-    }
-    else
-    x -= xm - blocked.x;
 
-    if (ym > 0 && blocked.y > 0)
-    {
-        if (ym > blocked.y)
-        {
-            y -= ym - blocked.y;
-        }
-    }
-    else if (ym < 0 && blocked.y < 0)
-    {
-        if (ym < blocked.y)
-        {
-            y -= ym - blocked.y;
-        }
-    }
-    else
-        y -= ym - blocked.y;
-    */
+    if (blocked.x ==0 ) x += xm;
+    if (blocked.x>0.1 || blocked.x<-0.1) x += -blocked.x;
 
-    x -= xm - blocked.x;
-    y -= ym - blocked.y;
+    if (blocked.y == 0 ) y += ym;
+    if (blocked.y>0.1 || blocked.y<-0.1) y += -blocked.y;
 
-    blocked.x = 0;
-    blocked.y = 0;
+
+
+
 
 
     // rotate tank and tower
@@ -136,8 +111,14 @@ void Player::draw( int x0 , int y0 )
 
     Game::textManager->draw( "xblock: " + std::to_string( blocked.x ) ,  550 , 500 );
     Game::textManager->draw( "yblock: " + std::to_string( blocked.y ) ,  550 , 530 );
-    blocked.x =0;
+
+
+    if (blocked.x != 0 || blocked.y != 0)
+        std::cout << blocked.x << "   " << blocked.y << "\n";
+
+    blocked.x = 0;
     blocked.y = 0;
+
 }
 
 int Player::getTowDir()
@@ -170,7 +151,6 @@ float Player::accelerate( int scanCode , float what , float from , float to , fl
 
 SDL_Point Player::shootPosition()
 {
-
     SDL_Point punkt;
     punkt.x = (int)(x+(cos(iTowerDirection *M_PI/180) * -50));
     punkt.y = (int)(y+(sin(iTowerDirection *M_PI/180) * -50));

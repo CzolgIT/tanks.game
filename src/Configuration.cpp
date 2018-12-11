@@ -20,6 +20,7 @@ void Configuration::setQuality( float quality )
 void Configuration::resizeWindow()
 {
     SDL_GetWindowSize(window, &this->displayMode->w, &this->displayMode->h);
+    this->scale = ((float)this->displayMode->w + (float)this->displayMode->h) / 2000;
 }
 void Configuration::setFullscreen( bool fullscreen )
 {

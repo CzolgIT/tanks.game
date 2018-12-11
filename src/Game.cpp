@@ -53,13 +53,13 @@ void Game::Update()
             currentScene = new SettingsVideo();
             break;
         case 5: // Settings - Audio
-            currentScene = new Settings();
+            currentScene = new SettingsAudio();
             break;
-        case 6: // Settings - Control
-            currentScene = new Settings();
+        case 6: // Settings - Controller
+            currentScene = new SettingsController();
             break;
         case 7: // Settings - Game
-            currentScene = new Settings();
+            currentScene = new SettingsGame();
             break;
         case 8: // Multiplayer-run
             currentScene = new MainMenu();

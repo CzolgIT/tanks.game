@@ -4,9 +4,9 @@ Settings::Settings() : _Menu(5)
 {
     // najpierw buttony
     elements.push_back( new Button( "video" , 32 , 13.5 , 4 ) );
-    elements.push_back( new Button( "audio" , 32 , 17.5 , 3 ) );
-    elements.push_back( new Button( "controller" , 32 , 21.5 , 3 ) );
-    elements.push_back( new Button( "game" , 32 , 25.5 , 3 ) );
+    elements.push_back( new Button( "audio" , 32 , 17.5 , 5 ) );
+    elements.push_back( new Button( "controller" , 32 , 21.5 , 6 ) );
+    elements.push_back( new Button( "game" , 32 , 25.5 , 7 ) );
     elements.push_back( new Button( "back" , 32 , 31 , 0 ) );
     elements.push_back( new TextStatic( "Settings" , 32 , 5 , 4 , 0.2 ) );
 
