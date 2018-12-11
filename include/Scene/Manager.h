@@ -11,9 +11,6 @@ public:
     void handleEvents();
     void draw();
     void CheckColliders();
-
-    Player & getPlayer();
-
 private:
 
     Background* background = nullptr;

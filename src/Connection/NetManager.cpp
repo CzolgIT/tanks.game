@@ -16,16 +16,10 @@ NetManager::~NetManager() {
 
 }
 
-bool NetManager::activate()
-{
-//    connected = tcpConnection.connectToServer(SERVERIP , SERVERPORT );
-    return connected;
-}
-
 bool NetManager::disconnectPlayer() {
 
     if (isConnected())
-        return tcpConnection.disconnectFromServer(reinterpret_cast<NetPlayer &>(netPlayer));
+        return tcpConnection.disconnectFromServer(netPlayer);
     else
         return false;
 }
@@ -36,7 +30,7 @@ bool NetManager::isConnected(){
 
 bool NetManager::connect(std::string host, Uint16 port, Uint32 &globalTime) {
     std::cout << "Creating TCP connection" << std::endl;
-    if (!tcpConnection.connectToServer(reinterpret_cast<NetPlayer &>(netPlayer), host, port))
+    if (!tcpConnection.connectToServer(netPlayer, host, port))
         return false;
 
     if(!udpConnection.connectToServer(host,port))
@@ -47,7 +41,7 @@ bool NetManager::connect(std::string host, Uint16 port, Uint32 &globalTime) {
     udpConnection.startSenderThread();
 
     //ping the server
-    if(!syncTimeWithServer(reinterpret_cast<const NetPlayer &>(netPlayer), globalTime))
+    if(!syncTimeWithServer(netPlayer, globalTime))
         return false;
 
     //todo: do some stuff
@@ -93,7 +87,7 @@ void NetManager::udpSend(BasePacket *packet) {
     udpConnection.addPacketToQueue(packet);
 }
 
-bool NetManager::syncTimeWithServer(const NetPlayer &player, Uint32 &globalTime) {
+bool NetManager::syncTimeWithServer(NetPlayer *player, Uint32 &globalTime) {
     //todo: server sync
     std::cout << "Attempting time sync with server " << std::flush;
     Uint32 syncStartTime = SDL_GetTicks();
@@ -102,7 +96,7 @@ bool NetManager::syncTimeWithServer(const NetPlayer &player, Uint32 &globalTime)
     std::unique_ptr<BasePacket> received;
     while(true){
 
-        if(currentTime - syncStartTime > 11000){
+        if(currentTime - syncStartTime > 99999999){
             std::cout << "\nCould not sync time with server" << std::endl;
             return false;
         }
@@ -110,7 +104,7 @@ bool NetManager::syncTimeWithServer(const NetPlayer &player, Uint32 &globalTime)
         {
 
             std::cout << "+" << std::endl;
-            udpConnection.addPacketToQueue(new HeartbeatPacket(player.id));
+            udpConnection.addPacketToQueue(new HeartbeatPacket(player->id));
             hearbeatTime-=1000;
 
         }

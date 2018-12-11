@@ -3,16 +3,15 @@
 Room::Room() : _Scene()
 {
     Game::netManager = new NetManager();
-
     selectedTank = 1;
     dir=0;
     this->netManager = Game::netManager;
-    if (!netManager->activate())
+    Uint32 globalTime = 0;
+    if (!netManager->connect("127.0.0.1",7777,globalTime))
     {
         flagReturn = 0;
         running = false;
     }
-
     sprite[0] = new TankSprite( 1 );
     sprite[1] = new TankSprite( 2 );
     sprite[2] = new TankSprite( 3 );

@@ -16,7 +16,7 @@ TCPConnection::~TCPConnection()
     SDLNet_FreeSocketSet(socketSet);
 }
 
-bool TCPConnection::connectToServer(NetPlayer& player, std::string host, Uint16 port)
+bool TCPConnection::connectToServer(NetPlayer* player, std::string host, Uint16 port)
 {
     // Resolve the server name
     if (SDLNet_ResolveHost(&ipAddress, host.c_str(), port))
@@ -58,7 +58,8 @@ bool TCPConnection::connectToServer(NetPlayer& player, std::string host, Uint16 
     if(response.getResponse() == JR_OK){
         std::cout << "The connection to the server was successful! : " << (int)response.getId() << "\n";
 //        setId(response.getId());
-        player.id = response.getId();
+        player->id = (Uint8)(int)response.getId();
+        std::cout << "X" <<  (int)player->id << "D" << std::endl;
         SDLNet_TCP_AddSocket(socketSet,socket);
         connectionGood = true;
         return true;
@@ -91,10 +92,10 @@ void TCPConnection::sendPackets() {
     std::cout << "TCP thread closed" << std::endl;
 }
 
-bool TCPConnection::disconnectFromServer(NetPlayer& player) {
-    PlayerDisconnectedPacket playerDisconnectedPacket(player.id);
+bool TCPConnection::disconnectFromServer(NetPlayer* player) {
+    PlayerDisconnectedPacket playerDisconnectedPacket((Uint8)(int)player->id);
     if(SDLNet_TCP_Send(socket,playerDisconnectedPacket.getData(),playerDisconnectedPacket.getSize())>0){
-        std::cout << "Player o ID: " << (int)player.id << " wysłał zapytanie do opuszczenia serwera" << std::endl;
+        std::cout << "Player o ID: " << (int)(player->id) << " wysłał zapytanie do opuszczenia serwera" << std::endl;
     }
     return true;
 }

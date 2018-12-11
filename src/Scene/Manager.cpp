@@ -124,6 +124,3 @@ void Manager::CheckColliders()
     }
 }
 
-Player & Manager::getPlayer() {
-    return reinterpret_cast<Player &>(this->player);
-}
