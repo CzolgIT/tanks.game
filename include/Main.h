@@ -70,6 +70,7 @@
 #include "Scene/Room.h"
 #include "Scene/MainMenu.h"
 #include "Scene/Manager.h"
+#include "Scene/MpManager.h"
 
 #include "Map.h"
 #include "Timer.h"

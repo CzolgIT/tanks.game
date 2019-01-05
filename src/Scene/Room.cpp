@@ -16,6 +16,7 @@ Room::Room() : _Scene()
     sprite[1] = new TankSprite( 2 );
     sprite[2] = new TankSprite( 3 );
     sprite[3] = new TankSprite( 4 );
+
 }
 
 void  Room::handleEvents()
@@ -39,7 +40,6 @@ void  Room::handleEvents()
                     flagReturn = -1;
                     break;
                 case SDLK_RETURN:
-
                     flagReturn = 8; // tu byl selectedtank, ale tworzenie czolgu bedzie musialo byc juz w tej klasie
                     running = false;
                     break;

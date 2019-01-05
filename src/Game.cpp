@@ -27,6 +27,8 @@ Game::Game()
 
 void Game::Update()
 {
+    
+
     while (currentScene->isRunning())
     {
         stepTime = stepTimer->getTicks() / 1000.f;
@@ -35,7 +37,7 @@ void Game::Update()
     }
 
     int flag = currentScene->getFlag();
-    switch( flag )
+    switch( flag % 10)
     {
         case 0: // Main Menu
             currentScene = new MainMenu();
@@ -62,13 +64,32 @@ void Game::Update()
             currentScene = new Settings();
             break;
         case 8: // Multiplayer-run
-            currentScene = new MainMenu();
+        {
+            Room * r = dynamic_cast<Room*>(currentScene);
+            int c = r->selectedTank;
+            free(r);
+            currentScene = new MpManager(c);
+            Multiplayer();
+        }
             break;
         default:
-//            if (netManager!=nullptr)
-//                netManager->disconnectPlayer();
+            if (netManager!=nullptr)
+                netManager->disconnectPlayer();
             running = false;
             break;
+    }
+}
+
+void Game::Multiplayer()
+{
+    while (currentScene->isRunning())
+    {
+        currentScene->update();
+    }
+    if (netManager!=nullptr)
+    {
+        netManager->disconnectPlayer();
+        delete_object(netManager);    
     }
 }
 

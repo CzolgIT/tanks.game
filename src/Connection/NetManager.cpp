@@ -31,21 +31,31 @@ bool NetManager::isConnected(){
 bool NetManager::connect(std::string host, Uint16 port, Uint32 &globalTime) {
     std::cout << "Creating TCP connection" << std::endl;
     if (!tcpConnection.connectToServer(netPlayer, host, port))
+    {
+        std::cout << "Couldn't connect TCP" << std::endl;
         return false;
-
+    }
     if(!udpConnection.connectToServer(host,port))
+    {
+        std::cout << "Couldn't connect UDP" << std::endl;
         return false;
+    }
 
+    std::cout << "Made TCP and UDP connections" << std::endl;
     //start different threads for every connection
     tcpConnection.startSenderThread();
     udpConnection.startSenderThread();
 
     //ping the server
     if(!syncTimeWithServer(netPlayer, globalTime))
+    {
+        std::cout << "Couldn't sync with server" << std::endl;
         return false;
-
+    }
+    std::cout << "Synced with server" << std::endl;
     //todo: do some stuff
     //todo: get room info & stuff
+
 
     return isConnected();
 }
@@ -76,7 +86,6 @@ void NetManager::read() {
         }
     }
 
-
 }
 
 void NetManager::tcpSend(BasePacket *packet) {
@@ -89,6 +98,8 @@ void NetManager::udpSend(BasePacket *packet) {
 
 bool NetManager::syncTimeWithServer(NetPlayer *player, Uint32 &globalTime) {
     //todo: server sync
+    return true;
+    //
     std::cout << "Attempting time sync with server " << std::flush;
     Uint32 syncStartTime = SDL_GetTicks();
     Uint32 currentTime = syncStartTime;
