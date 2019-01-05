@@ -17,4 +17,11 @@ TextureManager::TextureManager()
     this->tower[2] = new Texture( "assets/tank/tower3.png" );
     this->tower[3] = new Texture( "assets/tank/tower4.png" );
     this->bullet = new Texture( "assets/bullet.png" );
+
+    // animation sheets
+    this->tankdrive = new Texture( "assets/tank_drive.png" );
+    this->tankshoot = new Texture( "assets/tank_shoot.png" );
+    this->tankexplode = new Texture( "assets/tank_explode.png" );
+    this->bulletexplode = new Texture( "assets/bullet_explode.png" );
+
 }

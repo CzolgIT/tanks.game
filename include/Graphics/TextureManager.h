@@ -21,6 +21,12 @@ public:
     Texture* tower[4];
     Texture* bullet;
 
+    // animation sheets
+    Texture* tankdrive;
+    Texture* tankshoot;
+    Texture* tankexplode;
+    Texture* bulletexplode;
+
 };
 
 #endif
