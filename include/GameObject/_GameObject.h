@@ -12,30 +12,37 @@ class _GameObject
 {
 public:
 
-    _GameObject( float x, float y, int width, int height , ObjectType type);
+    _GameObject( SDL_Point position , SDL_Point dimensions , int direction , ObjectType type);
     // virtual void Start() // not used
-    virtual void update(){}
-    virtual void move( float timeStep ){}
+    // virtual void update(){} // not used
+    virtual void move(){}
     virtual void draw( int x0 , int y0 ){}
     virtual void handleEvent(SDL_Event& e){}
     virtual void destroy();
-    virtual Collider * getCollider();
+    void setToBeDestroyed(){ toDestroy = true; }
 
-    float getX();
-    float getY();
+    SDL_Point getPosition();
+    int getX();
+    int getY();
+
+    SDL_Point getDimensions();
     int getW();
     int getH();
+
+    virtual Collider * getCollider();
     ObjectType getType();
     bool shouldBeDestroy(){ return toDestroy; }
-    void setToBeDestroyed(){ toDestroy = true; }
+
 
 protected:
 
+    SDL_Point position;
+    SDL_Point dimensions;
+    int direction;
+
     Collider * collider;
-    float x,y;
-    int width,height;
-    bool toDestroy = false;
     ObjectType type;
+    bool toDestroy;
 
 };
 

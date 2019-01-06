@@ -17,8 +17,11 @@ public:
     Texture* background;
 
     // tank sprites
+    Texture* barrel;
+    Texture* body;
+    Texture* tower;
     Texture* tracks;
-    Texture* tower[4];
+
     Texture* bullet;
 
     // animation sheets

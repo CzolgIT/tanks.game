@@ -6,6 +6,12 @@ Vector2D::Vector2D()
     this->y = 0;
 }
 
+Vector2D::Vector2D(SDL_Point point)
+{
+    this->x = point.x;
+    this->y = point.y;
+}
+
 Vector2D::Vector2D(float x, float y)
 {
     this->x = x;

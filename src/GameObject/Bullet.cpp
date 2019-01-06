@@ -1,30 +1,30 @@
 #include "Main.h"
 
-Bullet::Bullet( int x, int y, int dir) : _GameObject( x , y , 12 , 36 , DYNAMIC )
+Bullet::Bullet( SDL_Point position , int direction ) : _GameObject( position , {12,36} , direction , DYNAMIC )
 {
-    direction = dir-90;
+    //direction = dir-90;
 }
 
 void Bullet::draw( int x0, int y0 )
 {
-    auto* bull = new SDL_Rect{0,0,width,height};
-    Game::textureManager->bullet->draw(x0 + x - (width * TANKSCALE / 2), y0 + y - (height * TANKSCALE / 2), TANKSCALE ,bull,direction);
+    auto* bull = new SDL_Rect{0,0,dimensions.x,dimensions.y};
+    Game::textureManager->bullet->draw(x0 + position.x - (dimensions.x * TANKSCALE / 2), y0 + position.y - (dimensions.y * TANKSCALE / 2), TANKSCALE ,bull,direction);
 }
 
-void Bullet::move( float timeStep )
+void Bullet::move()
 {
-    x -= (cos((direction+90) *M_PI/180) * BULLETSPEED * timeStep);
-    y -= (sin((direction+90) *M_PI/180) * BULLETSPEED * timeStep);
+    position.x -= (cos((direction+90) *M_PI/180) * BULLETSPEED * Game::stepTime );
+    position.y -= (sin((direction+90) *M_PI/180) * BULLETSPEED * Game::stepTime );
 
-    if( x < (int)((double)width/2) ||
-        x > 2048 - (int)((double)width/2) ||
-        y < (int)((double)height/2) ||
-        y > 2048 - (int)((double)height/2)
+    if( position.x < (int)((double)dimensions.x/2) ||
+            position.x > 2048 - (int)((double)dimensions.x/2) ||
+            position.y < (int)((double)dimensions.y/2) ||
+            position.y > 2048 - (int)((double)dimensions.y/2)
         )
     {
         this->setToBeDestroyed();
     }
 
-    collider->update(x,y,width,height, direction);
+    collider->update( position , dimensions , direction );
 
 }

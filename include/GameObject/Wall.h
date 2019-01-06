@@ -7,7 +7,7 @@ class Wall : public _GameObject
 {
 public:
 
-    Wall( int x , int y , int width , int height );
+    Wall( SDL_Point position );
     void draw( int x0 , int y0 );
 
 };

@@ -60,10 +60,10 @@ void Room::draw()
 
     dir+=0.2;
     if (dir>=360) dir-=360;
-    sprite[0]->draw( 100 , 280 , dir , dir , 0 );
-    sprite[1]->draw( 300 , 280 , dir , dir , 0 );
-    sprite[2]->draw( 500 , 280 , dir , dir , 0 );
-    sprite[3]->draw( 700 , 280 , dir , dir , 0 );
+    sprite[0]->draw( { 100 , 280 } , dir , dir , 0 );
+    sprite[1]->draw( { 300 , 280 } , dir , dir , 0 );
+    sprite[2]->draw( { 500 , 280 } , dir , dir , 0 );
+    sprite[3]->draw( { 700 , 280 } , dir , dir , 0 );
 
     Game::textManager->draw( "Tanks Game" , 400 , 20 ,65 , C_RED , true);
 

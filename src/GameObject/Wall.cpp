@@ -1,11 +1,11 @@
 #include "Main.h"
 
-Wall::Wall( int x , int y , int width , int height ) : _GameObject( x , y , width , height , STATIC )
+Wall::Wall( SDL_Point position ) : _GameObject( position , {64,64} , 0 , STATIC )
 {
-    collider = new Collider(x,y,width,height);
+    collider = new Collider( position , dimensions , direction );
 }
 
 void Wall::draw( int x0 , int y0 )
 {
-    Game::textureManager->wall->draw(x0 + x - width / 2, y0 + y - height / 2);
+    Game::textureManager->wall->draw(x0 + position.x - dimensions.x / 2, y0 + position.y - dimensions.y / 2);
 }

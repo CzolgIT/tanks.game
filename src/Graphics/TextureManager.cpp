@@ -7,21 +7,21 @@ TextureManager::TextureManager()
     this->button->setAlignCenter( true );
 
     // map elements
-    this->wall = new Texture( "assets/block2.png" );
-    this->background = new Texture( "assets/tex_map.png" );
+    this->wall = new Texture( "assets/block.png" );
+    this->background = new Texture( "assets/map.png" );
 
     // tank sprites
+    this->barrel = new Texture( "assets/tank/tank_barrel.png" );
+    this->body = new Texture( "assets/tank/tank_body.png" );
+    this->tower = new Texture( "assets/tank/tank_tower.png" );
     this->tracks = new Texture( "assets/tank/tank_tracks.png" );
-    this->tower[0] = new Texture( "assets/tank/tower1.png" );
-    this->tower[1] = new Texture( "assets/tank/tower2.png" );
-    this->tower[2] = new Texture( "assets/tank/tower3.png" );
-    this->tower[3] = new Texture( "assets/tank/tower4.png" );
+
     this->bullet = new Texture( "assets/bullet.png" );
 
     // animation sheets
-    this->tankdrive = new Texture( "assets/tank_drive.png" );
-    this->tankshoot = new Texture( "assets/tank_shoot.png" );
-    this->tankexplode = new Texture( "assets/tank_explode.png" );
-    this->bulletexplode = new Texture( "assets/bullet_explode.png" );
+    this->tankdrive = new Texture( "assets/animation/tank_drive.png" );
+    this->tankshoot = new Texture( "assets/animation/tank_shoot.png" );
+    this->tankexplode = new Texture( "assets/animation/tank_explode.png" );
+    this->bulletexplode = new Texture( "assets/animation/bullet_explode.png" );
 
 }

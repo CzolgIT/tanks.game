@@ -6,7 +6,8 @@ public:
     float x, y;
 
     Vector2D();
-    Vector2D(float x, float y);
+	Vector2D(float x, float y);
+	explicit Vector2D(SDL_Point point);
 
     Vector2D& Add(const Vector2D& vec);
 	Vector2D& Subtract(const Vector2D& vec);

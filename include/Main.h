@@ -93,6 +93,8 @@ const char NICKNAME[] = "Player";
 #define TANKSCALE 0.5
 #define BULLETSPEED 500
 
+#define SPRITESCALE 1
+
 // Some Colors
 const SDL_Color C_RED = { 255 , 100 , 0 };
 const SDL_Color C_BLUE = { 100 , 0 , 255 };

@@ -16,6 +16,7 @@ private:
 
     Background* background = nullptr;
     std::vector<_GameObject*> gameObjects;
+    std::vector<_Animation*> animations;
     Player* player;
 
 };

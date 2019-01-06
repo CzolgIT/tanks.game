@@ -1,21 +1,17 @@
 #include "Main.h"
 
-Sprite::Sprite( Texture* t , int x , int y , int w , int h , int xc , int yc )
+Sprite::Sprite( Texture* texture , SDL_Rect clip )
 {
-    texture = t;
-
-    clip.x = x;
-    clip.y = y;
-    clip.w = w;
-    clip.h = h;
-
-    center.x = xc;
-    center.y = yc;
+    this->texture = texture;
+    this->clip = clip;
+    center.x = clip.w/2;
+    center.y = clip.h/2;
 }
 
-void Sprite::draw( float x , float y , double angle )
+void Sprite::draw( SDL_Point position , int direction )
 {
     if (texture== nullptr )
-        printf("nic z tego");
-    texture->draw( x , y , TANKSCALE , &clip, angle - 90, &center );
+        printf("Sprite -> Texture -> draw error");
+    else
+        texture->draw( position.x -center.x , position.y-center.y , SPRITESCALE , &clip, direction , &center );
 }

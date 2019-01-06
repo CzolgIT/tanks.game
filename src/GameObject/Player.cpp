@@ -1,18 +1,21 @@
 #include "Main.h"
 
-Player::Player( float x , float y , int color ) : _GameObject( x,y,(int)((double)170*TANKSCALE),(int)((double)130*TANKSCALE) , DYNAMIC )
+Player::Player( SDL_Point position , int color ) : _GameObject( position , { (int)((double)170*TANKSCALE),(int)((double)130*TANKSCALE) }  , 0 , DYNAMIC )
 {
-    direction=90;
-    towerDirection=90;
+    directionFloat=0;
+    towerDirection=0;
 
     moveSpeed = 0;
     directionSpeed = 0;
     towerSpeed = 0;
 
     sprite = new TankSprite( color );
-    collider = new Collider(x,y,width,height, direction);
+    collider = new Collider( position , dimensions , direction );
 
     blocked = {0,0};
+
+    xFloat = position.x;
+    yFloat = position.y;
 }
 
 void Player::handleEvent( SDL_Event& e )
@@ -26,8 +29,10 @@ void Player::PushOut(Vector2D vec)
     blocked.y -= vec.y;
 }
 
-void Player::move( float timeStep )
+void Player::move()
 {
+    float timeStep = Game::stepTime;
+
     // acceleration
     moveSpeed = accelerate( SDL_SCANCODE_UP , moveSpeed , 0 , TANKMAXSPEED , timeStep );
     moveSpeed = accelerate( SDL_SCANCODE_DOWN , moveSpeed , 0 , -TANKMAXSPEED , timeStep );
@@ -37,58 +42,56 @@ void Player::move( float timeStep )
     towerSpeed = accelerate( SDL_SCANCODE_Z , towerSpeed , 0 , -TANKMAXDIR , timeStep );
 
 
-    double xm = -cos(iDirection *M_PI/180) * moveSpeed * timeStep;
-    double ym = -sin(iDirection *M_PI/180) * moveSpeed * timeStep;
+    double xm = cos((direction) *M_PI/180) * moveSpeed * timeStep;
+    double ym = sin((direction) *M_PI/180) * moveSpeed * timeStep;
 
 
-    if (blocked.x ==0 ) x += xm;
-    if (blocked.x>0.1 || blocked.x<-0.1) x += -blocked.x;
+    if (blocked.x ==0 ) xFloat += xm;
+    if (blocked.x>0.1 || blocked.x<-0.1) xFloat += -blocked.x;
 
-    if (blocked.y == 0 ) y += ym;
-    if (blocked.y>0.1 || blocked.y<-0.1) y += -blocked.y;
+    if (blocked.y == 0 ) yFloat += ym;
+    if (blocked.y>0.1 || blocked.y<-0.1) yFloat += -blocked.y;
 
-
-
-
-
+    position.x = int(xFloat);
+    position.y = int(yFloat);
 
     // rotate tank and tower
-    direction += directionSpeed * timeStep ;
+    directionFloat += directionSpeed * timeStep ;
     towerDirection += directionSpeed * timeStep + towerSpeed * timeStep;
 
-    if ( direction > 360 ) direction -= 360;
+    if ( directionFloat > 360 ) directionFloat -= 360;
     if ( towerDirection > 360 ) towerDirection -= 360;
 
-    if ( direction < 0 ) direction += 360;
+    if ( directionFloat < 0 ) directionFloat += 360;
     if ( towerDirection < 0 ) towerDirection += 360;
 
     // dzięki temu kąt obrotu będzie można zapisać jako liczbę
     // od 0 do 180 i zmieści się w jednym bajcie
-    iDirection = (int)round(direction/2)*2;
+    direction = (int)round(directionFloat/2)*2;
     iTowerDirection = (int)round(towerDirection/2)*2;
 
     //std::cout << iDirection << "  " << iTowerDirection << "\n";
 
     // Wall limits
-    if( x < (int)((double)width/2) )
+    if( position.x < (int)((double)dimensions.x/2) )
     {
-        x = (int)((double)width/2) ;
+        position.x = (int)((double)dimensions.x/2) ;
     }
-    else if( x > 2048 - (int)((double)width/2) )
+    else if( position.x > 2048 - (int)((double)dimensions.x/2) )
     {
-        x = 2048 - (int)((double)width/2);
-    }
-
-    if( y < (int)((double)height/2) )
-    {
-        y = (int)((double)height/2);
-    }
-    else if( y > 2048 - (int)((double)height/2) )
-    {
-        y = 2048 - (int)((double)height/2);
+        position.x = 2048 - (int)((double)dimensions.x/2);
     }
 
-    collider->update(x,y,width,height, direction);
+    if( position.y < (int)((double)dimensions.y/2) )
+    {
+        position.y = (int)((double)dimensions.y/2);
+    }
+    else if( position.y > 2048 - (int)((double)dimensions.y/2) )
+    {
+        position.y = 2048 - (int)((double)dimensions.y/2);
+    }
+
+    collider->update( position , dimensions , direction );
 
 }
 
@@ -103,11 +106,12 @@ void Player::draw( int x0 , int y0 )
     }
     */
 
-    sprite->draw( Game::configuration->getDisplayMode()->w/2 , Game::configuration->getDisplayMode()->h/2 , iDirection , iTowerDirection , (int)moveSpeed );
+    sprite->draw( { Game::configuration->getDisplayMode()->w/2 , Game::configuration->getDisplayMode()->h/2 } , direction , iTowerDirection , (int)moveSpeed );
 
-    Game::textManager->draw( "x: " + std::to_string( x ) ,  150 , 500 );
-    Game::textManager->draw( "y: " + std::to_string( y ) ,  150 , 530 );
-    Game::textManager->draw( "sp: " + std::to_string( moveSpeed ) ,  150 , 560 );
+    Game::textManager->draw( "x: " + std::to_string( position.x ) ,  150 , 500 );
+    Game::textManager->draw( "y: " + std::to_string( position.y ) ,  150 , 520 );
+    Game::textManager->draw( "sp: " + std::to_string( moveSpeed ) ,  150 , 540 );
+    Game::textManager->draw( "dir: " + std::to_string( direction ) ,  150 , 560 );
 
     Game::textManager->draw( "xblock: " + std::to_string( blocked.x ) ,  550 , 500 );
     Game::textManager->draw( "yblock: " + std::to_string( blocked.y ) ,  550 , 530 );
@@ -124,6 +128,11 @@ void Player::draw( int x0 , int y0 )
 int Player::getTowDir()
 {
     return iTowerDirection;
+}
+
+int Player::getDir()
+{
+    return direction;
 }
 
 float Player::accelerate( int scanCode , float what , float from , float to , float timeStep )
@@ -152,7 +161,15 @@ float Player::accelerate( int scanCode , float what , float from , float to , fl
 SDL_Point Player::shootPosition()
 {
     SDL_Point punkt;
-    punkt.x = (int)(x+(cos(iTowerDirection *M_PI/180) * -50));
-    punkt.y = (int)(y+(sin(iTowerDirection *M_PI/180) * -50));
+    punkt.x = (int)(position.x+(cos(iTowerDirection *M_PI/180) * -50));
+    punkt.y = (int)(position.y+(sin(iTowerDirection *M_PI/180) * -50));
+    return punkt;
+}
+SDL_Point Player::smokePosition()
+{
+    SDL_Point punkt;
+    int dir = direction;
+    punkt.x = (int)(position.x+(cos(direction *M_PI/180) * -50));
+    punkt.y = (int)(position.y+(sin(direction *M_PI/180) * -50));
     return punkt;
 }

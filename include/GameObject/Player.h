@@ -5,13 +5,15 @@ class Player: public _GameObject
 {
 public:
 
-    Player( float x , float y , int color ) ;
+    Player( SDL_Point position , int color ) ;
     void handleEvent( SDL_Event& e );
-    void move( float timeStep );
+    void move();
     void draw( int x0 , int y0 );
-    int getTowDir();
 
+    int getTowDir();
+    int getDir();
     SDL_Point shootPosition();
+    SDL_Point smokePosition();
 
     void PushOut(Vector2D vec);
 
@@ -23,9 +25,11 @@ private:
 
     Vector2D blocked;
 
+    float xFloat , yFloat;
+
     float moveSpeed , directionSpeed , towerSpeed;
-    float direction , towerDirection;
-    int iDirection , iTowerDirection; // net optimized
+    float directionFloat , towerDirection;
+    int iTowerDirection; // net optimized
 
     TankSprite* sprite;
 };

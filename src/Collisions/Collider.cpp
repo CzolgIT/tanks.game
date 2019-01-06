@@ -1,45 +1,49 @@
 #include "Main.h"
 
-Collider::Collider(float centerX, float centerY, float width, float height, float angle){
+Collider::Collider( SDL_Point position , SDL_Point dimensions , int direction )
+{
+    center = new Vector2D(position);
+    float centerX = position.x;
+    float centerY = position.y;
+    float width = dimensions.x;
+    float height = dimensions.y;
+    auto angle = float(float(direction)/180 * M_PI);
 
-        center = new Vector2D(centerX, centerY);
-        angle = angle/180 * M_PI;
-        Vector2D p1;
-        p1.x = centerX + (width/2  * cos(angle)) - (height/2  * sin(angle));
-        p1.y = centerY + (width/2 * sin(angle)) + (height/2 * cos(angle));
-        points.push_back(p1);
-        Vector2D p2;
-        p2.x = centerX + (-width/2  * cos(angle)) - (height/2  * sin(angle));
-        p2.y = centerY + (-width/2 * sin(angle)) + (height/2 * cos(angle));
-        points.push_back(p2);
-        Vector2D p3;
-        p3.x = centerX + (-width/2  * cos(angle)) - (-height/2  * sin(angle));
-        p3.y = centerY + (-width/2 * sin(angle)) + (-height/2 * cos(angle));
-        points.push_back(p3);
-        Vector2D p4;
-        p4.x = centerX + (width/2  * cos(angle)) - (-height/2  * sin(angle));
-        p4.y = centerY + (width/2 * sin(angle)) + (-height/2 * cos(angle));
-        points.push_back(p4);
-
+    Vector2D p1;
+    p1.x = centerX + (width/2  * cos(angle)) - (height/2  * sin(angle));
+    p1.y = centerY + (width/2 * sin(angle)) + (height/2 * cos(angle));
+    points.push_back(p1);
+    Vector2D p2;
+    p2.x = centerX + (-width/2  * cos(angle)) - (height/2  * sin(angle));
+    p2.y = centerY + (-width/2 * sin(angle)) + (height/2 * cos(angle));
+    points.push_back(p2);
+    Vector2D p3;
+    p3.x = centerX + (-width/2  * cos(angle)) - (-height/2  * sin(angle));
+    p3.y = centerY + (-width/2 * sin(angle)) + (-height/2 * cos(angle));
+    points.push_back(p3);
+    Vector2D p4;
+    p4.x = centerX + (width/2  * cos(angle)) - (-height/2  * sin(angle));
+    p4.y = centerY + (width/2 * sin(angle)) + (-height/2 * cos(angle));
+    points.push_back(p4);
 }
 
-void Collider::update(float centerX, float centerY, float width, float height, float angle){
+void Collider::update( SDL_Point position , SDL_Point dimensions , int direction )
+{
+    center = new Vector2D(position);
+    float centerX = position.x;
+    float centerY = position.y;
+    float width = dimensions.x;
+    float height = dimensions.y;
+    auto angle = float(float(direction)/180 * M_PI);
 
-        center->x = centerX;
-        center->y = centerY;
-        angle = angle/180 * M_PI;
-        points[0].x = centerX + (width/2  * cos(angle)) - (height/2  * sin(angle));
-        points[0].y = centerY + (width/2 * sin(angle)) + (height/2 * cos(angle));
-
-        points[1].x = centerX + (-width/2  * cos(angle)) - (height/2  * sin(angle));
-        points[1].y = centerY + (-width/2 * sin(angle)) + (height/2 * cos(angle));
-
-        points[2].x = centerX + (-width/2  * cos(angle)) - (-height/2  * sin(angle));
-        points[2].y = centerY + (-width/2 * sin(angle)) + (-height/2 * cos(angle));
-
-        points[3].x = centerX + (width/2  * cos(angle)) - (-height/2  * sin(angle));
-        points[3].y = centerY + (width/2 * sin(angle)) + (-height/2 * cos(angle));
-
+    points[0].x = centerX + (width/2  * cos(angle)) - (height/2  * sin(angle));
+    points[0].y = centerY + (width/2 * sin(angle)) + (height/2 * cos(angle));
+    points[1].x = centerX + (-width/2  * cos(angle)) - (height/2  * sin(angle));
+    points[1].y = centerY + (-width/2 * sin(angle)) + (height/2 * cos(angle));
+    points[2].x = centerX + (-width/2  * cos(angle)) - (-height/2  * sin(angle));
+    points[2].y = centerY + (-width/2 * sin(angle)) + (-height/2 * cos(angle));
+    points[3].x = centerX + (width/2  * cos(angle)) - (-height/2  * sin(angle));
+    points[3].y = centerY + (width/2 * sin(angle)) + (-height/2 * cos(angle));
 }
 
 Vector2D Collider::areColliding(Collider * col1, Collider * col2)
@@ -106,7 +110,6 @@ Vector2D Collider::areColliding(Collider * col1, Collider * col2)
         smallest.y*=-1;
     }
     smallest = (smallest*overlap).Normalize();
-    //std::cout << overlap << std::endl;
     return smallest;
 }
 

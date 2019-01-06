@@ -8,17 +8,16 @@ class TankSprite
 public:
 
     explicit TankSprite( int color = 1);
-    void draw( int x , int y , int dir , int dirT , int move );
+    void draw( SDL_Point position , int dir , int dirT , int move );
     
 private:
 
-    Sprite* spriteTrackLeft[5];
-    Sprite* spriteTrackRight[5];
+    Sprite* spriteBarrel;
     Sprite* spriteBody;
     Sprite* spriteTower;
-    Sprite* spriteBarrel;
-    
+    Sprite* spriteTracks[5];
+
     int step;
 };
 
-#endif /* TankSprite_h */
+#endif

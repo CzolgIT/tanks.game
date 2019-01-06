@@ -16,7 +16,7 @@ void Map::loadFromFile( std::vector<_GameObject*> * gameObjects )
             infile >> c;
             if (c == '#')
             {
-                auto * wall = new Wall( 32+j*64 , 32+i*64, 64, 64 );
+                auto * wall = new Wall({ 32+j*64 , 32+i*64 });
                 gameObjects->push_back(wall);
             }
         }

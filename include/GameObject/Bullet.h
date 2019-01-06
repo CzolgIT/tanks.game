@@ -7,9 +7,9 @@ class Bullet: public _GameObject
 {
 public:
 
-    Bullet(int x , int y , int dir);
+    Bullet( SDL_Point position , int direction );
     void draw( int x0 , int y0 );
-    void move( float timeStep );
+    void move();
 
 private:
 

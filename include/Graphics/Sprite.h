@@ -7,8 +7,8 @@ class Sprite
 {
 public:
     
-    Sprite( Texture* t , int x , int y , int w , int h , int xc , int yc );
-    void draw( float x , float y , double angle = 0.0 );
+    Sprite( Texture* texture , SDL_Rect clip );
+    void draw( SDL_Point position , int direction=0 );
 
 private:
 

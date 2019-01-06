@@ -6,12 +6,12 @@
 class Collider {
 
 public:
-    Collider(float centerX, float centerY, float width, float height, float angle = 0);
+    Collider( SDL_Point position , SDL_Point dimensions , int direction = 0 );
     explicit Collider(Vector2D * points)
     {
     }
 
-    void update(float centerX, float centerY, float width, float height, float angle = 0);
+    void update( SDL_Point position , SDL_Point dimensions , int direction = 0 );
 
     static Vector2D areColliding(Collider * col1, Collider * col2);
 
