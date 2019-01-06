@@ -76,7 +76,7 @@ void MpManager::handleEvents()
         }
         else{
             gameObject->move( Game::stepTime );
-            if (ttt > 1)
+            if (ttt > 10)
             { 
                 SendMovement();
                 ttt = 0;
@@ -91,10 +91,12 @@ void MpManager::handleEvents()
 void MpManager::SendMovement()
 {
     const Uint8 *state = SDL_GetKeyboardState(nullptr);
-    bool keys[4] = {state[SDL_SCANCODE_UP],state[SDL_SCANCODE_DOWN],
-                    state[SDL_SCANCODE_LEFT], state[SDL_SCANCODE_RIGHT]};
+    bool keys[7] = {state[SDL_SCANCODE_UP],state[SDL_SCANCODE_DOWN],
+                    state[SDL_SCANCODE_LEFT], state[SDL_SCANCODE_RIGHT],state[SDL_SCANCODE_Z],state[SDL_SCANCODE_X],state[SDL_SCANCODE_SPACE]};
+
     EventPacket * ep = new EventPacket();
-    ep->SetKeys(keys);
+    ep->setKeys(keys);
+    ep->setTime(netManager->getGlobalTime());
     Game::netManager->udpSend(ep);
     std::cout << "Wyslano pakiet" << std::endl;
 }

@@ -135,6 +135,7 @@ bool NetManager::syncTimeWithServer(NetPlayer *player, Uint32 &globalTime) {
         currentTime = SDL_GetTicks();
     }
     std::cout << "Server set global time to: " << globalTime << "ms" << std::endl;
+    setGlobalTime(globalTime);
     return true;
 }
 
@@ -165,6 +166,14 @@ bool NetManager::pollPacket(std::unique_ptr<BasePacket> &packet) {
     }
 
     return false;
+}
+
+Uint32 NetManager::getGlobalTime() {
+    return globalTime;
+}
+
+void NetManager::setGlobalTime(Uint32 newGlobalTime) {
+    this->globalTime = newGlobalTime;
 }
 
 

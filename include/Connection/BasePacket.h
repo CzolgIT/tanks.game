@@ -44,5 +44,6 @@ public:
     
     virtual void print() const;
 };
-
+Uint32 floatToUint32(float f);
+float Uint32toFloat(Uint32 i);
 #endif
