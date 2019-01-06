@@ -1,0 +1,3 @@
+/home/inql/CLionProjects/tanksgame/CMakeFiles/rebuild_cache.dir
+/home/inql/CLionProjects/tanksgame/CMakeFiles/edit_cache.dir
+/home/inql/CLionProjects/tanksgame/CMakeFiles/tanksgame.dir

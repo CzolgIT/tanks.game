@@ -7,7 +7,7 @@ Room::Room() : _Scene()
     dir=0;
     this->netManager = Game::netManager;
     Uint32 globalTime = 0;
-    if (!netManager->connect("127.0.0.1",7777,globalTime))
+    if (!netManager->connect(SERVERPORT,7777,globalTime))
     {
         flagReturn = 0;
         running = false;
