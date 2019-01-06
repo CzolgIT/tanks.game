@@ -11,13 +11,7 @@ public:
     void handleEvents();
     void draw();
     void CheckColliders();
-    void sendPackets();
-    void update()
-    {
-        handleEvents();
-        draw();
-        sendPackets();
-    }
+    void SendMovement();
 
 private:
     NetManager * netManager;

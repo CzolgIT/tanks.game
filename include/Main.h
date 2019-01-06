@@ -58,6 +58,7 @@
 #include "Connection/UniversalPacket.h"
 #include "Connection/PlayerDisconnectedPacket.h"
 #include "Connection/SyncPacket.h"
+#include "Connection/EventPacket.h"
 #include "Connection/NetPlayer.h"
 #include "Connection/UDPConnection.h"
 #include "Connection/TCPConnection.h"

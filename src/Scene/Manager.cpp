@@ -63,6 +63,8 @@ void Manager::handleEvents()
         }
     }
 
+
+
     CheckColliders();
 
     for (auto &gameObject : gameObjects) {

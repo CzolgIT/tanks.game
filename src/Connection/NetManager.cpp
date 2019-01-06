@@ -156,6 +156,7 @@ void NetManager::sendPackets() {
     }
 }
 
+
 bool NetManager::pollPacket(std::unique_ptr<BasePacket> &packet) {
     if(!packetQueue.empty()){
 

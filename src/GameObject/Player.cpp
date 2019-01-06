@@ -30,7 +30,6 @@ void Player::move( float timeStep )
     towerSpeed = accelerate( SDL_SCANCODE_X , towerSpeed , 0 , TANKMAXDIR , timeStep );
     towerSpeed = accelerate( SDL_SCANCODE_Z , towerSpeed , 0 , -TANKMAXDIR , timeStep );
 
-
     double xm = cos(iDirection *M_PI/180) * moveSpeed * timeStep;
     double ym = sin(iDirection *M_PI/180) * moveSpeed * timeStep;
 

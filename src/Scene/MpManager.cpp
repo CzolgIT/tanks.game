@@ -56,6 +56,7 @@ void MpManager::handleEvents()
             if (eventHandler.key.keysym.sym == SDLK_SPACE)
             {
                 SDL_Point punkt = player->shootPosition();
+                // INVOKE BULLETS WYSYLA PAKIET Z PUNKTEM WYstrzelenia i kierunkiem 
                 auto* bullet = new Bullet(punkt.x , punkt.y , player->getTowDir());
                 gameObjects.push_back(bullet);
             }
@@ -73,15 +74,23 @@ void MpManager::handleEvents()
             delete_object(gameObject);
             gameObjects.erase(std::remove(gameObjects.begin(), gameObjects.end(), gameObject), gameObjects.end());
         }
-        else
+        else{
             gameObject->move( Game::stepTime );
+            SendMovement();
+        }
     }
 }
 
-void MpManager::sendPackets()
+void MpManager::SendMovement()
 {
-    
+    const Uint8 *state = SDL_GetKeyboardState(nullptr);
+    bool keys[4] = {state[SDL_SCANCODE_UP],state[SDL_SCANCODE_DOWN],
+                    state[SDL_SCANCODE_LEFT], state[SDL_SCANCODE_RIGHT]};
+    EventPacket * ep = new EventPacket();
+    ep->SetKeys(keys);
+    Game::netManager->udpSend(ep);
 }
+
 
 void MpManager::CheckColliders()
 {
