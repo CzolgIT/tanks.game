@@ -97,9 +97,6 @@ void NetManager::udpSend(BasePacket *packet) {
 }
 
 bool NetManager::syncTimeWithServer(NetPlayer *player, Uint32 &globalTime) {
-    //todo: server sync
-    return true;
-    //
     std::cout << "Attempting time sync with server " << std::flush;
     Uint32 syncStartTime = SDL_GetTicks();
     Uint32 currentTime = syncStartTime;

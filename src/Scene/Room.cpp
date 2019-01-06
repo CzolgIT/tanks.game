@@ -12,6 +12,8 @@ Room::Room() : _Scene()
         flagReturn = 0;
         running = false;
     }
+    std::cout << "Pyklo" << std::endl;
+    
     sprite[0] = new TankSprite( 1 );
     sprite[1] = new TankSprite( 2 );
     sprite[2] = new TankSprite( 3 );

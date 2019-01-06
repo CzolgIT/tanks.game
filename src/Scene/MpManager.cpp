@@ -76,7 +76,14 @@ void MpManager::handleEvents()
         }
         else{
             gameObject->move( Game::stepTime );
-            SendMovement();
+            if (ttt > 1)
+            { 
+                SendMovement();
+                ttt = 0;
+            }
+            else {
+                ttt+=Game::stepTime;
+            }
         }
     }
 }
@@ -89,6 +96,7 @@ void MpManager::SendMovement()
     EventPacket * ep = new EventPacket();
     ep->SetKeys(keys);
     Game::netManager->udpSend(ep);
+    std::cout << "Wyslano pakiet" << std::endl;
 }
 
 

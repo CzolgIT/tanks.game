@@ -12,7 +12,7 @@ public:
 
     EventPacket();
     void SetKeys(bool keys[4]);
-
+    bool * GetKeys();
     ~EventPacket();
 
 };

@@ -14,6 +14,7 @@ public:
     void SendMovement();
 
 private:
+    float ttt = 0;
     NetManager * netManager;
     Background* background = nullptr;
     std::vector<_GameObject*> gameObjects;
