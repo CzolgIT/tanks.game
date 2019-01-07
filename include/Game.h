@@ -18,12 +18,11 @@ public:
     static TextureManager* textureManager;
     static Debugger* debugger;
     static TextManager* textManager;
-    static float stepTime;
+    static WindowManager* windowManager;
 
 private:
 
     SDL_Window* window;
-    Timer* stepTimer;
     _Scene * currentScene;
     bool running;
 

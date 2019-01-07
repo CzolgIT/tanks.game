@@ -21,7 +21,7 @@ void Debugger::draw()
         std::string resolution = std::to_string( w )+" x "+std::to_string( h )+"  "+std::to_string( f )+"Hz";
         Game::textManager->draw( resolution , j/6 , 35*j , j , C_BLACK , false );
 
-        second+= Game::stepTime;
+        second+= Game::windowManager->getStepTime();
         count++;
 
         if (second>=1)

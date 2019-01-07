@@ -1,26 +1,25 @@
 #include "Main.h"
 
-SDL_Renderer* Game::renderer = nullptr;
-NetManager* Game::netManager = nullptr;
+WindowManager* Game::windowManager = nullptr;
 Configuration* Game::configuration = nullptr;
+SDL_Renderer* Game::renderer = nullptr;
+TextManager* Game::textManager = nullptr;
 TextureManager* Game::textureManager = nullptr;
 Debugger* Game::debugger = nullptr;
-TextManager* Game::textManager = nullptr;
-float Game::stepTime = 0;
+NetManager* Game::netManager = nullptr;
 
 Game::Game()
 {
-    configuration = new Configuration();
     SDL_Init( SDL_INIT_VIDEO );
     IMG_Init( IMG_INIT_PNG );
-    window = SDL_CreateWindow("Tanks Game",SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED,800,600,SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
-    configuration->init( window );
-    renderer = SDL_CreateRenderer( window, -1, configuration->getRendererFlags() );
+
+    windowManager = new WindowManager();
+    configuration = new Configuration();
+    renderer = SDL_CreateRenderer( windowManager->getWindow() , -1, configuration->getRendererFlags() );
     textManager = new TextManager();
     textureManager = new TextureManager();
     debugger = new Debugger();
-    stepTimer = new Timer();
-    stepTimer->start();
+
     currentScene = new MainMenu();
     running = true;
 }
@@ -29,12 +28,12 @@ void Game::Update()
 {
     while (currentScene->isRunning())
     {
-        stepTime = stepTimer->getTicks() / 1000.f;
-        stepTimer->start();
+        Game::windowManager->update();
         currentScene->update();
     }
 
     int flag = currentScene->getFlag();
+    delete currentScene;
     switch( flag )
     {
         case 0: // Main Menu

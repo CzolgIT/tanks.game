@@ -8,7 +8,7 @@ class Configuration {
 public:
 
     Configuration();
-    void init( SDL_Window* window );
+    //void init( SDL_Window* window );
 
     void setQuality( float quality );
     //void setDisplayMode( SDL_DisplayMode* displayMode );

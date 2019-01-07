@@ -8,8 +8,8 @@ class TextStatic : public _Element
 public:
 
     TextStatic( std::string name , float x , float y , float size , float shadow=-1 );
-    void draw();
-    void updateScale();
+    void draw() override;
+    void updateScale() override;
     void loadTexture();
 
 private:

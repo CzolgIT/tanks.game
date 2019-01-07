@@ -2,26 +2,25 @@
 
 Configuration::Configuration()
 {
-    this->window = nullptr;
     readFile();
-}
-void Configuration::init(SDL_Window* window)
-{
-    this->window = window;
+    this->window = Game::windowManager->getWindow();
     setQuality( quality );
     setFullscreen( fullscreen );
 }
+
 void Configuration::setQuality( float quality )
 {
     SDL_SetHint( SDL_HINT_RENDER_SCALE_QUALITY, std::to_string(quality).c_str() );
     this->quality = quality;
     writeFile();
 }
+
 void Configuration::resizeWindow()
 {
     SDL_GetWindowSize(window, &this->displayMode->w, &this->displayMode->h);
     this->scale = ((float)this->displayMode->w + (float)this->displayMode->h) / 2000;
 }
+
 void Configuration::setFullscreen( bool fullscreen )
 {
     if (!fullscreen)
@@ -87,7 +86,6 @@ void Configuration::readFile()
 
     std::string sval;
     float fval;
-    int ival;
 
     while (infile.good())
     {

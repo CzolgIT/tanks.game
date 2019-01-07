@@ -10,6 +10,7 @@ public:
     Bullet( SDL_Point position , int direction );
     void draw( int x0 , int y0 );
     void move();
+    void destroy();
 
 private:
 

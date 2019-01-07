@@ -16,8 +16,8 @@ void Bullet::draw( int x0, int y0 )
 void Bullet::move()
 {
 
-    this->floatX += (cos(double(direction) *M_PI/180) * BULLETSPEED * Game::stepTime );
-    this->floatY += (sin(double(direction) *M_PI/180) * BULLETSPEED * Game::stepTime );
+    this->floatX += (cos(double(direction) *M_PI/180) * BULLETSPEED * Game::windowManager->getStepTime() );
+    this->floatY += (sin(double(direction) *M_PI/180) * BULLETSPEED * Game::windowManager->getStepTime() );
 
 
     position.x = int(floatX);
@@ -35,5 +35,10 @@ void Bullet::move()
     }
 
     collider->update( position , dimensions , direction );
+
+}
+
+void Bullet::destroy()
+{
 
 }

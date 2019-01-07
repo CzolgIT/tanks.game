@@ -29,16 +29,17 @@ void Manager::draw()
 
     for (auto &animation : animations)
     {
-        if(animation->gettodelete()){
-            delete_object(animation);
-            animations.erase(std::remove(animations.begin(), animations.end(), animation), animations.end());
-            //delete animation;
-        }
-        else
-        animation->draw( x0 , y0 );
+        if( !animation->gettodelete() )
+            animation->draw( x0 , y0 );
     }
 
     Game::debugger->draw();
+
+    std::string gameobjects_s = "gameobjects: " + std::to_string( gameObjects.size() );
+    std::string animations_s = "animations: " + std::to_string( animations.size() );
+    Game::textManager->draw( gameobjects_s , 5 , 20 , 20 , C_BLACK , false );
+    Game::textManager->draw( animations_s , 5 , 40 , 20 , C_BLACK , false );
+
     SDL_RenderPresent( Game::renderer );
 }
 
@@ -67,7 +68,7 @@ void Manager::handleEvents()
                 auto* bullet = new Bullet( player->shootPosition() , player->getTowDir());
                 gameObjects.push_back(bullet);
 
-                auto* tankshoot = new TankShoot( player->shootPosition() , player->getDir() );
+                auto* tankshoot = new Animation( TANKSHOOT , player->shootPosition() , player->getDir() );
                 animations.push_back(tankshoot);
             }
         }
@@ -81,7 +82,7 @@ void Manager::handleEvents()
 
     if (state[SDL_SCANCODE_UP] && los==2)
     {
-        auto* tankdrive = new TankDrive( player->smokePosition() , player->getDir() );
+        auto* tankdrive = new Animation( TANKDRIVE , player->smokePosition() , player->getDir() );
         animations.push_back(tankdrive);
     }
 
@@ -90,13 +91,33 @@ void Manager::handleEvents()
 
     for (auto &gameObject : gameObjects) {
         if(gameObject->shouldBeDestroy()){
-            gameObject->destroy();
-            delete_object(gameObject);
+            //gameObject->destroy();
+            if (auto *b = dynamic_cast<Bullet *>(gameObject))
+            {
+                auto* bulletexplode = new Animation( BULLETEXPLODE , b->getPosition() , 0 );
+                animations.push_back(bulletexplode);
+            }
+
             gameObjects.erase(std::remove(gameObjects.begin(), gameObjects.end(), gameObject), gameObjects.end());
+            //delete gameObject;
         }
         else
             gameObject->move();
     }
+
+    auto iterator = animations.begin();
+
+    while(iterator != animations.end())
+    {
+        if((*iterator)->gettodelete())
+        {
+            delete *iterator;
+            iterator = animations.erase(iterator);
+        }
+        else
+            ++iterator;
+    }
+
 }
 
 void Manager::CheckColliders()

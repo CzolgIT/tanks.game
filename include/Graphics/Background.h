@@ -12,7 +12,7 @@ public:
     
 private:
 
-    Texture* texture;
+    //Texture* texture;
     SDL_Rect clip;
     int width , height;
     

@@ -44,11 +44,7 @@
 #include "Graphics/Sprite.h"
 #include "Graphics/TankSprite.h"
 #include "Graphics/Background.h"
-#include "Graphics/_Animation.h"
-#include "Graphics/BulletExplode.h"
-#include "Graphics/TankExplode.h"
-#include "Graphics/TankDrive.h"
-#include "Graphics/TankShoot.h"
+#include "Graphics/Animation.h"
 
 #include "Text/Letter.h"
 #include "Text/Font.h"
@@ -76,6 +72,7 @@
 
 #include "Map.h"
 #include "Timer.h"
+#include "WindowManager.h"
 #include "Configuration.h"
 #include "Game.h"
 

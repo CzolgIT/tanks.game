@@ -31,7 +31,7 @@ void Player::PushOut(Vector2D vec)
 
 void Player::move()
 {
-    float timeStep = Game::stepTime;
+    float timeStep = Game::windowManager->getStepTime();
 
     // acceleration
     moveSpeed = accelerate( SDL_SCANCODE_UP , moveSpeed , 0 , TANKMAXSPEED , timeStep );
