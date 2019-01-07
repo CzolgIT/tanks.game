@@ -7,7 +7,7 @@ class TankShoot: public _Animation
 {
 public:
 
-
+    TankShoot( SDL_Point position , int rotation );
 
 private:
 

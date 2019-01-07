@@ -46,11 +46,13 @@ void Player::move()
     double ym = sin((direction) *M_PI/180) * moveSpeed * timeStep;
 
 
-    if (blocked.x ==0 ) xFloat += xm;
-    if (blocked.x>0.1 || blocked.x<-0.1) xFloat += -blocked.x;
+    //if (blocked.x ==0 ) xFloat += xm;
+    //if (blocked.x>0.1 || blocked.x<-0.1) xFloat += -blocked.x;
+    xFloat += xm -blocked.x;
 
-    if (blocked.y == 0 ) yFloat += ym;
-    if (blocked.y>0.1 || blocked.y<-0.1) yFloat += -blocked.y;
+    //if (blocked.y == 0 ) yFloat += ym;
+    //if (blocked.y>0.1 || blocked.y<-0.1) yFloat += -blocked.y;
+    yFloat += ym -blocked.y;
 
     position.x = int(xFloat);
     position.y = int(yFloat);
@@ -161,15 +163,17 @@ float Player::accelerate( int scanCode , float what , float from , float to , fl
 SDL_Point Player::shootPosition()
 {
     SDL_Point punkt;
-    punkt.x = (int)(position.x+(cos(iTowerDirection *M_PI/180) * -50));
-    punkt.y = (int)(position.y+(sin(iTowerDirection *M_PI/180) * -50));
+    punkt.x = (int)(position.x+(cos(double(iTowerDirection) *M_PI/180) * 60));
+    punkt.y = (int)(position.y+(sin(double(iTowerDirection) *M_PI/180) * 60));
     return punkt;
 }
 SDL_Point Player::smokePosition()
 {
+    int los = (random()%32)-16;
+
+
     SDL_Point punkt;
-    int dir = direction;
-    punkt.x = (int)(position.x+(cos(direction *M_PI/180) * -50));
-    punkt.y = (int)(position.y+(sin(direction *M_PI/180) * -50));
+    punkt.x = (int)(position.x+(cos((direction+los) *M_PI/180) * -50));
+    punkt.y = (int)(position.y+(sin((direction+los) *M_PI/180) * -50));
     return punkt;
 }

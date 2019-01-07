@@ -7,7 +7,7 @@ class TankDrive: public _Animation
 {
 public:
 
-    TankDrive( int x , int y , int rotation );
+    TankDrive( SDL_Point position , int rotation );
 
 private:
 

@@ -7,7 +7,7 @@ class _Animation
 {
 public:
 
-    _Animation( Texture* tex , int frames , int width , int height , int xcenter , int ycenter , int rotation , int x , int y , int animspeed );
+    _Animation( SDL_Point position , SDL_Point dimensions , int rotation , Texture* tex , int frames , int speed );
     void draw( int x0 , int y0 );
     bool gettodelete();
 
@@ -17,7 +17,7 @@ private:
     float frame;
     int rotation;
     int x,y;
-    int animspeed;
+    int speed;
     bool todelete;
     Sprite* Sheet[24];
 

@@ -8,9 +8,6 @@ Manager::Manager(): _Scene()
     auto map = new Map();
     map->loadFromFile( &gameObjects );
     std::cout << "Zaczyna sie gra" << std::endl;
-
-    auto* td = new TankDrive(100,100,0);
-    animations.push_back(td);
 }
 
 void Manager::draw()
@@ -33,7 +30,7 @@ void Manager::draw()
     for (auto &animation : animations)
     {
         if(animation->gettodelete()){
-            //delete_object(animation);
+            delete_object(animation);
             animations.erase(std::remove(animations.begin(), animations.end(), animation), animations.end());
             //delete animation;
         }
@@ -69,6 +66,9 @@ void Manager::handleEvents()
             {
                 auto* bullet = new Bullet( player->shootPosition() , player->getTowDir());
                 gameObjects.push_back(bullet);
+
+                auto* tankshoot = new TankShoot( player->shootPosition() , player->getDir() );
+                animations.push_back(tankshoot);
             }
         }
         for (auto &gameObject : gameObjects) {
@@ -77,14 +77,14 @@ void Manager::handleEvents()
     }
 
     const Uint8 *state = SDL_GetKeyboardState(nullptr);
-    int los = random()%40;
+    int los = random()%80;
 
     if (state[SDL_SCANCODE_UP] && los==2)
     {
-        SDL_Point p = player->smokePosition();
-        auto* tankdrive = new TankDrive(p.x,p.y,player->getDir());
+        auto* tankdrive = new TankDrive( player->smokePosition() , player->getDir() );
         animations.push_back(tankdrive);
     }
+
 
     CheckColliders();
 

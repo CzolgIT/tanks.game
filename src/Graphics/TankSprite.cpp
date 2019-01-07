@@ -2,11 +2,11 @@
 
 TankSprite::TankSprite( int color )
 {
-    spriteBarrel = new Sprite( Game::textureManager->barrel , { 256*color , 0 , 256 , 256 } );
-    spriteBody = new Sprite( Game::textureManager->body , { 256*color , 0 , 256 , 256 } );
-    spriteTower = new Sprite( Game::textureManager->tower , { 256*color , 0 , 256 , 256 } );
+    spriteBarrel = new Sprite( Game::textureManager->barrel , { 256*color , 0 , 256 , 256 } , TANKSCALE );
+    spriteBody = new Sprite( Game::textureManager->body , { 256*color , 0 , 256 , 256 } , TANKSCALE );
+    spriteTower = new Sprite( Game::textureManager->tower , { 256*color , 0 , 256 , 256 } , TANKSCALE );
     for (int i=0; i<5; i++)
-        spriteTracks[i] = new Sprite( Game::textureManager->tracks , { 256*i , 0 , 256 , 256 } );
+        spriteTracks[i] = new Sprite( Game::textureManager->tracks , { 256*i , 0 , 256 , 256 } , TANKSCALE );
 
     step = 1;
 }

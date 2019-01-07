@@ -13,7 +13,8 @@ public:
 
 private:
 
-    int direction;
+    //int direction;
+    double floatX,floatY;
 
 };
 
