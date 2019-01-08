@@ -53,9 +53,11 @@
 
 #include "Connection/BasePacket.h"
 #include "Connection/HeartbeatPacket.h"
+#include "Connection/InfoRequestPacket.h"
 #include "Connection/JoinResponsePacket.h"
 #include "Connection/JoinRequestPacket.h"
 #include "Connection/UniversalPacket.h"
+#include "Connection/MapDataPacket.h"
 #include "Connection/PlayerDisconnectedPacket.h"
 #include "Connection/SyncPacket.h"
 #include "Connection/EventPacket.h"

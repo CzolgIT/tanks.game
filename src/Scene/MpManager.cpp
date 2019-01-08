@@ -77,7 +77,7 @@ void MpManager::handleEvents()
         else{
             gameObject->move( Game::stepTime );
             if (ttt > 10)
-            { 
+            {
                 SendMovement();
                 ttt = 0;
             }
