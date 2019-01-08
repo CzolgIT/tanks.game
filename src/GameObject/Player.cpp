@@ -69,29 +69,29 @@ void Player::move()
 
     // dzięki temu kąt obrotu będzie można zapisać jako liczbę
     // od 0 do 180 i zmieści się w jednym bajcie
-    direction = (int)round(directionFloat/2)*2;
-    iTowerDirection = (int)round(towerDirection/2)*2;
+    direction = int(directionFloat);
+    iTowerDirection = int(towerDirection);
 
     //std::cout << iDirection << "  " << iTowerDirection << "\n";
 
     // Wall limits
-    if( position.x < (int)((double)dimensions.x/2) )
-    {
-        position.x = (int)((double)dimensions.x/2) ;
-    }
-    else if( position.x > 2048 - (int)((double)dimensions.x/2) )
-    {
-        position.x = 2048 - (int)((double)dimensions.x/2);
-    }
-
-    if( position.y < (int)((double)dimensions.y/2) )
-    {
-        position.y = (int)((double)dimensions.y/2);
-    }
-    else if( position.y > 2048 - (int)((double)dimensions.y/2) )
-    {
-        position.y = 2048 - (int)((double)dimensions.y/2);
-    }
+//    if( position.x < (int)((double)dimensions.x/2) )
+//    {
+//        position.x = (int)((double)dimensions.x/2) ;
+//    }
+//    else if( position.x > 2048 - (int)((double)dimensions.x/2) )
+//    {
+//        position.x = 2048 - (int)((double)dimensions.x/2);
+//    }
+//
+//    if( position.y < (int)((double)dimensions.y/2) )
+//    {
+//        position.y = (int)((double)dimensions.y/2);
+//    }
+//    else if( position.y > 2048 - (int)((double)dimensions.y/2) )
+//    {
+//        position.y = 2048 - (int)((double)dimensions.y/2);
+//    }
 
     collider->update( position , dimensions , direction );
 

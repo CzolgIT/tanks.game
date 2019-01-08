@@ -11,10 +11,9 @@ public:
     void handleEvents();
     void draw();
     void CheckColliders();
-    void SendMovement();
+    void sendMovement();
 
 private:
-    float ttt = 0;
     NetManager * netManager;
     Background* background = nullptr;
     std::vector<_GameObject*> gameObjects;

@@ -86,7 +86,7 @@ void MpManager::handleEvents()
         animations.push_back(tankdrive);
     }
 
-    CheckColliders();
+    //CheckColliders();
 
 //    for (auto &gameObject : gameObjects) {
 //        if(gameObject->shouldBeDestroy())
@@ -106,6 +106,16 @@ void MpManager::handleEvents()
 //        }
 //    }
 
+    bool anykey=false;
+    if (state[SDL_SCANCODE_UP]) anykey=true;
+    if (state[SDL_SCANCODE_DOWN]) anykey=true;
+    if (state[SDL_SCANCODE_LEFT]) anykey=true;
+    if (state[SDL_SCANCODE_RIGHT]) anykey=true;
+    if (state[SDL_SCANCODE_SPACE]) anykey=true;
+    if (state[SDL_SCANCODE_Z]) anykey=true;
+    if (state[SDL_SCANCODE_X]) anykey=true;
+    if (anykey) sendMovement();
+
     auto gameObject_iterator = gameObjects.begin();
     while(gameObject_iterator != gameObjects.end())
     {
@@ -121,7 +131,6 @@ void MpManager::handleEvents()
         }
         else{
             (*gameObject_iterator)->move();
-            SendMovement();
             ++gameObject_iterator;
         }
     }
@@ -139,7 +148,7 @@ void MpManager::handleEvents()
     }
 }
 
-void MpManager::SendMovement()
+void MpManager::sendMovement()
 {
     const Uint8 *state = SDL_GetKeyboardState(nullptr);
     bool keys[7] = {bool(state[SDL_SCANCODE_UP]),bool(state[SDL_SCANCODE_DOWN]),bool(state[SDL_SCANCODE_LEFT]),

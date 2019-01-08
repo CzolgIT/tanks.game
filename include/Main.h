@@ -94,8 +94,8 @@ const char NICKNAME[] = "Player";
 #define SERVERPORT 7777
 
 //Tank Globals
-#define TANKMAXSPEED 200
-#define TANKMAXDIR 128
+#define TANKMAXSPEED 300 //200
+#define TANKMAXDIR 180 //128
 #define TANKACCELERATION 3
 #define TANKSCALE 0.5
 #define BULLETSPEED 500

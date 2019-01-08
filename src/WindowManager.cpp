@@ -14,8 +14,8 @@ void WindowManager::update() {
 
     if (stepTime < 1000.f / 60.f)
     {
-        SDL_Delay(1000.f / 60.f - stepTime); //- stepTimer->getTicks());
-        stepTime = 1000.f / 60000.f;
+        SDL_Delay(1000.f / 120.f - stepTime); //- stepTimer->getTicks());
+        stepTime = 1000.f / 120000.f;
     }
 
     // here we can stop game-time to align to specified fps
