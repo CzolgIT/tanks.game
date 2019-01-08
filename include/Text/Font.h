@@ -14,6 +14,7 @@ public:
     int getR();
     int getG();
     int getB();
+    int letterscount();
 
     void draw( std::string str, int x, int y, bool center);
 

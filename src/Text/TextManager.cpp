@@ -35,3 +35,18 @@ void TextManager::draw(std::string str, int x, int y, int size, SDL_Color color,
         newFont->draw(str, x, y, center);
     }
 }
+
+int TextManager::lettersCount()
+{
+    int sum=0;
+    for (auto &font : fonts)
+    {
+        sum += font->letterscount();
+    }
+    return sum;
+}
+
+int TextManager::fontsCount()
+{
+    return int(fonts.size());
+}

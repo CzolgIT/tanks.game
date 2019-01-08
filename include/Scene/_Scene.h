@@ -9,6 +9,7 @@ public:
 
     _Scene();
     virtual ~_Scene() = default;
+
     bool isRunning() { return running; }
     void update();
         virtual void handleEvents(){}

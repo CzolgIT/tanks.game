@@ -15,6 +15,8 @@ int Font::getR() { return color.r; }
 int Font::getG() { return color.g; }
 int Font::getB() { return color.b; }
 
+int Font::letterscount() { return letters.size(); }
+
 void Font::draw(std::string str, int x, int y, bool center)
 {
     int posx = x;

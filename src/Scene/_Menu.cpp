@@ -68,6 +68,9 @@ void _Menu::draw()
 
     Game::debugger->draw();
     SDL_RenderPresent( Game::renderer );
+
+
+
 }
 
 void _Menu::updateGUI()

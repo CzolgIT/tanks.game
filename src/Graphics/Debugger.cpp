@@ -32,5 +32,8 @@ void Debugger::draw()
         }
 
         Game::textManager->draw( "fps: " + std::to_string( fps ) , j/6 , 34*j , j , C_BLACK, false );
+        Game::textManager->draw( "letters: " + std::to_string( Game::textManager->lettersCount() ) , j/6 , 30*j , j , C_BLACK, false );
+        Game::textManager->draw( "fonts: " + std::to_string( Game::textManager->fontsCount() ) , j/6 , 31*j , j , C_BLACK, false );
+
     }
 }

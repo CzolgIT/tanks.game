@@ -22,7 +22,6 @@ public:
 
 private:
 
-    SDL_Window* window;
     _Scene * currentScene;
     bool running;
 

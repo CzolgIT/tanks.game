@@ -74,8 +74,6 @@ void Game::Update()
 Game::~Game()
 {
     SDL_DestroyRenderer( renderer );
-    SDL_DestroyWindow( window );
-    window = nullptr;
     renderer = nullptr;
     IMG_Quit();
     SDL_Quit();
