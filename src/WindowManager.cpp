@@ -9,14 +9,14 @@ WindowManager::WindowManager()
     stepTimer->start();
 }
 
-void WindowManager::update()
-{
-    float tiki = stepTimer->getTicks();
-    stepTime = tiki / 1000.f;
+void WindowManager::update() {
+    stepTime = stepTimer->getTicks() / 1000.f;
 
-    SDL_Delay(1000.f/60.f - stepTime ); //- stepTimer->getTicks());
-
-    stepTime = 1000.f/60000.f;
+    if (stepTime < 1000.f / 60.f)
+    {
+        SDL_Delay(1000.f / 60.f - stepTime); //- stepTimer->getTicks());
+        stepTime = 1000.f / 60000.f;
+    }
 
     // here we can stop game-time to align to specified fps
 

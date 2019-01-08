@@ -18,6 +18,7 @@ private:
     NetManager * netManager;
     Background* background = nullptr;
     std::vector<_GameObject*> gameObjects;
+    std::vector<Animation*> animations;
     Player* player;
 
 };

@@ -13,6 +13,7 @@ class _GameObject
 public:
 
     _GameObject( SDL_Point position , SDL_Point dimensions , int direction , ObjectType type);
+    virtual ~_GameObject() = default;
     // virtual void Start() // not used
     // virtual void update(){} // not used
     virtual void move(){}

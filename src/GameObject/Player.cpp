@@ -48,11 +48,11 @@ void Player::move()
 
     //if (blocked.x ==0 ) xFloat += xm;
     //if (blocked.x>0.1 || blocked.x<-0.1) xFloat += -blocked.x;
-    xFloat += xm -blocked.x;
+    xFloat += xm; //-blocked.x;
 
     //if (blocked.y == 0 ) yFloat += ym;
     //if (blocked.y>0.1 || blocked.y<-0.1) yFloat += -blocked.y;
-    yFloat += ym -blocked.y;
+    yFloat += ym; //-blocked.y;
 
     position.x = int(xFloat);
     position.y = int(yFloat);

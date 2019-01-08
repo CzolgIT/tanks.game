@@ -34,11 +34,8 @@ void Manager::draw()
     }
 
     Game::debugger->draw();
-
-    std::string gameobjects_s = "gameobjects: " + std::to_string( gameObjects.size() );
-    std::string animations_s = "animations: " + std::to_string( animations.size() );
-    Game::textManager->draw( gameobjects_s , 5 , 20 , 20 , C_BLACK , false );
-    Game::textManager->draw( animations_s , 5 , 40 , 20 , C_BLACK , false );
+    Game::textManager->draw( "gameobjects: " + std::to_string( gameObjects.size() ) , 5 , 20 , 20 , C_BLACK , false );
+    Game::textManager->draw( "animations: " + std::to_string( animations.size() ) , 5 , 40 , 20 , C_BLACK , false );
 
     SDL_RenderPresent( Game::renderer );
 }
@@ -90,7 +87,8 @@ void Manager::handleEvents()
     CheckColliders();
 
     for (auto &gameObject : gameObjects) {
-        if(gameObject->shouldBeDestroy()){
+        if(gameObject->shouldBeDestroy())
+        {
             //gameObject->destroy();
             if (auto *b = dynamic_cast<Bullet *>(gameObject))
             {
@@ -105,19 +103,17 @@ void Manager::handleEvents()
             gameObject->move();
     }
 
-    auto iterator = animations.begin();
-
-    while(iterator != animations.end())
+    auto animation_iterator = animations.begin();
+    while(animation_iterator != animations.end())
     {
-        if((*iterator)->gettodelete())
+        if((*animation_iterator)->gettodelete())
         {
-            delete *iterator;
-            iterator = animations.erase(iterator);
+            delete *animation_iterator;
+            animation_iterator = animations.erase(animation_iterator);
         }
         else
-            ++iterator;
+            ++animation_iterator;
     }
-
 }
 
 void Manager::CheckColliders()

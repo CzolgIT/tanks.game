@@ -28,7 +28,16 @@ void MpManager::draw()
     }
     player->draw( x0 , y0 );
 
+    for (auto &animation : animations)
+    {
+        if( !animation->gettodelete() )
+            animation->draw( x0 , y0 );
+    }
+
     Game::debugger->draw();
+    Game::textManager->draw( "gameobjects: " + std::to_string( gameObjects.size() ) , 5 , 20 , 20 , C_BLACK , false );
+    Game::textManager->draw( "animations: " + std::to_string( animations.size() ) , 5 , 40 , 20 , C_BLACK , false );
+
     SDL_RenderPresent( Game::renderer );
 }
 
@@ -55,10 +64,12 @@ void MpManager::handleEvents()
             }
             if (eventHandler.key.keysym.sym == SDLK_SPACE)
             {
-                SDL_Point punkt = player->shootPosition();
                 // INVOKE BULLETS WYSYLA PAKIET Z PUNKTEM WYstrzelenia i kierunkiem 
-                auto* bullet = new Bullet( {punkt.x , punkt.y} , player->getTowDir());
+                auto* bullet = new Bullet( player->shootPosition() , player->getTowDir());
                 gameObjects.push_back(bullet);
+
+                auto* tankshoot = new Animation( TANKSHOOT , player->shootPosition() , player->getDir() );
+                animations.push_back(tankshoot);
             }
         }
         for (auto &gameObject : gameObjects) {
@@ -66,16 +77,65 @@ void MpManager::handleEvents()
         }
     }
 
+    const Uint8 *state = SDL_GetKeyboardState(nullptr);
+    int los = random()%10;
+
+    if (state[SDL_SCANCODE_UP] && los==2)
+    {
+        auto* tankdrive = new Animation( TANKDRIVE , player->smokePosition() , player->getDir() );
+        animations.push_back(tankdrive);
+    }
+
     CheckColliders();
 
-    for (auto &gameObject : gameObjects) {
-        if(gameObject->shouldBeDestroy()){
-            gameObjects.erase(std::remove(gameObjects.begin(), gameObjects.end(), gameObject), gameObjects.end());
+//    for (auto &gameObject : gameObjects) {
+//        if(gameObject->shouldBeDestroy())
+//        {
+//            if (auto *b = dynamic_cast<Bullet *>(gameObject))
+//            {
+//                auto* bulletexplode = new Animation( BULLETEXPLODE , b->getPosition() , 0 );
+//                animations.push_back(bulletexplode);
+//            }
+//            //gameObject->destroy();
+//            //delete_object(gameObject);
+//            gameObjects.erase(std::remove(gameObjects.begin(), gameObjects.end(), gameObject), gameObjects.end());
+//        }
+//        else{
+//            gameObject->move();
+//            SendMovement();
+//        }
+//    }
+
+    auto gameObject_iterator = gameObjects.begin();
+    while(gameObject_iterator != gameObjects.end())
+    {
+        if((*gameObject_iterator)->shouldBeDestroy())
+        {
+            if (auto *b = dynamic_cast<Bullet *>(*gameObject_iterator))
+            {
+                auto* bulletexplode = new Animation( BULLETEXPLODE , b->getPosition() , 0 );
+                animations.push_back(bulletexplode);
+            }
+            delete *gameObject_iterator;
+            gameObject_iterator = gameObjects.erase(gameObject_iterator);
         }
         else{
-            gameObject->move();
+            (*gameObject_iterator)->move();
             SendMovement();
+            ++gameObject_iterator;
         }
+    }
+
+    auto animation_iterator = animations.begin();
+    while(animation_iterator != animations.end())
+    {
+        if((*animation_iterator)->gettodelete())
+        {
+            delete *animation_iterator;
+            animation_iterator = animations.erase(animation_iterator);
+        }
+        else
+            ++animation_iterator;
     }
 }
 
@@ -85,11 +145,11 @@ void MpManager::SendMovement()
     bool keys[7] = {bool(state[SDL_SCANCODE_UP]),bool(state[SDL_SCANCODE_DOWN]),bool(state[SDL_SCANCODE_LEFT]),
                     bool(state[SDL_SCANCODE_RIGHT]),bool(state[SDL_SCANCODE_Z]),bool(state[SDL_SCANCODE_X]),bool(state[SDL_SCANCODE_SPACE])};
 
-    EventPacket * ep = new EventPacket();
+    auto * ep = new EventPacket();
     ep->setKeys(keys);
     ep->setTime(netManager->getGlobalTime());
     Game::netManager->udpSend(ep);
-    std::cout << "Wyslano pakiet" << std::endl;
+    //std::cout << "Wyslano pakiet" << std::endl;
 }
 
 
