@@ -175,7 +175,8 @@ void MpManager::CheckColliders()
 
                     Vector2D col = Collider::areColliding(col1, col2);
                     if (col.x != 0 || col.y != 0) {
-
+                        bool del_i=false;
+                        bool del_j=false;
                         if (auto *p = dynamic_cast<Player *>(gameObjects[i])) {
                             if (auto *b = dynamic_cast<Bullet *>(gameObjects[j])) {
 
@@ -190,10 +191,17 @@ void MpManager::CheckColliders()
 
                             }
                         } else if (auto *b = dynamic_cast<Bullet *>(gameObjects[i])) {
-                            b->setToBeDestroyed();
+                            del_i=true;
                         } else if (auto *b = dynamic_cast<Bullet *>(gameObjects[j])) {
-                            b->setToBeDestroyed();
+                            del_j=true;
                         }
+
+                        if (!(del_i && del_j)
+                        {
+                            if (del_i) gameObjects[i]->setToBeDestroyed();
+                            if (del_j) gameObjects[j]->setToBeDestroyed();
+                        }
+
                     }
                 }
             }
