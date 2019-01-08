@@ -70,8 +70,6 @@ void MpManager::handleEvents()
 
     for (auto &gameObject : gameObjects) {
         if(gameObject->shouldBeDestroy()){
-            gameObject->destroy();
-            delete_object(gameObject);
             gameObjects.erase(std::remove(gameObjects.begin(), gameObjects.end(), gameObject), gameObjects.end());
         }
         else{
@@ -84,8 +82,8 @@ void MpManager::handleEvents()
 void MpManager::SendMovement()
 {
     const Uint8 *state = SDL_GetKeyboardState(nullptr);
-    bool keys[7] = {bool(state[SDL_SCANCODE_UP]),bool(state[SDL_SCANCODE_DOWN]),&state[SDL_SCANCODE_LEFT],
-                    &state[SDL_SCANCODE_RIGHT],&state[SDL_SCANCODE_Z],&state[SDL_SCANCODE_X],&state[SDL_SCANCODE_SPACE]};
+    bool keys[7] = {bool(state[SDL_SCANCODE_UP]),bool(state[SDL_SCANCODE_DOWN]),bool(state[SDL_SCANCODE_LEFT]),
+                    bool(state[SDL_SCANCODE_RIGHT]),bool(state[SDL_SCANCODE_Z]),bool(state[SDL_SCANCODE_X]),bool(state[SDL_SCANCODE_SPACE])};
 
     EventPacket * ep = new EventPacket();
     ep->setKeys(keys);
