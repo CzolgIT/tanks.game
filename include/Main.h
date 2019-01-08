@@ -53,6 +53,7 @@
 #include "GameObject/Wall.h"
 
 #include "Connection/BasePacket.h"
+#include "Connection/CurrentPositionPacket.h"
 #include "Connection/HeartbeatPacket.h"
 #include "Connection/InfoRequestPacket.h"
 #include "Connection/JoinResponsePacket.h"
