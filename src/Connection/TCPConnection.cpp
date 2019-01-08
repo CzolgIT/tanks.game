@@ -116,6 +116,7 @@ void TCPConnection::sendPacket() {
         if(SDLNet_TCP_Send(socket,packet->getData(),packet->getSize())<(int)packet->getSize()){
             connectionGood = false;
         }
+        delete packet.get();
     }
 
 

@@ -102,8 +102,8 @@ void UDPConnection::sendPacket() {
         if(SDLNet_UDP_Send(udpSocket,-1,&packet) <= 0){
             connectionGood = false;
         }
-
-
+        delete qPacket.get();
+        delete &packet;
     }
 
 }
