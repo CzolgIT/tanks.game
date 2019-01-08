@@ -65,7 +65,7 @@ void Game::Update()
 //            Room * r = dynamic_cast<Room*>(currentScene);
             int c = 1;
             currentScene = new MpManager(c);
-            Multiplayer();
+            //Multiplayer();
         }
             break;
         default:
