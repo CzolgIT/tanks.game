@@ -33,4 +33,20 @@ void BasePacket::print() const
 }
 
 
+Uint32 floatToUint32(float f)
+{
+    Uint32 i = 0;
+    char* iPtr = (char*)&i;
+    char* fPtr = (char*)&f;
+    memcpy(iPtr, fPtr, 4);
+    return i;
+}
 
+float Uint32toFloat(Uint32 i)
+{
+    float f = 0;
+    char* fPtr = (char*)&f;
+    char* iPtr = (char*)&i;
+    memcpy(fPtr, iPtr, 4);
+    return f;
+}

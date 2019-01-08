@@ -61,13 +61,32 @@ void Game::Update()
             currentScene = new SettingsGame();
             break;
         case 8: // Multiplayer-run
-            currentScene = new MainMenu();
+        {
+            //Room * r = dynamic_cast<Room*>(currentScene);
+            int c = 1;
+            //free(r);
+            currentScene = new MpManager(c);
+            Multiplayer();
+        }
             break;
         default:
             if (netManager!=nullptr)
                 netManager->disconnectPlayer();
             running = false;
             break;
+    }
+}
+
+void Game::Multiplayer()
+{
+    while (currentScene->isRunning())
+    {
+        currentScene->update();
+    }
+    if (netManager!=nullptr)
+    {
+        netManager->disconnectPlayer();
+        delete_object(netManager);
     }
 }
 

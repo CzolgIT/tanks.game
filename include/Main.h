@@ -13,6 +13,7 @@
 #include <thread>
 #include <atomic>
 #include <algorithm>
+#include <mutex>
 
 #ifdef __APPLE__
     #include <SDL2/SDL.h>
@@ -29,14 +30,6 @@
 #include "Collisions/Vector2D.h"
 #include "Collisions/Projection.h"
 #include "Collisions/Collider.h"
-
-#include "Connection/BasePacket.h"
-#include "Connection/JoinResponsePacket.h"
-#include "Connection/JoinRequestPacket.h"
-#include "Connection/UniversalPacket.h"
-#include "Connection/PlayerDisconnectedPacket.h"
-#include "Connection/TCPConnection.h"
-#include "Connection/NetManager.h"
 
 #include "Graphics/Texture.h"
 #include "Graphics/Debugger.h"
@@ -59,6 +52,21 @@
 #include "GameObject/Bullet.h"
 #include "GameObject/Wall.h"
 
+#include "Connection/BasePacket.h"
+#include "Connection/HeartbeatPacket.h"
+#include "Connection/InfoRequestPacket.h"
+#include "Connection/JoinResponsePacket.h"
+#include "Connection/JoinRequestPacket.h"
+#include "Connection/UniversalPacket.h"
+#include "Connection/MapDataPacket.h"
+#include "Connection/PlayerDisconnectedPacket.h"
+#include "Connection/SyncPacket.h"
+#include "Connection/EventPacket.h"
+#include "Connection/NetPlayer.h"
+#include "Connection/UDPConnection.h"
+#include "Connection/TCPConnection.h"
+#include "Connection/NetManager.h"
+
 #include "Scene/_Scene.h"
 #include "Scene/_Menu.h"
 #include "Scene/Settings.h"
@@ -69,6 +77,7 @@
 #include "Scene/Room.h"
 #include "Scene/MainMenu.h"
 #include "Scene/Manager.h"
+#include "Scene/MpManager.h"
 
 #include "Map.h"
 #include "Timer.h"
@@ -79,8 +88,9 @@
 #define delete_object(x) {delete x; x = nullptr;}
 
 const char NICKNAME[] = "Player";
-#define SERVERIP "153.19.7.230"
-//#define SERVERIP "127.0.0.1"
+
+//#define SERVERIP "153.19.7.230"
+#define SERVERIP "127.0.0.1"
 #define SERVERPORT 7777
 
 //Tank Globals

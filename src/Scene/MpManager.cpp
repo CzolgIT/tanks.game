@@ -1,16 +1,17 @@
 #include "Main.h"
 
-Manager::Manager(): _Scene()
+MpManager::MpManager(int color): _Scene()
 {
+    this->netManager = Game::netManager;
     background = new Background();
-    player = new Player( {128 , 128} , 1 );
+    player = new Player( {128 , 128} , color );
     gameObjects.push_back(player);
     auto map = new Map();
     map->loadFromFile( &gameObjects );
     std::cout << "Zaczyna sie gra" << std::endl;
 }
 
-void Manager::draw()
+void MpManager::draw()
 {
     SDL_SetRenderDrawColor( Game::renderer, 0xFF, 0xFF, 0xFF, 0xFF );
     SDL_RenderClear( Game::renderer );
@@ -27,23 +28,11 @@ void Manager::draw()
     }
     player->draw( x0 , y0 );
 
-    for (auto &animation : animations)
-    {
-        if( !animation->gettodelete() )
-            animation->draw( x0 , y0 );
-    }
-
     Game::debugger->draw();
-
-    std::string gameobjects_s = "gameobjects: " + std::to_string( gameObjects.size() );
-    std::string animations_s = "animations: " + std::to_string( animations.size() );
-    Game::textManager->draw( gameobjects_s , 5 , 20 , 20 , C_BLACK , false );
-    Game::textManager->draw( animations_s , 5 , 40 , 20 , C_BLACK , false );
-
     SDL_RenderPresent( Game::renderer );
 }
 
-void Manager::handleEvents()
+void MpManager::handleEvents()
 {
     SDL_Event eventHandler;
     while ( SDL_PollEvent( &eventHandler ) != 0 )
@@ -60,16 +49,16 @@ void Manager::handleEvents()
             if (eventHandler.key.keysym.sym == SDLK_ESCAPE)
             {
                 running = false;
+                netManager->disconnectPlayer();
                 flagReturn = 0;
                 break;
             }
             if (eventHandler.key.keysym.sym == SDLK_SPACE)
             {
-                auto* bullet = new Bullet( player->shootPosition() , player->getTowDir());
+                SDL_Point punkt = player->shootPosition();
+                // INVOKE BULLETS WYSYLA PAKIET Z PUNKTEM WYstrzelenia i kierunkiem 
+                auto* bullet = new Bullet( {punkt.x , punkt.y} , player->getTowDir());
                 gameObjects.push_back(bullet);
-
-                auto* tankshoot = new Animation( TANKSHOOT , player->shootPosition() , player->getDir() );
-                animations.push_back(tankshoot);
             }
         }
         for (auto &gameObject : gameObjects) {
@@ -77,50 +66,36 @@ void Manager::handleEvents()
         }
     }
 
-    const Uint8 *state = SDL_GetKeyboardState(nullptr);
-    int los = random()%10;
-
-    if (state[SDL_SCANCODE_UP] && los==2)
-    {
-        auto* tankdrive = new Animation( TANKDRIVE , player->smokePosition() , player->getDir() );
-        animations.push_back(tankdrive);
-    }
-
-
     CheckColliders();
 
     for (auto &gameObject : gameObjects) {
         if(gameObject->shouldBeDestroy()){
-            //gameObject->destroy();
-            if (auto *b = dynamic_cast<Bullet *>(gameObject))
-            {
-                auto* bulletexplode = new Animation( BULLETEXPLODE , b->getPosition() , 0 );
-                animations.push_back(bulletexplode);
-            }
-
+            gameObject->destroy();
+            delete_object(gameObject);
             gameObjects.erase(std::remove(gameObjects.begin(), gameObjects.end(), gameObject), gameObjects.end());
-            //delete gameObject;
         }
-        else
+        else{
             gameObject->move();
-    }
-
-    auto iterator = animations.begin();
-
-    while(iterator != animations.end())
-    {
-        if((*iterator)->gettodelete())
-        {
-            delete *iterator;
-            iterator = animations.erase(iterator);
+            SendMovement();
         }
-        else
-            ++iterator;
     }
-
 }
 
-void Manager::CheckColliders()
+void MpManager::SendMovement()
+{
+    const Uint8 *state = SDL_GetKeyboardState(nullptr);
+    bool keys[7] = {bool(state[SDL_SCANCODE_UP]),bool(state[SDL_SCANCODE_DOWN]),&state[SDL_SCANCODE_LEFT],
+                    &state[SDL_SCANCODE_RIGHT],&state[SDL_SCANCODE_Z],&state[SDL_SCANCODE_X],&state[SDL_SCANCODE_SPACE]};
+
+    EventPacket * ep = new EventPacket();
+    ep->setKeys(keys);
+    ep->setTime(netManager->getGlobalTime());
+    Game::netManager->udpSend(ep);
+    std::cout << "Wyslano pakiet" << std::endl;
+}
+
+
+void MpManager::CheckColliders()
 {
     Collider * col1 = nullptr;
     Collider * col2 = nullptr;
@@ -167,3 +142,4 @@ void Manager::CheckColliders()
         }
     }
 }
+

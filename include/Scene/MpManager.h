@@ -1,24 +1,25 @@
-#ifndef Manager_h
-#define Manager_h
+#ifndef MpManager_h
+#define MpManager_h
 
 #include "Main.h"
 
-class Manager : public _Scene
+class MpManager : public _Scene
 {
 public:
 
-    Manager();
+    MpManager(int color = 1);
     void handleEvents();
     void draw();
     void CheckColliders();
-private:
+    void SendMovement();
 
+private:
+    float ttt = 0;
+    NetManager * netManager;
     Background* background = nullptr;
     std::vector<_GameObject*> gameObjects;
-    std::vector<Animation*> animations;
     Player* player;
 
 };
 
 #endif
-

@@ -3,20 +3,22 @@
 Room::Room() : _Scene()
 {
     Game::netManager = new NetManager();
-
     selectedTank = 1;
     dir=0;
     this->netManager = Game::netManager;
-    if (!netManager->activate())
+    Uint32 globalTime = 0;
+    if (!netManager->connect(SERVERIP,SERVERPORT,globalTime))
     {
         flagReturn = 0;
         running = false;
     }
-
+    std::cout << "Pyklo" << std::endl;
+    
     sprite[0] = new TankSprite( 1 );
     sprite[1] = new TankSprite( 2 );
     sprite[2] = new TankSprite( 3 );
     sprite[3] = new TankSprite( 4 );
+
 }
 
 void  Room::handleEvents()
@@ -40,7 +42,6 @@ void  Room::handleEvents()
                     flagReturn = -1;
                     break;
                 case SDLK_RETURN:
-
                     flagReturn = 8; // tu byl selectedtank, ale tworzenie czolgu bedzie musialo byc juz w tej klasie
                     running = false;
                     break;
