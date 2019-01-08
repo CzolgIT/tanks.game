@@ -147,6 +147,7 @@ void MpManager::SendMovement()
 
     auto * ep = new EventPacket();
     ep->setKeys(keys);
+    ep->setId(netManager->netPlayer->id);
     ep->setTime(netManager->getGlobalTime());
     Game::netManager->udpSend(ep);
     //std::cout << "Wyslano pakiet" << std::endl;
@@ -196,7 +197,7 @@ void MpManager::CheckColliders()
                             del_j=true;
                         }
 
-                        if (!(del_i && del_j)
+                        if (!(del_i && del_j))
                         {
                             if (del_i) gameObjects[i]->setToBeDestroyed();
                             if (del_j) gameObjects[j]->setToBeDestroyed();

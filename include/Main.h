@@ -90,7 +90,7 @@
 const char NICKNAME[] = "Player";
 
 //#define SERVERIP "153.19.7.230"
-#define SERVERIP "127.0.0.1"
+#define SERVERIP "25.63.145.1"
 #define SERVERPORT 7777
 
 //Tank Globals
