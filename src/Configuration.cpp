@@ -26,8 +26,8 @@ void Configuration::setFullscreen( bool fullscreen )
     if (!fullscreen)
     {
         SDL_ShowCursor(SDL_ENABLE);
-        displayMode->w=800;
-        displayMode->h=600;
+        displayMode->w=Game::windowManager->getWidth();
+        displayMode->h=Game::windowManager->getHeight();
         displayMode->refresh_rate=60;
         SDL_SetWindowDisplayMode(window, this->displayMode);
         SDL_SetWindowFullscreen( window, SDL_FALSE );

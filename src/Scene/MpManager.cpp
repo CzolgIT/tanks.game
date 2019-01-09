@@ -6,15 +6,7 @@ MpManager::MpManager(int color): _Scene()
     background = new Background();
 
     player = new Player( Game::netManager->getMyId() );
-    auto * player2 = new Player( 6 );
-    auto * player3 = new Player( 3 );
-
     gameObjects.push_back(player);
-    gameObjects.push_back(player2);
-    gameObjects.push_back(player3);
-
-    player2->setPosition({400,400});
-    player3->setPosition({400,100});
 
     auto map = new Map();
     map->loadFromFile( &gameObjects );
@@ -112,17 +104,27 @@ void MpManager::handleEvents()
     {
         if (auto *p = dynamic_cast<CurrentPositionPacket *>(received.get()))
         {
+            bool found=false;
             for (auto &gameObject : gameObjects)
             {
+
                 if ( auto * pl = dynamic_cast<Player *>(gameObject) )
                 {
                     if ( pl->getId() == p->getPlayerId() )
                     {
+                        found=true;
                         pl->setPosition({p->getX(), p->getY()});
                         pl->setDirection(p->getTankRotation());
                         pl->setTowerDirection(p->getTurretRotation());
                     }
                 }
+            }
+            if (!found)
+            {
+                Player *newPlayer = new Player(p->getPlayerId());
+                newPlayer->setDirection(p->getTankRotation());
+                newPlayer->setTowerDirection(p->getTurretRotation());
+                gameObjects.push_back(newPlayer);
             }
         }
     }

@@ -17,6 +17,8 @@ private:
     TankSprite* sprite[4];
     float dir;
 
+    Button * bt;
+    Button * bt2;
 
 };
 

@@ -2,8 +2,9 @@
 
 WindowManager::WindowManager()
 {
-    window = SDL_CreateWindow("Tanks Game",SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED,800,600,SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
-
+    width=1000;
+    height=800;
+    window = SDL_CreateWindow("Tanks Game",SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED,width,height,SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
     stepTime = 0;
     stepTimer = new Timer();
     stepTimer->start();
@@ -31,4 +32,14 @@ float WindowManager::getStepTime()
 SDL_Window* WindowManager::getWindow()
 {
     return window;
+}
+
+int WindowManager::getWidth()
+{
+    return width;
+}
+
+int WindowManager::getHeight()
+{
+    return height;
 }

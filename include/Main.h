@@ -100,7 +100,7 @@ const char NICKNAME[] = "Player";
 #define TANKMAXDIR 180 //128
 #define TANKACCELERATION 3
 #define TANKSCALE 0.5
-#define BULLETSPEED 500
+#define BULLETSPEED 1000
 
 #define SPRITESCALE 1
 
