@@ -94,8 +94,12 @@ void MpManager::handleEvents()
 
     if (auto *p = dynamic_cast<CurrentPositionPacket *>(received.get()))
     {
-
+        player->setPosition( { p->getX() , p->getY() } );
+        player->setDirection( p->getTankRotation() );
+        player->setTowerDirection( p->getTurretRotation() );
     }
+
+    
 
 
 

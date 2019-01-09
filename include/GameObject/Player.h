@@ -17,7 +17,9 @@ public:
 
     void PushOut(Vector2D vec);
 
-
+    void setPosition(SDL_Point position);
+    void setDirection(int direction);
+    void setTowerDirection(int towerDirection);
 
 private:
 

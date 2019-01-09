@@ -54,8 +54,8 @@ void Player::move()
     //if (blocked.y>0.1 || blocked.y<-0.1) yFloat += -blocked.y;
     yFloat += ym; //-blocked.y;
 
-    position.x = int(xFloat);
-    position.y = int(yFloat);
+    //position.x = int(xFloat);
+    //position.y = int(yFloat);
 
     // rotate tank and tower
     directionFloat += directionSpeed * timeStep ;
@@ -69,8 +69,8 @@ void Player::move()
 
     // dzięki temu kąt obrotu będzie można zapisać jako liczbę
     // od 0 do 180 i zmieści się w jednym bajcie
-    direction = int(directionFloat);
-    iTowerDirection = int(towerDirection);
+    //direction = int(directionFloat);
+    //iTowerDirection = int(towerDirection);
 
     //std::cout << iDirection << "  " << iTowerDirection << "\n";
 
@@ -176,4 +176,17 @@ SDL_Point Player::smokePosition()
     punkt.x = (int)(position.x+(cos((direction+los) *M_PI/180) * -50));
     punkt.y = (int)(position.y+(sin((direction+los) *M_PI/180) * -50));
     return punkt;
+}
+
+void Player::setPosition(SDL_Point position)
+{
+    this->position = position;
+}
+void Player::setDirection(int direction)
+{
+    this->direction = direction;
+}
+void Player::setTowerDirection(int towerDirection)
+{
+    this->iTowerDirection = towerDirection;
 }
