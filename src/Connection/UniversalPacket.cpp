@@ -35,6 +35,10 @@ std::unique_ptr<BasePacket> UniversalPacket::createFromContents()
             return constructPacket(new JoinResponsePacket);
         case PT_CURRENT_POSITION:
             return constructPacket(new CurrentPositionPacket);
+        case PT_PLAYER_JOINED:
+            return constructPacket(new PlayerJoinedPacket);
+        case PT_LAST_PLAYER_SENT:
+            return constructPacket(new LastPlayerSentPacket);
         default:
             return nullptr;
     }

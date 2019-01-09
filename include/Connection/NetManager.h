@@ -27,7 +27,7 @@ public:
 private:
 
     bool syncTimeWithServer(NetPlayer* player, Uint32& globalTime);
-
+    void getAllPlayersData();
     std::queue<std::unique_ptr<BasePacket>> packetQueue;
 
     std::atomic_bool closeSenderThread; //closes thread when true

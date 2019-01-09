@@ -127,6 +127,9 @@ void MpManager::handleEvents()
                 gameObjects.push_back(newPlayer);
             }
         }
+        else if(auto *p = dynamic_cast<PlayerDisconnectedPacket *>(received.get())){
+            p->print();
+        }
     }
 
     //CheckColliders();

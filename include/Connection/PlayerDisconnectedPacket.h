@@ -13,6 +13,7 @@ public:
     ~PlayerDisconnectedPacket() override {}
 
     void setId(Uint8 id);
+    void print() const override;
 
 };
 

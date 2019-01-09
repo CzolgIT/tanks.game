@@ -146,6 +146,12 @@ std::unique_ptr<BasePacket> TCPConnection::getNextPacket() {
                     case PT_PLAYER_DISCONNECTED:
                         bytesRemaining = PLAYERDISCONNECTED_PACKET_SIZE -1;
                         break;
+                    case PT_PLAYER_JOINED:
+                        bytesRemaining = PLAYERJOINED_PACKET_SIZE-1;
+                        break;
+                    case PT_LAST_PLAYER_SENT:
+                        bytesRemaining = LAST_PLAYER_SENT_SIZE-1;
+                        break;
                     default:
                         std::cout<<"TCP unknown packet size!"<<std::endl;
                         bytesRemaining = uniPacket.getSize() -1;
@@ -194,6 +200,8 @@ void TCPConnection::startSenderThread() {
 void TCPConnection::addPacketToQueue(BasePacket *packet) {
 
     queueMtx.lock();
+    packet->print();
+//    std::cout << "dodałem pakiet" << packet->print() << "do kolejki" << std::endl;
     packetQueue.push(std::unique_ptr<BasePacket>(packet));
     queueMtx.unlock();
 

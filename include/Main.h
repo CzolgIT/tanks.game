@@ -53,6 +53,7 @@
 #include "GameObject/Wall.h"
 
 #include "Connection/BasePacket.h"
+#include "Connection/LastPlayerSentPacket.h"
 #include "Connection/CurrentPositionPacket.h"
 #include "Connection/HeartbeatPacket.h"
 #include "Connection/InfoRequestPacket.h"
@@ -61,6 +62,7 @@
 #include "Connection/UniversalPacket.h"
 #include "Connection/MapDataPacket.h"
 #include "Connection/PlayerDisconnectedPacket.h"
+#include "Connection/PlayerJoinedPacket.h"
 #include "Connection/SyncPacket.h"
 #include "Connection/EventPacket.h"
 #include "Connection/NetPlayer.h"
@@ -91,8 +93,8 @@
 const char NICKNAME[] = "Player";
 
 //#define SERVERIP "153.19.7.230"
-//#define SERVERIP "25.63.145.1"
-#define SERVERIP "127.0.0.1"
+#define SERVERIP "25.63.145.1"
+//#define SERVERIP "127.0.0.1"
 #define SERVERPORT 7777
 
 //Tank Globals

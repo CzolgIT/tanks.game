@@ -55,7 +55,8 @@ bool NetManager::connect(std::string host, Uint16 port, Uint32 &globalTime) {
     std::cout << "Synced with server" << std::endl;
     //todo: do some stuff
     //todo: get room info & stuff
-
+    //request player list
+//    getAllPlayersData();
 
     return isConnected();
 }
@@ -184,4 +185,28 @@ void NetManager::clear()
 int NetManager::getMyId()
 {
     return netPlayer->id;
+}
+
+void NetManager::getAllPlayersData() {
+    tcpSend(new InfoRequestPacket(netPlayer->id,RT_PLAYER_LIST));
+    std::unique_ptr<BasePacket> received;
+    read();
+    while(!pollPacket(received)){
+        std::cout << "waiting for packets..." << std::endl;
+        read();
+    }
+    do{
+        while (auto *p = dynamic_cast<PlayerJoinedPacket *>(received.get())){
+            std::cout << "XD" << std::endl;
+            p->print();
+        }
+        if(auto *p = dynamic_cast<LastPlayerSentPacket *>(received.get())){
+            std::cout << "No more players" << std::endl;
+        }
+        read();
+    }while(pollPacket(received));
+
+
+
+
 }
