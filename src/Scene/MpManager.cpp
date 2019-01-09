@@ -151,6 +151,7 @@ void MpManager::handleEvents()
         }
         else if(auto *p = dynamic_cast<BulletInfoPacket *>(received.get())){
             Bullet * bullet = new Bullet({p->getX(),p->getY()},p->getAngle());
+            gameObjects.push_back(bullet);
         }
     }
 
