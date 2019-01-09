@@ -10,6 +10,7 @@ public:
     void move();
     void draw( int x0 , int y0 );
     void drawInfo();
+    int getId();
 
     int getTowDir();
     int getDir();

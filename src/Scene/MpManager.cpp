@@ -8,6 +8,8 @@ MpManager::MpManager(int color): _Scene()
     player = new Player( color , Game::netManager->getMyId() );
     auto * player2 = new Player( color , 5 );
 
+
+
     gameObjects.push_back(player);
     gameObjects.push_back(player2);
     player2->setPosition({400,400});
@@ -104,16 +106,24 @@ void MpManager::handleEvents()
 
     std::unique_ptr<BasePacket> received;
 
-    Game::netManager->pollPacket(received);
-
-    if (auto *p = dynamic_cast<CurrentPositionPacket *>(received.get()))
+    while ( Game::netManager->pollPacket(received) )
     {
-        player->setPosition( { p->getX() , p->getY() } );
-        player->setDirection( p->getTankRotation() );
-        player->setTowerDirection( p->getTurretRotation() );
+        if (auto *p = dynamic_cast<CurrentPositionPacket *>(received.get()))
+        {
+            for (auto &gameObject : gameObjects)
+            {
+                if ( auto * pl = dynamic_cast<Player *>(gameObject) )
+                {
+                    if ( pl->getId() == p->getPlayerId() )
+                    {
+                        pl->setPosition({p->getX(), p->getY()});
+                        pl->setDirection(p->getTankRotation());
+                        pl->setTowerDirection(p->getTurretRotation());
+                    }
+                }
+            }
+        }
     }
-
-    Game::netManager->clear();
 
 
 

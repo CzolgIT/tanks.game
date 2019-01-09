@@ -94,3 +94,8 @@ void Player::setTowerDirection(int towerDirection)
 {
     this->iTowerDirection = towerDirection;
 }
+
+int Player::getId()
+{
+    return id;
+}
