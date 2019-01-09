@@ -75,8 +75,8 @@ void MpManager::handleEvents()
             if (eventHandler.key.keysym.sym == SDLK_SPACE)
             {
                 // INVOKE BULLETS WYSYLA PAKIET Z PUNKTEM WYstrzelenia i kierunkiem 
-                auto* bullet = new Bullet( player->shootPosition() , player->getTowDir());
-                gameObjects.push_back(bullet);
+//                auto* bullet = new Bullet( player->shootPosition() , player->getTowDir());
+//                gameObjects.push_back(bullet);
 
                 auto* tankshoot = new Animation( TANKSHOOT , player->shootPosition() , player->getDir() );
                 animations.push_back(tankshoot);
@@ -145,6 +145,12 @@ void MpManager::handleEvents()
                 else
                     ++gameObject_iterator1;
             }
+        }
+        else if(auto *p = dynamic_cast<PlayerJoinedPacket *>(received.get())){
+            p->print();
+        }
+        else if(auto *p = dynamic_cast<BulletInfoPacket *>(received.get())){
+            Bullet * bullet = new Bullet({p->getX(),p->getY()},p->getAngle());
         }
     }
 

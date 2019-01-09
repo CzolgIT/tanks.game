@@ -71,6 +71,7 @@ void Room::draw()
     sprite[3]->draw( { 700 , 280 } , dir-60 , dir-60 , 0 );
 
     Game::textManager->draw( "room: " + std::string(SERVERIP) , 400 , 20 ,65 , C_BLACK , true);
+//    Game::textManager->draw( "room: " + (int)(netManager->clients.size()) , 1 , 1 ,65 , C_BLACK , true);
 
     if ( selectedTank == 1 )
     {

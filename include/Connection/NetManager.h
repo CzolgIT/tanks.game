@@ -23,6 +23,7 @@ public:
     NetPlayer* netPlayer;
     void clear();
     int getMyId();
+    std::vector<int> clients;
 
 private:
 

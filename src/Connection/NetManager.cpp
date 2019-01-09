@@ -46,6 +46,7 @@ bool NetManager::connect(std::string host, Uint16 port, Uint32 &globalTime) {
     tcpConnection.startSenderThread();
     udpConnection.startSenderThread();
 
+    getAllPlayersData();
     //ping the server
     if(!syncTimeWithServer(netPlayer, globalTime))
     {
@@ -55,9 +56,7 @@ bool NetManager::connect(std::string host, Uint16 port, Uint32 &globalTime) {
     std::cout << "Synced with server" << std::endl;
     //todo: do some stuff
     //todo: get room info & stuff
-    //request player list
-//    getAllPlayersData();
-
+    clients.push_back(getMyId());
     return isConnected();
 }
 
@@ -188,25 +187,13 @@ int NetManager::getMyId()
 }
 
 void NetManager::getAllPlayersData() {
-    tcpSend(new InfoRequestPacket(netPlayer->id,RT_PLAYER_LIST));
-    std::unique_ptr<BasePacket> received;
     read();
-    while(!pollPacket(received)){
-        std::cout << "waiting for packets..." << std::endl;
+    std::unique_ptr<BasePacket> received;
+    while(pollPacket(received)){
+        if(auto *p = dynamic_cast<PlayerJoinedPacket *>(received.get())){
+            p->print();
+            clients.push_back((int)(p->getId()));
+        }
         read();
     }
-    do{
-        while (auto *p = dynamic_cast<PlayerJoinedPacket *>(received.get())){
-            std::cout << "XD" << std::endl;
-            p->print();
-        }
-        if(auto *p = dynamic_cast<LastPlayerSentPacket *>(received.get())){
-            std::cout << "No more players" << std::endl;
-        }
-        read();
-    }while(pollPacket(received));
-
-
-
-
 }
