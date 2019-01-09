@@ -53,6 +53,7 @@
 #include "GameObject/Wall.h"
 
 #include "Connection/BasePacket.h"
+#include "Connection/BulletInfoPacket.h"
 #include "Connection/LastPlayerSentPacket.h"
 #include "Connection/CurrentPositionPacket.h"
 #include "Connection/HeartbeatPacket.h"
