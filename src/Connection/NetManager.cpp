@@ -176,4 +176,7 @@ void NetManager::setGlobalTime(Uint32 newGlobalTime) {
     this->globalTime = newGlobalTime;
 }
 
-
+void NetManager::clear()
+{
+    std::queue<std::unique_ptr<BasePacket>>().swap( packetQueue );
+}

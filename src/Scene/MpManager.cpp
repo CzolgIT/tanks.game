@@ -99,11 +99,7 @@ void MpManager::handleEvents()
         player->setTowerDirection( p->getTurretRotation() );
     }
 
-    
-
-
-
-
+    Game::netManager->clear();
 
 
 

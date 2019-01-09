@@ -21,6 +21,7 @@ public:
     bool pollPacket(std::unique_ptr<BasePacket>&packet);
 
     NetPlayer* netPlayer;
+    void clear();
 
 private:
 
