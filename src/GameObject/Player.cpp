@@ -1,6 +1,6 @@
 #include "Main.h"
 
-Player::Player( int color , int id ) : _GameObject( {0,0} , { (int)((double)170*TANKSCALE),(int)((double)130*TANKSCALE) }  , 0 , DYNAMIC )
+Player::Player( int id ) : _GameObject( {0,0} , { (int)((double)170*TANKSCALE),(int)((double)130*TANKSCALE) }  , 0 , DYNAMIC )
 {
     this->id = id;
 

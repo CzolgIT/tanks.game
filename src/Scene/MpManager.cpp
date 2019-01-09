@@ -5,14 +5,16 @@ MpManager::MpManager(int color): _Scene()
     this->netManager = Game::netManager;
     background = new Background();
 
-    player = new Player( color , Game::netManager->getMyId() );
-    auto * player2 = new Player( color , 5 );
-
-
+    player = new Player( Game::netManager->getMyId() );
+    auto * player2 = new Player( 6 );
+    auto * player3 = new Player( 3 );
 
     gameObjects.push_back(player);
     gameObjects.push_back(player2);
+    gameObjects.push_back(player3);
+
     player2->setPosition({400,400});
+    player3->setPosition({400,100});
 
     auto map = new Map();
     map->loadFromFile( &gameObjects );
@@ -124,9 +126,6 @@ void MpManager::handleEvents()
             }
         }
     }
-
-
-
 
     //CheckColliders();
 

@@ -66,7 +66,7 @@ void Manager::handleEvents()
                 auto* bullet = new Bullet( player->shootPosition() , player->getTowDir());
                 gameObjects.push_back(bullet);
 
-                auto* tankshoot = new Animation( TANKSHOOT , player->shootPosition() , player->getDir() );
+                auto* tankshoot = new Animation( TANKSHOOT , player->shootPosition() , player->getTowDir() );
                 animations.push_back(tankshoot);
             }
         }

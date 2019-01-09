@@ -2,6 +2,8 @@
 
 TankSprite::TankSprite( int color )
 {
+    color = color%6;
+
     spriteBarrel = new Sprite( Game::textureManager->barrel , { 256*color , 0 , 256 , 256 } , TANKSCALE );
     spriteBody = new Sprite( Game::textureManager->body , { 256*color , 0 , 256 , 256 } , TANKSCALE );
     spriteTower = new Sprite( Game::textureManager->tower , { 256*color , 0 , 256 , 256 } , TANKSCALE );
