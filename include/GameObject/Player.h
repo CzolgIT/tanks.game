@@ -5,10 +5,11 @@ class Player: public _GameObject
 {
 public:
 
-    Player( SDL_Point position , int color ) ;
+    Player( int color , int id = 0 ) ;
     void handleEvent( SDL_Event& e );
     void move();
     void draw( int x0 , int y0 );
+    void drawInfo();
 
     int getTowDir();
     int getDir();
@@ -23,7 +24,7 @@ public:
 
 private:
 
-    float accelerate( int scanCode , float what , float from , float to , float timeStep );
+    int id;
 
     Vector2D blocked;
 

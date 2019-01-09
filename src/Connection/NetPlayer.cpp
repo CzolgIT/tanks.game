@@ -3,3 +3,4 @@
 NetPlayer::NetPlayer(){}
 
 NetPlayer::~NetPlayer(){}
+

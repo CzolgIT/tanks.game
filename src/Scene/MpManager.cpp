@@ -4,8 +4,14 @@ MpManager::MpManager(int color): _Scene()
 {
     this->netManager = Game::netManager;
     background = new Background();
-    player = new Player( {128 , 128} , color );
+
+    player = new Player( color , Game::netManager->getMyId() );
+    auto * player2 = new Player( color , 5 );
+
     gameObjects.push_back(player);
+    gameObjects.push_back(player2);
+    player2->setPosition({400,400});
+
     auto map = new Map();
     map->loadFromFile( &gameObjects );
     std::cout << "Zaczyna sie gra" << std::endl;
@@ -21,18 +27,26 @@ void MpManager::draw()
 
     background->draw( x0 , y0 );
 
-    for (auto &gameObject : gameObjects)
+    for (auto &gameObject : gameObjects) // rysowanie wszystkich obiektów poza graczami
     {
-        if (gameObject != player)
+        if ( auto * pl = dynamic_cast<Player *>(gameObject) )
+        {}
+        else
             gameObject->draw( x0 , y0 );
     }
-    player->draw( x0 , y0 );
+    for (auto &gameObject : gameObjects) // rysowanie wszystkich graczy
+    {
+        if ( auto * pl = dynamic_cast<Player *>(gameObject) )
+            gameObject->draw( x0 , y0 );
+    }
 
     for (auto &animation : animations)
     {
         if( !animation->gettodelete() )
             animation->draw( x0 , y0 );
     }
+
+    player->drawInfo();
 
     Game::debugger->draw();
     Game::textManager->draw( "gameobjects: " + std::to_string( gameObjects.size() ) , 5 , 20 , 20 , C_BLACK , false );

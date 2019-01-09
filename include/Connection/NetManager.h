@@ -22,6 +22,7 @@ public:
 
     NetPlayer* netPlayer;
     void clear();
+    int getMyId();
 
 private:
 

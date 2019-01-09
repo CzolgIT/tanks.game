@@ -12,6 +12,7 @@ public:
     NetPlayer();
     ~NetPlayer();
     Uint8 id;
+
 };
 
 

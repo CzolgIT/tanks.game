@@ -3,7 +3,8 @@
 Manager::Manager(): _Scene()
 {
     background = new Background();
-    player = new Player( {128 , 128} , 1 );
+    player = new Player( 1 );
+    player->setPosition({128,128});
     gameObjects.push_back(player);
     auto map = new Map();
     map->loadFromFile( &gameObjects );

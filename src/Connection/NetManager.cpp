@@ -180,3 +180,8 @@ void NetManager::clear()
 {
     std::queue<std::unique_ptr<BasePacket>>().swap( packetQueue );
 }
+
+int NetManager::getMyId()
+{
+    return netPlayer->id;
+}
