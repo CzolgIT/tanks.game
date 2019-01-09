@@ -78,8 +78,7 @@ void MpManager::handleEvents()
 //                auto* bullet = new Bullet( player->shootPosition() , player->getTowDir());
 //                gameObjects.push_back(bullet);
 
-                auto* tankshoot = new Animation( TANKSHOOT , player->shootPosition() , player->getDir() );
-                animations.push_back(tankshoot);
+
             }
         }
         for (auto &gameObject : gameObjects) {
@@ -157,6 +156,9 @@ void MpManager::handleEvents()
         else if(auto *p = dynamic_cast<BulletInfoPacket *>(received.get())){
             Bullet * bullet = new Bullet({p->getX(),p->getY()},p->getAngle());
             gameObjects.push_back(bullet);
+
+            auto* tankshoot = new Animation( TANKSHOOT , {p->getX(),p->getY()} , p->getAngle() );
+            animations.push_back(tankshoot);
         }
     }
 
@@ -201,6 +203,8 @@ void MpManager::handleEvents()
             {
                 auto* bulletexplode = new Animation( BULLETEXPLODE , b->getPosition() , 0 );
                 animations.push_back(bulletexplode);
+
+
             }
             delete *gameObject_iterator;
             gameObject_iterator = gameObjects.erase(gameObject_iterator);
