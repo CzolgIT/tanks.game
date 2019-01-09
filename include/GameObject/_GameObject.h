@@ -34,6 +34,8 @@ public:
     ObjectType getType();
     bool shouldBeDestroy(){ return toDestroy; }
 
+    bool updated=false;
+
 
 protected:
 

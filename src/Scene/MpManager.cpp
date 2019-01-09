@@ -113,9 +113,14 @@ void MpManager::handleEvents()
                     if ( pl->getId() == p->getPlayerId() )
                     {
                         found=true;
-                        pl->setPosition({p->getX(), p->getY()});
-                        pl->setDirection(p->getTankRotation());
-                        pl->setTowerDirection(p->getTurretRotation());
+                        if (!pl->updated)
+                        {
+                            pl->setPosition({p->getX(), p->getY()});
+                            pl->setDirection(p->getTankRotation());
+                            pl->setTowerDirection(p->getTurretRotation());
+                            pl->updated = true;
+                        }
+
                     }
                 }
             }
@@ -189,6 +194,7 @@ void MpManager::handleEvents()
     auto gameObject_iterator = gameObjects.begin();
     while(gameObject_iterator != gameObjects.end())
     {
+        (*gameObject_iterator)->updated = false;
         if((*gameObject_iterator)->shouldBeDestroy())
         {
             if (auto *b = dynamic_cast<Bullet *>(*gameObject_iterator))
