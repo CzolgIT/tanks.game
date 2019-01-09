@@ -86,6 +86,24 @@ void MpManager::handleEvents()
         animations.push_back(tankdrive);
     }
 
+    Game::netManager->read();
+
+    std::unique_ptr<BasePacket> received;
+
+    Game::netManager->pollPacket(received);
+
+    if (auto *p = dynamic_cast<CurrentPositionPacket *>(received.get()))
+    {
+
+    }
+
+
+
+
+
+
+
+
     //CheckColliders();
 
 //    for (auto &gameObject : gameObjects) {
