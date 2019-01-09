@@ -106,15 +106,16 @@ void MpManager::handleEvents()
 //        }
 //    }
 
-    bool anykey=false;
-    if (state[SDL_SCANCODE_UP]) anykey=true;
-    if (state[SDL_SCANCODE_DOWN]) anykey=true;
-    if (state[SDL_SCANCODE_LEFT]) anykey=true;
-    if (state[SDL_SCANCODE_RIGHT]) anykey=true;
-    if (state[SDL_SCANCODE_SPACE]) anykey=true;
-    if (state[SDL_SCANCODE_Z]) anykey=true;
-    if (state[SDL_SCANCODE_X]) anykey=true;
-    if (anykey) sendMovement();
+//    bool anykey=false;
+//    if (state[SDL_SCANCODE_UP]) anykey=true;
+//    if (state[SDL_SCANCODE_DOWN]) anykey=true;
+//    if (state[SDL_SCANCODE_LEFT]) anykey=true;
+//    if (state[SDL_SCANCODE_RIGHT]) anykey=true;
+//    if (state[SDL_SCANCODE_SPACE]) anykey=true;
+//    if (state[SDL_SCANCODE_Z]) anykey=true;
+//    if (state[SDL_SCANCODE_X]) anykey=true;
+    //if (anykey)
+        sendMovement();
 
     auto gameObject_iterator = gameObjects.begin();
     while(gameObject_iterator != gameObjects.end())
