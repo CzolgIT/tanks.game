@@ -127,8 +127,24 @@ void MpManager::handleEvents()
                 gameObjects.push_back(newPlayer);
             }
         }
-        else if(auto *p = dynamic_cast<PlayerDisconnectedPacket *>(received.get())){
-            p->print();
+        else if(auto *p = dynamic_cast<PlayerDisconnectedPacket *>(received.get()))
+        {
+            auto gameObject_iterator1 = gameObjects.begin();
+            while(gameObject_iterator1 != gameObjects.end())
+            {
+                if ( auto * pl = dynamic_cast<Player *>((*gameObject_iterator1)) )
+                {
+                    if (p->getId() == pl->getId())
+                    {
+                        delete *gameObject_iterator1;
+                        gameObject_iterator1 = gameObjects.erase(gameObject_iterator1);
+                    }
+                    else
+                        ++gameObject_iterator1;
+                }
+                else
+                    ++gameObject_iterator1;
+            }
         }
     }
 

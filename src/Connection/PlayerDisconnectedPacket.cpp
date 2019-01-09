@@ -19,4 +19,4 @@ void PlayerDisconnectedPacket::print() const {
 
 }
 
-
+int PlayerDisconnectedPacket::getId() { return data[1]; }

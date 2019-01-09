@@ -14,6 +14,7 @@ public:
 
     void setId(Uint8 id);
     void print() const override;
+    int getId();
 
 };
 
