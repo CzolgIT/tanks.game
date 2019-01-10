@@ -13,6 +13,8 @@ public:
     void CheckColliders();
     void sendMovement();
 
+    void loadFromServer();
+
 private:
     NetManager * netManager;
     Background* background = nullptr;

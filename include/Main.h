@@ -47,11 +47,6 @@
 #include "GUIElement/TextStatic.h"
 #include "GUIElement/Button.h"
 
-#include "GameObject/_GameObject.h"
-#include "GameObject/Player.h"
-#include "GameObject/Bullet.h"
-#include "GameObject/Wall.h"
-
 #include "Connection/BasePacket.h"
 #include "Connection/BulletInfoPacket.h"
 #include "Connection/LastPlayerSentPacket.h"
@@ -70,6 +65,11 @@
 #include "Connection/UDPConnection.h"
 #include "Connection/TCPConnection.h"
 #include "Connection/NetManager.h"
+
+#include "GameObject/_GameObject.h"
+#include "GameObject/Player.h"
+#include "GameObject/Bullet.h"
+#include "GameObject/Wall.h"
 
 #include "Scene/_Scene.h"
 #include "Scene/_Menu.h"

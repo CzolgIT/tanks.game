@@ -29,6 +29,8 @@ public:
     void setRotationSpeed(int rotationSpeed);
     void setTurretRotationSpeed(int turretRotationSpeed);
 
+    void setFromPacket( CurrentPositionPacket * packet );
+
 private:
 
     int id;

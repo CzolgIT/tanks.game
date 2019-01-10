@@ -123,3 +123,19 @@ void Player::setTowerDirection(int towerDirection) { this->iTowerDirection=tower
 void Player::setTankSpeed(int tankSpeed) { this->tankSpeed = tankSpeed; }
 void Player::setRotationSpeed(int rotationSpeed) { this->rotationSpeed = rotationSpeed; }
 void Player::setTurretRotationSpeed(int turretRotationSpeed) { this->turretRotationSpeed = turretRotationSpeed; }
+
+void Player::setFromPacket( CurrentPositionPacket * packet )
+{
+    this->position = { packet->getX() , packet->getY() };
+    this->xFloat = position.x;
+    this->yFloat = position.y;
+    this->direction=packet->getTankRotation();
+    this->directionFloat=direction;
+    this->iTowerDirection = packet->getTurretRotation();
+    this->towerDirection = iTowerDirection;
+    this->tankSpeed = packet->getTankSpeed();
+    this->rotationSpeed = packet->getRotationSpeed();
+    this->turretRotationSpeed = packet->getTurretRotationSpeed();
+
+    this->updated=true;
+}

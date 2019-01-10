@@ -73,69 +73,10 @@ void MpManager::handleEvents()
     }
     // todo: koniec
 
-    Game::netManager->read(); // load all packets
 
-    std::unique_ptr<BasePacket> received;
+    loadFromServer();
+    sendMovement();
 
-    while ( Game::netManager->pollPacket(received) )
-    {
-        if (auto *p = dynamic_cast<CurrentPositionPacket *>(received.get()))
-        {
-            bool found=false;
-
-            for (auto &pl : players)
-            {
-                if ( pl->getId() == p->getPlayerId() )
-                {
-                    found=true;
-                    pl->setPosition({(int)p->getX(), (int)p->getY()});
-                    pl->setDirection((int)p->getTankRotation());
-                    pl->setTowerDirection((int)p->getTurretRotation());
-                    pl->setTankSpeed((int)p->getTankSpeed());
-                    pl->setRotationSpeed((int)p->getRotationSpeed());
-                    pl->setTurretRotationSpeed((int)p->getTurretRotationSpeed());
-                    pl->updated = true;
-                }
-            }
-            if (!found)
-            {
-                Player *newPlayer = new Player((int)p->getPlayerId());
-                newPlayer->setPosition({(int)p->getX(), (int)p->getY()});
-                newPlayer->setDirection((int)p->getTankRotation());
-                newPlayer->setTowerDirection((int)p->getTurretRotation());
-                newPlayer->setTankSpeed((int)p->getTankSpeed());
-                newPlayer->setRotationSpeed((int)p->getRotationSpeed());
-                newPlayer->setTurretRotationSpeed((int)p->getTurretRotationSpeed());
-                players.push_back(newPlayer);
-            }
-        }
-        else if(auto *p = dynamic_cast<PlayerDisconnectedPacket *>(received.get()))
-        {
-            auto players_iterator = players.begin();
-            while(players_iterator != players.end())
-            {
-                if (p->getId() == (*players_iterator)->getId())
-                {
-                    delete *players_iterator;
-                    players_iterator = players.erase(players_iterator);
-                }
-                else
-                    ++players_iterator;
-            }
-        }
-        else if(auto *p = dynamic_cast<PlayerJoinedPacket *>(received.get()))
-        {
-            p->print();
-        }
-        else if(auto *p = dynamic_cast<BulletInfoPacket *>(received.get()))
-        {
-            Bullet * bullet = new Bullet({p->getX(),p->getY()},p->getAngle());
-            gameObjects.push_back(bullet);
-
-            auto* tankshoot = new Animation( TANKSHOOT , {p->getX(),p->getY()} , p->getAngle() );
-            animations.push_back(tankshoot);
-        }
-    }
 
     // simulate movement
     for (auto &p : players)
@@ -144,11 +85,9 @@ void MpManager::handleEvents()
         {
             p->simulate();
         }
+        p->updated = false;
+
     }
-
-
-
-
 
     //CheckColliders();
 
@@ -179,11 +118,6 @@ void MpManager::handleEvents()
 //    if (state[SDL_SCANCODE_Z]) anykey=true;
 //    if (state[SDL_SCANCODE_X]) anykey=true;
     //if (anykey)
-
-    for (auto &p : players)
-        p->updated = false;
-
-        sendMovement();
 
     auto gameObject_iterator = gameObjects.begin();
     while(gameObject_iterator != gameObjects.end())
@@ -216,6 +150,61 @@ void MpManager::handleEvents()
         }
         else
             ++animation_iterator;
+    }
+}
+
+void MpManager::loadFromServer()
+{
+    Game::netManager->read(); // load all packets
+    std::unique_ptr<BasePacket> received;
+
+    while ( Game::netManager->pollPacket(received) )
+    {
+        if (auto *p = dynamic_cast<CurrentPositionPacket *>(received.get()))
+        {
+            bool found=false;
+
+            for (auto &pl : players)
+            {
+                if ( pl->getId() == p->getPlayerId() )
+                {
+                    found=true;
+                    pl->setFromPacket( p );
+                }
+            }
+            if (!found)
+            {
+                Player *newPlayer = new Player((int)p->getPlayerId());
+                newPlayer->setFromPacket( p );
+                players.push_back(newPlayer);
+            }
+        }
+        else if(auto *p = dynamic_cast<PlayerDisconnectedPacket *>(received.get()))
+        {
+            auto players_iterator = players.begin();
+            while(players_iterator != players.end())
+            {
+                if (p->getId() == (*players_iterator)->getId())
+                {
+                    delete *players_iterator;
+                    players_iterator = players.erase(players_iterator);
+                }
+                else
+                    ++players_iterator;
+            }
+        }
+        else if(auto *p = dynamic_cast<PlayerJoinedPacket *>(received.get()))
+        {
+            p->print();
+        }
+        else if(auto *p = dynamic_cast<BulletInfoPacket *>(received.get()))
+        {
+            Bullet * bullet = new Bullet({p->getX(),p->getY()},p->getAngle());
+            gameObjects.push_back(bullet);
+
+            auto* tankshoot = new Animation( TANKSHOOT , {p->getX(),p->getY()} , p->getAngle() );
+            animations.push_back(tankshoot);
+        }
     }
 }
 
