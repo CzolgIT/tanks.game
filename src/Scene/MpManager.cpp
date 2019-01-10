@@ -19,7 +19,7 @@ MpManager::MpManager(int color): _Scene()
     Mix_Music *bgm = Mix_LoadMUS("assets/jedyna_sluszna_muzyka.mp3");
     if(!Mix_PlayingMusic())
         Mix_PlayMusic(bgm,-1);
-    Mix_VolumeMusic(20);
+    Mix_VolumeMusic(40);
     bgm = nullptr;
     Mix_Quit();
 }
