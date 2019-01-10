@@ -10,6 +10,7 @@ libsdl2-net-dev
 libsdl2-image-2.0-0
 libsdl2-image-dev
 libsdl2-ttf-dev
+libsdl2-mixer-dev
 ```
 ### Windows
 mingw64 libraries installed in:
@@ -23,6 +24,7 @@ Installed frameworks:
 /Library/Frameworks/SDL2_image
 /Library/Frameworks/SDL2_net
 /Library/Frameworks/SDL2_ttf
+/Library/Frameworks/SDL2_mixer
 ```
 
 ## Building
