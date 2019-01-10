@@ -60,6 +60,7 @@ void  Room::handleEvents()
 
 void Room::draw()
 {
+    netManager->getAllPlayersData();
     SDL_SetRenderDrawColor( Game::renderer, 215, 226, 175, 0xFF );
     SDL_RenderClear( Game::renderer );
 
@@ -71,8 +72,11 @@ void Room::draw()
     sprite[3]->draw( { 700 , 280 } , dir-60 , dir-60 , 0 );
 
     Game::textManager->draw( "room: " + std::string(SERVERIP) , 400 , 20 ,65 , C_BLACK , true);
-//    Game::textManager->draw( "room: " + (int)(netManager->clients.size()) , 1 , 1 ,65 , C_BLACK , true);
+    Game::textManager->draw( "lista graczy: ",800,20,20,C_BLACK,true);
 
+    for(unsigned i = 0; i < netManager->clients.size(); i++){
+        Game::textManager->draw(std::to_string(netManager->clients[i]),800,40+(i*20),20,C_BLACK,true);
+    }
     if ( selectedTank == 1 )
     {
         Game::textManager->draw(NICKNAME, 100, 400, 40, C_BLACK, true);
