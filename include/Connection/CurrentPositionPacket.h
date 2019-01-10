@@ -19,14 +19,14 @@ public:
     void setRotationSpeed(Uint16 rotationSpeed);
     void setTurretRotationSpeed(Uint16 turretRotationSpeed);
 
-    Uint8 getPlayerId() const;
-    Uint16 getX() const;
-    Uint16 getY() const;
-    Uint16 getTankRotation() const;
-    Uint16 getTurretRotation() const;
-    Uint16 getTankSpeed() const;
-    Uint16 getRotationSpeed() const;
-    Uint16 getTurretRotationSpeed() const;
+    int getPlayerId() const;
+    int getX() const;
+    int getY() const;
+    int getTankRotation() const;
+    int getTurretRotation() const;
+    int getTankSpeed() const;
+    int getRotationSpeed() const;
+    int getTurretRotationSpeed() const;
 
     void print() const override;
 };

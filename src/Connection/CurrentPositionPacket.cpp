@@ -11,14 +11,14 @@ void CurrentPositionPacket::setTankSpeed(Uint16 tankSpeed) { SDLNet_Write16(tank
 void CurrentPositionPacket::setRotationSpeed(Uint16 rotationSpeed) { SDLNet_Write16(rotationSpeed, &data[12]); }
 void CurrentPositionPacket::setTurretRotationSpeed(Uint16 turretRotationSpeed) { SDLNet_Write16(turretRotationSpeed, &data[14]); }
 
-Uint8 CurrentPositionPacket::getPlayerId() const { return data[1]; }
-Uint16 CurrentPositionPacket::getX() const { return SDLNet_Read16(&data[2]); }
-Uint16 CurrentPositionPacket::getY() const { return SDLNet_Read16(&data[4]); }
-Uint16 CurrentPositionPacket::getTankRotation() const { return SDLNet_Read16(&data[6]); }
-Uint16 CurrentPositionPacket::getTurretRotation() const { return SDLNet_Read16(&data[8]); }
-Uint16 CurrentPositionPacket::getTankSpeed() const { return SDLNet_Read16(&data[10]); }
-Uint16 CurrentPositionPacket::getRotationSpeed() const { return SDLNet_Read16(&data[12]); }
-Uint16 CurrentPositionPacket::getTurretRotationSpeed() const { return SDLNet_Read16(&data[14]); }
+int CurrentPositionPacket::getPlayerId() const { return (int)data[1]; }
+int CurrentPositionPacket::getX() const { return static_cast<int16_t>(SDLNet_Read16(&data[2])); }
+int CurrentPositionPacket::getY() const { return static_cast<int16_t>(SDLNet_Read16(&data[4])); }
+int CurrentPositionPacket::getTankRotation() const { return static_cast<int16_t>(SDLNet_Read16(&data[6])); }
+int CurrentPositionPacket::getTurretRotation() const { return static_cast<int16_t>(SDLNet_Read16(&data[8])); }
+int CurrentPositionPacket::getTankSpeed() const { return static_cast<int16_t>(SDLNet_Read16(&data[10])); }
+int CurrentPositionPacket::getRotationSpeed() const { return static_cast<int16_t>(SDLNet_Read16(&data[12])); }
+int CurrentPositionPacket::getTurretRotationSpeed() const { return static_cast<int16_t>(SDLNet_Read16(&data[14])); }
 
 void CurrentPositionPacket::print() const
 {

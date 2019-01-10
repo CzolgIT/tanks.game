@@ -38,7 +38,19 @@ void Player::move()
 
 void Player::simulate()
 {
+    float step = Game::windowManager->getStepTime();
 
+    xFloat += cos((direction) *M_PI/180) * tankSpeed * step;
+    yFloat += sin((direction) *M_PI/180) * tankSpeed * step;
+
+    position.x = int(xFloat);
+    position.y = int(yFloat);
+
+    directionFloat += rotationSpeed * step ;
+    towerDirection += rotationSpeed * step + turretRotationSpeed * step;
+
+    direction = int(directionFloat);
+    iTowerDirection = int(towerDirection);
 }
 
 void Player::draw( int x0 , int y0 )
@@ -105,9 +117,9 @@ SDL_Point Player::smokePosition()
 
 int Player::getId() { return id; }
 
-void Player::setPosition(SDL_Point position) { this->position = position; }
-void Player::setDirection(int direction) { this->direction = direction; }
-void Player::setTowerDirection(int towerDirection) { this->iTowerDirection = towerDirection; }
+void Player::setPosition(SDL_Point position) { this->position=position; xFloat=position.x; yFloat=position.y; }
+void Player::setDirection(int direction) { this->direction=direction; this->directionFloat=direction; }
+void Player::setTowerDirection(int towerDirection) { this->iTowerDirection=towerDirection; this->towerDirection=towerDirection; }
 void Player::setTankSpeed(int tankSpeed) { this->tankSpeed = tankSpeed; }
 void Player::setRotationSpeed(int rotationSpeed) { this->rotationSpeed = rotationSpeed; }
 void Player::setTurretRotationSpeed(int turretRotationSpeed) { this->turretRotationSpeed = turretRotationSpeed; }
