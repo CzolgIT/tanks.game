@@ -114,24 +114,20 @@ void MpManager::handleEvents()
 //    if (state[SDL_SCANCODE_X]) anykey=true;
     //if (anykey)
 
-    auto gameObject_iterator = gameObjects.begin();
-    while(gameObject_iterator != gameObjects.end())
+    auto bullet_iterator = bullets.begin();
+    while(bullet_iterator != bullets.end())
     {
-        if((*gameObject_iterator)->shouldBeDestroy())
+        if((*bullet_iterator)->shouldBeDestroy())
         {
-            if (auto *b = dynamic_cast<Bullet *>(*gameObject_iterator))
-            {
-                auto* bulletexplode = new Animation( BULLETEXPLODE , b->getPosition() , 0 );
-                animations.push_back(bulletexplode);
+            auto* bulletexplode = new Animation( BULLETEXPLODE , (*bullet_iterator)->getPosition() , 0 );
+            animations.push_back(bulletexplode);
 
-
-            }
-            delete *gameObject_iterator;
-            gameObject_iterator = gameObjects.erase(gameObject_iterator);
+            delete *bullet_iterator;
+            bullet_iterator = bullets.erase(bullet_iterator);
         }
         else{
-            (*gameObject_iterator)->move();
-            ++gameObject_iterator;
+            (*bullet_iterator)->move();
+            ++bullet_iterator;
         }
     }
 
@@ -194,8 +190,8 @@ void MpManager::loadFromServer()
         }
         else if(auto *p = dynamic_cast<BulletInfoPacket *>(received.get()))
         {
-            Bullet * bullet = new Bullet({p->getX(),p->getY()},p->getAngle());
-            gameObjects.push_back(bullet);
+            auto * bullet = new Bullet({p->getX(),p->getY()},p->getAngle());
+            bullets.push_back(bullet);
             if(Mix_OpenAudio(44100,MIX_DEFAULT_FORMAT,2,2048)<0)
                 std::cout << "Error: " << Mix_GetError() << std::endl;
             Mix_Chunk *bullet2 = Mix_LoadWAV("assets/bullet-impact.wav");

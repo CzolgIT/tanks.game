@@ -7,7 +7,7 @@ class TankSprite
 {
 public:
 
-    explicit TankSprite( int color = 1);
+    TankSprite( int color = 1 , float scale=1 );
     void draw( SDL_Point position , int dir , int dirT , int move );
     
 private:
