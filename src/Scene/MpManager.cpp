@@ -31,7 +31,7 @@ void MpManager::draw()
     for (auto &p : players)
     {
         p->draw(x0, y0);
-        //p->drawInfo(x0,y0);
+//        p->drawInfo(x0,y0);
     }
 
     for (auto &animation : animations)
