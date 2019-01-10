@@ -13,6 +13,14 @@ MpManager::MpManager(int color): _Scene()
     background = new Background();
     auto map = new Map();
     map->loadFromFile( &gameObjects );
+
+    if(Mix_OpenAudio(44100,MIX_DEFAULT_FORMAT,2,2048) < 0)
+        std::cout << "Error: " << Mix_GetError() << std::endl;
+    Mix_Music *bgm = Mix_LoadMUS("assets/real-war-sounds-recorded-on-field.wav");
+    if(!Mix_PlayingMusic())
+        Mix_PlayMusic(bgm,-1);
+    bgm = nullptr;
+    Mix_Quit();
 }
 
 void MpManager::draw()
