@@ -24,11 +24,11 @@ public:
     void clear();
     int getMyId();
     std::vector<int> clients;
+    void getAllPlayersData();
 
 private:
 
     bool syncTimeWithServer(NetPlayer* player, Uint32& globalTime);
-    void getAllPlayersData();
     std::queue<std::unique_ptr<BasePacket>> packetQueue;
 
     std::atomic_bool closeSenderThread; //closes thread when true
