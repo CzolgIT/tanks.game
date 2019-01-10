@@ -139,3 +139,5 @@ void Player::setFromPacket( CurrentPositionPacket * packet )
 
     this->updated=true;
 }
+
+int Player::getTankSpeed() { return tankSpeed; }

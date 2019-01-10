@@ -25,17 +25,10 @@ void MpManager::draw()
 
     background->draw( x0 , y0 );
 
-    for (auto &gameObject : gameObjects)
-        gameObject->draw( x0 , y0 );
-
-    for (auto &p : players)
-    {
-        p->draw(x0, y0);
-//        p->drawInfo(x0,y0);
-    }
-
-    for (auto &animation : animations)
-        animation->draw( x0 , y0 );
+    for (auto &gameObject : gameObjects) gameObject->draw(x0,y0);
+    for (auto &player : players) player->draw(x0, y0);
+    for (auto &bullet : bullets) bullet->draw(x0,y0);
+    for (auto &animation : animations) animation->draw(x0,y0);
 
     Game::debugger->draw();
 
@@ -62,21 +55,8 @@ void MpManager::handleEvents()
         }
     }
 
-    const Uint8 *state = SDL_GetKeyboardState(nullptr);
-
-    // todo: animacja powinna być rysowana dla wszystkich graczy
-    int los = random()%10;
-    if (state[SDL_SCANCODE_UP] && los==2)
-    {
-        auto* tankdrive = new Animation( TANKDRIVE , player->smokePosition() , player->getDir() );
-        animations.push_back(tankdrive);
-    }
-    // todo: koniec
-
-
     loadFromServer();
     sendMovement();
-
 
     // simulate movement
     for (auto &p : players)
@@ -87,6 +67,12 @@ void MpManager::handleEvents()
         }
         p->updated = false;
 
+        int los = int(random()%10); // generate drive animation
+        if (p->getTankSpeed()>0 && los==2)
+        {
+            auto* tankdrive = new Animation( TANKDRIVE , p->smokePosition() , p->getDir() );
+            animations.push_back(tankdrive);
+        }
     }
 
     //CheckColliders();

@@ -31,6 +31,8 @@ public:
 
     void setFromPacket( CurrentPositionPacket * packet );
 
+    int getTankSpeed();
+
 private:
 
     int id;
@@ -39,7 +41,7 @@ private:
 
     float xFloat , yFloat;
 
-    float tankSpeed , rotationSpeed , turretRotationSpeed;
+    int tankSpeed , rotationSpeed , turretRotationSpeed;
 
     float moveSpeed , directionSpeed , towerSpeed;
     float directionFloat , towerDirection;
