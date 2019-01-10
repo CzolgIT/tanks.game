@@ -10,7 +10,7 @@ NetManager* Game::netManager = nullptr;
 
 Game::Game()
 {
-    SDL_Init( SDL_INIT_VIDEO );
+    SDL_Init( SDL_INIT_VIDEO | SDL_INIT_AUDIO);
     IMG_Init( IMG_INIT_PNG );
 
     windowManager = new WindowManager();

@@ -187,6 +187,11 @@ void MpManager::loadFromServer()
         {
             Bullet * bullet = new Bullet({p->getX(),p->getY()},p->getAngle());
             gameObjects.push_back(bullet);
+            if(Mix_OpenAudio(44100,MIX_DEFAULT_FORMAT,2,2048)<0)
+                std::cout << "Error: " << Mix_GetError() << std::endl;
+            Mix_Chunk *bullet2 = Mix_LoadWAV("assets/bullet-impact.wav");
+            Mix_PlayChannel(1, bullet2, 0);
+            Mix_Quit();
 
             auto* tankshoot = new Animation( TANKSHOOT , {p->getX(),p->getY()} , p->getAngle() );
             animations.push_back(tankshoot);
