@@ -16,7 +16,7 @@ MpManager::MpManager(int color): _Scene()
 
     if(Mix_OpenAudio(44100,MIX_DEFAULT_FORMAT,2,2048) < 0)
         std::cout << "Error: " << Mix_GetError() << std::endl;
-    Mix_Music *bgm = Mix_LoadMUS("assets/jedyna_sluszna_muzyka.wav");
+    Mix_Music *bgm = Mix_LoadMUS("assets/jedyna_sluszna_muzyka.mp3");
     if(!Mix_PlayingMusic())
         Mix_PlayMusic(bgm,-1);
     bgm = nullptr;
