@@ -36,6 +36,11 @@ void Player::move()
     collider->update( position , dimensions , direction );
 }
 
+void Player::simulate()
+{
+
+}
+
 void Player::draw( int x0 , int y0 )
 {
     if (id == Game::netManager->getMyId())
@@ -44,25 +49,41 @@ void Player::draw( int x0 , int y0 )
         sprite->draw( { x0+position.x , y0+position.y } , direction , iTowerDirection , (int)moveSpeed );
 }
 
-void Player::drawInfo()
+void Player::drawInfo( int x0 , int y0 )
 {
-    Game::textManager->draw( "x: " + std::to_string( position.x ) ,  150 , 500 );
-    Game::textManager->draw( "y: " + std::to_string( position.y ) ,  150 , 520 );
-    Game::textManager->draw( "sp: " + std::to_string( moveSpeed ) ,  150 , 540 );
-    Game::textManager->draw( "dir: " + std::to_string( direction ) ,  150 , 560 );
-    Game::textManager->draw( "xblock: " + std::to_string( blocked.x ) ,  550 , 500 );
-    Game::textManager->draw( "yblock: " + std::to_string( blocked.y ) ,  550 , 530 );
+    Game::textManager->draw( std::to_string( position.x ) , x0+position.x , y0+position.y-140 , 15 , C_BLACK , true );
+    Game::textManager->draw( std::to_string( position.y ) ,  x0+position.x , y0+position.y-126 , 15 , C_BLACK , true);
+    Game::textManager->draw( std::to_string( direction ) , x0+position.x , y0+position.y-112 , 15 , C_BLACK , true);
+
+    Game::textManager->draw( std::to_string( (int)tankSpeed ) ,  x0+position.x , y0+position.y-94 , 15 , C_BLACK , true);
+    Game::textManager->draw( std::to_string( (int)rotationSpeed ) ,  x0+position.x , y0+position.y-80 , 15 , C_BLACK , true);
+    Game::textManager->draw( std::to_string( (int)turretRotationSpeed ) ,  x0+position.x , y0+position.y-66 , 15 , C_BLACK , true);
+
+//    Game::textManager->draw( "x: " + std::to_string( position.x ) , x0+position.x , y0+position.y-140 , 15 , C_BLACK , true );
+//    Game::textManager->draw( "y: " + std::to_string( position.y ) ,  x0+position.x , y0+position.y-126 , 15 , C_BLACK , true);
+//    Game::textManager->draw( "d: " + std::to_string( direction ) , x0+position.x , y0+position.y-112 , 15 , C_BLACK , true);
+//
+//    Game::textManager->draw( "ts: " + std::to_string( (int)tankSpeed ) ,  x0+position.x , y0+position.y-94 , 15 , C_BLACK , true);
+//    Game::textManager->draw( "rs: " + std::to_string( (int)rotationSpeed ) ,  x0+position.x , y0+position.y-80 , 15 , C_BLACK , true);
+//    Game::textManager->draw( "trs: " + std::to_string( (int)turretRotationSpeed ) ,  x0+position.x , y0+position.y-66 , 15 , C_BLACK , true);
+//
+//    Game::textManager->draw( "x: " + std::to_string( position.x ) , x0+position.x , y0+position.y-140 , 15 , C_BLACK , true );
+//    Game::textManager->draw( "y: " + std::to_string( position.y ) ,  x0+position.x , y0+position.y-126 , 15 , C_BLACK , true);
+//    Game::textManager->draw( "d: " + std::to_string( direction ) , x0+position.x , y0+position.y-112 , 15 , C_BLACK , true);
+//
+//    Game::textManager->draw( "ts: " + std::to_string( (int)tankSpeed ) ,  x0+position.x , y0+position.y-94 , 15 , C_BLACK , true);
+//    Game::textManager->draw( "rs: " + std::to_string( (int)rotationSpeed ) ,  x0+position.x , y0+position.y-80 , 15 , C_BLACK , true);
+//    Game::textManager->draw( "trs: " + std::to_string( (int)turretRotationSpeed ) ,  x0+position.x , y0+position.y-66 , 15 , C_BLACK , true);
+
+    //Game::textManager->draw( "sp: " + std::to_string( moveSpeed ) ,  150 , 540 );
+    //Game::textManager->draw( "dir: " + std::to_string( direction ) ,  150 , 560 );
+    //Game::textManager->draw( "xblock: " + std::to_string( blocked.x ) ,  550 , 500 );
+    //Game::textManager->draw( "yblock: " + std::to_string( blocked.y ) ,  550 , 530 );
 }
 
-int Player::getTowDir()
-{
-    return iTowerDirection;
-}
+int Player::getTowDir() { return iTowerDirection; }
 
-int Player::getDir()
-{
-    return direction;
-}
+int Player::getDir() { return direction; }
 
 SDL_Point Player::shootPosition()
 {
@@ -82,20 +103,11 @@ SDL_Point Player::smokePosition()
     return punkt;
 }
 
-void Player::setPosition(SDL_Point position)
-{
-    this->position = position;
-}
-void Player::setDirection(int direction)
-{
-    this->direction = direction;
-}
-void Player::setTowerDirection(int towerDirection)
-{
-    this->iTowerDirection = towerDirection;
-}
+int Player::getId() { return id; }
 
-int Player::getId()
-{
-    return id;
-}
+void Player::setPosition(SDL_Point position) { this->position = position; }
+void Player::setDirection(int direction) { this->direction = direction; }
+void Player::setTowerDirection(int towerDirection) { this->iTowerDirection = towerDirection; }
+void Player::setTankSpeed(int tankSpeed) { this->tankSpeed = tankSpeed; }
+void Player::setRotationSpeed(int rotationSpeed) { this->rotationSpeed = rotationSpeed; }
+void Player::setTurretRotationSpeed(int turretRotationSpeed) { this->turretRotationSpeed = turretRotationSpeed; }

@@ -2,15 +2,17 @@
 
 MpManager::MpManager(int color): _Scene()
 {
+    // net start
     this->netManager = Game::netManager;
-    background = new Background();
 
+    // creating player
     player = new Player( Game::netManager->getMyId() );
-    gameObjects.push_back(player);
+    players.push_back(player);
 
+    // filling map
+    background = new Background();
     auto map = new Map();
     map->loadFromFile( &gameObjects );
-    std::cout << "Zaczyna sie gra" << std::endl;
 }
 
 void MpManager::draw()
@@ -23,30 +25,19 @@ void MpManager::draw()
 
     background->draw( x0 , y0 );
 
-    for (auto &gameObject : gameObjects) // rysowanie wszystkich obiektów poza graczami
+    for (auto &gameObject : gameObjects)
+        gameObject->draw( x0 , y0 );
+
+    for (auto &p : players)
     {
-        if ( auto * pl = dynamic_cast<Player *>(gameObject) )
-        {}
-        else
-            gameObject->draw( x0 , y0 );
-    }
-    for (auto &gameObject : gameObjects) // rysowanie wszystkich graczy
-    {
-        if ( auto * pl = dynamic_cast<Player *>(gameObject) )
-            gameObject->draw( x0 , y0 );
+        p->draw(x0, y0);
+        p->drawInfo(x0,y0);
     }
 
     for (auto &animation : animations)
-    {
-        if( !animation->gettodelete() )
-            animation->draw( x0 , y0 );
-    }
-
-    player->drawInfo();
+        animation->draw( x0 , y0 );
 
     Game::debugger->draw();
-    Game::textManager->draw( "gameobjects: " + std::to_string( gameObjects.size() ) , 5 , 20 , 20 , C_BLACK , false );
-    Game::textManager->draw( "animations: " + std::to_string( animations.size() ) , 5 , 40 , 20 , C_BLACK , false );
 
     SDL_RenderPresent( Game::renderer );
 }
@@ -54,48 +45,35 @@ void MpManager::draw()
 void MpManager::handleEvents()
 {
     SDL_Event eventHandler;
-    while ( SDL_PollEvent( &eventHandler ) != 0 )
-    {
-        if ( eventHandler.type == SDL_QUIT )
+    while ( SDL_PollEvent( &eventHandler ) != 0 ) {
+        if (eventHandler.type == SDL_QUIT) // quit game
         {
             running = false;
+            netManager->disconnectPlayer();
             flagReturn = -1;
             break;
         }
-
-        if( eventHandler.type == SDL_KEYDOWN) // && eventHandler.key.repeat == 0 )
+        if (eventHandler.type == SDL_KEYDOWN && eventHandler.key.keysym.sym == SDLK_ESCAPE) // back to menu
         {
-            if (eventHandler.key.keysym.sym == SDLK_ESCAPE)
-            {
-                running = false;
-                netManager->disconnectPlayer();
-                flagReturn = 0;
-                break;
-            }
-            if (eventHandler.key.keysym.sym == SDLK_SPACE)
-            {
-                // INVOKE BULLETS WYSYLA PAKIET Z PUNKTEM WYstrzelenia i kierunkiem 
-//                auto* bullet = new Bullet( player->shootPosition() , player->getTowDir());
-//                gameObjects.push_back(bullet);
-
-
-            }
-        }
-        for (auto &gameObject : gameObjects) {
-            gameObject->handleEvent( eventHandler );
+            running = false;
+            netManager->disconnectPlayer();
+            flagReturn = 0;
+            break;
         }
     }
 
     const Uint8 *state = SDL_GetKeyboardState(nullptr);
-    int los = random()%10;
 
+    // todo: animacja powinna być rysowana dla wszystkich graczy
+    int los = random()%10;
     if (state[SDL_SCANCODE_UP] && los==2)
     {
         auto* tankdrive = new Animation( TANKDRIVE , player->smokePosition() , player->getDir() );
         animations.push_back(tankdrive);
     }
+    // todo: koniec
 
-    Game::netManager->read();
+    Game::netManager->read(); // load all packets
 
     std::unique_ptr<BasePacket> received;
 
@@ -104,56 +82,56 @@ void MpManager::handleEvents()
         if (auto *p = dynamic_cast<CurrentPositionPacket *>(received.get()))
         {
             bool found=false;
-            for (auto &gameObject : gameObjects)
+
+            for (auto &pl : players)
             {
-
-                if ( auto * pl = dynamic_cast<Player *>(gameObject) )
+                if ( pl->getId() == p->getPlayerId() )
                 {
-                    if ( pl->getId() == p->getPlayerId() )
+                    found=true;
+                    if (!pl->updated)
                     {
-                        found=true;
-                        if (!pl->updated)
-                        {
-                            pl->setPosition({p->getX(), p->getY()});
-                            pl->setDirection(p->getTankRotation());
-                            pl->setTowerDirection(p->getTurretRotation());
-                            pl->updated = true;
-                        }
-
+                        pl->setPosition({(int)p->getX(), (int)p->getY()});
+                        pl->setDirection((int)p->getTankRotation());
+                        pl->setTowerDirection((int)p->getTurretRotation());
+                        pl->setTankSpeed((int)p->getTankSpeed());
+                        pl->setRotationSpeed((int)p->getRotationSpeed());
+                        pl->setTurretRotationSpeed((int)p->getTurretRotationSpeed());
+                        pl->updated = true;
                     }
                 }
             }
             if (!found)
             {
-                Player *newPlayer = new Player(p->getPlayerId());
-                newPlayer->setDirection(p->getTankRotation());
-                newPlayer->setTowerDirection(p->getTurretRotation());
-                gameObjects.push_back(newPlayer);
+                Player *newPlayer = new Player((int)p->getPlayerId());
+                newPlayer->setPosition({(int)p->getX(), (int)p->getY()});
+                newPlayer->setDirection((int)p->getTankRotation());
+                newPlayer->setTowerDirection((int)p->getTurretRotation());
+                newPlayer->setTankSpeed((int)p->getTankSpeed());
+                newPlayer->setRotationSpeed((int)p->getRotationSpeed());
+                newPlayer->setTurretRotationSpeed((int)p->getTurretRotationSpeed());
+                players.push_back(newPlayer);
             }
         }
         else if(auto *p = dynamic_cast<PlayerDisconnectedPacket *>(received.get()))
         {
-            auto gameObject_iterator1 = gameObjects.begin();
-            while(gameObject_iterator1 != gameObjects.end())
+            auto players_iterator = players.begin();
+            while(players_iterator != players.end())
             {
-                if ( auto * pl = dynamic_cast<Player *>((*gameObject_iterator1)) )
+                if (p->getId() == (*players_iterator)->getId())
                 {
-                    if (p->getId() == pl->getId())
-                    {
-                        delete *gameObject_iterator1;
-                        gameObject_iterator1 = gameObjects.erase(gameObject_iterator1);
-                    }
-                    else
-                        ++gameObject_iterator1;
+                    delete *players_iterator;
+                    players_iterator = players.erase(players_iterator);
                 }
                 else
-                    ++gameObject_iterator1;
+                    ++players_iterator;
             }
         }
-        else if(auto *p = dynamic_cast<PlayerJoinedPacket *>(received.get())){
+        else if(auto *p = dynamic_cast<PlayerJoinedPacket *>(received.get()))
+        {
             p->print();
         }
-        else if(auto *p = dynamic_cast<BulletInfoPacket *>(received.get())){
+        else if(auto *p = dynamic_cast<BulletInfoPacket *>(received.get()))
+        {
             Bullet * bullet = new Bullet({p->getX(),p->getY()},p->getAngle());
             gameObjects.push_back(bullet);
 
@@ -161,6 +139,19 @@ void MpManager::handleEvents()
             animations.push_back(tankshoot);
         }
     }
+
+    // simulate movement
+    for (auto &p : players)
+    {
+        if (!p->updated)
+        {
+            p->simulate();
+        }
+    }
+
+
+
+
 
     //CheckColliders();
 
@@ -191,12 +182,15 @@ void MpManager::handleEvents()
 //    if (state[SDL_SCANCODE_Z]) anykey=true;
 //    if (state[SDL_SCANCODE_X]) anykey=true;
     //if (anykey)
+
+    for (auto &p : players)
+        p->updated = false;
+
         sendMovement();
 
     auto gameObject_iterator = gameObjects.begin();
     while(gameObject_iterator != gameObjects.end())
     {
-        (*gameObject_iterator)->updated = false;
         if((*gameObject_iterator)->shouldBeDestroy())
         {
             if (auto *b = dynamic_cast<Bullet *>(*gameObject_iterator))

@@ -9,7 +9,7 @@ public:
     void handleEvent( SDL_Event& e );
     void move();
     void draw( int x0 , int y0 );
-    void drawInfo();
+    void drawInfo( int x0 , int y0 );
     int getId();
 
     int getTowDir();
@@ -17,11 +17,17 @@ public:
     SDL_Point shootPosition();
     SDL_Point smokePosition();
 
+    void simulate();
+
     void PushOut(Vector2D vec);
 
     void setPosition(SDL_Point position);
     void setDirection(int direction);
     void setTowerDirection(int towerDirection);
+
+    void setTankSpeed(int tankSpeed);
+    void setRotationSpeed(int rotationSpeed);
+    void setTurretRotationSpeed(int turretRotationSpeed);
 
 private:
 
@@ -30,6 +36,8 @@ private:
     Vector2D blocked;
 
     float xFloat , yFloat;
+
+    float tankSpeed , rotationSpeed , turretRotationSpeed;
 
     float moveSpeed , directionSpeed , towerSpeed;
     float directionFloat , towerDirection;
