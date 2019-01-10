@@ -14,10 +14,12 @@ Room::Room() : _Scene()
     }
     std::cout << "Pyklo" << std::endl;
     
-    sprite[0] = new TankSprite( 1 );
-    sprite[1] = new TankSprite( 2 );
-    sprite[2] = new TankSprite( 3 );
-    sprite[3] = new TankSprite( 4 );
+    sprite[0] = new TankSprite( 1 , 0.5 );
+    sprite[1] = new TankSprite( 2 , 0.5 );
+    sprite[2] = new TankSprite( 3 , 0.5 );
+    sprite[3] = new TankSprite( 4 , 0.5 );
+    sprite[4] = new TankSprite( 5 , 0.5 );
+    sprite[5] = new TankSprite( 6 , 0.5 );
 
     bt = new Button( "join", 50,26, 1 );
     bt2 = new Button( "back", 50,30, 1 );
@@ -51,8 +53,8 @@ void  Room::handleEvents()
                     break;
                 //case SDLK_UP: if (selected == 1 ) selected = 5; else selected=1; break;
                 //case SDLK_DOWN: if (selected == 5) selected = 1; else selected=5; break;
-                case SDLK_RIGHT: if (selectedTank == 4 ) selectedTank=1; else selectedTank++; break;
-                case SDLK_LEFT: if (selectedTank == 1 ) selectedTank=4; else selectedTank--; break;
+                //case SDLK_RIGHT: if (selectedTank == 4 ) selectedTank=1; else selectedTank++; break;
+                //case SDLK_LEFT: if (selectedTank == 1 ) selectedTank=4; else selectedTank--; break;
             }
         }
     }
@@ -66,27 +68,27 @@ void Room::draw()
 
     dir+=100 * Game::windowManager->getStepTime();
     if (dir>=360) dir-=360;
-    sprite[0]->draw( { 100 , 280 } , dir , dir , 0 );
-    sprite[1]->draw( { 300 , 280 } , dir-20 , dir-20 , 0 );
-    sprite[2]->draw( { 500 , 280 } , dir-40 , dir-40 , 0 );
-    sprite[3]->draw( { 700 , 280 } , dir-60 , dir-60 , 0 );
 
     Game::textManager->draw( "room: " + std::string(SERVERIP) , 400 , 20 ,65 , C_BLACK , true);
-    Game::textManager->draw( "lista graczy: ",800,20,20,C_BLACK,true);
+    Game::textManager->draw( "lista graczy: ",80,160,35,C_BLACK,false);
 
-    for(unsigned i = 0; i < netManager->clients.size(); i++){
-        Game::textManager->draw(std::to_string(netManager->clients[i]),800,40+(i*20),20,C_BLACK,true);
-    }
-    if ( selectedTank == 1 )
+    for(unsigned i = 0; i < netManager->clients.size(); i++)
     {
-        Game::textManager->draw(NICKNAME, 100, 400, 40, C_BLACK, true);
+        sprite[netManager->clients[i]%6]->draw( { 140 , int(260+(i*60)) } , dir , dir , 0 );
+        Game::textManager->draw(std::to_string(netManager->clients[i]),80,240+(i*60),30,C_BLACK,false);
     }
-    if ( selectedTank == 2 )
-        Game::textManager->draw( NICKNAME , 300 , 400 , 40 ,C_BLACK,true);
-    if ( selectedTank == 3 )
-        Game::textManager->draw( NICKNAME , 500 , 400 , 40 ,C_BLACK,true);
-    if ( selectedTank == 4 )
-        Game::textManager->draw( NICKNAME , 700 , 400 , 40 ,C_BLACK,true);
+
+
+//    if ( selectedTank == 1 )
+//    {
+//        //Game::textManager->draw(NICKNAME, 100, 400, 40, C_BLACK, true);
+//    }
+//    if ( selectedTank == 2 )
+//        //Game::textManager->draw( NICKNAME , 300 , 400 , 40 ,C_BLACK,true);
+//    if ( selectedTank == 3 )
+//        //Game::textManager->draw( NICKNAME , 500 , 400 , 40 ,C_BLACK,true);
+//    if ( selectedTank == 4 )
+//        //Game::textManager->draw( NICKNAME , 700 , 400 , 40 ,C_BLACK,true);
 
     bt->draw();
     bt2->draw();

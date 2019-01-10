@@ -14,7 +14,7 @@ public:
 private:
 
     NetManager* netManager;
-    TankSprite* sprite[4];
+    TankSprite* sprite[6];
     float dir;
 
     Button * bt;
