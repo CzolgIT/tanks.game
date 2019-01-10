@@ -31,7 +31,7 @@ void MpManager::draw()
     for (auto &p : players)
     {
         p->draw(x0, y0);
-        p->drawInfo(x0,y0);
+        //p->drawInfo(x0,y0);
     }
 
     for (auto &animation : animations)
@@ -88,16 +88,13 @@ void MpManager::handleEvents()
                 if ( pl->getId() == p->getPlayerId() )
                 {
                     found=true;
-                    if (!pl->updated)
-                    {
-                        pl->setPosition({(int)p->getX(), (int)p->getY()});
-                        pl->setDirection((int)p->getTankRotation());
-                        pl->setTowerDirection((int)p->getTurretRotation());
-                        pl->setTankSpeed((int)p->getTankSpeed());
-                        pl->setRotationSpeed((int)p->getRotationSpeed());
-                        pl->setTurretRotationSpeed((int)p->getTurretRotationSpeed());
-                        pl->updated = true;
-                    }
+                    pl->setPosition({(int)p->getX(), (int)p->getY()});
+                    pl->setDirection((int)p->getTankRotation());
+                    pl->setTowerDirection((int)p->getTurretRotation());
+                    pl->setTankSpeed((int)p->getTankSpeed());
+                    pl->setRotationSpeed((int)p->getRotationSpeed());
+                    pl->setTurretRotationSpeed((int)p->getTurretRotationSpeed());
+                    pl->updated = true;
                 }
             }
             if (!found)
