@@ -20,6 +20,7 @@ public:
     Uint32 getTime();
     ~EventPacket();
     void print() const override;
+    bool compare(EventPacket * eventPacket);
 
 };
 

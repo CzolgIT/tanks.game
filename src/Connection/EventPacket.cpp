@@ -50,4 +50,12 @@ void EventPacket::print() const {
     std::cout << "Move packet received" << std::endl;
 }
 
+bool EventPacket::compare(EventPacket* eventPacket) {
+    for(int i =1; i<9; i++){
+        if(this->data[i]!=(eventPacket)->data[i])
+            return false;
+    }
+    return true;
+}
+
 EventPacket::~EventPacket() = default;

@@ -23,6 +23,7 @@ private:
     std::vector<Bullet*> bullets;
     std::vector<_GameObject*> gameObjects;
     std::vector<Animation*> animations;
+    EventPacket * prevEventPacket = nullptr;
 
     Player* player;
 
