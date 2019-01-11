@@ -19,9 +19,9 @@ void PlayerJoinedPacket::setId(Uint8 id) {
 }
 
 Uint8 PlayerJoinedPacket::getId() {
-    return data[2];
+    return data[1];
 }
 
 void PlayerJoinedPacket::print() const {
-    std::cout << "Player ID: " << (int)data[2] << "has joined." << std::endl;
+    std::cout << "Player ID: " << (int)data[1] << "has joined." << std::endl;
 }

@@ -154,11 +154,11 @@ void MpManager::loadFromServer()
                         player_found = true;
                         player->setFromPacket(packet);
                     }
-                    if (!player_found) {
-                        auto *newPlayer = new Player((int) packet->getPlayerId());
-                        newPlayer->setFromPacket(packet);
-                        players.push_back(newPlayer);
-                    }
+                }
+                if (!player_found) {
+                    auto *newPlayer = new Player((int) packet->getPlayerId());
+                    newPlayer->setFromPacket(packet);
+                    players.push_back(newPlayer);
                 }
                 //delete packet;
             }
@@ -183,6 +183,10 @@ void MpManager::loadFromServer()
             case PT_PLAYER_JOINED:
             {
                 auto* packet = (PlayerJoinedPacket*)received;
+
+                auto *newPlayer = new Player(packet->getId());
+                players.push_back(newPlayer);
+
                 packet->print();
                 //delete packet;
             }
@@ -217,7 +221,7 @@ void MpManager::sendMovement()
     ep->setTime(netManager->getGlobalTime());
     if(prevEventPacket!= nullptr){
         if(!ep->compare(prevEventPacket)){
-            delete_object(prevEventPacket);
+            //delete_object(prevEventPacket);
             std::cout << "wysłałem nowy pakiet" << std::endl;
             Game::netManager->udpSend(ep);
             prevEventPacket = new EventPacket();
@@ -227,7 +231,7 @@ void MpManager::sendMovement()
 //            std::cout << "nic sie nie stalo" << std::endl;
         }
     }else{
-        delete_object(prevEventPacket);
+        //delete_object(prevEventPacket);
         prevEventPacket = new EventPacket();
         prevEventPacket->setId(ep->getId());
         prevEventPacket->setKeys(ep->getKeys());

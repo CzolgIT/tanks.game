@@ -193,19 +193,17 @@ int NetManager::getMyId()
     return netPlayer->id;
 }
 
-void NetManager::getAllPlayersData() {
+void NetManager::getAllPlayersData()
+{
     read();
-    BasePacket* received = nullptr;
-
     while(canPollPacket())
     {
-        received = pollPacket();
+        BasePacket* received = pollPacket();
         if (received->getType() == PT_PLAYER_JOINED)
         {
             auto *p = (PlayerJoinedPacket *)received;
             p->print();
             clients.push_back((int)(p->getId()));
         }
-        read();
     }
 }

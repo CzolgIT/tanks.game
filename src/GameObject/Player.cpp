@@ -115,7 +115,10 @@ SDL_Point Player::smokePosition()
     return punkt;
 }
 
-int Player::getId() { return id; }
+int Player::getId()
+{
+    return id;
+}
 
 void Player::setPosition(SDL_Point position) { this->position=position; xFloat=position.x; yFloat=position.y; }
 void Player::setDirection(int direction) { this->direction=direction; this->directionFloat=direction; }
