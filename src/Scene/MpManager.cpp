@@ -138,10 +138,11 @@ void MpManager::handleEvents()
 void MpManager::loadFromServer()
 {
     Game::netManager->read(); // load all packets
-    BasePacket* received = Game::netManager->pollPacket();
 
-    while ( received != nullptr )
+    while ( Game::netManager->canPollPacket() )
     {
+        BasePacket* received = Game::netManager->pollPacket();
+
         switch (received->getType())
         {
             case PT_CURRENT_POSITION:
@@ -201,7 +202,6 @@ void MpManager::loadFromServer()
             }
             break;
         }
-        received = Game::netManager->pollPacket();
     }
 }
 
