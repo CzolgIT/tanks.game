@@ -11,7 +11,6 @@ public:
     ~Game();
     void Update();
     bool isRunning() { return running; }
-    void Multiplayer();
 
     static SDL_Renderer* renderer;
     static NetManager* netManager;
@@ -20,6 +19,7 @@ public:
     static Debugger* debugger;
     static TextManager* textManager;
     static WindowManager* windowManager;
+    static SoundManager* soundManager;
 
 private:
 

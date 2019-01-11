@@ -7,6 +7,7 @@ TextManager* Game::textManager = nullptr;
 TextureManager* Game::textureManager = nullptr;
 Debugger* Game::debugger = nullptr;
 NetManager* Game::netManager = nullptr;
+SoundManager* Game::soundManager = nullptr;
 
 Game::Game()
 {
@@ -19,6 +20,7 @@ Game::Game()
     textManager = new TextManager();
     textureManager = new TextureManager();
     debugger = new Debugger();
+    soundManager = new SoundManager();
 
     currentScene = new MainMenu();
     running = true;
@@ -73,19 +75,6 @@ void Game::Update()
                 netManager->disconnectPlayer();
             running = false;
             break;
-    }
-}
-
-void Game::Multiplayer()
-{
-    while (currentScene->isRunning())
-    {
-        currentScene->update();
-    }
-    if (netManager!=nullptr)
-    {
-        netManager->disconnectPlayer();
-        delete_object(netManager);
     }
 }
 

@@ -88,6 +88,7 @@
 #include "Map.h"
 #include "Timer.h"
 #include "WindowManager.h"
+#include "SoundManager.h"
 #include "Configuration.h"
 #include "Game.h"
 
