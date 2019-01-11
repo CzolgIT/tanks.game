@@ -47,7 +47,7 @@ void UDPConnection::addPacketToQueue(BasePacket *packet) {
 
     queueMtx.lock();
 
-    packetQueue.push(std::unique_ptr<BasePacket>(packet));
+    packetQueue.push(packet);
 
     queueMtx.unlock();
 
@@ -62,7 +62,7 @@ void UDPConnection::startSenderThread() {
 
 }
 
-std::unique_ptr<BasePacket> UDPConnection::getNextPacket() {
+BasePacket* UDPConnection::getNextPacket() {
     UDPpacket packet;
     packet.data = universalPacket.getData();
     packet.maxlen = universalPacket.getSize();
@@ -90,7 +90,7 @@ void UDPConnection::sendPacket() {
 
         queueMtx.lock();
 
-        std::unique_ptr<BasePacket> qPacket = std::move(packetQueue.front());
+        BasePacket* qPacket = packetQueue.front();
         packetQueue.pop();
 
         queueMtx.unlock();
@@ -102,7 +102,7 @@ void UDPConnection::sendPacket() {
         if(SDLNet_UDP_Send(udpSocket,-1,&packet) <= 0){
             connectionGood = false;
         }
-        delete qPacket.get();
+        delete qPacket;
         delete &packet;
     }
 
@@ -121,7 +121,7 @@ void UDPConnection::sendPackets() {
 
             queueMtx.lock();
 
-            BasePacket* basePacket = packetQueue.front().release();
+            BasePacket* basePacket = packetQueue.front();
             packetQueue.pop();
 
             queueMtx.unlock();

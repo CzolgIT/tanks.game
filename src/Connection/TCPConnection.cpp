@@ -76,7 +76,7 @@ void TCPConnection::sendPackets() {
         if(!packetQueue.empty()){
             queueMtx.lock();
 
-            std::unique_ptr<BasePacket> packet = std::move(packetQueue.front());
+            BasePacket* packet = packetQueue.front();
             packetQueue.pop();
 
             queueMtx.unlock();
@@ -106,7 +106,7 @@ void TCPConnection::sendPacket() {
         queueMtx.lock();
 
         //remove the packet
-        std::unique_ptr<BasePacket> packet = std::move(packetQueue.front());
+        BasePacket* packet = packetQueue.front();
         packetQueue.pop();
 
         queueMtx.unlock();
@@ -116,13 +116,13 @@ void TCPConnection::sendPacket() {
         if(SDLNet_TCP_Send(socket,packet->getData(),packet->getSize())<(int)packet->getSize()){
             connectionGood = false;
         }
-        delete packet.get();
+        delete packet;
     }
 
 
 }
 
-std::unique_ptr<BasePacket> TCPConnection::getNextPacket() {
+BasePacket* TCPConnection::getNextPacket() {
 
     //check the sockets for readiness
 
@@ -165,7 +165,7 @@ std::unique_ptr<BasePacket> TCPConnection::getNextPacket() {
                     std::cout << "TCP could not get packet contents" << std::endl;
                 }
 
-                std::unique_ptr<BasePacket> received = uniPacket.createFromContents();
+                BasePacket* received = uniPacket.createFromContents();
                 if(received){
                     return received;
                 }
@@ -202,7 +202,7 @@ void TCPConnection::addPacketToQueue(BasePacket *packet) {
     queueMtx.lock();
     packet->print();
 //    std::cout << "dodałem pakiet" << packet->print() << "do kolejki" << std::endl;
-    packetQueue.push(std::unique_ptr<BasePacket>(packet));
+    packetQueue.push(packet);
     queueMtx.unlock();
 
 

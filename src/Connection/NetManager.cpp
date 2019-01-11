@@ -65,7 +65,7 @@ void NetManager::read() {
     // read all pending udp packets
     bool udpPacketAvailable = true;
     while(udpPacketAvailable){
-        BasePacket* received = udpConnection.getNextPacket().get();
+        BasePacket* received = udpConnection.getNextPacket();
 
         // if the packet was not null, add it to the queue
         if(received != nullptr)
@@ -77,7 +77,7 @@ void NetManager::read() {
     // read all pending tcp packets
     bool tcpPacketAvailable = true;
     while(tcpPacketAvailable){
-        BasePacket* received = tcpConnection.getNextPacket().get();
+        BasePacket* received = tcpConnection.getNextPacket();
         if(received != nullptr){
             packetQueue.push(received);
         }
@@ -160,10 +160,7 @@ void NetManager::sendPackets() {
 
 bool NetManager::canPollPacket()
 {
-    if(!packetQueue.empty())
-        return true;
-    else
-        return false;
+    return !packetQueue.empty();
 }
 
 BasePacket* NetManager::pollPacket()

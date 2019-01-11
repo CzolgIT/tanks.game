@@ -14,12 +14,12 @@ public:
     Uint8* getData() const;
     unsigned int getSize() const;
     
-    std::unique_ptr<BasePacket> createFromContents();
+    BasePacket* createFromContents();
 private:
-    std::unique_ptr<Uint8[]> data;
+    Uint8* data;
     unsigned int size;
     
-    std::unique_ptr<BasePacket> constructPacket(BasePacket* packet);
+    BasePacket* constructPacket(BasePacket* packet);
 };
 
 

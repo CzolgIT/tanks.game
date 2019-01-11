@@ -111,6 +111,11 @@ void Configuration::readFile()
             infile >> sval;
             this->fullscreen = (sval != "NO");
         } else
+        if (key == "SOUNDS")
+        {
+            infile >> sval;
+            this->sounds = (sval != "NO");
+        } else
         if (key == "DEBUG")
         {
             infile >> sval;
@@ -122,3 +127,9 @@ void Configuration::readFile()
     infile.close();
     this->rendererFlags = (acceleration ? SDL_RENDERER_ACCELERATED : 0) | (vsync ? SDL_RENDERER_PRESENTVSYNC : 0);
 }
+
+bool Configuration::getSounds()
+{
+    return sounds;
+}
+

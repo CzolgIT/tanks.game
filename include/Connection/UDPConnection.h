@@ -25,7 +25,7 @@ public:
     void startSenderThread();
 
     //pull the next packet from the server
-    std::unique_ptr<BasePacket> getNextPacket();
+    BasePacket* getNextPacket();
 
     // send next packet from the queue
     void sendPacket();
@@ -38,7 +38,7 @@ private:
 
     std::atomic_bool closeThread;
     std::mutex queueMtx;
-    std::queue<std::unique_ptr<BasePacket>> packetQueue;
+    std::queue<BasePacket*> packetQueue;
     std::thread* senderThread;
 
     //sends queued packets, attached to the sender thread

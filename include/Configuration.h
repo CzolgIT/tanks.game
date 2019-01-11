@@ -28,6 +28,8 @@ public:
         Uint32 getRendererFlags();
         float getScale();
 
+    bool getSounds();
+
 private:
 
     SDL_Window* window;
@@ -38,6 +40,7 @@ private:
     bool acceleration;
     bool vsync;
     bool debug;
+    bool sounds;
 
         Uint32 rendererFlags;
         float scale;

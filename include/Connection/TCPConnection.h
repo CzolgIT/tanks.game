@@ -17,7 +17,7 @@ public:
 
     void startSenderThread();
 
-    std::unique_ptr<BasePacket> getNextPacket();
+    BasePacket* getNextPacket();
 
     void sendPacket();
 
@@ -31,7 +31,7 @@ private:
     std::atomic_bool closeThread;
     std::atomic_bool connectionGood;
     std::mutex queueMtx;
-    std::queue<std::unique_ptr<BasePacket>> packetQueue;
+    std::queue<BasePacket*> packetQueue;
 
     void sendPackets();
 
