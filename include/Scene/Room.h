@@ -7,11 +7,13 @@ class Room : public _Scene
 {
 public:
 
-    Room();
+    Room( std::string ipadress );
     void handleEvents();
     void draw();
     int selectedTank;
 private:
+
+    std::string ipadress;
 
     NetManager* netManager;
     TankSprite* sprite[6];

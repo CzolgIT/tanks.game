@@ -30,7 +30,7 @@ BasePacket* UniversalPacket::createFromContents()
         case PT_HEARTBEAT:
             return constructPacket(new HeartbeatPacket);
         case PT_JOIN_REQUEST:
-            return constructPacket(new JoinRequestPacket);
+            return constructPacket(new JoinRequestPacket(""));
         case PT_JOIN_RESPONSE:
             return constructPacket(new JoinResponsePacket);
         case PT_CURRENT_POSITION:

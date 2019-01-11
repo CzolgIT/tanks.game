@@ -1,13 +1,16 @@
+#include <utility>
+
 #include "Main.h"
 
-Room::Room() : _Scene()
+Room::Room(std::string ipadress) : _Scene()
 {
     Game::netManager = new NetManager();
     selectedTank = 1;
     dir=0;
     this->netManager = Game::netManager;
+    this->ipadress = ipadress;
     Uint32 globalTime = 0;
-    if (!netManager->connect(SERVERIP,SERVERPORT,globalTime))
+    if (!netManager->connect(std::move(ipadress),SERVERPORT,globalTime))
     {
         flagReturn = 0;
         running = false;
@@ -45,16 +48,13 @@ void  Room::handleEvents()
             {
                 case SDLK_ESCAPE:
                     running = false;
-                    flagReturn = -1;
+                    netManager->disconnectPlayer();
+                    flagReturn = 0;
                     break;
                 case SDLK_RETURN:
-                    flagReturn = 8; // tu byl selectedtank, ale tworzenie czolgu bedzie musialo byc juz w tej klasie
+                    flagReturn = 8;
                     running = false;
                     break;
-                //case SDLK_UP: if (selected == 1 ) selected = 5; else selected=1; break;
-                //case SDLK_DOWN: if (selected == 5) selected = 1; else selected=5; break;
-                //case SDLK_RIGHT: if (selectedTank == 4 ) selectedTank=1; else selectedTank++; break;
-                //case SDLK_LEFT: if (selectedTank == 1 ) selectedTank=4; else selectedTank--; break;
             }
         }
     }
@@ -69,7 +69,7 @@ void Room::draw()
     dir+=100 * Game::windowManager->getStepTime();
     if (dir>=360) dir-=360;
 
-    Game::textManager->draw( "room: " + std::string(SERVERIP) , 400 , 20 ,65 , C_BLACK , true);
+    Game::textManager->draw( "room: " + std::string(ipadress) , 400 , 20 ,65 , C_BLACK , true);
     Game::textManager->draw( "lista graczy: ",80,160,35,C_BLACK,false);
 
     for(unsigned i = 0; i < netManager->clients.size(); i++)

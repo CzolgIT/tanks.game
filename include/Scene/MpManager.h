@@ -7,7 +7,7 @@ class MpManager : public _Scene
 {
 public:
 
-    MpManager(int color = 1);
+    MpManager();
     void handleEvents();
     void draw();
     void CheckColliders();

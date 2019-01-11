@@ -29,6 +29,7 @@ public:
         float getScale();
 
     bool getSounds();
+    std::string getNickname();
 
 private:
 
@@ -41,6 +42,8 @@ private:
     bool vsync;
     bool debug;
     bool sounds;
+
+    std::string nickname;
 
         Uint32 rendererFlags;
         float scale;

@@ -1,6 +1,6 @@
 #include "Main.h"
 
-MpManager::MpManager(int color): _Scene()
+MpManager::MpManager(): _Scene()
 {
     // net start
     this->netManager = Game::netManager;
@@ -11,8 +11,8 @@ MpManager::MpManager(int color): _Scene()
 
     // filling map
     background = new Background();
-    auto map = new Map();
-    map->loadFromFile( &gameObjects );
+    //auto map = new Map();
+    //map->loadFromFile( &gameObjects );
 
     Game::soundManager->PlayBackgroundMusic();
 }

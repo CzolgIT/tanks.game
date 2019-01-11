@@ -41,11 +41,11 @@ void Game::Update()
         case 0: // Main Menu
             currentScene = new MainMenu();
             break;
-        case 1: // Multiplayer
-            currentScene = new Room();
+        case 1: // Play on Sigma
+            currentScene = new Room( SIGMAIP );
             break;
-        case 2: // Singleplayer
-            currentScene = new Manager();
+        case 2: // Play on LAN
+            currentScene = new Room( LOCALIP );
             break;
         case 3: // Settings
             currentScene = new Settings();
@@ -64,10 +64,8 @@ void Game::Update()
             break;
         case 8: // Multiplayer-run
         {
-            //Room * r = dynamic_cast<Room*>(currentScene);
-            //int c = 1;
-            currentScene = new MpManager(1);
-            //Multiplayer();
+            currentScene = new MpManager();
+            break;
         }
             break;
         default:

@@ -1,3 +1,4 @@
+
 #include "Main.h"
 
 Configuration::Configuration()
@@ -116,6 +117,11 @@ void Configuration::readFile()
             infile >> sval;
             this->sounds = (sval != "NO");
         } else
+        if (key == "NAME")
+        {
+            infile >> sval;
+            this->nickname = sval ;
+        } else
         if (key == "DEBUG")
         {
             infile >> sval;
@@ -131,5 +137,9 @@ void Configuration::readFile()
 bool Configuration::getSounds()
 {
     return sounds;
+}
+
+std::string Configuration::getNickname() {
+    return nickname;
 }
 

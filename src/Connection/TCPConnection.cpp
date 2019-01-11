@@ -34,9 +34,9 @@ bool TCPConnection::connectToServer(NetPlayer* player, std::string host, Uint16 
         return false;
     }
 
-    std::cout << "Established connection with server: " << SERVERIP << " : " << SERVERPORT << ", requesting join...\n";
+    std::cout << "Established connection with server: " << host << " : " << port << ", requesting join...\n";
     
-    JoinRequestPacket request;
+    JoinRequestPacket request(Game::configuration->getNickname());
     
     // Send request packet to the server
     SDLNet_TCP_Send(socket, request.getData(), request.getSize());

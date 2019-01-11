@@ -3,12 +3,16 @@
 
 #include "Main.h"
 
-#define JOINREQUEST_PACKET_SIZE (1+8)
+
+// packet type + 10 chars
+#define JOINREQUEST_PACKET_SIZE (1+10)
 
 class JoinRequestPacket : public BasePacket
 {
 public:
-    JoinRequestPacket() :BasePacket(PT_JOIN_REQUEST, JOINREQUEST_PACKET_SIZE){}
+
+    explicit JoinRequestPacket(std::string nickname);
+
 };
 
 
