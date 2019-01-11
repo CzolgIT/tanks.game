@@ -7,8 +7,10 @@
 
 #include "Main.h"
 #define BULLET_INFO_PACKET_SIZE (1+1+1+2+2+2)
-class BulletInfoPacket : public BasePacket{
+class BulletInfoPacket : public BasePacket
+{
 public:
+
     BulletInfoPacket();
     void setPlayerId(Uint8 playerId);
     void setBulletId(Uint8 bulletId);

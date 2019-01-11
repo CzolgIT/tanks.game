@@ -65,11 +65,11 @@ void NetManager::read() {
     // read all pending udp packets
     bool udpPacketAvailable = true;
     while(udpPacketAvailable){
-        std::unique_ptr<BasePacket> received = udpConnection.getNextPacket();
+        BasePacket* received = udpConnection.getNextPacket().get();
 
         // if the packet was not null, add it to the queue
         if(received != nullptr)
-            packetQueue.push(std::move(received));
+            packetQueue.push(received);
         else
             udpPacketAvailable = false;
     }
@@ -77,9 +77,9 @@ void NetManager::read() {
     // read all pending tcp packets
     bool tcpPacketAvailable = true;
     while(tcpPacketAvailable){
-        std::unique_ptr<BasePacket> received = tcpConnection.getNextPacket();
+        BasePacket* received = tcpConnection.getNextPacket().get();
         if(received != nullptr){
-            packetQueue.push(std::move(received));
+            packetQueue.push(received);
         }
         else{
             tcpPacketAvailable = false;
@@ -101,7 +101,7 @@ bool NetManager::syncTimeWithServer(NetPlayer *player, Uint32 &globalTime) {
     Uint32 syncStartTime = SDL_GetTicks();
     Uint32 currentTime = syncStartTime;
     Uint32 hearbeatTime = 1000;
-    std::unique_ptr<BasePacket> received;
+    BasePacket* received = nullptr;
     while(true){
 
         if(currentTime - syncStartTime > 99999999){
@@ -119,16 +119,20 @@ bool NetManager::syncTimeWithServer(NetPlayer *player, Uint32 &globalTime) {
 
         read();
 
-        if(pollPacket(received)){
-
-            if(((SyncPacket*)received.get())->getMode() == SYNC_RETURN){
-                udpSend(received.release());
+        if (canPollPacket())
+        {
+            received = pollPacket();
+            if (received->getType() == PT_SYNC)
+            {
+                auto* packet = (SyncPacket*)received;
+                if(packet->getMode() == SYNC_RETURN){
+                    udpSend(received);
+                }
+                else if(packet->getMode() == SYNC_SET){
+                    globalTime = packet->getTime();
+                    break;
+                }
             }
-            else if(((SyncPacket*)received.get())->getMode() == SYNC_SET){
-                globalTime = ((SyncPacket*)received.get())->getTime();
-                break;
-            }
-
         }
 
         hearbeatTime += SDL_GetTicks() - currentTime;
@@ -154,18 +158,24 @@ void NetManager::sendPackets() {
     }
 }
 
-
-bool NetManager::pollPacket(std::unique_ptr<BasePacket> &packet) {
-    if(!packetQueue.empty()){
-
-        packet = std::move(packetQueue.front());
-        packetQueue.pop();
-
+bool NetManager::canPollPacket()
+{
+    if(!packetQueue.empty())
         return true;
+    else
+        return false;
+}
 
+BasePacket* NetManager::pollPacket()
+{
+    if(!packetQueue.empty())
+    {
+        BasePacket* packet = packetQueue.front();
+        packetQueue.pop();
+        return packet;
     }
-
-    return false;
+    else
+        return nullptr;
 }
 
 Uint32 NetManager::getGlobalTime() {
@@ -178,7 +188,7 @@ void NetManager::setGlobalTime(Uint32 newGlobalTime) {
 
 void NetManager::clear()
 {
-    std::queue<std::unique_ptr<BasePacket>>().swap( packetQueue );
+    std::queue<BasePacket*>().swap( packetQueue );
 }
 
 int NetManager::getMyId()
@@ -188,9 +198,14 @@ int NetManager::getMyId()
 
 void NetManager::getAllPlayersData() {
     read();
-    std::unique_ptr<BasePacket> received;
-    while(pollPacket(received)){
-        if(auto *p = dynamic_cast<PlayerJoinedPacket *>(received.get())){
+    BasePacket* received = nullptr;
+
+    while(canPollPacket())
+    {
+        received = pollPacket();
+        if (received->getType() == PT_PLAYER_JOINED)
+        {
+            auto *p = (PlayerJoinedPacket *)received;
             p->print();
             clients.push_back((int)(p->getId()));
         }

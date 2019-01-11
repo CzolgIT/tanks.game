@@ -6,8 +6,8 @@ MpManager::MpManager(int color): _Scene()
     this->netManager = Game::netManager;
 
     // creating player
-    player = new Player( Game::netManager->getMyId() );
-    players.push_back(player);
+    myPlayer = new Player( Game::netManager->getMyId() );
+    players.push_back(myPlayer);
 
     // filling map
     background = new Background();
@@ -22,15 +22,15 @@ void MpManager::draw()
     SDL_SetRenderDrawColor( Game::renderer, 0xFF, 0xFF, 0xFF, 0xFF );
     SDL_RenderClear( Game::renderer );
 
-    auto x0 = (int)((float)Game::configuration->getDisplayMode()->w/2-player->getX());
-    auto y0 = (int)((float)Game::configuration->getDisplayMode()->h/2-player->getY());
+    auto x0 = (int)((float)Game::configuration->getDisplayMode()->w/2-myPlayer->getX());
+    auto y0 = (int)((float)Game::configuration->getDisplayMode()->h/2-myPlayer->getY());
 
     background->draw( x0 , y0 );
 
     for (auto &gameObject : gameObjects) gameObject->draw(x0,y0);
-    for (auto &player : players) player->draw(x0, y0);
-    for (auto &bullet : bullets) bullet->draw(x0,y0);
-    for (auto &animation : animations) animation->draw(x0,y0);
+    for (auto &player : players)         player->draw(x0, y0);
+    for (auto &bullet : bullets)         bullet->draw(x0,y0);
+    for (auto &animation : animations)   animation->draw(x0,y0);
 
     Game::debugger->draw();
 
@@ -64,9 +64,7 @@ void MpManager::handleEvents()
     for (auto &p : players)
     {
         if (!p->updated)
-        {
             p->simulate();
-        }
         p->updated = false;
 
         int los = int(random()%10); // generate drive animation
@@ -140,57 +138,70 @@ void MpManager::handleEvents()
 void MpManager::loadFromServer()
 {
     Game::netManager->read(); // load all packets
-    std::unique_ptr<BasePacket> received;
+    BasePacket* received = Game::netManager->pollPacket();
 
-    while ( Game::netManager->pollPacket(received) )
+    while ( received != nullptr )
     {
-        if (auto *p = dynamic_cast<CurrentPositionPacket *>(received.get()))
+        switch (received->getType())
         {
-            bool found=false;
-
-            for (auto &pl : players)
+            case PT_CURRENT_POSITION:
             {
-                if ( pl->getId() == p->getPlayerId() )
-                {
-                    found=true;
-                    pl->setFromPacket( p );
+                auto *packet = (CurrentPositionPacket *)received;
+                bool player_found = false;
+                for (auto &player : players) {
+                    if (player->getId() == packet->getPlayerId()) {
+                        player_found = true;
+                        player->setFromPacket(packet);
+                    }
+                    if (!player_found) {
+                        auto *newPlayer = new Player((int) packet->getPlayerId());
+                        newPlayer->setFromPacket(packet);
+                        players.push_back(newPlayer);
+                    }
                 }
+                //delete packet;
             }
-            if (!found)
+            break;
+            case PT_PLAYER_DISCONNECTED:
             {
-                Player *newPlayer = new Player((int)p->getPlayerId());
-                newPlayer->setFromPacket( p );
-                players.push_back(newPlayer);
-            }
-        }
-        else if(auto *p = dynamic_cast<PlayerDisconnectedPacket *>(received.get()))
-        {
-            auto players_iterator = players.begin();
-            while(players_iterator != players.end())
-            {
-                if (p->getId() == (*players_iterator)->getId())
+                auto* packet = (PlayerDisconnectedPacket *)received;
+                auto players_iterator = players.begin();
+                while(players_iterator != players.end())
                 {
-                    delete *players_iterator;
-                    players_iterator = players.erase(players_iterator);
+                    if (packet->getId() == (*players_iterator)->getId())
+                    {
+                        delete *players_iterator;
+                        players_iterator = players.erase(players_iterator);
+                    }
+                    else
+                        ++players_iterator;
                 }
-                else
-                    ++players_iterator;
+                //delete packet;
             }
-        }
-        else if(auto *p = dynamic_cast<PlayerJoinedPacket *>(received.get()))
-        {
-            p->print();
-        }
-        else if(auto *p = dynamic_cast<BulletInfoPacket *>(received.get()))
-        {
-            auto * bullet = new Bullet({p->getX(),p->getY()},p->getAngle());
-            bullets.push_back(bullet);
+            break;
+            case PT_PLAYER_JOINED:
+            {
+                auto* packet = (PlayerJoinedPacket*)received;
+                packet->print();
+                //delete packet;
+            }
+            break;
+            case PT_BULLET_INFO:
+            {
+                auto* packet = (BulletInfoPacket*)received;
 
-            auto* tankshoot = new Animation( TANKSHOOT , {p->getX(),p->getY()} , p->getAngle() );
-            animations.push_back(tankshoot);
+                auto * bullet = new Bullet({packet->getX(),packet->getY()},packet->getAngle());
+                bullets.push_back(bullet);
 
-            Game::soundManager->PlayShootSound();
+                auto* tankshoot = new Animation( TANKSHOOT , {packet->getX(),packet->getY()} , packet->getAngle() );
+                animations.push_back(tankshoot);
+
+                Game::soundManager->PlayShootSound();
+                //delete packet;
+            }
+            break;
         }
+        received = Game::netManager->pollPacket();
     }
 }
 

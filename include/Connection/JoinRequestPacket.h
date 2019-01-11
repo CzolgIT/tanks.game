@@ -9,7 +9,6 @@ class JoinRequestPacket : public BasePacket
 {
 public:
     JoinRequestPacket() :BasePacket(PT_JOIN_REQUEST, JOINREQUEST_PACKET_SIZE){}
-    ~JoinRequestPacket() override {}
 };
 
 

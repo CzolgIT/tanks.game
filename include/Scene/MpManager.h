@@ -25,7 +25,7 @@ private:
     std::vector<Animation*> animations;
     EventPacket * prevEventPacket = nullptr;
 
-    Player* player;
+    Player* myPlayer;
 
 };
 

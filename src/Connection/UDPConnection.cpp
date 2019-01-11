@@ -136,7 +136,7 @@ void UDPConnection::sendPackets() {
 
             packet.data = nullptr;
 
-            delete basePacket;
+            //delete basePacket;
 
         }
     }

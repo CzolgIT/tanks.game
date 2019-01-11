@@ -10,7 +10,6 @@ class PlayerDisconnectedPacket : public BasePacket {
 public:
     PlayerDisconnectedPacket();
     PlayerDisconnectedPacket(Uint8 id);
-    ~PlayerDisconnectedPacket() override {}
 
     void setId(Uint8 id);
     void print() const override;

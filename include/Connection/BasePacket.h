@@ -28,27 +28,25 @@ enum PacketType : Uint8{
 
 class BasePacket
 {
-protected:
-    BasePacket( PacketType type, unsigned int packetSize );
-        // Content of the packet 
-        std::unique_ptr<Uint8[]> data;
-        
-        unsigned int size;
-    
-        
 public:
-    virtual ~BasePacket();
-    
-    //return the type of the packet
-    
+
+    //BasePacket() = default;
+    //virtual ~BasePacket() = default;
+
     virtual PacketType getType() const;
-    
     virtual Uint8* getData() const;
-    
     virtual unsigned int getSize() const;
     
     virtual void print() const;
+
+protected:
+
+    BasePacket( PacketType type, unsigned int packetSize );
+    Uint8 * data;
+    unsigned int size;
+
 };
+
 Uint32 floatToUint32(float f);
 float Uint32toFloat(Uint32 i);
 #endif

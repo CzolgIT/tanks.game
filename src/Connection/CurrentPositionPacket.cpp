@@ -11,7 +11,7 @@ void CurrentPositionPacket::setTankSpeed(Uint16 tankSpeed) { SDLNet_Write16(tank
 void CurrentPositionPacket::setRotationSpeed(Uint16 rotationSpeed) { SDLNet_Write16(rotationSpeed, &data[12]); }
 void CurrentPositionPacket::setTurretRotationSpeed(Uint16 turretRotationSpeed) { SDLNet_Write16(turretRotationSpeed, &data[14]); }
 
-int CurrentPositionPacket::getPlayerId() const { return (int)data[1]; }
+int CurrentPositionPacket::getPlayerId() const { return static_cast<int8_t>(data[1]); }
 int CurrentPositionPacket::getX() const { return static_cast<int16_t>(SDLNet_Read16(&data[2])); }
 int CurrentPositionPacket::getY() const { return static_cast<int16_t>(SDLNet_Read16(&data[4])); }
 int CurrentPositionPacket::getTankRotation() const { return static_cast<int16_t>(SDLNet_Read16(&data[6])); }
