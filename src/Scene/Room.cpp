@@ -72,11 +72,12 @@ void Room::draw()
     Game::textManager->draw( "room: " + std::string(ipadress) , 400 , 20 ,65 , C_BLACK , true);
     Game::textManager->draw( "lista graczy: ",80,160,35,C_BLACK,false);
 
-    for(unsigned i = 0; i < netManager->clients.size(); i++)
-    {
-        sprite[(netManager->clients[i]-1)%6]->draw( { 140 , int(260+(i*60)) } , dir , dir , 0 );
-        Game::textManager->draw(std::to_string(netManager->clients[i]),80,240+(i*60),30,C_BLACK,false);
-        //todo: narysowac tutaj nickname i zamienic by to korzystalo jakos z vectora playerow
+    int i = 0;
+    for (auto const& client : netManager->clientsMap){
+        sprite[(client.first-1)%6]->draw( { 140 , int(260+(i*60)) } , dir , dir , 0 );
+        Game::textManager->draw(std::to_string(client.first),80,240+(i*60),30,C_BLACK,false);
+        Game::textManager->draw((client.second),180,240+(i*60),30,C_BLACK,false);
+        i++;
     }
 
 

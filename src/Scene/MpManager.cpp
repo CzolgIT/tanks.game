@@ -6,7 +6,7 @@ MpManager::MpManager(): _Scene()
     this->netManager = Game::netManager;
 
     // creating player
-    myPlayer = new Player( Game::netManager->getMyId() );
+    myPlayer = new Player( Game::netManager->getMyId(), Game::netManager->getMyNickname() );
     players.push_back(myPlayer);
 
     // filling map
@@ -28,7 +28,11 @@ void MpManager::draw()
     background->draw( x0 , y0 );
 
     for (auto &gameObject : gameObjects) gameObject->draw(x0,y0);
-    for (auto &player : players)         player->draw(x0, y0);
+    for (auto &player : players) {
+        player->draw(x0, y0);
+        player->drawInfo(x0,y0);
+    }
+
     for (auto &bullet : bullets)         bullet->draw(x0,y0);
     for (auto &animation : animations)   animation->draw(x0,y0);
 
@@ -156,7 +160,7 @@ void MpManager::loadFromServer()
                     }
                 }
                 if (!player_found) {
-                    auto *newPlayer = new Player((int) packet->getPlayerId());
+                    auto *newPlayer = new Player((int) packet->getPlayerId(), netManager->clientsMap[packet->getPlayerId()]);
                     newPlayer->setFromPacket(packet);
                     players.push_back(newPlayer);
                 }
@@ -184,7 +188,7 @@ void MpManager::loadFromServer()
             {
                 auto* packet = (PlayerJoinedPacket*)received;
 
-                auto *newPlayer = new Player(packet->getId());
+                auto *newPlayer = new Player(packet->getId(),packet->getNickname());
                 players.push_back(newPlayer);
 
                 packet->print();

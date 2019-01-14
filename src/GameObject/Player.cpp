@@ -1,8 +1,9 @@
 #include "Main.h"
 
-Player::Player( int id ) : _GameObject( {0,0} , { (int)((double)170*TANKSCALE),(int)((double)130*TANKSCALE) }  , 0 , DYNAMIC )
+Player::Player( int id, std::string nickname ) : _GameObject( {0,0} , { (int)((double)170*TANKSCALE),(int)((double)130*TANKSCALE) }  , 0 , DYNAMIC )
 {
     this->id = id;
+    this->nickname = nickname;
 
     directionFloat=0;
     towerDirection=0;
@@ -63,13 +64,15 @@ void Player::draw( int x0 , int y0 )
 
 void Player::drawInfo( int x0 , int y0 )
 {
-    Game::textManager->draw( std::to_string( position.x ) , x0+position.x , y0+position.y-140 , 15 , C_BLACK , true );
-    Game::textManager->draw( std::to_string( position.y ) ,  x0+position.x , y0+position.y-126 , 15 , C_BLACK , true);
-    Game::textManager->draw( std::to_string( direction ) , x0+position.x , y0+position.y-112 , 15 , C_BLACK , true);
-
-    Game::textManager->draw( std::to_string( (int)tankSpeed ) ,  x0+position.x , y0+position.y-94 , 15 , C_BLACK , true);
-    Game::textManager->draw( std::to_string( (int)rotationSpeed ) ,  x0+position.x , y0+position.y-80 , 15 , C_BLACK , true);
-    Game::textManager->draw( std::to_string( (int)turretRotationSpeed ) ,  x0+position.x , y0+position.y-66 , 15 , C_BLACK , true);
+    Game::textManager->draw(nickname,x0+position.x,y0+position.y+40,15,C_BLACK,true);
+//
+//    Game::textManager->draw( std::to_string( position.x ) , x0+position.x , y0+position.y-140 , 15 , C_BLACK , true );
+//    Game::textManager->draw( std::to_string( position.y ) ,  x0+position.x , y0+position.y-126 , 15 , C_BLACK , true);
+//    Game::textManager->draw( std::to_string( direction ) , x0+position.x , y0+position.y-112 , 15 , C_BLACK , true);
+//
+//    Game::textManager->draw( std::to_string( (int)tankSpeed ) ,  x0+position.x , y0+position.y-94 , 15 , C_BLACK , true);
+//    Game::textManager->draw( std::to_string( (int)rotationSpeed ) ,  x0+position.x , y0+position.y-80 , 15 , C_BLACK , true);
+//    Game::textManager->draw( std::to_string( (int)turretRotationSpeed ) ,  x0+position.x , y0+position.y-66 , 15 , C_BLACK , true);
 
 //    Game::textManager->draw( "x: " + std::to_string( position.x ) , x0+position.x , y0+position.y-140 , 15 , C_BLACK , true );
 //    Game::textManager->draw( "y: " + std::to_string( position.y ) ,  x0+position.x , y0+position.y-126 , 15 , C_BLACK , true);

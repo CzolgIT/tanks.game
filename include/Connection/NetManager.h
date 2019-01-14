@@ -25,7 +25,8 @@ public:
     NetPlayer* netPlayer;
     void clear();
     int getMyId();
-    std::vector<int> clients;
+    std::string getMyNickname();
+    std::map<int, std::string> clientsMap;
     void getAllPlayersData();
 
 private:

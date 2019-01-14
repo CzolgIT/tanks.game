@@ -5,7 +5,7 @@ class Player: public _GameObject
 {
 public:
 
-    Player( int id = 0 ) ;
+    Player( int id = 0, std::string nickname = "default" ) ;
     void handleEvent( SDL_Event& e );
     void move();
     void draw( int x0 , int y0 );

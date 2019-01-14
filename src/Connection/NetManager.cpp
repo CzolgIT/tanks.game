@@ -56,7 +56,8 @@ bool NetManager::connect(std::string host, Uint16 port, Uint32 &globalTime) {
     std::cout << "Synced with server" << std::endl;
     //todo: do some stuff
     //todo: get room info & stuff
-    clients.push_back(getMyId());
+    clientsMap[getMyId()] = Game::configuration->getNickname();
+    netPlayer->nickname = Game::configuration->getNickname();
     return isConnected();
 }
 
@@ -203,7 +204,17 @@ void NetManager::getAllPlayersData()
         {
             auto *p = (PlayerJoinedPacket *)received;
             p->print();
-            clients.push_back((int)(p->getId()));
+            clientsMap[(int)p->getId()] = p->getNickname();
+        }
+        else if (received->getType() == PT_PLAYER_DISCONNECTED)
+        {
+            auto *p = (PlayerDisconnectedPacket *)received;
+            p->print();
+            clientsMap.erase(p->getId());
         }
     }
+}
+
+std::string NetManager::getMyNickname() {
+    return netPlayer->nickname;
 }
