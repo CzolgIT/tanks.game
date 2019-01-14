@@ -149,5 +149,5 @@ void Player::setFromPacket( CurrentPositionPacket * packet )
 int Player::getTankSpeed() { return tankSpeed; }
 
 std::string Player::getNickname() {
-    return std::__cxx11::string();
+    return this->nickname;
 }
