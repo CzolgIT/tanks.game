@@ -20,6 +20,7 @@ public:
     static TextManager* textManager;
     static WindowManager* windowManager;
     static SoundManager* soundManager;
+    static Map* map;
 
 private:
 

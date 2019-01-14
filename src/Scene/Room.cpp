@@ -15,7 +15,7 @@ Room::Room(std::string ipadress) : _Scene()
         flagReturn = 0;
         running = false;
     }
-    std::cout << "Pyklo" << std::endl;
+    std::cout << "Connected to lobby" << std::endl;
     
     sprite[0] = new TankSprite( 1 , 0.5 );
     sprite[1] = new TankSprite( 2 , 0.5 );
@@ -27,6 +27,8 @@ Room::Room(std::string ipadress) : _Scene()
     bt = new Button( "join", 50,26, 1 );
     bt2 = new Button( "back", 50,30, 1 );
     bt->setActive(true);
+
+
 
 }
 

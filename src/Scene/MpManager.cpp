@@ -11,7 +11,6 @@ MpManager::MpManager(): _Scene()
 
     // filling map
     background = new Background();
-    //auto map = new Map();
     //map->loadFromFile( &gameObjects );
 
     Game::soundManager->PlayBackgroundMusic();
@@ -208,6 +207,7 @@ void MpManager::loadFromServer()
                 //delete packet;
             }
             break;
+
         }
     }
 }

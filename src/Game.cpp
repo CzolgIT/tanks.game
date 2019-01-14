@@ -8,6 +8,7 @@ TextureManager* Game::textureManager = nullptr;
 Debugger* Game::debugger = nullptr;
 NetManager* Game::netManager = nullptr;
 SoundManager* Game::soundManager = nullptr;
+Map* Game::map = nullptr;
 
 Game::Game()
 {

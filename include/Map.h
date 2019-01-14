@@ -6,7 +6,7 @@
 class Map
 {
 public:
-
+    char * characters;
     explicit Map();
     void loadFromFile( std::vector<_GameObject*> * gameObjects );
 

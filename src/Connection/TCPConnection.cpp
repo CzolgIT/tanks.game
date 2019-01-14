@@ -152,6 +152,9 @@ BasePacket* TCPConnection::getNextPacket() {
                     case PT_LAST_PLAYER_SENT:
                         bytesRemaining = LAST_PLAYER_SENT_SIZE-1;
                         break;
+                    case PT_MAP_INFO:
+                        bytesRemaining = MAP_PACKET_SIZE-1;
+                        break;
                     default:
                         std::cout<<"TCP unknown packet size!"<<std::endl;
                         bytesRemaining = uniPacket.getSize() -1;

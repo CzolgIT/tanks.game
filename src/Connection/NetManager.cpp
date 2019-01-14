@@ -46,6 +46,24 @@ bool NetManager::connect(std::string host, Uint16 port, Uint32 &globalTime) {
     tcpConnection.startSenderThread();
     udpConnection.startSenderThread();
 
+
+    // ŁADOWANIE MAPY
+    Game::netManager->read(); // load all packets
+    while ( Game::netManager->canPollPacket() )
+    {
+        BasePacket* received = Game::netManager->pollPacket();
+
+        if (received->getType() == PT_MAP_INFO)
+        {
+            MapDataPacket *m = (MapDataPacket *) received;
+            Game::map = new Map();
+            Game::map->characters = m->getMapData();
+            m->print();
+        }
+
+    }
+    // KONIEC ŁADOWANIA MAPY
+
     getAllPlayersData();
     //ping the server
     if(!syncTimeWithServer(netPlayer, globalTime))
