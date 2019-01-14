@@ -115,3 +115,10 @@ const SDL_Color C_RED = { 255 , 100 , 0 };
 const SDL_Color C_BLUE = { 100 , 0 , 255 };
 const SDL_Color C_BLACK = { 0 , 0 , 0 };
 const SDL_Color C_WHITE = { 255 , 255 , 255 };
+
+template<class T>
+std::string toString(const T&t){
+    std::ostringstream stream;
+    stream << t;
+    return stream.str();
+}

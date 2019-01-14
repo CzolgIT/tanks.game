@@ -11,6 +11,7 @@ public:
     void draw( int x0 , int y0 );
     void drawInfo( int x0 , int y0 );
     int getId();
+    std::string getNickname();
 
     int getTowDir();
     int getDir();
@@ -36,6 +37,7 @@ public:
 private:
 
     int id;
+    std::string nickname;
 
     Vector2D blocked;
 

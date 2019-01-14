@@ -76,6 +76,7 @@ void Room::draw()
     {
         sprite[(netManager->clients[i]-1)%6]->draw( { 140 , int(260+(i*60)) } , dir , dir , 0 );
         Game::textManager->draw(std::to_string(netManager->clients[i]),80,240+(i*60),30,C_BLACK,false);
+        //todo: narysowac tutaj nickname i zamienic by to korzystalo jakos z vectora playerow
     }
 
 
