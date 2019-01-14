@@ -28,13 +28,12 @@ void MpManager::draw()
     background->draw( x0 , y0 );
 
     for (auto &gameObject : gameObjects) gameObject->draw(x0,y0);
-    for (auto &player : players) {
-        player->draw(x0, y0);
-        player->drawInfo(x0,y0);
-    }
+    for (auto &player : players) player->draw(x0, y0);
 
     for (auto &bullet : bullets)         bullet->draw(x0,y0);
     for (auto &animation : animations)   animation->draw(x0,y0);
+
+    for (auto &player : players) player->drawInfo(x0,y0);
 
     Game::debugger->draw();
 

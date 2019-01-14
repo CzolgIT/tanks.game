@@ -4,6 +4,7 @@ Player::Player( int id, std::string nickname ) : _GameObject( {0,0} , { (int)((d
 {
     this->id = id;
     this->nickname = nickname;
+    this->actualHp = 20;
 
     directionFloat=0;
     towerDirection=0;
@@ -64,8 +65,22 @@ void Player::draw( int x0 , int y0 )
 
 void Player::drawInfo( int x0 , int y0 )
 {
-    Game::textManager->draw(nickname,x0+position.x,y0+position.y+40,15,C_BLACK,true);
-//
+    Game::textManager->draw(nickname,x0+position.x,y0+position.y-90,15,C_BLACK,true);
+
+    SDL_Rect ramka = {x0+position.x-51,y0+position.y-70,102,10};
+    SDL_SetRenderDrawColor( Game::renderer , 0 , 0 , 0 , 0 );
+    SDL_RenderFillRect( Game::renderer , &ramka );
+
+    SDL_Rect ramka2 = {x0+position.x-50,y0+position.y-69, actualHp , 8 };
+
+    if (actualHp>49) SDL_SetRenderDrawColor( Game::renderer , 100 , 255 , 0 , 0 );
+    if (actualHp<50 && actualHp>24) SDL_SetRenderDrawColor( Game::renderer , 175 , 175 , 0 , 0 );
+    if (actualHp<25) SDL_SetRenderDrawColor( Game::renderer , 255 , 0 , 0 , 0 );
+
+
+    SDL_RenderFillRect( Game::renderer , &ramka2 );
+
+
 //    Game::textManager->draw( std::to_string( position.x ) , x0+position.x , y0+position.y-140 , 15 , C_BLACK , true );
 //    Game::textManager->draw( std::to_string( position.y ) ,  x0+position.x , y0+position.y-126 , 15 , C_BLACK , true);
 //    Game::textManager->draw( std::to_string( direction ) , x0+position.x , y0+position.y-112 , 15 , C_BLACK , true);
@@ -73,22 +88,6 @@ void Player::drawInfo( int x0 , int y0 )
 //    Game::textManager->draw( std::to_string( (int)tankSpeed ) ,  x0+position.x , y0+position.y-94 , 15 , C_BLACK , true);
 //    Game::textManager->draw( std::to_string( (int)rotationSpeed ) ,  x0+position.x , y0+position.y-80 , 15 , C_BLACK , true);
 //    Game::textManager->draw( std::to_string( (int)turretRotationSpeed ) ,  x0+position.x , y0+position.y-66 , 15 , C_BLACK , true);
-
-//    Game::textManager->draw( "x: " + std::to_string( position.x ) , x0+position.x , y0+position.y-140 , 15 , C_BLACK , true );
-//    Game::textManager->draw( "y: " + std::to_string( position.y ) ,  x0+position.x , y0+position.y-126 , 15 , C_BLACK , true);
-//    Game::textManager->draw( "d: " + std::to_string( direction ) , x0+position.x , y0+position.y-112 , 15 , C_BLACK , true);
-//
-//    Game::textManager->draw( "ts: " + std::to_string( (int)tankSpeed ) ,  x0+position.x , y0+position.y-94 , 15 , C_BLACK , true);
-//    Game::textManager->draw( "rs: " + std::to_string( (int)rotationSpeed ) ,  x0+position.x , y0+position.y-80 , 15 , C_BLACK , true);
-//    Game::textManager->draw( "trs: " + std::to_string( (int)turretRotationSpeed ) ,  x0+position.x , y0+position.y-66 , 15 , C_BLACK , true);
-//
-//    Game::textManager->draw( "x: " + std::to_string( position.x ) , x0+position.x , y0+position.y-140 , 15 , C_BLACK , true );
-//    Game::textManager->draw( "y: " + std::to_string( position.y ) ,  x0+position.x , y0+position.y-126 , 15 , C_BLACK , true);
-//    Game::textManager->draw( "d: " + std::to_string( direction ) , x0+position.x , y0+position.y-112 , 15 , C_BLACK , true);
-//
-//    Game::textManager->draw( "ts: " + std::to_string( (int)tankSpeed ) ,  x0+position.x , y0+position.y-94 , 15 , C_BLACK , true);
-//    Game::textManager->draw( "rs: " + std::to_string( (int)rotationSpeed ) ,  x0+position.x , y0+position.y-80 , 15 , C_BLACK , true);
-//    Game::textManager->draw( "trs: " + std::to_string( (int)turretRotationSpeed ) ,  x0+position.x , y0+position.y-66 , 15 , C_BLACK , true);
 
     //Game::textManager->draw( "sp: " + std::to_string( moveSpeed ) ,  150 , 540 );
     //Game::textManager->draw( "dir: " + std::to_string( direction ) ,  150 , 560 );

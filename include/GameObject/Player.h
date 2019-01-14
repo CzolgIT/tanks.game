@@ -39,6 +39,8 @@ private:
     int id;
     std::string nickname;
 
+    int actualHp;
+
     Vector2D blocked;
 
     float xFloat , yFloat;
