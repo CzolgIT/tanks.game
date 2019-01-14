@@ -20,7 +20,7 @@ int CurrentPositionPacket::getTurretRotation() const { return static_cast<int16_
 int CurrentPositionPacket::getTankSpeed() const { return static_cast<int16_t>(SDLNet_Read16(&data[10])); }
 int CurrentPositionPacket::getRotationSpeed() const { return static_cast<int16_t>(SDLNet_Read16(&data[12])); }
 int CurrentPositionPacket::getTurretRotationSpeed() const { return static_cast<int16_t>(SDLNet_Read16(&data[14])); }
-Uint8 CurrentPositionPacket::getActualHp() const {return data[16];}
+int CurrentPositionPacket::getActualHp() const { return static_cast<int16_t>(data[16]);}
 
 void CurrentPositionPacket::print() const
 {

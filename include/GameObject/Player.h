@@ -34,6 +34,8 @@ public:
 
     int getTankSpeed();
 
+    void setActualHp(int actualHp);
+
 private:
 
     int id;

@@ -141,6 +141,7 @@ void Player::setFromPacket( CurrentPositionPacket * packet )
     this->tankSpeed = packet->getTankSpeed();
     this->rotationSpeed = packet->getRotationSpeed();
     this->turretRotationSpeed = packet->getTurretRotationSpeed();
+    this->actualHp = packet->getActualHp();
 
     this->updated=true;
 }
@@ -149,4 +150,9 @@ int Player::getTankSpeed() { return tankSpeed; }
 
 std::string Player::getNickname() {
     return this->nickname;
+}
+
+void Player::setActualHp(int actualHp)
+{
+    this->actualHp = actualHp;
 }

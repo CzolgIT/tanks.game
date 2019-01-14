@@ -28,7 +28,7 @@ public:
     int getTankSpeed() const;
     int getRotationSpeed() const;
     int getTurretRotationSpeed() const;
-    Uint8 getActualHp() const;
+    int getActualHp() const;
 
     void print() const override;
 };
