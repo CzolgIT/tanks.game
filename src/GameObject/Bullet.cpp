@@ -9,8 +9,8 @@ Bullet::Bullet( SDL_Point position , int direction ) : _GameObject( position , {
 
 void Bullet::draw( int x0, int y0 )
 {
-    auto* bull = new SDL_Rect{0,0,dimensions.x,dimensions.y};
-    Game::textureManager->bullet->draw(x0 + position.x , y0 + position.y , TANKSCALE , bull , direction );
+    SDL_Rect *ramka = new SDL_Rect{0,0,dimensions.x,dimensions.y};
+    Game::textureManager->bullet->draw(x0 + position.x , y0 + position.y , TANKSCALE , ramka , direction );
 }
 
 void Bullet::move()
@@ -25,16 +25,12 @@ void Bullet::move()
 
 
 
-    if( position.x < (int)((double)dimensions.x/2) ||
-            position.x > 2048 - (int)((double)dimensions.x/2) ||
-            position.y < (int)((double)dimensions.y/2) ||
-            position.y > 2048 - (int)((double)dimensions.y/2)
-        )
+    if( position.x < 0 || position.x > 4096 || position.y < 0 || position.y > 4096 )
     {
         this->setToBeDestroyed();
     }
 
-    collider->update( position , dimensions , direction );
+    //collider->update( position , dimensions , direction );
 
 }
 

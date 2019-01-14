@@ -35,7 +35,7 @@ void Player::PushOut(Vector2D vec)
 
 void Player::move()
 {
-    collider->update( position , dimensions , direction );
+    //collider->update( position , dimensions , direction );
 }
 
 void Player::simulate()
