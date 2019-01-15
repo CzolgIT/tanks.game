@@ -13,6 +13,7 @@ MpManager::MpManager(): _Scene()
 
  //   background = new Background();
     Game::soundManager->PlayBackgroundMusic();
+    Game::soundManager->PlayEngineSound();
 }
 
 void MpManager::draw()

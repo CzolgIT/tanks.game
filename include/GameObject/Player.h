@@ -33,6 +33,7 @@ public:
     void setFromPacket( CurrentPositionPacket * packet );
 
     int getTankSpeed();
+    float getTowerSpeed();
 
     void setActualHp(int actualHp);
 

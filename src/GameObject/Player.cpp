@@ -155,6 +155,8 @@ void Player::setFromPacket( CurrentPositionPacket * packet )
 
 int Player::getTankSpeed() { return tankSpeed; }
 
+float Player::getTowerSpeed() { return towerSpeed; }
+
 std::string Player::getNickname() {
     return this->nickname;
 }
