@@ -40,7 +40,7 @@ void SoundManager::PlayEngineSound()
         Mix_AllocateChannels(8);
         Mix_Chunk *engine = Mix_LoadWAV("assets/sounds/engine_sound.wav");
         if(!Mix_Playing(3))
-            Mix_PlayChannel(3, engine, 1);
+            Mix_PlayChannel(3, engine, -1);
         Mix_Volume(3, 50);
         Mix_Quit();
     }
