@@ -13,7 +13,7 @@ Player::Player( int id, std::string nickname ) : _GameObject( {0,0} , { (int)((d
     directionSpeed = 0;
     towerSpeed = 0;
 
-    sprite = new TankSprite( id );
+    sprite = new TankSprite( id , Game::configuration->getScale() );
     collider = new Collider( position , dimensions , direction );
 
     blocked = {0,0};
@@ -57,21 +57,28 @@ void Player::simulate()
 
 void Player::draw( int x0 , int y0 )
 {
+    double scale = Game::configuration->getScale();
+
     if (id == Game::netManager->getMyId())
         sprite->draw( { Game::configuration->getDisplayMode()->w/2 , Game::configuration->getDisplayMode()->h/2 } , direction , iTowerDirection , (int)moveSpeed );
     else
-        sprite->draw( { x0+position.x , y0+position.y } , direction , iTowerDirection , (int)moveSpeed );
+        sprite->draw( { int(x0+position.x* scale) , int(y0+position.y*scale) } , direction , iTowerDirection , (int)moveSpeed );
 }
 
 void Player::drawInfo( int x0 , int y0 )
 {
-    Game::textManager->draw(nickname,x0+position.x,y0+position.y-90,15,C_BLACK,true);
+    double scale = Game::configuration->getScale();
+    int drawx = int(position.x * Game::configuration->getScale());
+    int drawy = int(position.y * Game::configuration->getScale());
 
-    SDL_Rect ramka = {x0+position.x-51,y0+position.y-70,102,10};
+
+    Game::textManager->draw(nickname,x0+drawx,y0+drawy-90*scale,15*scale,C_BLACK,true);
+
+    SDL_Rect ramka = {int(x0+drawx-51*scale),int(y0+drawy-70*scale),int(102*scale),int(10*scale)};
     SDL_SetRenderDrawColor( Game::renderer , 0 , 0 , 0 , 0 );
     SDL_RenderFillRect( Game::renderer , &ramka );
 
-    SDL_Rect ramka2 = {x0+position.x-50,y0+position.y-69, actualHp , 8 };
+    SDL_Rect ramka2 = {int(x0+drawx-50*scale),int(y0+drawy-69*scale), int(actualHp*scale) , int(8*scale) };
 
     if (actualHp>49) SDL_SetRenderDrawColor( Game::renderer , 100 , 255 , 0 , 0 );
     if (actualHp<50 && actualHp>24) SDL_SetRenderDrawColor( Game::renderer , 175 , 175 , 0 , 0 );
@@ -102,8 +109,8 @@ int Player::getDir() { return direction; }
 SDL_Point Player::shootPosition()
 {
     SDL_Point punkt;
-    punkt.x = (int)(position.x+(cos(double(iTowerDirection) *M_PI/180) * 60));
-    punkt.y = (int)(position.y+(sin(double(iTowerDirection) *M_PI/180) * 60));
+    punkt.x = (int)(position.x+(cos(double(iTowerDirection) *M_PI/180) * 60 * Game::configuration->getScale()));
+    punkt.y = (int)(position.y+(sin(double(iTowerDirection) *M_PI/180) * 60 * Game::configuration->getScale()));
     return punkt;
 }
 SDL_Point Player::smokePosition()
@@ -112,8 +119,8 @@ SDL_Point Player::smokePosition()
 
 
     SDL_Point punkt;
-    punkt.x = (int)(position.x+(cos((direction+los) *M_PI/180) * -50));
-    punkt.y = (int)(position.y+(sin((direction+los) *M_PI/180) * -50));
+    punkt.x = (int)(position.x * Game::configuration->getScale() + (cos((direction+los) *M_PI/180) * -50 * Game::configuration->getScale() ));
+    punkt.y = (int)(position.y * Game::configuration->getScale() + (sin((direction+los) *M_PI/180) * -50 * Game::configuration->getScale() ));
     return punkt;
 }
 

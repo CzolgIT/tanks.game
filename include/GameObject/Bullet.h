@@ -16,6 +16,8 @@ private:
 
     //int direction;
     double floatX,floatY;
+    Sprite * sprite;
+
 
 };
 
