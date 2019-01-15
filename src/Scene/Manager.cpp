@@ -63,7 +63,7 @@ void Manager::handleEvents()
             }
             if (eventHandler.key.keysym.sym == SDLK_SPACE)
             {
-                auto* bullet = new Bullet( player->shootPosition() , player->getTowDir());
+                auto* bullet = new Bullet( player->shootPosition() , player->getTowDir(),1);
                 gameObjects.push_back(bullet);
 
                 auto* tankshoot = new Animation( TANKSHOOT , player->shootPosition() , player->getTowDir() );
