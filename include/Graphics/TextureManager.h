@@ -30,6 +30,8 @@ public:
     Texture* tankexplode;
     Texture* bulletexplode;
 
+    Texture* map;
+
 };
 
 #endif

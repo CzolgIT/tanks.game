@@ -1,5 +1,7 @@
 #include "Main.h"
 
+Map* MpManager::map = nullptr;
+
 MpManager::MpManager(): _Scene()
 {
     // net start
@@ -9,10 +11,7 @@ MpManager::MpManager(): _Scene()
     myPlayer = new Player( Game::netManager->getMyId(), Game::netManager->getMyNickname() );
     players.push_back(myPlayer);
 
-    // filling map
-    background = new Background();
-    //map->loadFromFile( &gameObjects );
-
+ //   background = new Background();
     Game::soundManager->PlayBackgroundMusic();
 }
 
@@ -24,7 +23,8 @@ void MpManager::draw()
     auto x0 = (int)((float)Game::configuration->getDisplayMode()->w/2-myPlayer->getX());
     auto y0 = (int)((float)Game::configuration->getDisplayMode()->h/2-myPlayer->getY());
 
-    background->draw( x0 , y0 );
+    //background->draw( x0 , y0 );
+    MpManager::map->draw(x0,y0);
 
     for (auto &gameObject : gameObjects) gameObject->draw(x0,y0);
     for (auto &player : players) player->draw(x0, y0);

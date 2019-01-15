@@ -74,6 +74,7 @@
 #include "GameObject/Bullet.h"
 #include "GameObject/Wall.h"
 
+#include "Map.h"
 #include "Scene/_Scene.h"
 #include "Scene/_Menu.h"
 #include "Scene/Settings.h"
@@ -86,7 +87,7 @@
 #include "Scene/Manager.h"
 #include "Scene/MpManager.h"
 
-#include "Map.h"
+
 #include "Timer.h"
 #include "WindowManager.h"
 #include "SoundManager.h"

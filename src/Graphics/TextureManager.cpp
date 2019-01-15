@@ -24,4 +24,6 @@ TextureManager::TextureManager()
     this->tankexplode = new Texture( "assets/animation/tank_explode.png" );
     this->bulletexplode = new Texture( "assets/animation/bullet_explode.png" );
 
+    this->map = new Texture("assets/city_strip.png");
+
 }

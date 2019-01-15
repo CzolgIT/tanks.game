@@ -15,6 +15,8 @@ public:
 
     void loadFromServer();
 
+    static Map* map;
+
 private:
     NetManager * netManager;
     Background* background = nullptr;

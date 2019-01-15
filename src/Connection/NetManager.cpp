@@ -46,21 +46,22 @@ bool NetManager::connect(std::string host, Uint16 port, Uint32 &globalTime) {
     tcpConnection.startSenderThread();
     udpConnection.startSenderThread();
 
-
     // ŁADOWANIE MAPY
     Game::netManager->read(); // load all packets
     while ( Game::netManager->canPollPacket() )
     {
+
         BasePacket* received = Game::netManager->pollPacket();
 
         if (received->getType() == PT_MAP_INFO)
         {
+            std::cout << "Got map packet" << std::endl;
             MapDataPacket *m = (MapDataPacket *) received;
-            Game::map = new Map();
-            Game::map->characters = m->getMapData();
-            m->print();
+            MpManager::map = new Map();
+            strcpy(MpManager::map->characters,m->getMapData());
+            std::cout << MpManager::map->characters << std::endl;
+            delete_object(m);
         }
-
     }
     // KONIEC ŁADOWANIA MAPY
 
@@ -76,6 +77,8 @@ bool NetManager::connect(std::string host, Uint16 port, Uint32 &globalTime) {
     //todo: get room info & stuff
     clientsMap[getMyId()] = Game::configuration->getNickname();
     netPlayer->nickname = Game::configuration->getNickname();
+
+
     return isConnected();
 }
 
