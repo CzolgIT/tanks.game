@@ -40,6 +40,8 @@ void Game::Update()
     switch( flag )
     {
         case 0: // Main Menu
+            Mix_HaltMusic();
+            Game::soundManager->PlayMenuMusic();
             currentScene = new MainMenu();
             break;
         case 1: // Play on Sigma

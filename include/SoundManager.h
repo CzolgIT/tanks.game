@@ -11,6 +11,7 @@ public:
 
     void PlayBackgroundMusic();
     void PlayShootSound();
+    void PlayMenuMusic();
 
 private:
 

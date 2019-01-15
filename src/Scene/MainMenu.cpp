@@ -14,4 +14,5 @@ MainMenu::MainMenu() : _Menu(4)
     elements.push_back( new TextStatic( "Game" , 32 , 8.3 , 6 , 0.2 ) );
 
     elements[selected]->setActive(true);
+    Game::soundManager->PlayMenuMusic();
 }
