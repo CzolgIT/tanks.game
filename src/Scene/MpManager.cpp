@@ -11,6 +11,9 @@ MpManager::MpManager(): _Scene()
     myPlayer = new Player( Game::netManager->getMyId(), Game::netManager->getMyNickname() );
     players.push_back(myPlayer);
 
+    if (MpManager::map == nullptr)
+        MpManager::map = new Map();
+
  //   background = new Background();
     Game::soundManager->PlayBackgroundMusic();
 }
