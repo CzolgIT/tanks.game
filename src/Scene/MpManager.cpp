@@ -60,6 +60,8 @@ void MpManager::handleEvents()
         }
     }
 
+    Mix_Volume(3, myPlayer->getTankSpeed()/3  );
+
     loadFromServer();
     sendMovement();
 

@@ -42,7 +42,7 @@ void SoundManager::PlayEngineSound()
         if(!Mix_Playing(3))
             Mix_PlayChannel(3, engine, 1);
         Mix_Volume(3, 50);
-        Mix_Quit();
+        //Mix_Quit();
     }
 }
 
