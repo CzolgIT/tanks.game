@@ -29,7 +29,10 @@ public:
     std::map<int, std::string> clientsMap;
     void getAllPlayersData();
 
+
 private:
+
+    void getMap();
 
     bool syncTimeWithServer(NetPlayer* player, Uint32& globalTime);
     std::queue<BasePacket*> packetQueue;

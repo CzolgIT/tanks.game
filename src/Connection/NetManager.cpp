@@ -59,10 +59,17 @@ bool NetManager::connect(std::string host, Uint16 port, Uint32 &globalTime) {
     clientsMap[getMyId()] = Game::configuration->getNickname();
     netPlayer->nickname = Game::configuration->getNickname();
 
+    getMap();
+
+    return isConnected();
+}
+
+void NetManager::getMap(){
     InfoRequestPacket * irpacket = new InfoRequestPacket();
     irpacket->setRequested(RequestType::RT_MAP_DATA);
     tcpConnection.addPacketToQueue(irpacket);
 
+    float timeOut = 300;
 
     while (true) {
         read();
@@ -77,10 +84,14 @@ bool NetManager::connect(std::string host, Uint16 port, Uint32 &globalTime) {
                 break;
             }
         }
+        if (timeOut < 0)
+            break;
+
+        timeOut--;
+        SDL_Delay(10);
+        std::cout << timeOut << std::endl;
     }
 
-
-    return isConnected();
 }
 
 void NetManager::read() {
