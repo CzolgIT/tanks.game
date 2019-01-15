@@ -12,7 +12,7 @@ void SoundManager::PlayBackgroundMusic()
         if(!Mix_PlayingMusic())
             Mix_PlayMusic(bgm,-1);
         Mix_HaltChannel(2);
-        Mix_VolumeMusic(120);
+        Mix_VolumeMusic(20);
         bgm = nullptr;
         Mix_Quit();
     }
@@ -31,13 +31,42 @@ void SoundManager::PlayShootSound()
     }
 }
 
+void SoundManager::PlayEngineSound()
+{
+    if (Game::configuration->getSounds())
+    {
+        if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+            std::cout << "Error: " << Mix_GetError() << std::endl;
+        Mix_AllocateChannels(8);
+        Mix_Chunk *engine = Mix_LoadWAV("assets/sounds/engine_sound.wav");
+        if(!Mix_Playing(3))
+            Mix_PlayChannel(3, engine, 1);
+        Mix_Volume(3, 50);
+        Mix_Quit();
+    }
+}
+
+void SoundManager::PlayTurretSound()
+{
+    if (Game::configuration->getSounds())
+    {
+        if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+            std::cout << "Error: " << Mix_GetError() << std::endl;
+        Mix_AllocateChannels(8);
+        Mix_Chunk *turret = Mix_LoadWAV("assets/sounds/turret_sound.wav");
+        if(!Mix_Playing(4))
+            Mix_PlayChannel(4, turret, -1);
+        Mix_Volume(4, 50);
+        Mix_Quit();
+    }
+}
+
 void SoundManager::PlayMenuMusic()
 {
     if (Game::configuration->getSounds())
     {
         if(Mix_OpenAudio(44100,MIX_DEFAULT_FORMAT,2,2048) < 0)
             std::cout << "Error: " << Mix_GetError() << std::endl;
-        Mix_AllocateChannels(8);
         Mix_Chunk *menu = Mix_LoadWAV("assets/sounds/menu_sound.wav");
         if(!Mix_Playing(2))
             Mix_PlayChannel(2, menu, 0);
