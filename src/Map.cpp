@@ -10,10 +10,10 @@ Map::Map() {
 
     for (int i = 0; i < 15; i++)
     {
-        elements[i] = new Sprite(Game::textureManager->map, {160*i,0,160,160}, 1);
+        elements[i] = new Sprite(Game::textureManager->map, {160*i,0,160,160}, Game::configuration->getScale());
     }
-    width=160;
-    height=160;
+    width=160 * Game::configuration->getScale();
+    height=160 * Game::configuration->getScale();
 
 }
 
@@ -45,7 +45,9 @@ void Map::draw(int x , int y)
     {
         for (int j = 0; j < MAP_HEIGHT; j++)
         {
-            SDL_Point pos = {x+width*i,y+height*j};
+            int xPos = (x+width*i);
+            int yPos = (y+height*j);
+            SDL_Point pos = {xPos,yPos};
             switch (characters[i*MAP_WIDTH+j])
             {
                 case 'D':

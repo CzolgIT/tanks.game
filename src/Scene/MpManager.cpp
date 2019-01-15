@@ -27,7 +27,7 @@ void MpManager::draw()
     auto y0 = (int)((float)Game::configuration->getDisplayMode()->h/2-myPlayer->getY() * Game::configuration->getScale() );
 
     //background->draw( x0 , y0 );
-    MpManager::map->draw(x0,y0);
+    MpManager::map->draw(x0 ,y0);
 
     for (auto &gameObject : gameObjects) gameObject->draw(x0,y0);
     for (auto &player : players) player->draw(x0, y0);
