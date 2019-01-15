@@ -7,14 +7,17 @@ class Bullet: public _GameObject
 {
 public:
 
-    Bullet( SDL_Point position , int direction );
+    Bullet( SDL_Point position , int direction, int id );
     void draw( int x0 , int y0 );
     void move();
     void destroy();
 
+    int getId();
+
 private:
 
     //int direction;
+    int id;
     double floatX,floatY;
     Sprite * sprite;
 

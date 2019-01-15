@@ -200,7 +200,20 @@ void MpManager::loadFromServer()
                 int bx = int(packet->getX()*Game::configuration->getScale());
                 int by = int(packet->getY()*Game::configuration->getScale());
 
-                auto * bullet = new Bullet( {bx,by} , packet->getAngle() );
+                if ((int)packet->getX() == 0 || (int)packet->getY() == 0)
+                {
+                    for (auto &bullet: bullets)
+                    {
+                        if (bullet->getId() == packet->getBulletId())
+                        {
+                            bullet->setToBeDestroyed();
+                        }
+                    }
+                    break;
+                }
+
+
+                auto * bullet = new Bullet( {bx,by} , packet->getAngle() , packet->getBulletId());
                 bullets.push_back(bullet);
 
                 auto* tankshoot = new Animation( TANKSHOOT , {bx,by} , packet->getAngle() );

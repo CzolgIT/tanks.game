@@ -1,10 +1,11 @@
 #include "Main.h"
 
-Bullet::Bullet( SDL_Point position , int direction ) : _GameObject( position , {36,12} , direction , DYNAMIC )
+Bullet::Bullet( SDL_Point position , int direction, int id ) : _GameObject( position , {36,12} , direction , DYNAMIC )
 {
     //this->direction = direction;
     this->floatX = position.x;
     this->floatY = position.y;
+    this->id = id;
 
     sprite = new Sprite(Game::textureManager->bullet,{0,0,36,36},Game::configuration->getScale()/2);
 }
@@ -12,6 +13,10 @@ Bullet::Bullet( SDL_Point position , int direction ) : _GameObject( position , {
 void Bullet::draw( int x0, int y0 )
 {
     sprite->draw({ x0 + position.x , y0 + position.y },direction);
+}
+
+int Bullet::getId() {
+    return id;
 }
 
 void Bullet::move()
