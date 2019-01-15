@@ -46,25 +46,6 @@ bool NetManager::connect(std::string host, Uint16 port, Uint32 &globalTime) {
     tcpConnection.startSenderThread();
     udpConnection.startSenderThread();
 
-    // ŁADOWANIE MAPY
-    Game::netManager->read(); // load all packets
-    while ( Game::netManager->canPollPacket() )
-    {
-
-        BasePacket* received = Game::netManager->pollPacket();
-
-        if (received->getType() == PT_MAP_INFO)
-        {
-            std::cout << "Got map packet" << std::endl;
-            MapDataPacket *m = (MapDataPacket *) received;
-            MpManager::map = new Map();
-            strcpy(MpManager::map->characters,m->getMapData());
-            std::cout << MpManager::map->characters << std::endl;
-            delete_object(m);
-        }
-    }
-    // KONIEC ŁADOWANIA MAPY
-
     getAllPlayersData();
     //ping the server
     if(!syncTimeWithServer(netPlayer, globalTime))
@@ -232,6 +213,16 @@ void NetManager::getAllPlayersData()
             auto *p = (PlayerDisconnectedPacket *)received;
             p->print();
             clientsMap.erase(p->getId());
+        }
+        else if (received->getType() == PT_MAP_INFO)
+        {
+            // POBIERANIE MAPY
+            std::cout << "Got map packet" << std::endl;
+            MapDataPacket *m = (MapDataPacket *) received;
+            MpManager::map = new Map();
+            strcpy(MpManager::map->characters,m->getMapData());
+            std::cout << MpManager::map->characters << std::endl;
+            delete_object(m);
         }
     }
 }
