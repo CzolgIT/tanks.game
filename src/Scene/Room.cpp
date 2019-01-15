@@ -4,6 +4,7 @@
 
 Room::Room(std::string ipadress) : _Scene()
 {
+    MpManager::map = new Map();
     Game::netManager = new NetManager();
     selectedTank = 1;
     dir=0;

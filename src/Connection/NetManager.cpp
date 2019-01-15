@@ -219,10 +219,9 @@ void NetManager::getAllPlayersData()
             // POBIERANIE MAPY
             std::cout << "Got map packet" << std::endl;
             MapDataPacket *m = (MapDataPacket *) received;
-            MpManager::map = new Map();
             strcpy(MpManager::map->characters,m->getMapData());
             std::cout << MpManager::map->characters << std::endl;
-            delete_object(m);
+
         }
     }
 }
