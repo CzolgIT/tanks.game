@@ -10,10 +10,10 @@ Map::Map() {
 
     for (int i = 0; i < 15; i++)
     {
-        elements[i] = new Sprite(Game::textureManager->map, {160*i,0,160,160}, Game::configuration->getScale());
+        elements[i] = new Sprite(Game::textureManager->map, {160*i,0,160,160}, 0.4 * Game::configuration->getScale());
     }
-    width=160 * Game::configuration->getScale();
-    height=160 * Game::configuration->getScale();
+    width=64 * Game::configuration->getScale();
+    height=64 * Game::configuration->getScale();
 
 }
 
