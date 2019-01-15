@@ -5,19 +5,20 @@ Bullet::Bullet( SDL_Point position , int direction ) : _GameObject( position , {
     //this->direction = direction;
     this->floatX = position.x;
     this->floatY = position.y;
+
+    sprite = new Sprite(Game::textureManager->bullet,{0,0,36,36},Game::configuration->getScale()/2);
 }
 
 void Bullet::draw( int x0, int y0 )
 {
-    SDL_Rect *ramka = new SDL_Rect{0,0,dimensions.x,dimensions.y};
-    Game::textureManager->bullet->draw(x0 + position.x , y0 + position.y , TANKSCALE , ramka , direction );
+    sprite->draw({ x0 + position.x , y0 + position.y },direction);
 }
 
 void Bullet::move()
 {
 
-    this->floatX += (cos(double(direction) *M_PI/180) * BULLETSPEED * Game::windowManager->getStepTime() );
-    this->floatY += (sin(double(direction) *M_PI/180) * BULLETSPEED * Game::windowManager->getStepTime() );
+    this->floatX += (cos(double(direction) *M_PI/180) * BULLETSPEED * Game::configuration->getScale() * Game::windowManager->getStepTime() );
+    this->floatY += (sin(double(direction) *M_PI/180) * BULLETSPEED * Game::configuration->getScale() * Game::windowManager->getStepTime() );
 
 
     position.x = int(floatX);

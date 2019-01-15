@@ -2,8 +2,8 @@
 
 WindowManager::WindowManager()
 {
-    width=1000;
-    height=800;
+    width=1600;
+    height=1200;
     window = SDL_CreateWindow("Tanks Game",SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED,width,height,SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
     stepTime = 0;
     stepTimer = new Timer();

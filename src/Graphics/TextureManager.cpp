@@ -9,6 +9,7 @@ TextureManager::TextureManager()
     // map elements
     this->wall = new Texture( "assets/block.png" );
     this->background = new Texture( "assets/map.png" );
+    this->city = new Texture( "assets/city_strip.png");
 
     // tank sprites
     this->barrel = new Texture( "assets/tank/tank_barrel.png" );

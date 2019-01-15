@@ -22,8 +22,8 @@ void MpManager::draw()
     SDL_SetRenderDrawColor( Game::renderer, 0xFF, 0xFF, 0xFF, 0xFF );
     SDL_RenderClear( Game::renderer );
 
-    auto x0 = (int)((float)Game::configuration->getDisplayMode()->w/2-myPlayer->getX());
-    auto y0 = (int)((float)Game::configuration->getDisplayMode()->h/2-myPlayer->getY());
+    auto x0 = (int)((float)Game::configuration->getDisplayMode()->w/2-myPlayer->getX() * Game::configuration->getScale() );
+    auto y0 = (int)((float)Game::configuration->getDisplayMode()->h/2-myPlayer->getY() * Game::configuration->getScale() );
 
     background->draw( x0 , y0 );
 
@@ -198,10 +198,13 @@ void MpManager::loadFromServer()
             {
                 auto* packet = (BulletInfoPacket*)received;
 
-                auto * bullet = new Bullet({packet->getX(),packet->getY()},packet->getAngle());
+                int bx = int(packet->getX()*Game::configuration->getScale());
+                int by = int(packet->getY()*Game::configuration->getScale());
+
+                auto * bullet = new Bullet( {bx,by} , packet->getAngle() );
                 bullets.push_back(bullet);
 
-                auto* tankshoot = new Animation( TANKSHOOT , {packet->getX(),packet->getY()} , packet->getAngle() );
+                auto* tankshoot = new Animation( TANKSHOOT , {bx,by} , packet->getAngle() );
                 animations.push_back(tankshoot);
 
                 Game::soundManager->PlayShootSound();

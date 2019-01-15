@@ -15,6 +15,7 @@ public:
     // map elements
     Texture* wall;
     Texture* background;
+    Texture* city;
 
     // tank sprites
     Texture* barrel;

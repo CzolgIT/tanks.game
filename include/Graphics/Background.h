@@ -15,6 +15,8 @@ private:
     //Texture* texture;
     SDL_Rect clip;
     int width , height;
+
+    SDL_Rect clip2;
     
 };
 
