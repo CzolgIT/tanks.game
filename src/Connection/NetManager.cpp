@@ -59,6 +59,25 @@ bool NetManager::connect(std::string host, Uint16 port, Uint32 &globalTime) {
     clientsMap[getMyId()] = Game::configuration->getNickname();
     netPlayer->nickname = Game::configuration->getNickname();
 
+    InfoRequestPacket * irpacket = new InfoRequestPacket();
+    irpacket->setRequested(RequestType::RT_MAP_DATA);
+    tcpConnection.addPacketToQueue(irpacket);
+
+    read();
+
+    if (canPollPacket())
+    {
+        BasePacket * received = pollPacket();
+        if (received->getType() == PT_SYNC)
+        {
+            // POBIERANIE MAPY
+            std::cout << "Got map packet" << std::endl;
+            MapDataPacket *m = (MapDataPacket *) received;
+            strcpy(MpManager::map->characters,m->getMapData());
+            std::cout << MpManager::map->characters << std::endl;
+        }
+    }
+
 
     return isConnected();
 }
