@@ -58,7 +58,6 @@ bool NetManager::connect(std::string host, Uint16 port, Uint32 &globalTime) {
     //todo: get room info & stuff
     clientsMap[getMyId()] = Game::configuration->getNickname();
     netPlayer->nickname = Game::configuration->getNickname();
-
     getMap();
 
     return isConnected();

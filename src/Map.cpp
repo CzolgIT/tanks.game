@@ -50,6 +50,7 @@ void Map::draw(int x , int y)
             SDL_Point pos = {xPos,yPos};
             switch (characters[i*MAP_WIDTH+j])
             {
+                case 'X':
                 case 'D':
                     elements[12]->draw(pos,0);
                     break;
