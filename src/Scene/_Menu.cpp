@@ -6,57 +6,35 @@ _Menu::_Menu( int maxSelected ) : _Scene()
     this->maxSelected = maxSelected-1;
 }
 
-void  _Menu::handleEvents()
+void  _Menu::handleEvent()
 {
-    while( SDL_PollEvent( &eventHandler ) != 0 )
+    elements[selected]->setActive(false);
+    switch( eventHandler.key.keysym.sym )
     {
-        if( eventHandler.type == SDL_WINDOWEVENT )
-        {
-            if (eventHandler.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
-            {
-                Game::configuration->resizeWindow();
-                updateGUI();
-            }
-        }
-        if( eventHandler.type == SDL_QUIT )
-        {
+        case SDLK_RETURN:
+            flagReturn = elements[selected]->getFlag();
             running = false;
-            flagReturn = -1;
             break;
-        }
-        if( eventHandler.type == SDL_KEYDOWN && eventHandler.key.repeat == 0 )
-        {
-            elements[selected]->setActive(false);
-            switch( eventHandler.key.keysym.sym )
-            {
-                case SDLK_ESCAPE:
-                    flagReturn = elements[maxSelected]->getFlag();
-                    running = false;
-                    break;
-                case SDLK_RETURN:
-                    flagReturn = elements[selected]->getFlag();
-                    running = false;
-                    break;
-                case SDLK_UP:
-                    if (selected == 0 )
-                        selected = maxSelected;
-                    else selected--;
-                    break;
-                case SDLK_DOWN:
-                    if (selected == maxSelected )
-                        selected = 0;
-                    else selected++;
-                    break;
-                case SDLK_LEFT:
-                    actionLeft(selected);
-                    break;
-                case SDLK_RIGHT:
-                    actionRight(selected);
-                    break;
-            }
-            elements[selected]->setActive(true);
-        }
+        case SDLK_UP:
+            if (selected == 0 )
+                selected = maxSelected;
+            else selected--;
+            break;
+        case SDLK_DOWN:
+            if (selected == maxSelected )
+                selected = 0;
+            else selected++;
+            break;
+        case SDLK_LEFT:
+            actionLeft(selected);
+            break;
+        case SDLK_RIGHT:
+            actionRight(selected);
+            break;
+        default:
+            break;
     }
+    elements[selected]->setActive(true);
 }
 
 void _Menu::draw()
@@ -65,16 +43,19 @@ void _Menu::draw()
     SDL_RenderClear( Game::renderer );
 
     for( _Element* e : elements ) e->draw();
-
     Game::debugger->draw();
+
     SDL_RenderPresent( Game::renderer );
-
-
-
 }
 
-void _Menu::updateGUI()
+void _Menu::reloadGUI()
 {
+    Game::configuration->resizeWindow();
     for( _Element* e : elements ) e->updateScale();
 }
 
+void _Menu::exitScene()
+{
+    flagReturn = elements[maxSelected]->getFlag();
+    running = false;
+}

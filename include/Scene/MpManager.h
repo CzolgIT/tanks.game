@@ -8,16 +8,21 @@ class MpManager : public _Scene
 public:
 
     MpManager();
-    void handleEvents();
-    void draw();
-    void CheckColliders();
-    void sendMovement();
 
-    void loadFromServer();
+    void everyStep() override;
+    void draw() override;
+    void handleEvent() override;
 
+    // globals
     static Map* map;
 
 private:
+
+    void CheckColliders();
+    void loadFromServer();
+    void sendMovement();
+
+
     NetManager * netManager;
     Background* background = nullptr;
 

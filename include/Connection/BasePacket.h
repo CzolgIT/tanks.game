@@ -31,7 +31,7 @@ class BasePacket
 public:
 
     //BasePacket() = default;
-    //virtual ~BasePacket() = default;
+    virtual ~BasePacket() = default;
 
     virtual PacketType getType() const;
     virtual Uint8* getData() const;

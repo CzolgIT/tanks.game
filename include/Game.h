@@ -9,6 +9,7 @@ public:
 
     Game();
     ~Game();
+
     void Update();
     bool isRunning() { return running; }
 
@@ -20,7 +21,6 @@ public:
     static TextManager* textManager;
     static WindowManager* windowManager;
     static SoundManager* soundManager;
-
 
 private:
 

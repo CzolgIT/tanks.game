@@ -40,8 +40,6 @@ void Game::Update()
     switch( flag )
     {
         case 0: // Main Menu
-            Mix_HaltMusic();
-            Game::soundManager->PlayMenuMusic();
             currentScene = new MainMenu();
             break;
         case 1: // Play on Sigma
@@ -65,11 +63,8 @@ void Game::Update()
         case 7: // Settings - Game
             currentScene = new SettingsGame();
             break;
-        case 8: // Multiplayer-run
-        {
+        case 8: // Multiplayer run
             currentScene = new MpManager();
-            break;
-        }
             break;
         default:
             if (netManager!=nullptr)

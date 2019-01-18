@@ -7,10 +7,13 @@ class _Menu : public _Scene
 {
 public:
 
-    _Menu( int maxSelected );
+    explicit _Menu( int maxSelected );
 
-    void handleEvents();
-    void draw();
+    void handleEvent() override;
+    void draw() override;
+
+    void reloadGUI() override;
+    void exitScene() override;
 
     virtual void actionLeft( int s ){};
     virtual void actionRight( int s ){};
@@ -19,8 +22,7 @@ protected:
 
     int selected;
     int maxSelected;
-    std::vector<_Element*> elements; // najpierw buttony
-    void updateGUI();
+    std::vector<_Element*> elements; // buttons first
 
 };
 

@@ -21,6 +21,8 @@ void WindowManager::update() {
 
     // here we can stop game-time to align to specified fps
 
+    SDL_Delay(1);
+
     stepTimer->start();
 }
 

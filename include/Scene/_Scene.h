@@ -10,10 +10,18 @@ public:
     _Scene();
     virtual ~_Scene() = default;
 
-    bool isRunning() { return running; }
+    // every step
     void update();
-        virtual void handleEvents(){}
-        virtual void draw(){}
+    void handleAllEvents();
+    virtual void everyStep(){}
+    virtual void draw(){}
+
+    // on action
+    virtual void handleEvent(){}
+    virtual void reloadGUI();
+    virtual void exitScene();
+
+    bool isRunning() { return running; }
     int getFlag() { return flagReturn ;}
 
 protected:

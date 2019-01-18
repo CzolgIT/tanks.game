@@ -11,55 +11,12 @@ MpManager::MpManager(): _Scene()
     myPlayer = new Player( Game::netManager->getMyId(), Game::netManager->getMyNickname() );
     players.push_back(myPlayer);
 
- //   background = new Background();
     Game::soundManager->PlayBackgroundMusic();
     Game::soundManager->PlayEngineSound();
 }
 
-void MpManager::draw()
+void MpManager::everyStep()
 {
-    SDL_SetRenderDrawColor( Game::renderer, 0xFF, 0xFF, 0xFF, 0xFF );
-    SDL_RenderClear( Game::renderer );
-
-    auto x0 = (int)((float)Game::configuration->getDisplayMode()->w/2-myPlayer->getX() * Game::configuration->getScale() );
-    auto y0 = (int)((float)Game::configuration->getDisplayMode()->h/2-myPlayer->getY() * Game::configuration->getScale() );
-
-    //background->draw( x0 , y0 );
-    MpManager::map->draw(x0 ,y0);
-
-    for (auto &gameObject : gameObjects) gameObject->draw(x0,y0);
-    for (auto &player : players) player->draw(x0, y0);
-
-    for (auto &bullet : bullets)         bullet->draw(x0,y0);
-    for (auto &animation : animations)   animation->draw(x0,y0);
-
-    for (auto &player : players) player->drawInfo(x0,y0);
-
-    Game::debugger->draw();
-
-    SDL_RenderPresent( Game::renderer );
-}
-
-void MpManager::handleEvents()
-{
-    SDL_Event eventHandler;
-    while ( SDL_PollEvent( &eventHandler ) != 0 ) {
-        if (eventHandler.type == SDL_QUIT) // quit game
-        {
-            running = false;
-            netManager->disconnectPlayer();
-            flagReturn = -1;
-            break;
-        }
-        if (eventHandler.type == SDL_KEYDOWN && eventHandler.key.keysym.sym == SDLK_ESCAPE) // back to menu
-        {
-            running = false;
-            netManager->disconnectPlayer();
-            flagReturn = 0;
-            break;
-        }
-    }
-
     Mix_Volume(3, myPlayer->getTankSpeed()/3  );
 
     loadFromServer();
@@ -80,36 +37,7 @@ void MpManager::handleEvents()
         }
     }
 
-    //CheckColliders();
-
-//    for (auto &gameObject : gameObjects) {
-//        if(gameObject->shouldBeDestroy())
-//        {
-//            if (auto *b = dynamic_cast<Bullet *>(gameObject))
-//            {
-//                auto* bulletexplode = new Animation( BULLETEXPLODE , b->getPosition() , 0 );
-//                animations.push_back(bulletexplode);
-//            }
-//            //gameObject->destroy();
-//            //delete_object(gameObject);
-//            gameObjects.erase(std::remove(gameObjects.begin(), gameObjects.end(), gameObject), gameObjects.end());
-//        }
-//        else{
-//            gameObject->move();
-//            SendMovement();
-//        }
-//    }
-
-//    bool anykey=false;
-//    if (state[SDL_SCANCODE_UP]) anykey=true;
-//    if (state[SDL_SCANCODE_DOWN]) anykey=true;
-//    if (state[SDL_SCANCODE_LEFT]) anykey=true;
-//    if (state[SDL_SCANCODE_RIGHT]) anykey=true;
-//    if (state[SDL_SCANCODE_SPACE]) anykey=true;
-//    if (state[SDL_SCANCODE_Z]) anykey=true;
-//    if (state[SDL_SCANCODE_X]) anykey=true;
-    //if (anykey)
-
+    // deleting bullets
     auto bullet_iterator = bullets.begin();
     while(bullet_iterator != bullets.end())
     {
@@ -127,6 +55,7 @@ void MpManager::handleEvents()
         }
     }
 
+    // deleting animations
     auto animation_iterator = animations.begin();
     while(animation_iterator != animations.end())
     {
@@ -138,6 +67,7 @@ void MpManager::handleEvents()
         else
             ++animation_iterator;
     }
+
 }
 
 void MpManager::loadFromServer()
@@ -167,7 +97,7 @@ void MpManager::loadFromServer()
                 }
                 //delete packet;
             }
-            break;
+                break;
             case PT_PLAYER_DISCONNECTED:
             {
                 auto* packet = (PlayerDisconnectedPacket *)received;
@@ -184,7 +114,7 @@ void MpManager::loadFromServer()
                 }
                 //delete packet;
             }
-            break;
+                break;
             case PT_PLAYER_JOINED:
             {
                 auto* packet = (PlayerJoinedPacket*)received;
@@ -195,7 +125,7 @@ void MpManager::loadFromServer()
                 packet->print();
                 //delete packet;
             }
-            break;
+                break;
             case PT_BULLET_INFO:
             {
                 auto* packet = (BulletInfoPacket*)received;
@@ -225,9 +155,9 @@ void MpManager::loadFromServer()
                 Game::soundManager->PlayShootSound();
                 //delete packet;
             }
-            break;
-
+                break;
         }
+        delete received;
     }
 }
 
@@ -262,6 +192,36 @@ void MpManager::sendMovement()
     }
     //std::cout << "Wyslano pakiet" << std::endl;
 }
+
+
+void MpManager::draw()
+{
+    SDL_SetRenderDrawColor( Game::renderer, 0xFF, 0xFF, 0xFF, 0xFF );
+    SDL_RenderClear( Game::renderer );
+
+    auto x0 = (int)((float)Game::configuration->getDisplayMode()->w/2-myPlayer->getX() * Game::configuration->getScale() );
+    auto y0 = (int)((float)Game::configuration->getDisplayMode()->h/2-myPlayer->getY() * Game::configuration->getScale() );
+
+    MpManager::map->draw(x0 ,y0);
+
+    for (auto &gameObject : gameObjects) gameObject->draw(x0,y0);
+    for (auto &player     : players    )     player->draw(x0,y0);
+    for (auto &bullet     : bullets    )     bullet->draw(x0,y0);
+    for (auto &animation  : animations )  animation->draw(x0,y0);
+    for (auto &player     : players    ) player->drawInfo(x0,y0);
+
+    Game::debugger->draw();
+
+    SDL_RenderPresent( Game::renderer );
+}
+
+void MpManager::handleEvent()
+{
+    // executing only on keyboard event
+    // use eventHandler
+}
+
+
 
 
 void MpManager::CheckColliders()
