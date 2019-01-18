@@ -27,10 +27,13 @@ void _Scene::handleAllEvents()
         }
         if( eventHandler.type == SDL_WINDOWEVENT )
             reloadGUI();
-        if (eventHandler.type == SDL_KEYDOWN && eventHandler.key.keysym.sym == SDLK_ESCAPE) // go back
-            exitScene();
-        else
-            handleEvent();
+        if (eventHandler.type == SDL_KEYDOWN)
+        {
+            if (eventHandler.key.keysym.sym == SDLK_ESCAPE) // go back
+                exitScene();
+            else
+                handleEvent();
+        }
     }
 }
 

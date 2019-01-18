@@ -221,9 +221,6 @@ void MpManager::handleEvent()
     // use eventHandler
 }
 
-
-
-
 void MpManager::CheckColliders()
 {
     Collider * col1 = nullptr;

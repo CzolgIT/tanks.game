@@ -7,15 +7,16 @@ class Room : public _Scene
 {
 public:
 
-    Room( std::string ipadress );
-    void handleEvents();
-    void draw();
+    explicit Room( std::string ipadress );
+    void handleEvent() override;
+    void draw() override;
+
     int selectedTank;
+
 private:
 
     std::string ipadress;
 
-    NetManager* netManager;
     TankSprite* sprite[6];
     float dir;
 

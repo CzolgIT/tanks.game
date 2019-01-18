@@ -22,7 +22,7 @@ public:
     virtual void exitScene();
 
     bool isRunning() { return running; }
-    int getFlag() { return flagReturn ;}
+    int getFlag() { return flagReturn; }
 
 protected:
 

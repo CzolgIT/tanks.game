@@ -24,7 +24,6 @@ private:
 
 
     NetManager * netManager;
-    Background* background = nullptr;
 
     std::vector<Player*> players;
     std::vector<Bullet*> bullets;
