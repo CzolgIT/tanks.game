@@ -8,256 +8,276 @@
 		<Option virtualFolders="CMake Files\;CMake Files\cmake\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/oskar/dzialajacyprojektxd/tanksgame"/>
+				<Option working_dir="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -f &quot;/home/oskar/dzialajacyprojektxd/tanksgame/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -f &quot;/home/oskar/dzialajacyprojektxd/tanksgame/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -f &quot;/home/oskar/dzialajacyprojektxd/tanksgame/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -f &quot;/home/oskar/dzialajacyprojektxd/tanksgame/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/andrzej/Documents/Studia/Projekt\ Zespołowy/tanksgame/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/andrzej/Documents/Studia/Projekt\ Zespołowy/tanksgame/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/andrzej/Documents/Studia/Projekt\ Zespołowy/tanksgame/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/andrzej/Documents/Studia/Projekt\ Zespołowy/tanksgame/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/oskar/dzialajacyprojektxd/tanksgame"/>
+				<Option working_dir="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -f &quot;/home/oskar/dzialajacyprojektxd/tanksgame/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -f &quot;/home/oskar/dzialajacyprojektxd/tanksgame/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -f &quot;/home/oskar/dzialajacyprojektxd/tanksgame/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -f &quot;/home/oskar/dzialajacyprojektxd/tanksgame/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/andrzej/Documents/Studia/Projekt\ Zespołowy/tanksgame/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/andrzej/Documents/Studia/Projekt\ Zespołowy/tanksgame/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/andrzej/Documents/Studia/Projekt\ Zespołowy/tanksgame/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/andrzej/Documents/Studia/Projekt\ Zespołowy/tanksgame/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/oskar/dzialajacyprojektxd/tanksgame"/>
+				<Option working_dir="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -f &quot;/home/oskar/dzialajacyprojektxd/tanksgame/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -f &quot;/home/oskar/dzialajacyprojektxd/tanksgame/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -f &quot;/home/oskar/dzialajacyprojektxd/tanksgame/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -f &quot;/home/oskar/dzialajacyprojektxd/tanksgame/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/andrzej/Documents/Studia/Projekt\ Zespołowy/tanksgame/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/andrzej/Documents/Studia/Projekt\ Zespołowy/tanksgame/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/andrzej/Documents/Studia/Projekt\ Zespołowy/tanksgame/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/andrzej/Documents/Studia/Projekt\ Zespołowy/tanksgame/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="tanksgame">
-				<Option output="/home/oskar/dzialajacyprojektxd/tanksgame/tanksgame" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/oskar/dzialajacyprojektxd/tanksgame"/>
+				<Option output="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/tanksgame" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/oskar/dzialajacyprojektxd/tanksgame/include/*"/>
-					<Add directory="/home/oskar/dzialajacyprojektxd/tanksgame/include"/>
-					<Add directory="/usr/include/SDL2"/>
+					<Add directory="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/include/*"/>
+					<Add directory="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/include"/>
+					<Add directory="/Library/Frameworks/SDL2.framework/Headers"/>
+					<Add directory="/Library/Frameworks/SDL2_ttf.framework/Headers"/>
+					<Add directory="/Library/Frameworks/SDL2_image.framework/Headers"/>
+					<Add directory="/Library/Frameworks/SDL2_net.framework/Headers"/>
+					<Add directory="/Library/Frameworks/SDL2_mixer.framework/Headers"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/10.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -f &quot;/home/oskar/dzialajacyprojektxd/tanksgame/Makefile&quot;  VERBOSE=1 tanksgame"/>
-					<CompileFile command="/usr/bin/make -f &quot;/home/oskar/dzialajacyprojektxd/tanksgame/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -f &quot;/home/oskar/dzialajacyprojektxd/tanksgame/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -f &quot;/home/oskar/dzialajacyprojektxd/tanksgame/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/andrzej/Documents/Studia/Projekt\ Zespołowy/tanksgame/Makefile&quot;  VERBOSE=1 tanksgame"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/andrzej/Documents/Studia/Projekt\ Zespołowy/tanksgame/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/andrzej/Documents/Studia/Projekt\ Zespołowy/tanksgame/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/andrzej/Documents/Studia/Projekt\ Zespołowy/tanksgame/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="tanksgame/fast">
-				<Option output="/home/oskar/dzialajacyprojektxd/tanksgame/tanksgame" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/oskar/dzialajacyprojektxd/tanksgame"/>
+				<Option output="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/tanksgame" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/oskar/dzialajacyprojektxd/tanksgame/include/*"/>
-					<Add directory="/home/oskar/dzialajacyprojektxd/tanksgame/include"/>
-					<Add directory="/usr/include/SDL2"/>
+					<Add directory="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/include/*"/>
+					<Add directory="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/include"/>
+					<Add directory="/Library/Frameworks/SDL2.framework/Headers"/>
+					<Add directory="/Library/Frameworks/SDL2_ttf.framework/Headers"/>
+					<Add directory="/Library/Frameworks/SDL2_image.framework/Headers"/>
+					<Add directory="/Library/Frameworks/SDL2_net.framework/Headers"/>
+					<Add directory="/Library/Frameworks/SDL2_mixer.framework/Headers"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/10.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -f &quot;/home/oskar/dzialajacyprojektxd/tanksgame/Makefile&quot;  VERBOSE=1 tanksgame/fast"/>
-					<CompileFile command="/usr/bin/make -f &quot;/home/oskar/dzialajacyprojektxd/tanksgame/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -f &quot;/home/oskar/dzialajacyprojektxd/tanksgame/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -f &quot;/home/oskar/dzialajacyprojektxd/tanksgame/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/andrzej/Documents/Studia/Projekt\ Zespołowy/tanksgame/Makefile&quot;  VERBOSE=1 tanksgame/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/andrzej/Documents/Studia/Projekt\ Zespołowy/tanksgame/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/andrzej/Documents/Studia/Projekt\ Zespołowy/tanksgame/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/andrzej/Documents/Studia/Projekt\ Zespołowy/tanksgame/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Collisions/Collider.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Collisions/Collider.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Collisions/Projection.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Collisions/Projection.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Collisions/Vector2D.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Collisions/Vector2D.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Configuration.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Configuration.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/BasePacket.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/BasePacket.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/BulletInfoPacket.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/BulletInfoPacket.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/CurrentPositionPacket.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/CurrentPositionPacket.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/EventPacket.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/EventPacket.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/HeartbeatPacket.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/HeartbeatPacket.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/InfoRequestPacket.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/InfoRequestPacket.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/JoinRequestPacket.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/JoinRequestPacket.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/JoinResponsePacket.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/JoinResponsePacket.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/LastPlayerSentPacket.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/LastPlayerSentPacket.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/MapDataPacket.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/MapDataPacket.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/NetManager.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/NetManager.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/NetPlayer.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/NetPlayer.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/PlayerDisconnectedPacket.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/PlayerDisconnectedPacket.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/PlayerJoinedPacket.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/PlayerJoinedPacket.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/SyncPacket.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/SyncPacket.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/TCPConnection.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/TCPConnection.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/UDPConnection.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/UDPConnection.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/UniversalPacket.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/UniversalPacket.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/GUIElement/Button.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/GUIElement/Button.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/GUIElement/TextStatic.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/GUIElement/TextStatic.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/GUIElement/_Element.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/GUIElement/_Element.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Game.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Game.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/GameObject/Bullet.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/GameObject/Bullet.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/GameObject/Player.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/GameObject/Player.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/GameObject/Wall.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/GameObject/Wall.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/GameObject/_GameObject.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/GameObject/_GameObject.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Graphics/Animation.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Graphics/Animation.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Graphics/Background.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Graphics/Background.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Graphics/Debugger.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Graphics/Debugger.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Graphics/Sprite.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Graphics/Sprite.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Graphics/TankSprite.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Graphics/TankSprite.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Graphics/Texture.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Graphics/Texture.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Graphics/TextureManager.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Graphics/TextureManager.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Main.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Main.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Map.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Map.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Scene/MainMenu.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Scene/MainMenu.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Scene/Manager.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Scene/Manager.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Scene/MpManager.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Scene/MpManager.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Scene/Room.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Scene/Room.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Scene/Settings.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Scene/Settings.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Scene/SettingsAudio.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Scene/SettingsAudio.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Scene/SettingsController.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Scene/SettingsController.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Scene/SettingsGame.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Scene/SettingsGame.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Scene/SettingsVideo.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Scene/SettingsVideo.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Scene/_Menu.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Scene/_Menu.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Scene/_Scene.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Scene/_Scene.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/SoundManager.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/SoundManager.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Text/Font.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Text/Font.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Text/Letter.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Text/Letter.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Text/TextManager.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Text/TextManager.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/Timer.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Timer.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/src/WindowManager.cpp">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/WindowManager.cpp">
 			<Option target="tanksgame"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/CMakeLists.txt">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/cmake/FindSDL2.cmake">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/cmake/FindSDL2.cmake">
 			<Option virtualFolder="CMake Files\cmake\"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/cmake/FindSDL2_image.cmake">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/cmake/FindSDL2_image.cmake">
 			<Option virtualFolder="CMake Files\cmake\"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/cmake/FindSDL2_mixer.cmake">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/cmake/FindSDL2_mixer.cmake">
 			<Option virtualFolder="CMake Files\cmake\"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/cmake/FindSDL2_net.cmake">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/cmake/FindSDL2_net.cmake">
 			<Option virtualFolder="CMake Files\cmake\"/>
 		</Unit>
-		<Unit filename="/home/oskar/dzialajacyprojektxd/tanksgame/cmake/FindSDL2_ttf.cmake">
+		<Unit filename="/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/cmake/FindSDL2_ttf.cmake">
 			<Option virtualFolder="CMake Files\cmake\"/>
 		</Unit>
 	</Project>

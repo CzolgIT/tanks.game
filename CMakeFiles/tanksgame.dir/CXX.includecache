@@ -6,239 +6,239 @@
 
 #IncludeRegexTransform: 
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Collisions/Collider.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Collisions/Collider.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Collisions/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Collisions/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Collisions/Projection.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Collisions/Projection.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Collisions/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Collisions/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Collisions/Vector2D.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Collisions/Vector2D.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Collisions/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Collisions/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Configuration.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Configuration.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/BasePacket.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/BasePacket.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/BulletInfoPacket.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/BulletInfoPacket.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/CurrentPositionPacket.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/CurrentPositionPacket.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/EventPacket.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/EventPacket.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/HeartbeatPacket.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/HeartbeatPacket.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/InfoRequestPacket.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/InfoRequestPacket.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/JoinRequestPacket.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/JoinRequestPacket.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/JoinResponsePacket.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/JoinResponsePacket.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/LastPlayerSentPacket.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/LastPlayerSentPacket.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/MapDataPacket.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/MapDataPacket.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/NetManager.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/NetManager.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/NetPlayer.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/NetPlayer.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/PlayerDisconnectedPacket.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/PlayerDisconnectedPacket.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/PlayerJoinedPacket.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/PlayerJoinedPacket.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/SyncPacket.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/SyncPacket.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/TCPConnection.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/TCPConnection.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/UDPConnection.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/UDPConnection.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/UniversalPacket.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/UniversalPacket.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Connection/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Connection/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/GUIElement/Button.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/GUIElement/Button.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/GUIElement/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/GUIElement/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/GUIElement/TextStatic.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/GUIElement/TextStatic.cpp
 utility
 -
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/GUIElement/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/GUIElement/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/GUIElement/_Element.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/GUIElement/_Element.cpp
 utility
 -
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/GUIElement/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/GUIElement/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Game.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Game.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/GameObject/Bullet.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/GameObject/Bullet.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/GameObject/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/GameObject/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/GameObject/Player.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/GameObject/Player.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/GameObject/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/GameObject/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/GameObject/Wall.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/GameObject/Wall.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/GameObject/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/GameObject/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/GameObject/_GameObject.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/GameObject/_GameObject.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/GameObject/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/GameObject/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Graphics/Animation.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Graphics/Animation.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Graphics/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Graphics/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Graphics/Background.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Graphics/Background.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Graphics/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Graphics/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Graphics/Debugger.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Graphics/Debugger.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Graphics/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Graphics/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Graphics/Sprite.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Graphics/Sprite.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Graphics/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Graphics/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Graphics/TankSprite.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Graphics/TankSprite.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Graphics/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Graphics/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Graphics/Texture.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Graphics/Texture.cpp
 utility
 -
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Graphics/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Graphics/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Graphics/TextureManager.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Graphics/TextureManager.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Graphics/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Graphics/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Main.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Main.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Map.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Map.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Scene/MainMenu.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Scene/MainMenu.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Scene/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Scene/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Scene/Manager.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Scene/Manager.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Scene/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Scene/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Scene/MpManager.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Scene/MpManager.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Scene/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Scene/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Scene/Room.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Scene/Room.cpp
 utility
 -
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Scene/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Scene/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Scene/Settings.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Scene/Settings.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Scene/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Scene/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Scene/SettingsAudio.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Scene/SettingsAudio.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Scene/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Scene/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Scene/SettingsController.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Scene/SettingsController.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Scene/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Scene/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Scene/SettingsGame.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Scene/SettingsGame.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Scene/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Scene/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Scene/SettingsVideo.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Scene/SettingsVideo.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Scene/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Scene/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Scene/_Menu.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Scene/_Menu.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Scene/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Scene/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Scene/_Scene.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Scene/_Scene.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Scene/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Scene/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/SoundManager.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/SoundManager.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Text/Font.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Text/Font.cpp
 utility
 -
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Text/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Text/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Text/Letter.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Text/Letter.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Text/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Text/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Text/TextManager.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Text/TextManager.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Text/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Text/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Timer.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Timer.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Main.h
 
-/home/oskar/dzialajacyprojektxd/tanksgame/src/WindowManager.cpp
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/WindowManager.cpp
 Main.h
-/home/oskar/dzialajacyprojektxd/tanksgame/src/Main.h
+/Users/andrzej/Documents/Studia/Projekt Zespołowy/tanksgame/src/Main.h
 
 include/Collisions/Collider.h
 Main.h
