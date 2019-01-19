@@ -50,7 +50,41 @@ void Map::draw(int x , int y)
             SDL_Point pos = {xPos,yPos};
             switch (characters[i*MAP_WIDTH+j])
             {
-                case 'X':
+                case '1':
+                    elements[0]->draw(pos,0);
+                    break;
+                case '2':
+                    elements[1]->draw(pos,0);
+                    break;
+                case '3':
+                    elements[2]->draw(pos,0);
+                    break;
+                case '4':
+                    elements[3]->draw(pos,0);
+                    break;
+                case '5':
+                    elements[4]->draw(pos,0);
+                    break;
+                case '6':
+                    elements[5]->draw(pos,0);
+                case '7':
+                    elements[6]->draw(pos,0);
+                    break;
+                case '8':
+                    elements[7]->draw(pos,0);
+                    break;
+                case '9':
+                    elements[8]->draw(pos,0);
+                    break;
+                case 'A':
+                    elements[9]->draw(pos,0);
+                    break;
+                case 'B':
+                    elements[10]->draw(pos,0);
+                    break;
+                case 'C':
+                    elements[11]->draw(pos,0);
+                    break;
                 case 'D':
                     elements[12]->draw(pos,0);
                     break;
@@ -60,6 +94,7 @@ void Map::draw(int x , int y)
                 case 'F':
                     elements[14]->draw(pos,0);
                     break;
+                case 'X':
                 default:
                     // NIEPRAWIDLOWA MAPA JEST PRZESLANA
                     elements[0]->draw(pos,0);
