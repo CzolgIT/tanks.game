@@ -4,6 +4,8 @@
 
 Room::Room(std::string ipadress) : _Scene()
 {
+    this->selected = 0;
+    this->maxSelected = 1;
     MpManager::map = new Map();
     Game::netManager = new NetManager();
     selectedTank = 1;
@@ -24,19 +26,38 @@ Room::Room(std::string ipadress) : _Scene()
     sprite[4] = new TankSprite( 5 , 0.5 );
     sprite[5] = new TankSprite( 6 , 0.5 );
 
-    bt = new Button( "join", 50,26, 1 );
-    bt2 = new Button( "back", 50,30, 1 );
+    bt = new Button( "join", 50,26, 8 );
+    bt2 = new Button( "back", 50,30, 0 );
+    elements.push_back(bt);
+    elements.push_back(bt2);
     bt->setActive(true);
 
 }
 
 void  Room::handleEvent()
 {
-    if ( eventHandler.key.keysym.sym == SDLK_RETURN)
+
+    elements[selected]->setActive(false);
+    switch( eventHandler.key.keysym.sym )
     {
-        flagReturn = 8;
-        running = false;
+        case SDLK_RETURN:
+            flagReturn = elements[selected]->getFlag();
+            running = false;
+            break;
+        case SDLK_UP:
+            if (selected == 0 )
+                selected = maxSelected;
+            else selected--;
+            break;
+        case SDLK_DOWN:
+            if (selected == maxSelected )
+                selected = 0;
+            else selected++;
+            break;
+        default:
+            break;
     }
+    elements[selected]->setActive(true);
 }
 
 void Room::draw()

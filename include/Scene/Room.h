@@ -15,6 +15,11 @@ public:
 
 private:
 
+    int selected;
+    int maxSelected;
+    std::vector<_Element*> elements;
+
+
     std::string ipadress;
 
     TankSprite* sprite[6];
