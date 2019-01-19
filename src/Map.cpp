@@ -41,14 +41,15 @@ void Map::loadFromFile( std::vector<_GameObject*> * gameObjects )
 
 void Map::draw(int x , int y)
 {
-    for (int i = 0; i < MAP_WIDTH; i++)
+
+    for (int j = 0; j < MAP_HEIGHT; j++)
     {
-        for (int j = 0; j < MAP_HEIGHT; j++)
+        for (int i = 0; i < MAP_WIDTH; i++)
         {
             int xPos = (x+width*i);
             int yPos = (y+height*j);
             SDL_Point pos = {xPos,yPos};
-            switch (characters[i*MAP_WIDTH+j])
+            switch (characters[j*MAP_WIDTH+i])
             {
                 case '1':
                     elements[0]->draw(pos,0);
@@ -67,16 +68,17 @@ void Map::draw(int x , int y)
                     break;
                 case '6':
                     elements[5]->draw(pos,0);
+                    break;
                 case '7':
                     elements[6]->draw(pos,0);
                     break;
                 case '8':
                     elements[7]->draw(pos,0);
                     break;
+                case 'S':
                 case '9':
                     elements[8]->draw(pos,0);
                     break;
-                case 'X':
                 case 'A':
                     elements[9]->draw(pos,0);
                     break;
@@ -86,13 +88,13 @@ void Map::draw(int x , int y)
                 case 'C':
                     elements[11]->draw(pos,0);
                     break;
-                case 'S':
                 case 'D':
                     elements[12]->draw(pos,0);
                     break;
                 case 'E':
                     elements[13]->draw(pos,0);
                     break;
+                case 'X':
                 case 'F':
                     elements[14]->draw(pos,0);
                     break;
