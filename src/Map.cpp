@@ -76,6 +76,7 @@ void Map::draw(int x , int y)
                 case '9':
                     elements[8]->draw(pos,0);
                     break;
+                case 'X':
                 case 'A':
                     elements[9]->draw(pos,0);
                     break;
@@ -85,6 +86,7 @@ void Map::draw(int x , int y)
                 case 'C':
                     elements[11]->draw(pos,0);
                     break;
+                case 'S':
                 case 'D':
                     elements[12]->draw(pos,0);
                     break;
@@ -94,7 +96,6 @@ void Map::draw(int x , int y)
                 case 'F':
                     elements[14]->draw(pos,0);
                     break;
-                case 'X':
                 default:
                     // NIEPRAWIDLOWA MAPA JEST PRZESLANA
                     elements[0]->draw(pos,0);
