@@ -14,6 +14,7 @@ public:
     void PlayMenuMusic();
     void PlayEngineSound();
     void PlayTurretSound();
+    void PlayClickSound();
 
 private:
 

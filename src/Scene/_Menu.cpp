@@ -12,15 +12,18 @@ void  _Menu::handleEvent()
     switch( eventHandler.key.keysym.sym )
     {
         case SDLK_RETURN:
+            Game::soundManager->PlayClickSound();
             flagReturn = elements[selected]->getFlag();
             running = false;
             break;
         case SDLK_UP:
+            Game::soundManager->PlayClickSound();
             if (selected == 0 )
                 selected = maxSelected;
             else selected--;
             break;
         case SDLK_DOWN:
+            Game::soundManager->PlayClickSound();
             if (selected == maxSelected )
                 selected = 0;
             else selected++;

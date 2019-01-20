@@ -45,6 +45,18 @@ void SoundManager::PlayShootSound()
     }
 }
 
+void SoundManager::PlayClickSound()
+{
+    if (Game::configuration->getSounds())
+    {
+        if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+            std::cout << "Error: " << Mix_GetError() << std::endl;
+        Mix_AllocateChannels(8);
+        Mix_Chunk *click = Mix_LoadWAV("assets/sounds/click.wav");
+        Mix_PlayChannel(6, click, 0);
+    }
+}
+
 void SoundManager::PlayEngineSound()
 {
     if (Game::configuration->getSounds())

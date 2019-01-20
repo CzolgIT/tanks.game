@@ -41,6 +41,7 @@ void  Room::handleEvent()
     switch( eventHandler.key.keysym.sym )
     {
         case SDLK_RETURN:
+            Game::soundManager->PlayClickSound();
             flagReturn = elements[selected]->getFlag();
             if(flagReturn == 8){
                 auto * playerReadyPacket = new PlayerReadyPacket();
@@ -51,11 +52,13 @@ void  Room::handleEvent()
             running = false;
             break;
         case SDLK_UP:
+            Game::soundManager->PlayClickSound();
             if (selected == 0 )
                 selected = maxSelected;
             else selected--;
             break;
         case SDLK_DOWN:
+            Game::soundManager->PlayClickSound();
             if (selected == maxSelected )
                 selected = 0;
             else selected++;

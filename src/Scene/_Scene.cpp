@@ -33,8 +33,10 @@ void _Scene::handleAllEvents()
             reloadGUI();
         if (eventHandler.type == SDL_KEYDOWN)
         {
-            if (eventHandler.key.keysym.sym == SDLK_ESCAPE) // go back
+            if (eventHandler.key.keysym.sym == SDLK_ESCAPE) {// go back
+                Game::soundManager->PlayClickSound();
                 exitScene();
+            }
             else
                 handleEvent();
         }
