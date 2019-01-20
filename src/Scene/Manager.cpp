@@ -57,6 +57,7 @@ void Manager::handleEvents()
         {
             if (eventHandler.key.keysym.sym == SDLK_ESCAPE)
             {
+                Game::soundManager->PlayClickSound();
                 running = false;
                 flagReturn = 0;
                 break;
