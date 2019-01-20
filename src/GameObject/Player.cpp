@@ -73,6 +73,7 @@ void Player::drawInfo( int x0 , int y0 )
 
 
     Game::textManager->draw(nickname,x0+drawx,y0+drawy-90*scale,15*scale,C_BLACK,true);
+    Game::textManager->draw("S:"+std::to_string(score)+"D:"+std::to_string(deaths),x0+drawx,y0+drawy-110*scale,15*scale,C_BLACK,true);
 
     SDL_Rect ramka = {int(x0+drawx-51*scale),int(y0+drawy-70*scale),int(102*scale),int(10*scale)};
     SDL_SetRenderDrawColor( Game::renderer , 0 , 0 , 0 , 0 );
@@ -149,7 +150,8 @@ void Player::setFromPacket( CurrentPositionPacket * packet )
     this->rotationSpeed = packet->getRotationSpeed();
     this->turretRotationSpeed = packet->getTurretRotationSpeed();
     this->actualHp = packet->getActualHp();
-
+    this->score = packet->getScore();
+    this->deaths = packet->getDeaths();
     this->updated=true;
 }
 

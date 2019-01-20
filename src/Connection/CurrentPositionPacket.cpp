@@ -21,6 +21,8 @@ int CurrentPositionPacket::getTankSpeed() const { return static_cast<int16_t>(SD
 int CurrentPositionPacket::getRotationSpeed() const { return static_cast<int16_t>(SDLNet_Read16(&data[12])); }
 int CurrentPositionPacket::getTurretRotationSpeed() const { return static_cast<int16_t>(SDLNet_Read16(&data[14])); }
 int CurrentPositionPacket::getActualHp() const { return static_cast<int16_t>(data[16]);}
+int CurrentPositionPacket::getScore() const { return static_cast<int8_t>(data[17]);}
+int CurrentPositionPacket::getDeaths() const { return static_cast<int8_t>(data[18]);}
 
 void CurrentPositionPacket::print() const
 {
