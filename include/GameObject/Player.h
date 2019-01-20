@@ -40,6 +40,13 @@ public:
     void setActualHp(int actualHp);
 
     bool isDead = false;
+    int getDeaths() const;
+
+    void setDeaths(int deaths);
+
+    int getScore() const;
+
+    void setScore(int score);
 
 private:
 
@@ -52,6 +59,9 @@ private:
 
     float xFloat , yFloat;
 
+    int deaths = 0;
+
+    int score = 0;
 
     int tankSpeed , rotationSpeed , turretRotationSpeed;
 
