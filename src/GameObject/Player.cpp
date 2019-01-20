@@ -170,3 +170,19 @@ void Player::reloadGUI()
 {
     sprite->reloadGUI();
 }
+
+int Player::getDeaths() const {
+    return deaths;
+}
+
+void Player::setDeaths(int deaths) {
+    Player::deaths = deaths;
+}
+
+int Player::getScore() const {
+    return score;
+}
+
+void Player::setScore(int score) {
+    Player::score = score;
+}

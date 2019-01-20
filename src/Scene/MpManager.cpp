@@ -168,6 +168,18 @@ void MpManager::loadFromServer()
                     myPlayer->isDead = true;
                 }
             }
+            case PT_SCORE_INFO:
+            {
+                auto *packet = (ScoreInfoPacket*) received;
+
+                for (auto &player : players) {
+                    if (player->getId() == packet->getPlayerStatsId()) {
+                        player->setScore(packet->getPlayerKills());
+                        player->setDeaths(packet->getPlayerDeaths()); // DO ZMIANY weoqiwneiquwexbuiqwexniquleqxyeiuqwex
+                    }
+                }
+
+            }
                 break;
         }
         delete received;
