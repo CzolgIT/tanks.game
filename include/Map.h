@@ -3,8 +3,8 @@
 
 #include "Main.h"
 
-#define MAP_WIDTH  32
-#define MAP_HEIGHT  32
+#define MAP_WIDTH  64
+#define MAP_HEIGHT  64
 
 class Map
 {
@@ -15,7 +15,7 @@ public:
 
     void draw(int x , int y);
 
-    Sprite * elements[15] ;
+    Sprite * elements[37] ;
     int width , height;
 
     void reloadGUI();

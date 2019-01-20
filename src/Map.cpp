@@ -8,12 +8,12 @@ Map::Map() {
 
     strcpy(characters,"EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
 
-    for (int i = 0; i < 15; i++)
+    for (int i = 0; i < 37; i++)
     {
         elements[i] = new Sprite(Game::textureManager->map, {160*i,0,160,160}, 0.4 * Game::configuration->getScale());
     }
-    width=64 * Game::configuration->getScale();
-    height=64 * Game::configuration->getScale();
+    width=int(double(64) * Game::configuration->getScale());
+    height=int(double(64) * Game::configuration->getScale());
 
 }
 
@@ -111,7 +111,7 @@ void Map::reloadGUI()
 {
     std::cout << "nowa skala: " << 0.4 * Game::configuration->getScale() << "\n";
 
-    for (int i = 0; i < 15; i++)
+    for (int i = 0; i < 37; i++)
     {
         delete elements[i];
         elements[i] = nullptr;
