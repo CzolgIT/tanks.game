@@ -35,5 +35,3 @@ Uint8 ScoreInfoPacket::getPlayerDeaths() {
 ScoreInfoPacket::~ScoreInfoPacket() = default;
 
 
-
-

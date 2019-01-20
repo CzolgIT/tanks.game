@@ -170,14 +170,16 @@ void MpManager::loadFromServer()
                     myPlayer->isDead = true;
                 }
             }
+            break;
             case PT_SCORE_INFO:
             {
                 auto *packet = (ScoreInfoPacket*) received;
 
                 for (auto &player : players) {
                     if (player->getId() == packet->getPlayerStatsId()) {
-                        player->setScore(packet->getPlayerKills());
-                        player->setDeaths(packet->getPlayerDeaths()); // DO ZMIANY weoqiwneiquwexbuiqwexniquleqxyeiuqwex
+                        player->setScore(static_cast<int>(packet->getPlayerKills()));
+                        player->setDeaths(static_cast<int>(packet->getPlayerDeaths()));
+                        std::cout << "Player o id " << player->getId() << " PUNKTOW " <<  player->getScore() << " ŚMIERCI " << player->getDeaths() << std::endl;
                     }
                 }
 
