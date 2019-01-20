@@ -31,6 +31,8 @@ private:
     std::vector<Bullet*> bullets;
     std::vector<_GameObject*> gameObjects;
     std::vector<Animation*> animations;
+    std::vector<TextStatic*> deads;
+
     EventPacket * prevEventPacket = nullptr;
 
     Player* myPlayer;
