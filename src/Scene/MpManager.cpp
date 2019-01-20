@@ -67,7 +67,9 @@ void MpManager::everyStep()
             ++animation_iterator;
     }
 
-    sendMovement();
+
+    if (!myPlayer->isDead)
+        sendMovement();
 
 }
 
@@ -159,6 +161,12 @@ void MpManager::loadFromServer()
 
                 deads.push_back(new TextStatic("Gracz " + toString(netManager->clientsMap[packet->getPlayerId()]) + " zastrzelony przez " + toString(netManager->clientsMap[packet->getKillerId()]),32,0.5,1,0.1));
 
+                Game::textManager->draw("Gracz " + netManager->clientsMap[packet->getPlayerId()] + " zastrzelony przez " + netManager->clientsMap[packet->getKillerId()],0,0,20,C_BLACK,
+                                        false);
+                if (packet->getPlayerId() == myPlayer->getId())
+                {
+                    myPlayer->isDead = true;
+                }
             }
                 break;
         }
