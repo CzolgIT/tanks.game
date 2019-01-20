@@ -35,6 +35,7 @@ public:
 
     int getTankSpeed();
     float getTowerSpeed();
+    int getTurretRotationSpeed();
 
     void setActualHp(int actualHp);
 

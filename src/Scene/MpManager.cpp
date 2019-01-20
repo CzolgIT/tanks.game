@@ -13,11 +13,13 @@ MpManager::MpManager(): _Scene()
 
     Game::soundManager->PlayBackgroundMusic();
     Game::soundManager->PlayEngineSound();
+    Game::soundManager->PlayTurretSound();
 }
 
 void MpManager::everyStep()
 {
     Mix_Volume(3, myPlayer->getTankSpeed()/3  );
+    Mix_Volume(4, abs(myPlayer->getTurretRotationSpeed())  );
 
     loadFromServer();
 

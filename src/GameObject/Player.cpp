@@ -157,6 +157,8 @@ int Player::getTankSpeed() { return tankSpeed; }
 
 float Player::getTowerSpeed() { return towerSpeed; }
 
+int Player::getTurretRotationSpeed() { return turretRotationSpeed; }
+
 std::string Player::getNickname() {
     return this->nickname;
 }
