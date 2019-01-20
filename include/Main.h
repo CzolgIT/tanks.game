@@ -64,6 +64,7 @@
 #include "Connection/PlayerJoinedPacket.h"
 #include "Connection/PlayerReadyPacket.h"
 #include "Connection/PlayerDeadPacket.h"
+#include "Connection/ScoreInfoPacket.h"
 #include "Connection/SyncPacket.h"
 #include "Connection/EventPacket.h"
 #include "Connection/NetPlayer.h"
