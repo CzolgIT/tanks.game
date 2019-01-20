@@ -18,7 +18,7 @@ MpManager::MpManager(): _Scene()
 
 void MpManager::everyStep()
 {
-    Mix_Volume(3, myPlayer->getTankSpeed()/3  );
+    Mix_Volume(3, myPlayer->getTankSpeed()/2  );
     Mix_Volume(4, abs(myPlayer->getTurretRotationSpeed())  );
 
     loadFromServer();
