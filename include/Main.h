@@ -63,6 +63,7 @@
 #include "Connection/PlayerDisconnectedPacket.h"
 #include "Connection/PlayerJoinedPacket.h"
 #include "Connection/PlayerReadyPacket.h"
+#include "Connection/PlayerDeadPacket.h"
 #include "Connection/SyncPacket.h"
 #include "Connection/EventPacket.h"
 #include "Connection/NetPlayer.h"
@@ -100,8 +101,8 @@
 #define NICKNAME "Gracz"
 
 #define SIGMAIP "153.19.7.230"
-#define LOCALIP "127.0.0.1"
-//#define SERVERIP "25.63.145.1"
+//#define LOCALIP "127.0.0.1"
+#define LOCALIP "25.63.145.1"
 #define SERVERPORT 7777
 
 //Tank Globals
