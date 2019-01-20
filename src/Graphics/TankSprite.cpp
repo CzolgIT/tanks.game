@@ -2,11 +2,11 @@
 
 TankSprite::TankSprite( int color , float scale )
 {
-    color = color%6;
+    this->color = color%6;
 
-    spriteBarrel = new Sprite( Game::textureManager->barrel , { 256*color , 0 , 256 , 256 } , TANKSCALE*scale );
-    spriteBody = new Sprite( Game::textureManager->body , { 256*color , 0 , 256 , 256 } , TANKSCALE*scale );
-    spriteTower = new Sprite( Game::textureManager->tower , { 256*color , 0 , 256 , 256 } , TANKSCALE*scale );
+    spriteBarrel = new Sprite( Game::textureManager->barrel , { 256*this->color , 0 , 256 , 256 } , TANKSCALE*scale );
+    spriteBody = new Sprite( Game::textureManager->body , { 256*this->color , 0 , 256 , 256 } , TANKSCALE*scale );
+    spriteTower = new Sprite( Game::textureManager->tower , { 256*this->color , 0 , 256 , 256 } , TANKSCALE*scale );
     for (int i=0; i<5; i++)
         spriteTracks[i] = new Sprite( Game::textureManager->tracks , { 256*i , 0 , 256 , 256 } , TANKSCALE*scale );
 
@@ -25,4 +25,13 @@ void TankSprite::draw( SDL_Point position , int dir , int dirT , int move )
     spriteBody->draw( position , dir);
     spriteTower->draw( position , dirT);
     spriteBarrel->draw( position , dirT);
+}
+
+void TankSprite::reloadGUI()
+{
+    spriteBarrel = new Sprite( Game::textureManager->barrel , { 256*color , 0 , 256 , 256 } , TANKSCALE * Game::configuration->getScale() );
+    spriteBody = new Sprite( Game::textureManager->body , { 256*color , 0 , 256 , 256 } , TANKSCALE * Game::configuration->getScale() );
+    spriteTower = new Sprite( Game::textureManager->tower , { 256*color , 0 , 256 , 256 } , TANKSCALE * Game::configuration->getScale() );
+    for (int i=0; i<5; i++)
+        spriteTracks[i] = new Sprite( Game::textureManager->tracks , { 256*i , 0 , 256 , 256 } , TANKSCALE * Game::configuration->getScale() );
 }

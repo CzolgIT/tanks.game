@@ -26,6 +26,10 @@ void _Scene::handleAllEvents()
             break;
         }
         if( eventHandler.type == SDL_WINDOWEVENT )
+            if (eventHandler.window.event == SDL_WINDOWEVENT_RESIZED ||
+                eventHandler.window.event == SDL_WINDOWEVENT_SIZE_CHANGED ||
+                eventHandler.window.event == SDL_WINDOWEVENT_MINIMIZED ||
+                eventHandler.window.event == SDL_WINDOWEVENT_MAXIMIZED )
             reloadGUI();
         if (eventHandler.type == SDL_KEYDOWN)
         {

@@ -13,6 +13,8 @@ public:
     void draw() override;
     void handleEvent() override;
 
+    void reloadGUI() override;
+
     // globals
     static Map* map;
 

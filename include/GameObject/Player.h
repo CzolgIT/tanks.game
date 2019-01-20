@@ -17,6 +17,7 @@ public:
     int getDir();
     SDL_Point shootPosition();
     SDL_Point smokePosition();
+    void reloadGUI();
 
     void simulate();
 

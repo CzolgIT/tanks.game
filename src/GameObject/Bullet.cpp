@@ -38,3 +38,10 @@ void Bullet::destroy()
 {
 
 }
+
+void Bullet::reloadGUI()
+{
+    delete sprite;
+    sprite = nullptr;
+    sprite = new Sprite(Game::textureManager->bullet,{0,0,36,36},Game::configuration->getScale()/2);
+}

@@ -18,6 +18,8 @@ public:
     Sprite * elements[15] ;
     int width , height;
 
+    void reloadGUI();
+
 };
 
 #endif

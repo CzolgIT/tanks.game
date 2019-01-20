@@ -18,6 +18,8 @@ public:
     void draw( int x0 , int y0 );
     bool gettodelete();
 
+    void reloadGUI();
+
 private:
 
     Texture* tex;

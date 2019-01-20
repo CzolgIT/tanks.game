@@ -104,8 +104,19 @@ void Map::draw(int x , int y)
                     break;
             }
         }
-
     }
+}
 
+void Map::reloadGUI()
+{
+    std::cout << "nowa skala: " << 0.4 * Game::configuration->getScale() << "\n";
 
+    for (int i = 0; i < 15; i++)
+    {
+        delete elements[i];
+        elements[i] = nullptr;
+        elements[i] = new Sprite(Game::textureManager->map, {160*i,0,160,160}, 0.4 * Game::configuration->getScale());
+    }
+    width=int(double(64) * Game::configuration->getScale());
+    height=int(double(64) * Game::configuration->getScale());
 }

@@ -9,6 +9,8 @@ public:
 
     TankSprite( int color = 1 , float scale=1 );
     void draw( SDL_Point position , int dir , int dirT , int move );
+
+    void reloadGUI();
     
 private:
 
@@ -16,6 +18,8 @@ private:
     Sprite* spriteBody;
     Sprite* spriteTower;
     Sprite* spriteTracks[5];
+
+    int color;
 
     int step;
 };

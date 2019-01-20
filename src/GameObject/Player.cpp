@@ -165,3 +165,8 @@ void Player::setActualHp(int actualHp)
 {
     this->actualHp = actualHp;
 }
+
+void Player::reloadGUI()
+{
+    sprite->reloadGUI();
+}

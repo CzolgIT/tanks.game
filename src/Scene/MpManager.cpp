@@ -28,7 +28,7 @@ void MpManager::everyStep()
             p->simulate();
         p->updated = false;
 
-        int los = int(random()%10); // generate drive animation
+        int los = int(random()%3); // generate drive animation
         if (p->getTankSpeed()>0 && los==2)
         {
             auto* tankdrive = new Animation( TANKDRIVE , p->smokePosition() , p->getDir() );
@@ -217,6 +217,17 @@ void MpManager::draw()
     Game::debugger->draw();
 
     SDL_RenderPresent( Game::renderer );
+}
+
+void MpManager::reloadGUI()
+{
+    Game::configuration->resizeWindow();
+
+    for (auto &player     : players    )     player->reloadGUI();
+    for (auto &bullet     : bullets    )     bullet->reloadGUI();
+    for (auto &animation  : animations )  animation->reloadGUI();
+    map->reloadGUI();
+
 }
 
 void MpManager::handleEvent()

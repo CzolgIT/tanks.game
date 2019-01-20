@@ -41,7 +41,7 @@ Animation::Animation( AnimationType type , SDL_Point position , int rotation )
     this->y = position.y;
 
     for( int i=0; i<frames; i++ )
-        this->Sheet[i] = new Sprite( this->tex , { i*this->dimensions.x , 0 , this->dimensions.x , this->dimensions.y } , int(Game::configuration->getScale() * 0.8));
+        this->Sheet[i] = new Sprite( this->tex , { i*this->dimensions.x , 0 , this->dimensions.x , this->dimensions.y } , Game::configuration->getScale() * 0.8);
     this->frame = 0;
     this->todelete = false;
 }
@@ -59,4 +59,14 @@ void Animation::draw(int x0, int y0)
 bool Animation::gettodelete()
 {
     return todelete;
+}
+
+void Animation::reloadGUI()
+{
+    for( int i=0; i<frames; i++ )
+    {
+        delete this->Sheet[i];
+        this->Sheet[i] = nullptr;
+        this->Sheet[i] = new Sprite(this->tex, {i * this->dimensions.x, 0, this->dimensions.x, this->dimensions.y}, Game::configuration->getScale() * 0.8);
+    }
 }

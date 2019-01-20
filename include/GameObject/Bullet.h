@@ -11,6 +11,7 @@ public:
     void draw( int x0 , int y0 );
     void move();
     void destroy();
+    void reloadGUI();
 
     int getId();
 
