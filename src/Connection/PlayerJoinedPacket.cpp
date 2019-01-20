@@ -33,7 +33,8 @@ void PlayerJoinedPacket::setNickname(std::string nickname) {
     }
 }
 
-std::string PlayerJoinedPacket::getNickname() const {
-    return toString(data[2])+toString(data[3])+toString(data[4])+toString(data[5])
-           +toString(data[6])+toString(data[7])+toString(data[8])+toString(data[9])+toString(data[10])+toString(data[11]);
+std::string PlayerJoinedPacket::getNickname() const
+{
+    return toString(toString(data[2])+toString(data[3])+toString(data[4])+toString(data[5])
+           +toString(data[6])+toString(data[7])+toString(data[8])+toString(data[9])+toString(data[10])+toString(data[11]));
 }

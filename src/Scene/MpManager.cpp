@@ -157,7 +157,7 @@ void MpManager::loadFromServer()
             case PT_PLAYER_DEAD:{
                 auto* packet = (PlayerDeadPacket*) received;
 
-                deads.push_back(new TextStatic("Gracz " + netManager->clientsMap[packet->getPlayerId()] + " zastrzelony przez " + netManager->clientsMap[packet->getKillerId()],32,0.5,1,0.1));
+                deads.push_back(new TextStatic("Gracz " + toString(netManager->clientsMap[packet->getPlayerId()]) + " zastrzelony przez " + toString(netManager->clientsMap[packet->getKillerId()]),32,0.5,1,0.1));
 
             }
                 break;
