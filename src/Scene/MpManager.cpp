@@ -158,6 +158,9 @@ void MpManager::loadFromServer()
                 break;
             case PT_PLAYER_DEAD:{
                 auto* packet = (PlayerDeadPacket*) received;
+
+                deads.push_back(new TextStatic("Gracz " + netManager->clientsMap[packet->getPlayerId()] + " zastrzelony przez " + netManager->clientsMap[packet->getKillerId()],32,0.5,1,0.1));
+
                 Game::textManager->draw("Gracz " + netManager->clientsMap[packet->getPlayerId()] + " zastrzelony przez " + netManager->clientsMap[packet->getKillerId()],0,0,20,C_BLACK,
                                         false);
                 if (packet->getPlayerId() == myPlayer->getId())
@@ -219,6 +222,7 @@ void MpManager::draw()
     for (auto &bullet     : bullets    )     bullet->draw(x0,y0);
     for (auto &animation  : animations )  animation->draw(x0,y0);
     for (auto &player     : players    ) player->drawInfo(x0,y0);
+    for (auto &text       : deads      )  text->draw();
 
     Game::debugger->draw();
 
