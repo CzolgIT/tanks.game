@@ -244,6 +244,10 @@ void NetManager::getAllPlayersData()
             p->print();
             clientsMap.erase(p->getId());
         }
+        else if(received->getType() == PT_SCORE_INFO){
+            auto *p = (ScoreInfoPacket *)received;
+            p->print();
+        }
 
     }
 }

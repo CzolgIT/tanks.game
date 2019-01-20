@@ -72,6 +72,15 @@ void MpManager::everyStep()
 
     if (!myPlayer->isDead)
         sendMovement();
+    else{
+        const Uint8 *state = SDL_GetKeyboardState(nullptr);
+        if(state[SDL_SCANCODE_RETURN]){
+            auto *playerReadyPacket = new PlayerReadyPacket;
+            playerReadyPacket->setId(static_cast<Uint8>(netManager->getMyId()));
+            netManager->tcpSend(playerReadyPacket);
+            myPlayer->isDead = false;
+        }
+    }
 
 }
 
