@@ -38,6 +38,8 @@ public:
 
     void setActualHp(int actualHp);
 
+    bool isDead = false;
+
 private:
 
     int id;
@@ -48,6 +50,7 @@ private:
     Vector2D blocked;
 
     float xFloat , yFloat;
+
 
     int tankSpeed , rotationSpeed , turretRotationSpeed;
 

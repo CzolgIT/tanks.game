@@ -67,7 +67,9 @@ void MpManager::everyStep()
             ++animation_iterator;
     }
 
-    sendMovement();
+
+    if (!myPlayer->isDead)
+        sendMovement();
 
 }
 
@@ -158,6 +160,10 @@ void MpManager::loadFromServer()
                 auto* packet = (PlayerDeadPacket*) received;
                 Game::textManager->draw("Gracz " + netManager->clientsMap[packet->getPlayerId()] + " zastrzelony przez " + netManager->clientsMap[packet->getKillerId()],0,0,20,C_BLACK,
                                         false);
+                if (packet->getPlayerId() == myPlayer->getId())
+                {
+                    myPlayer->isDead = true;
+                }
             }
                 break;
         }
