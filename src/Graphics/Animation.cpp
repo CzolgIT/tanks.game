@@ -53,7 +53,7 @@ void Animation::draw(int x0, int y0)
     if (int(frame)>=frames)
         this->todelete = true;
     else
-        this->Sheet[int(frame)]->draw( { int(x0 + x) , int(y0 + y) } ,rotation);
+        this->Sheet[int(frame)]->draw( { int(x0 + double(x)*Game::configuration->getScale() ) , int(y0 + double(y)*Game::configuration->getScale()) } ,rotation);
 }
 
 bool Animation::gettodelete()

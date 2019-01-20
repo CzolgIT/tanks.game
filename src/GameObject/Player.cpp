@@ -42,8 +42,8 @@ void Player::simulate()
 {
     float step = Game::windowManager->getStepTime();
 
-    xFloat += cos((direction) *M_PI/180) * tankSpeed * step;
-    yFloat += sin((direction) *M_PI/180) * tankSpeed * step;
+    xFloat += cos(double(direction) *M_PI/180) * tankSpeed * step;
+    yFloat += sin(double(direction) *M_PI/180) * tankSpeed * step;
 
     position.x = int(xFloat);
     position.y = int(yFloat);
@@ -119,8 +119,8 @@ SDL_Point Player::smokePosition()
 
 
     SDL_Point punkt;
-    punkt.x = (int)(position.x * Game::configuration->getScale() + (cos((direction+los) *M_PI/180) * -50 * Game::configuration->getScale() ));
-    punkt.y = (int)(position.y * Game::configuration->getScale() + (sin((direction+los) *M_PI/180) * -50 * Game::configuration->getScale() ));
+    punkt.x = (int)(position.x + (cos((direction+los) *M_PI/180) * -50));
+    punkt.y = (int)(position.y + (sin((direction+los) *M_PI/180) * -50));
     return punkt;
 }
 

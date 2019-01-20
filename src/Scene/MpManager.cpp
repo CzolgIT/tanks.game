@@ -20,7 +20,6 @@ void MpManager::everyStep()
     Mix_Volume(3, myPlayer->getTankSpeed()/3  );
 
     loadFromServer();
-    sendMovement();
 
     // simulate movement
     for (auto &p : players)
@@ -67,6 +66,8 @@ void MpManager::everyStep()
         else
             ++animation_iterator;
     }
+
+    sendMovement();
 
 }
 
@@ -130,9 +131,6 @@ void MpManager::loadFromServer()
             {
                 auto* packet = (BulletInfoPacket*)received;
 
-                int bx = int(packet->getX()*Game::configuration->getScale());
-                int by = int(packet->getY()*Game::configuration->getScale());
-
                 if ((int)packet->getX() == 0 || (int)packet->getY() == 0)
                 {
                     for (auto &bullet: bullets)
@@ -144,16 +142,16 @@ void MpManager::loadFromServer()
                     }
                     break;
                 }
+                else
+                {
+                    auto * bullet = new Bullet( {packet->getX(),packet->getY()} , packet->getAngle() , packet->getBulletId());
+                    bullets.push_back(bullet);
 
+                    auto* tankshoot = new Animation( TANKSHOOT , {packet->getX(),packet->getY()} , packet->getAngle() );
+                    animations.push_back(tankshoot);
 
-                auto * bullet = new Bullet( {bx,by} , packet->getAngle() , packet->getBulletId());
-                bullets.push_back(bullet);
-
-                auto* tankshoot = new Animation( TANKSHOOT , {bx,by} , packet->getAngle() );
-                animations.push_back(tankshoot);
-
-                Game::soundManager->PlayShootSound();
-                //delete packet;
+                    Game::soundManager->PlayShootSound();
+                }
             }
                 break;
         }
