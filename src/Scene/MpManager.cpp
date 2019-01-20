@@ -170,6 +170,7 @@ void MpManager::loadFromServer()
                     myPlayer->isDead = true;
                 }
             }
+            break;
             case PT_SCORE_INFO:
             {
                 auto *packet = (ScoreInfoPacket*) received;
