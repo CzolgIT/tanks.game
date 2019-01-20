@@ -8,7 +8,7 @@ void SoundManager::PlayBackgroundMusic()
     {
         if(Mix_OpenAudio(44100,MIX_DEFAULT_FORMAT,2,2048) < 0)
             std::cout << "Error: " << Mix_GetError() << std::endl;
-        Mix_Music *bgm = Mix_LoadMUS("assets/sounds/background_music.mp3");
+        Mix_Music *bgm = Mix_LoadMUS("assets/sounds/Desert-Mayhem.mp3");
         if(!Mix_PlayingMusic())
             Mix_PlayMusic(bgm,-1);
         Mix_HaltChannel(2);
@@ -40,8 +40,8 @@ void SoundManager::PlayShootSound()
             Mix_PlayChannel(5, dawaj, 0);
         }
         Mix_PlayChannel(1, bullet, 0);
-        Mix_Volume(1, 50);
-        Mix_Volume(5, 50);
+        Mix_Volume(1, 20);
+        Mix_Volume(5, 40);
     }
 }
 
@@ -92,7 +92,7 @@ void SoundManager::PlayMenuMusic()
     {
         if(Mix_OpenAudio(44100,MIX_DEFAULT_FORMAT,2,2048) < 0)
             std::cout << "Error: " << Mix_GetError() << std::endl;
-        Mix_Chunk *menu = Mix_LoadWAV("assets/sounds/menu_sound.wav");
+        Mix_Chunk *menu = Mix_LoadWAV("assets/sounds/Urban-Assault.mp3");
         if(!Mix_Playing(2))
             Mix_PlayChannel(2, menu, 0);
         Mix_Volume(2, 50);
