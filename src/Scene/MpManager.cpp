@@ -154,6 +154,12 @@ void MpManager::loadFromServer()
                 }
             }
                 break;
+            case PT_PLAYER_DEAD:{
+                auto* packet = (PlayerDeadPacket*) received;
+                Game::textManager->draw("Gracz " + netManager->clientsMap[packet->getPlayerId()] + " zastrzelony przez " + netManager->clientsMap[packet->getKillerId()],0,0,20,C_BLACK,
+                                        false);
+            }
+                break;
         }
         delete received;
     }
