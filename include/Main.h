@@ -62,6 +62,7 @@
 #include "Connection/MapDataPacket.h"
 #include "Connection/PlayerDisconnectedPacket.h"
 #include "Connection/PlayerJoinedPacket.h"
+#include "Connection/PlayerReadyPacket.h"
 #include "Connection/SyncPacket.h"
 #include "Connection/EventPacket.h"
 #include "Connection/NetPlayer.h"

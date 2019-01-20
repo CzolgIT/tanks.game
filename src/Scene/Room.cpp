@@ -42,6 +42,12 @@ void  Room::handleEvent()
     {
         case SDLK_RETURN:
             flagReturn = elements[selected]->getFlag();
+            if(flagReturn == 8){
+                auto * playerReadyPacket = new PlayerReadyPacket();
+                std::cout << "moje id - " << Game::netManager->getMyId() << std::endl;
+                playerReadyPacket->setId(static_cast<Uint8>(Game::netManager->getMyId()));
+                Game::netManager->tcpSend(playerReadyPacket);
+            }
             running = false;
             break;
         case SDLK_UP:
