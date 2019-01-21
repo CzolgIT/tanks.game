@@ -19,8 +19,6 @@ public:
     static Map* map;
 
 private:
-
-    void CheckColliders();
     void loadFromServer();
     void sendMovement();
 

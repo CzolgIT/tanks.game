@@ -4,10 +4,6 @@ Map::Map() {
 
     characters = new char[MAP_WIDTH*MAP_HEIGHT];
 
-    // Domyslna mapa jesli zadna nie zostala otrzymana
-
-    //strcpy(characters,"EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
-
     for (int i = 0; i < 37; i++)
     {
         elements[i] = new Sprite(Game::textureManager->map, {160*i,0,160,160}, float(0.41 * Game::configuration->getScale()));

@@ -1,6 +1,6 @@
 #include "Main.h"
 
-Settings::Settings() : _Menu(5)
+Settings::Settings() : _Menu(3)
 {
     // najpierw buttony
     elements.push_back( new Button( "video" , 32 , 21.5 , 4 ) );
