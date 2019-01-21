@@ -96,23 +96,14 @@
 
 #define delete_object(x) {delete x; x = nullptr;}
 
-#define NICKNAME "Gracz"
-
 #define SIGMAIP "153.19.7.230"
 //#define LOCALIP "127.0.0.1"
 #define LOCALIP "25.63.145.1"
 #define SERVERPORT 7777
 
-//Tank Globals
-#define TANKMAXSPEED 300 //200
-#define TANKMAXDIR 180 //128
-#define TANKACCELERATION 3
 #define TANKSCALE 0.5
 #define BULLETSPEED 1100
 
-#define SPRITESCALE 1
-
-// Some Colors
 const SDL_Color C_RED = { 255 , 100 , 0 };
 const SDL_Color C_BLUE = { 100 , 0 , 255 };
 const SDL_Color C_BLACK = { 0 , 0 , 0 };
