@@ -6,7 +6,6 @@ _GameObject::_GameObject( SDL_Point position , SDL_Point dimensions , int direct
     this->dimensions = dimensions;
     this->direction = direction;
 
-    this->collider = new Collider( position , dimensions , direction );
     this->type = type;
     this->toDestroy = false;
 }
