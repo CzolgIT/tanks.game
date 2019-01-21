@@ -138,6 +138,8 @@ void MpManager::loadFromServer()
                 {
                     if (packet->getId() == (*players_iterator)->getId())
                     {
+                        std::string info = (*players_iterator)->getNickname();
+                        deads.push_back(new TextStatic(info.append(" left"),32,0.5,1,0.1));
                         delete *players_iterator;
                         players_iterator = players.erase(players_iterator);
                     }
