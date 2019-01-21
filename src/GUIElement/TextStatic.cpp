@@ -2,13 +2,18 @@
 
 #include "Main.h"
 
-TextStatic::TextStatic( std::string name , float x , float y , float size , float shadow ) : _Element( std::move(name), x , y )
+TextStatic::TextStatic( std::string name , float x , float y , float size , float shadow ) : _Element( name , x , y )
 {
     this->size = size;
     this->shadow = shadow;
     loadTexture();
 }
-void TextStatic::draw(int line)
+void TextStatic::draw()
+{
+    black->draw(int(x*xScale) + int((shadow == -1) ? yScale/9 : yScale*shadow), int(y*yScale) + int((shadow == -1) ? yScale/9 : yScale*shadow));
+    white->draw(int(x*xScale) , int(y*yScale));
+}
+void TextStatic::drawInLine(int line)
 {
     black->draw(int(x*xScale) + int((shadow == -1) ? yScale/9 : yScale*shadow), yScale*line + int(y*yScale) + int((shadow == -1) ? yScale/9 : yScale*shadow));
     white->draw(int(x*xScale) , yScale*line + int(y*yScale));
@@ -39,5 +44,4 @@ void TextStatic::setNewName(std::string nname)
     free(white);
     free(black);
     loadTexture();
-
 }

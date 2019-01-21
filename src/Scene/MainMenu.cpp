@@ -44,7 +44,7 @@ MainMenu::MainMenu() : _Menu(4)
         if (inputText == "")
             inputText = "Player";
 
-        elements.clear();
+        elements.erase(elements.begin(),elements.end());
         Game::configuration->setNickname(inputText);
 
     }
