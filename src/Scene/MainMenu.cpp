@@ -45,6 +45,7 @@ MainMenu::MainMenu() : _Menu(4)
         SDL_StopTextInput();
         elements.clear();
         setNickname(inputText);
+        Game::configuration = new Configuration();
 
     }
 
