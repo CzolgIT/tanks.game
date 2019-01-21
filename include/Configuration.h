@@ -44,8 +44,15 @@ private:
     bool sounds;
 
     std::string nickname;
+public:
 
-        Uint32 rendererFlags;
+    bool isNicknameSet();
+
+    void setNickname(const std::string &nickname);
+
+private:
+
+    Uint32 rendererFlags;
         float scale;
 
     void writeFile();

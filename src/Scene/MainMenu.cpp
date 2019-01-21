@@ -5,16 +5,16 @@ MainMenu::MainMenu() : _Menu(4)
     if (Game::netManager != nullptr)
         Game::netManager->disconnectPlayer();
 
-    if (!Game::isNicknameSet()) {
+    if (!Game::configuration->isNicknameSet()) {
 
         SDL_Event e;
         bool quit = false;
-        SDL_StartTextInput();
         elements.push_back( new TextStatic( "Enter your nickname" , 32 , 2.3 , 3 , 0.2 ) );
         std::string inputText = "";
 
         TextStatic *txt = new TextStatic(inputText, 32 , 8.3 , 6 , 0.2);
         elements.push_back(txt);
+        SDL_StartTextInput();
         while (!quit) {
 
             while (SDL_PollEvent(&e) != 0) {
@@ -39,11 +39,12 @@ MainMenu::MainMenu() : _Menu(4)
             else txt->setNewName("\"\"");
             draw();
         }
+        if (inputText == "")
+            inputText = "Player";
 
         SDL_StopTextInput();
         elements.clear();
-        Game::setNickname(inputText);
-        Game::configuration = new Configuration();
+        Game::configuration->setNickname(inputText);
 
     }
 
