@@ -201,6 +201,11 @@ void MpManager::loadFromServer()
                 }
             }
             break;
+            case PT_POWERUP:{
+                //TODO: Andrzeju, tutaj odbierasz info od pakietow i je rysujesz/robisz whatever you want
+            }
+
+            break;
         }
         delete received;
     }
