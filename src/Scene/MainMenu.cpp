@@ -48,7 +48,7 @@ MainMenu::MainMenu() : _Menu(4)
         Game::configuration->setNickname(inputText);
 
     }
-
+    reloadGUI();
 
 
     // najpierw buttony
