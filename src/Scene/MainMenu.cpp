@@ -39,10 +39,11 @@ MainMenu::MainMenu() : _Menu(4)
             else txt->setNewName("\"\"");
             draw();
         }
+
+        SDL_StopTextInput();
         if (inputText == "")
             inputText = "Player";
 
-        SDL_StopTextInput();
         elements.clear();
         Game::configuration->setNickname(inputText);
 

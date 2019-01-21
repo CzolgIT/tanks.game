@@ -169,7 +169,6 @@ void Configuration::setNickname(const std::string &name) {
 
 bool Configuration::isNicknameSet() {
 
-    std::cout << nickname << std::endl;
     if (nickname.compare("") == 0)
     {
         return false;
