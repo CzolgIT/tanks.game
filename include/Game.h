@@ -22,6 +22,11 @@ public:
     static WindowManager* windowManager;
     static SoundManager* soundManager;
 
+
+    static bool isNicknameSet();
+    static void setNickname(std::string name);
+
+
 private:
 
     _Scene * currentScene;

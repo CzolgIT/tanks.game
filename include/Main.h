@@ -81,8 +81,6 @@
 #include "Scene/_Menu.h"
 #include "Scene/Settings.h"
 #include "Scene/SettingsVideo.h"
-#include "Scene/SettingsAudio.h"
-#include "Scene/SettingsController.h"
 #include "Scene/SettingsGame.h"
 #include "Scene/Room.h"
 #include "Scene/MainMenu.h"

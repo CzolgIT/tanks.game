@@ -5,13 +5,13 @@ MainMenu::MainMenu() : _Menu(4)
     if (Game::netManager != nullptr)
         Game::netManager->disconnectPlayer();
 
-    if (!isNicknameSet()) {
+    if (!Game::isNicknameSet()) {
 
         SDL_Event e;
         bool quit = false;
         SDL_StartTextInput();
         elements.push_back( new TextStatic( "Enter your nickname" , 32 , 2.3 , 3 , 0.2 ) );
-        std::string inputText = " ";
+        std::string inputText = "";
 
         TextStatic *txt = new TextStatic(inputText, 32 , 8.3 , 6 , 0.2);
         elements.push_back(txt);
@@ -35,16 +35,14 @@ MainMenu::MainMenu() : _Menu(4)
 
             }
             if (inputText != "")
-                 txt->setNewName(inputText);
-            else txt->setNewName(" ");
-                draw();
-
+                 txt->setNewName("\""+inputText+"\"");
+            else txt->setNewName("\"\"");
+            draw();
         }
 
-        std::cout << inputText << std::endl;
         SDL_StopTextInput();
         elements.clear();
-        setNickname(inputText);
+        Game::setNickname(inputText);
         Game::configuration = new Configuration();
 
     }
@@ -67,30 +65,3 @@ MainMenu::MainMenu() : _Menu(4)
 
 }
 
-bool MainMenu::isNicknameSet() {
-
-    std::ifstream infile("config.txt");
-    std::string name ("NAME");
-
-    std::string line;
-    while (std::getline(infile, line))
-    {
-        if( name.compare(line.substr(0,4)) == 0)
-        {
-            if (line.length() <=5)
-            {
-                infile.close();
-                return false;
-            }
-        }
-    }
-    infile.close();
-    return true;
-}
-
-void MainMenu::setNickname(std::string name) {
-
-    std::fstream config("config.txt", std::fstream::app);
-    config << " "<< name;
-    config.close();
-}
