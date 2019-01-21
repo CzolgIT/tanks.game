@@ -77,6 +77,19 @@ void MpManager::everyStep()
             ++animation_iterator;
     }
 
+    // deleting infos
+    auto info_iterator = deads.begin();
+    while(info_iterator != deads.end())
+    {
+        if((*info_iterator)->todestroy)
+        {
+            delete *info_iterator;
+            info_iterator = deads.erase(info_iterator);
+        }
+        else
+            ++info_iterator;
+    }
+
     if (!myPlayer->isDead)
         sendMovement();
     else{
@@ -112,14 +125,6 @@ void MpManager::loadFromServer()
                         player->setFromPacket(packet);
                     }
                 }
-//                if (!player_found) {
-//                    auto *newPlayer = new Player((int) packet->getPlayerId(), netManager->clientsMap[packet->getPlayerId()]);
-//                    newPlayer->setFromPacket(packet);
-//                    players.push_back(newPlayer);
-//                    std::string info = newPlayer->getNickname();
-//                    deads.push_back(new TextStatic(info.append(" joined to the game "),32,0.5,1,0.1));
-//                }
-                //delete packet;
             }
                 break;
             case PT_PLAYER_DISCONNECTED:
@@ -190,15 +195,21 @@ void MpManager::loadFromServer()
             case PT_PLAYER_DEAD:{
                 auto* packet = (PlayerDeadPacket*) received;
 
-                std::string info = "gracz ";
-                deads.push_back(new TextStatic(info.append(toString(netManager->clientsMap[packet->getPlayerId()])).append(" zastrzelony przez ").append(toString(netManager->clientsMap[packet->getKillerId()])),32,0.5,1,0.1));
-
                 for (auto &player : players) {
                     if (player->getId() == packet->getPlayerId())
                     {
                         Game::soundManager->PlayExplosionSound();
                         auto* tankexplode = new Animation( TANKEXPLODE , {player->getX(),player->getY()} , 0 );
                         animations.push_back(tankexplode);
+
+                        for (auto &killer : players)
+                        {
+                            if (killer->getId() == packet->getKillerId())
+                            {
+                                deads.push_back(new TextStatic(player->getNickname().append(" was killed by ").append(killer->getNickname()),32,0.5,1,0.1));
+                            }
+                        }
+
                     }
                 }
 

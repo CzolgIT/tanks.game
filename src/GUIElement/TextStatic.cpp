@@ -7,6 +7,8 @@ TextStatic::TextStatic( std::string name , float x , float y , float size , floa
     this->size = size;
     this->shadow = shadow;
     loadTexture();
+    this->todestroy = false;
+    this->timer = 5;
 }
 void TextStatic::draw()
 {
@@ -15,6 +17,10 @@ void TextStatic::draw()
 }
 void TextStatic::drawInLine(int line)
 {
+    timer -= Game::windowManager->getStepTime();
+    if (timer<0)
+        todestroy=true;
+
     black->draw(int(x*xScale) + int((shadow == -1) ? yScale/9 : yScale*shadow), yScale*line + int(y*yScale) + int((shadow == -1) ? yScale/9 : yScale*shadow));
     white->draw(int(x*xScale) , yScale*line + int(y*yScale));
 }

@@ -16,12 +16,15 @@ public:
 
     void setNewName(std::string nname);
 
+    bool todestroy;
+
 private:
 
     Texture* black;
     Texture* white;
     float shadow;
     float size;
+    float timer;
 
 };
 
