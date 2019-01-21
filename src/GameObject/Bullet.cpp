@@ -29,9 +29,6 @@ void Bullet::move()
     position.x = int(floatX);
     position.y = int(floatY);
 
-    if ( floatX< 0 || floatX > 32*64 || floatY<0 || floatY> 32*64 )
-        this->setToBeDestroyed();
-
 }
 
 void Bullet::destroy()
