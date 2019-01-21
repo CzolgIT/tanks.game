@@ -73,17 +73,17 @@ void Player::drawInfo( int x0 , int y0 )
 
 
     Game::textManager->draw(nickname,x0+drawx,y0+drawy-90*scale,15*scale,C_BLACK,true);
-    Game::textManager->draw("S:"+std::to_string(score)+"D:"+std::to_string(deaths),x0+drawx,y0+drawy-110*scale,15*scale,C_BLACK,true);
+    //Game::textManager->draw("S:"+std::to_string(score)+"D:"+std::to_string(deaths),x0+drawx,y0+drawy-110*scale,15*scale,C_BLACK,true);
 
     SDL_Rect ramka = {int(x0+drawx-51*scale),int(y0+drawy-70*scale),int(102*scale),int(10*scale)};
-    SDL_SetRenderDrawColor( Game::renderer , 0 , 0 , 0 , 0 );
+    SDL_SetRenderDrawColor( Game::renderer , 0 , 0 , 0 , 255 );
     SDL_RenderFillRect( Game::renderer , &ramka );
 
     SDL_Rect ramka2 = {int(x0+drawx-50*scale),int(y0+drawy-69*scale), int(actualHp*scale) , int(8*scale) };
 
-    if (actualHp>49) SDL_SetRenderDrawColor( Game::renderer , 100 , 255 , 0 , 0 );
-    if (actualHp<50 && actualHp>24) SDL_SetRenderDrawColor( Game::renderer , 175 , 175 , 0 , 0 );
-    if (actualHp<25) SDL_SetRenderDrawColor( Game::renderer , 255 , 0 , 0 , 0 );
+    if (actualHp>49) SDL_SetRenderDrawColor( Game::renderer , 100 , 255 , 0 , 255 );
+    if (actualHp<50 && actualHp>24) SDL_SetRenderDrawColor( Game::renderer , 175 , 175 , 0 , 255 );
+    if (actualHp<25) SDL_SetRenderDrawColor( Game::renderer , 255 , 0 , 0 , 255 );
 
 
     SDL_RenderFillRect( Game::renderer , &ramka2 );

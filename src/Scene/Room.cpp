@@ -83,7 +83,7 @@ void Room::draw()
     Game::textManager->draw( "room: " + std::string(ipadress) , Game::configuration->getDisplayMode()->w/3 , 20 ,int(double(50)*Game::configuration->getScale()) , C_BLACK , true);
     Game::textManager->draw( "lista graczy: ",Game::configuration->getDisplayMode()->w/10,Game::configuration->getDisplayMode()->h/7,int(double(25)*Game::configuration->getScale()),C_BLACK,false);
 
-    Game::textManager->draw( "map: city" + std::string(ipadress) , 6*Game::configuration->getDisplayMode()->w/8 , Game::configuration->getDisplayMode()->h/9 ,int(double(30)*Game::configuration->getScale()) , C_BLACK , true);
+    Game::textManager->draw( "map: city" , 6*Game::configuration->getDisplayMode()->w/8 , Game::configuration->getDisplayMode()->h/9 ,int(double(30)*Game::configuration->getScale()) , C_BLACK , true);
     mapSprite->draw( { 6*Game::configuration->getDisplayMode()->w/8 , Game::configuration->getDisplayMode()->h/3 } );
 
 

@@ -268,6 +268,37 @@ void MpManager::draw()
         Game::textureManager->youdied->draw();
     }
 
+    const Uint8 *state = SDL_GetKeyboardState(nullptr);
+    if(state[SDL_SCANCODE_TAB])
+    {
+        int w = Game::configuration->getDisplayMode()->w;
+        int h = Game::configuration->getDisplayMode()->h;
+        SDL_Rect statramka = {w/4,h/4,w/2,h/2};
+        SDL_SetRenderDrawBlendMode(Game::renderer , SDL_BLENDMODE_BLEND);
+        SDL_SetRenderDrawColor( Game::renderer , 0 , 0 , 0 ,120);
+        SDL_RenderFillRect( Game::renderer , &statramka );
+
+        Game::textManager->draw("id",w/4+w/40,h/4+(w/40),20*Game::configuration->getScale(),C_WHITE);
+        Game::textManager->draw("nickname",w/4+w/10,h/4+(w/40),20*Game::configuration->getScale(),C_WHITE);
+        Game::textManager->draw("deaths",w/4+3*w/10,h/4+(w/40),20*Game::configuration->getScale(),C_WHITE);
+        Game::textManager->draw("score",w/4+4*w/10,h/4+(w/40),20*Game::configuration->getScale(),C_WHITE);
+
+        SDL_Rect statline = {w/4+w/40,h/4+2*w/36,w/2-w/20,5};
+        SDL_SetRenderDrawColor( Game::renderer , 255 , 255 , 255 ,255);
+        SDL_RenderFillRect( Game::renderer , &statline );
+
+        int iterator=3;
+        for (auto &player     : players    )
+        {
+            Game::textManager->draw(std::to_string(player->getId()),w/4+w/40,h/4+(w/40)*iterator,20*Game::configuration->getScale(),C_WHITE);
+            Game::textManager->draw(player->getNickname(),w/4+w/10,h/4+(w/40)*iterator,20*Game::configuration->getScale(),C_WHITE);
+            Game::textManager->draw(std::to_string(player->getDeaths()),w/4+3*w/10,h/4+(w/40)*iterator,20*Game::configuration->getScale(),C_WHITE);
+            Game::textManager->draw(std::to_string(player->getScore()),w/4+4*w/10,h/4+(w/40)*iterator,20*Game::configuration->getScale(),C_WHITE);
+            iterator++;
+        }
+
+    }
+
 
     Game::debugger->draw();
 
