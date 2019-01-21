@@ -10,6 +10,7 @@ public:
     explicit Room( std::string ipadress );
     void handleEvent() override;
     void draw() override;
+    void reloadGUI() override;
 
     int selectedTank;
 
@@ -22,6 +23,7 @@ private:
 
     std::string ipadress;
 
+    Sprite* mapSprite;
     TankSprite* sprite[6];
     float dir;
 

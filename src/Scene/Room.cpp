@@ -19,12 +19,14 @@ Room::Room(std::string ipadress) : _Scene()
     }
     std::cout << "Connected to lobby" << std::endl;
     
-    sprite[0] = new TankSprite( 1 , 0.5 );
-    sprite[1] = new TankSprite( 2 , 0.5 );
-    sprite[2] = new TankSprite( 3 , 0.5 );
-    sprite[3] = new TankSprite( 4 , 0.5 );
-    sprite[4] = new TankSprite( 5 , 0.5 );
-    sprite[5] = new TankSprite( 6 , 0.5 );
+    sprite[0] = new TankSprite( 1 , 0.4 * Game::configuration->getScale() );
+    sprite[1] = new TankSprite( 2 , 0.4 * Game::configuration->getScale() );
+    sprite[2] = new TankSprite( 3 , 0.4 * Game::configuration->getScale() );
+    sprite[3] = new TankSprite( 4 , 0.4 * Game::configuration->getScale() );
+    sprite[4] = new TankSprite( 5 , 0.4 * Game::configuration->getScale() );
+    sprite[5] = new TankSprite( 6 , 0.4 * Game::configuration->getScale() );
+
+    mapSprite = new Sprite(Game::textureManager->mapmin,{0,0,957,957},0.1 * Game::configuration->getDisplayMode()->h/300 );
 
     bt = new Button( "join", 50,26, 8 );
     bt2 = new Button( "back", 50,30, 0 );
@@ -78,14 +80,18 @@ void Room::draw()
     dir+=100 * Game::windowManager->getStepTime();
     if (dir>=360) dir-=360;
 
-    Game::textManager->draw( "room: " + std::string(ipadress) , 400 , 20 ,65 , C_BLACK , true);
-    Game::textManager->draw( "lista graczy: ",80,160,35,C_BLACK,false);
+    Game::textManager->draw( "room: " + std::string(ipadress) , Game::configuration->getDisplayMode()->w/3 , 20 ,int(double(50)*Game::configuration->getScale()) , C_BLACK , true);
+    Game::textManager->draw( "lista graczy: ",Game::configuration->getDisplayMode()->w/10,Game::configuration->getDisplayMode()->h/7,int(double(25)*Game::configuration->getScale()),C_BLACK,false);
+
+    Game::textManager->draw( "map: city" + std::string(ipadress) , 6*Game::configuration->getDisplayMode()->w/8 , Game::configuration->getDisplayMode()->h/9 ,int(double(30)*Game::configuration->getScale()) , C_BLACK , true);
+    mapSprite->draw( { 6*Game::configuration->getDisplayMode()->w/8 , Game::configuration->getDisplayMode()->h/3 } );
+
 
     int i = 0;
     for (auto const& client : Game::netManager->clientsMap){
-        sprite[(client.first-1)%6]->draw( { 140 , 260+(i*60) } , int(dir) , int(dir) , 0 );
-        Game::textManager->draw(std::to_string(client.first),80,240+(i*60),30,C_BLACK,false);
-        Game::textManager->draw((client.second),180,240+(i*60),30,C_BLACK,false);
+        sprite[(client.first-1)%6]->draw( { Game::configuration->getDisplayMode()->w/12 + Game::configuration->getDisplayMode()->w/18 , Game::configuration->getDisplayMode()->h/5+(i*int(double(50)*Game::configuration->getScale())) + int(double(10)*Game::configuration->getScale())} , int(dir) , int(dir) , 0 );
+        Game::textManager->draw(std::to_string(client.first),Game::configuration->getDisplayMode()->w/10,Game::configuration->getDisplayMode()->h/5+(i*int(double(50)*Game::configuration->getScale())),int(double(20)*Game::configuration->getScale()),C_BLACK,false);
+        Game::textManager->draw((client.second),Game::configuration->getDisplayMode()->w/10+Game::configuration->getDisplayMode()->w/15,Game::configuration->getDisplayMode()->h/5+(i*int(double(50)*Game::configuration->getScale())),int(double(20)*Game::configuration->getScale()),C_BLACK,false);
         i++;
     }
 
@@ -94,4 +100,29 @@ void Room::draw()
 
     Game::debugger->draw();
     SDL_RenderPresent( Game::renderer );
+}
+
+void Room::reloadGUI()
+{
+    Game::configuration->resizeWindow();
+
+    delete sprite[0];
+    delete sprite[1];
+    delete sprite[2];
+    delete sprite[3];
+    delete sprite[4];
+    delete sprite[5];
+
+    sprite[0] = new TankSprite( 1 , 0.4 * Game::configuration->getScale() );
+    sprite[1] = new TankSprite( 2 , 0.4 * Game::configuration->getScale() );
+    sprite[2] = new TankSprite( 3 , 0.4 * Game::configuration->getScale() );
+    sprite[3] = new TankSprite( 4 , 0.4 * Game::configuration->getScale() );
+    sprite[4] = new TankSprite( 5 , 0.4 * Game::configuration->getScale() );
+    sprite[5] = new TankSprite( 6 , 0.4 * Game::configuration->getScale() );
+
+    delete mapSprite;
+    mapSprite = new Sprite(Game::textureManager->mapmin,{0,0,957,957},0.1 * Game::configuration->getDisplayMode()->h/300 );
+
+    elements[0]->updateScale();
+    elements[1]->updateScale();
 }

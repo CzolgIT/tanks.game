@@ -33,6 +33,7 @@ public:
     Texture* bulletexplode;
 
     Texture* map;
+    Texture* mapmin;
 
     TextStatic* youdied;
 

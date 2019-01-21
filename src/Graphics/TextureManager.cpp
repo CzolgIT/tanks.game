@@ -26,6 +26,7 @@ TextureManager::TextureManager()
     this->bulletexplode = new Texture( "assets/animation/bullet_explode.png" );
 
     this->map = new Texture("assets/city_strip.png");
+    this->mapmin = new Texture("assets/mapmin.png");
 
     this->youdied = new TextStatic("you died! please enter to respawn",32,17,2,0.1);
 }
