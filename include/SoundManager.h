@@ -15,6 +15,8 @@ public:
     void PlayEngineSound();
     void PlayTurretSound();
     void PlayClickSound();
+    void PlayPowerUpSound();
+    void PlayExplosionSound();
 
 private:
 

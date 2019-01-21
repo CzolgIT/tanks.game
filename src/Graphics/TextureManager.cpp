@@ -5,7 +5,7 @@ TextureManager::TextureManager()
     // user interface
     this->button = new Texture( "assets/button.png" );
     this->button->setAlignCenter( true );
-    this->youdied = new TextStatic("you died! please enter to respawn",32,17,2,0.1);
+    this->youdied = new TextStatic("you died! press enter to respawn",32,17,2,0.1);
 
     // map elements
     this->background = new Texture( "assets/map.png" );
@@ -33,5 +33,5 @@ void TextureManager::reloadGUI()
 {
     delete this->youdied;
     this->youdied = nullptr;
-    this->youdied = new TextStatic("you died! please enter to respawn",32,17,2,0.1);
+    this->youdied = new TextStatic("you died! press enter to respawn",32,17,2,0.1);
 }

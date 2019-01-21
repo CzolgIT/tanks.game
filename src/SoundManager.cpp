@@ -57,6 +57,30 @@ void SoundManager::PlayClickSound()
     }
 }
 
+void SoundManager::PlayPowerUpSound()
+{
+    if (Game::configuration->getSounds())
+    {
+        if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+            std::cout << "Error: " << Mix_GetError() << std::endl;
+        Mix_AllocateChannels(8);
+        Mix_Chunk *power = Mix_LoadWAV("assets/sounds/power-up.wav");
+        Mix_PlayChannel(7, power, 0);
+    }
+}
+
+void SoundManager::PlayExplosionSound()
+{
+    if (Game::configuration->getSounds())
+    {
+        if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+            std::cout << "Error: " << Mix_GetError() << std::endl;
+        Mix_AllocateChannels(9);
+        Mix_Chunk *explode = Mix_LoadWAV("assets/sounds/Explosion.wav");
+        Mix_PlayChannel(8, explode, 0);
+    }
+}
+
 void SoundManager::PlayEngineSound()
 {
     if (Game::configuration->getSounds())
@@ -94,7 +118,7 @@ void SoundManager::PlayMenuMusic()
             std::cout << "Error: " << Mix_GetError() << std::endl;
         Mix_Chunk *menu = Mix_LoadWAV("assets/sounds/Urban-Assault.mp3");
         if(!Mix_Playing(2))
-            Mix_PlayChannel(2, menu, 0);
+            Mix_PlayChannel(2, menu, -1);
         Mix_Volume(2, 50);
         Mix_Quit();
     }

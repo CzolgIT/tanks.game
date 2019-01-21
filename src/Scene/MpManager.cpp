@@ -19,7 +19,7 @@ MpManager::MpManager(): _Scene()
 
 void MpManager::everyStep()
 {
-    Mix_Volume(3, myPlayer->getTankSpeed()/2  );
+    Mix_Volume(3, abs(myPlayer->getTankSpeed()/2)  );
     Mix_Volume(4, abs(myPlayer->getTurretRotationSpeed())  );
 
     loadFromServer();
@@ -177,6 +177,7 @@ void MpManager::loadFromServer()
                 for (auto &player : players) {
                     if (player->getId() == packet->getPlayerId())
                     {
+                        Game::soundManager->PlayExplosionSound();
                         auto* tankexplode = new Animation( TANKEXPLODE , {player->getX(),player->getY()} , 0 );
                         animations.push_back(tankexplode);
                     }
@@ -196,6 +197,7 @@ void MpManager::loadFromServer()
                     powerUps.push_back( new PowerUp( packet->getPowerUpId() , { packet->getX() , packet->getY() } , packet->getPowerUpType() ));
                 else
                 {
+                    Game::soundManager->PlayPowerUpSound();
                     auto powerup_iterator = powerUps.begin();
                     while(powerup_iterator != powerUps.end())
                     {
@@ -206,6 +208,7 @@ void MpManager::loadFromServer()
                         }
                         else
                             ++powerup_iterator;
+
                     }
                 }
 
