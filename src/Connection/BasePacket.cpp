@@ -4,7 +4,7 @@ BasePacket::BasePacket( PacketType type, unsigned int packetSize ):
         size((packetSize > 1) ? packetSize : 1) // size should be always 1 or greater
 
         {
-            data = new Uint8[size](); //allocate
+            data = new Uint8[size]();
             
             data[0] = type;
             

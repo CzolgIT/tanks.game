@@ -16,7 +16,6 @@ public:
 
 private:
 
-    //int direction;
     int id;
     double floatX,floatY;
     Sprite * sprite;

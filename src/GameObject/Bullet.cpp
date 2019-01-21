@@ -2,7 +2,6 @@
 
 Bullet::Bullet( SDL_Point position , int direction, int id ) : _GameObject( position , {36,12} , direction , DYNAMIC )
 {
-    //this->direction = direction;
     this->floatX = position.x;
     this->floatY = position.y;
     this->id = id;

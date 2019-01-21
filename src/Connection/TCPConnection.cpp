@@ -18,32 +18,26 @@ TCPConnection::~TCPConnection()
 
 bool TCPConnection::connectToServer(NetPlayer* player, std::string host, Uint16 port)
 {
-    // Resolve the server name
     if (SDLNet_ResolveHost(&ipAddress, host.c_str(), port))
     {
         std::cerr << "SDLNet_ResolveHost(" << host << ", " << port << ") error: "
             << SDLNet_GetError() << std::endl;
         return false;
     }
-    // Establish connection
     socket = SDLNet_TCP_Open(&ipAddress);
     if(!socket){
         std::cout << "wrong adress: "<< host << " : " << port << "\n";
-        //SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,"SDLNet_TCP_Open error\n",SDLNet_GetError(),nullptr);
-        //std::cerr << "SDLNet_TCP_Open error: " << SDLNet_GetError() << "\n";
         return false;
     }
 
     std::cout << "Established connection with server: " << host << " : " << port << ", requesting join...\n";
     
     JoinRequestPacket request(Game::configuration->getNickname());
-    
-    // Send request packet to the server
+
     SDLNet_TCP_Send(socket, request.getData(), request.getSize());
     
     JoinResponsePacket response;
-    
-    //read the response
+
     if(SDLNet_TCP_Recv(socket, response.getData(),response.getSize()) <= 0)
     {
         std::cerr << "SDLNet_TCP_Received error: " << SDLNet_GetError( ) << std::endl;
@@ -57,7 +51,6 @@ bool TCPConnection::connectToServer(NetPlayer* player, std::string host, Uint16 
     }
     if(response.getResponse() == JR_OK){
         std::cout << "The connection to the server was successful! : " << (int)response.getId() << "\n";
-//        setId(response.getId());
         player->id = (Uint8)(int)response.getId();
         std::cout << "X" <<  (int)player->id << "D" << std::endl;
         SDLNet_TCP_AddSocket(socketSet,socket);
@@ -105,13 +98,11 @@ void TCPConnection::sendPacket() {
     if(!packetQueue.empty()){
         queueMtx.lock();
 
-        //remove the packet
         BasePacket* packet = packetQueue.front();
         packetQueue.pop();
 
         queueMtx.unlock();
 
-        //send the front packet
 
         if(SDLNet_TCP_Send(socket,packet->getData(),packet->getSize())<(int)packet->getSize()){
             connectionGood = false;
@@ -124,15 +115,10 @@ void TCPConnection::sendPacket() {
 
 BasePacket* TCPConnection::getNextPacket() {
 
-    //check the sockets for readiness
 
     if(SDLNet_CheckSockets(socketSet,0)>0){
         if(SDLNet_SocketReady(socket)){
-
-            //read the first byte
             if(SDLNet_TCP_Recv(socket,uniPacket.getData(),1)>0){
-
-                //read first byte
 
                 int bytesRemaining;
                 switch(*uniPacket.getData())
@@ -164,7 +150,6 @@ BasePacket* TCPConnection::getNextPacket() {
                         break;
                 }
 
-                //rest of the packet
                 Uint8* packetContents = uniPacket.getData();
                 packetContents++;
                 if(SDLNet_TCP_Recv(socket,packetContents,bytesRemaining)<0){
@@ -207,7 +192,6 @@ void TCPConnection::addPacketToQueue(BasePacket *packet) {
 
     queueMtx.lock();
     packet->print();
-//    std::cout << "dodałem pakiet" << packet->print() << "do kolejki" << std::endl;
     packetQueue.push(packet);
     queueMtx.unlock();
 

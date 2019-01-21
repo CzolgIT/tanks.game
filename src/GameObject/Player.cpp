@@ -23,14 +23,8 @@ Player::Player( int id, std::string nickname ) : _GameObject( {-5000,-5000} , { 
 
 void Player::handleEvent( SDL_Event& e )
 {
-    // not used anymore
 }
 
-void Player::PushOut(Vector2D vec)
-{
-    blocked.x -= vec.x;
-    blocked.y -= vec.y;
-}
 
 void Player::move()
 {

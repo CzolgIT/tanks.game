@@ -67,21 +67,18 @@ bool Configuration::getDebug() { return debug; }
 
 void Configuration::writeFile()
 {
-    // zapisywanie wszystkich obecnych ustawien
+
 }
 
 void Configuration::readFile()
 {
-    // set default values
     this->quality = 1;
     this->acceleration = true;
     this->vsync = true;
-        // it should be over all possible resolutions
-        this->displayMode = new SDL_DisplayMode{ SDL_PIXELFORMAT_UNKNOWN, 10000, 10000, 0, nullptr };
+    this->displayMode = new SDL_DisplayMode{ SDL_PIXELFORMAT_UNKNOWN, 10000, 10000, 0, nullptr };
     this->fullscreen = true;
     this->debug = false;
 
-    // load from file
     std::ifstream infile("config.txt");
     std::string key;
 

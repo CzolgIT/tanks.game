@@ -42,21 +42,20 @@ bool NetManager::connect(std::string host, Uint16 port, Uint32 &globalTime) {
     }
 
     std::cout << "Made TCP and UDP connections" << std::endl;
-    //start different threads for every connection
+
     tcpConnection.startSenderThread();
     udpConnection.startSenderThread();
 
     SDL_Delay(3000);
     getAllPlayersData();
-    //ping the server
+
     if(!syncTimeWithServer(netPlayer, globalTime))
     {
         std::cout << "Couldn't sync with server" << std::endl;
         return false;
     }
     std::cout << "Synced with server" << std::endl;
-    //todo: do some stuff
-    //todo: get room info & stuff
+
     clientsMap[getMyId()] = Game::configuration->getNickname();
     netPlayer->nickname = Game::configuration->getNickname();
     getMap();
@@ -75,7 +74,6 @@ void NetManager::getMap(){
         if (canPollPacket()) {
             BasePacket *received = pollPacket();
             if (received->getType() == PT_MAP_INFO) {
-                // POBIERANIE MAPY
                 std::cout << "Got map packet" << std::endl;
                 MapDataPacket *m = (MapDataPacket *) received;
                 strcpy(MpManager::map->characters, m->getMapData());
@@ -96,19 +94,16 @@ void NetManager::getMap(){
 
 void NetManager::read() {
 
-    // read all pending udp packets
     bool udpPacketAvailable = true;
     while(udpPacketAvailable){
         BasePacket* received = udpConnection.getNextPacket();
 
-        // if the packet was not null, add it to the queue
         if(received != nullptr)
             packetQueue.push(received);
         else
             udpPacketAvailable = false;
     }
 
-    // read all pending tcp packets
     bool tcpPacketAvailable = true;
     while(tcpPacketAvailable){
         BasePacket* received = tcpConnection.getNextPacket();

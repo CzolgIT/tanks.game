@@ -4,10 +4,8 @@ Map* MpManager::map = nullptr;
 
 MpManager::MpManager(): _Scene()
 {
-    // net start
     this->netManager = Game::netManager;
 
-    // creating player
     myPlayer = new Player( Game::netManager->getMyId(), Game::netManager->getMyNickname() );
     players.push_back(myPlayer);
 
@@ -271,18 +269,14 @@ void MpManager::sendMovement()
             prevEventPacket = new EventPacket();
             prevEventPacket->setId(ep->getId());
             prevEventPacket->setKeys(ep->getKeys());
-        }else{
-//            std::cout << "nic sie nie stalo" << std::endl;
         }
     }else{
-        //delete_object(prevEventPacket);
         prevEventPacket = new EventPacket();
         prevEventPacket->setId(ep->getId());
         prevEventPacket->setKeys(ep->getKeys());
         std::cout << "przypisałem nowy pakiet jako wzorcowy" << std::endl;
         Game::netManager->udpSend(ep);
     }
-    //std::cout << "Wyslano pakiet" << std::endl;
 }
 
 
@@ -367,8 +361,7 @@ void MpManager::reloadGUI()
 
 void MpManager::handleEvent()
 {
-    // executing only on keyboard event
-    // use eventHandler
+
 }
 
 
