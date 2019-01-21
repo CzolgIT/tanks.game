@@ -11,7 +11,6 @@ UDPConnection::UDPConnection(): senderThread(nullptr) {
 
 UDPConnection::~UDPConnection() {
 
-    //cleaning
     closeThread = true;
     if(senderThread)
         senderThread->join();
@@ -20,20 +19,19 @@ UDPConnection::~UDPConnection() {
 }
 
 bool UDPConnection::connectToServer(std::string host, Uint16 port) {
-    //resolve server name
+
 
     if(SDLNet_ResolveHost(&ipAddress, host.c_str(),port)== -1){
         fprintf(stderr,"SDLNet_ResolveHost(%s %d): %s\n",host.c_str(), port, SDLNet_GetError());
         return false;
     }
 
-    //open a socket on random port
+
     if( !(udpSocket=SDLNet_UDP_Open(0))){
         fprintf(stderr,"SDLNet_UDP_Open: %s\n",SDLNet_GetError());
         return false;
     }
 
-    //if connected successfully, update flag
     connectionGood = true;
     return true;
 
@@ -55,7 +53,6 @@ void UDPConnection::addPacketToQueue(BasePacket *packet) {
 
 void UDPConnection::startSenderThread() {
 
-    //create a thread if one doesn't already exist
     if(senderThread == nullptr)
         senderThread = new std::thread(std::mem_fun(&UDPConnection::sendPackets),this);
 
@@ -80,10 +77,9 @@ void UDPConnection::sendPacket() {
 
     if( !packetQueue.empty()){
 
-        // SDLNet packet creation
+
         UDPpacket packet;
 
-        //destination
 
         packet.address.host = ipAddress.host;
         packet.address.port = ipAddress.port;

@@ -13,11 +13,11 @@ void MapDataPacket::setMapData(char *map) {
 }
 
 int MapDataPacket::getMapWidth() const {
-    return 8;
+    return 64;
 }
 
 int MapDataPacket::getMapHeight() const {
-    return 8;
+    return 64;
 }
 
 

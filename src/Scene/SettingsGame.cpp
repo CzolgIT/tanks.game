@@ -2,7 +2,6 @@
 
 SettingsGame::SettingsGame() : _Menu(2)
 {
-    // najpierw buttony
     elements.push_back( new Button("Change nickname", 32, 25.5, 5, Game::configuration->getNickname()) );
     elements.push_back( new Button("back", 32, 30, 3) );
 

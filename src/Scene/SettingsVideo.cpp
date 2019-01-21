@@ -2,7 +2,6 @@
 
 SettingsVideo::SettingsVideo() : _Menu(5)
 {
-    // najpierw buttony
     elements.push_back( new Button("fullscreen", 32, 17.5, 4, Game::configuration->isFullscreen() ? "yes" : "no") );
     elements.push_back( new Button("quality", 32, 21.5, 4, strActualQuality() ) );
     elements.push_back( new Button("vsync", 32, 25.5, 4, Game::configuration->getVsync() ? "yes" : "no") );
