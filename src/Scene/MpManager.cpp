@@ -289,7 +289,7 @@ void MpManager::draw()
     for (auto &powerUp    : powerUps   )    powerUp->draw(x0,y0);
     for (auto &animation  : animations )  animation->draw(x0,y0);
     for (auto &player     : players    ) player->drawInfo(x0,y0);
-    for (auto &text       : deads      )  text->draw(text_iter++);
+    for (auto &text       : deads      )  text->drawInLine(text_iter++);
 
     if (myPlayer->isDead)
     {
