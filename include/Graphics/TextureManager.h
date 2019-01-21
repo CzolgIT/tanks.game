@@ -1,6 +1,7 @@
 #ifndef TextureManager_h
 #define TextureManager_h
 
+#include <GUIElement/TextStatic.h>
 #include "Main.h"
 
 class TextureManager
@@ -32,6 +33,11 @@ public:
     Texture* bulletexplode;
 
     Texture* map;
+
+    TextStatic* youdied;
+
+    void reloadGUI();
+
 
 };
 

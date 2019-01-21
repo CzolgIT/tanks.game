@@ -1,6 +1,7 @@
 #ifndef TextStatic_h
 #define TextStatic_h
 
+#include "_Element.h"
 #include "Main.h"
 
 class TextStatic : public _Element

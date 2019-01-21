@@ -170,10 +170,18 @@ void MpManager::loadFromServer()
             case PT_PLAYER_DEAD:{
                 auto* packet = (PlayerDeadPacket*) received;
 
-                deads.push_back(new TextStatic("Gracz " + toString(netManager->clientsMap[packet->getPlayerId()]) + " zastrzelony przez " + toString(netManager->clientsMap[packet->getKillerId()]),32,0.5,1,0.1));
+                std::string info = "gracz ";
+                deads.push_back(new TextStatic(info.append(toString(netManager->clientsMap[packet->getPlayerId()])).append(" zastrzelony przez ").append(toString(netManager->clientsMap[packet->getKillerId()])),32,0.5,1,0.1));
 
-                Game::textManager->draw("Gracz " + netManager->clientsMap[packet->getPlayerId()] + " zastrzelony przez " + netManager->clientsMap[packet->getKillerId()],0,0,20,C_BLACK,
-                                        false);
+                for (auto &player : players) {
+                    if (player->getId() == packet->getPlayerId())
+                    {
+                        auto* tankexplode = new Animation( TANKEXPLODE , {player->getX(),player->getY()} , 0 );
+                        animations.push_back(tankexplode);
+                    }
+                }
+
+
                 if (packet->getPlayerId() == myPlayer->getId())
                 {
                     myPlayer->isDead = true;
@@ -249,6 +257,18 @@ void MpManager::draw()
     for (auto &player     : players    ) player->drawInfo(x0,y0);
     for (auto &text       : deads      )  text->draw();
 
+    if (myPlayer->isDead)
+    {
+        SDL_Rect ramka = {0,0,Game::configuration->getDisplayMode()->w,Game::configuration->getDisplayMode()->h};
+
+        SDL_SetRenderDrawBlendMode(Game::renderer , SDL_BLENDMODE_BLEND);
+        SDL_SetRenderDrawColor( Game::renderer , 0 , 0 , 0 ,120);
+        SDL_RenderFillRect( Game::renderer , &ramka );
+
+        Game::textureManager->youdied->draw();
+    }
+
+
     Game::debugger->draw();
 
     SDL_RenderPresent( Game::renderer );
@@ -262,6 +282,7 @@ void MpManager::reloadGUI()
     for (auto &bullet     : bullets    )     bullet->reloadGUI();
     for (auto &animation  : animations )  animation->reloadGUI();
     map->reloadGUI();
+    Game::textureManager->reloadGUI();
 
 }
 

@@ -27,4 +27,12 @@ TextureManager::TextureManager()
 
     this->map = new Texture("assets/city_strip.png");
 
+    this->youdied = new TextStatic("you died! please enter to respawn",32,17,2,0.1);
+}
+
+void TextureManager::reloadGUI()
+{
+    delete this->youdied;
+    this->youdied = nullptr;
+    this->youdied = new TextStatic("you died! please enter to respawn",32,17,2,0.1);
 }

@@ -30,7 +30,7 @@ Animation::Animation( AnimationType type , SDL_Point position , int rotation )
         case 3 :
             this->dimensions = {720,512};
             this->tex = Game::textureManager->tankexplode;
-            this->frames = 1; // ???
+            this->frames = 13; // ???
             this->speed = 10;
             break;
     }
