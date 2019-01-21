@@ -30,10 +30,11 @@ private:
     std::vector<Player*> players;
     std::vector<Bullet*> bullets;
     std::vector<_GameObject*> gameObjects;
+    std::vector<PowerUp*> powerUps;
     std::vector<Animation*> animations;
     std::vector<TextStatic*> deads;
 
-    EventPacket * prevEventPacket = nullptr;
+    EventPacket* prevEventPacket = nullptr;
 
     Player* myPlayer;
 

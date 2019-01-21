@@ -69,6 +69,19 @@ void MpManager::everyStep()
             ++animation_iterator;
     }
 
+    // deleting powerUps
+    auto powerup_iterator = powerUps.begin();
+    while(powerup_iterator != powerUps.end())
+    {
+        if((*powerup_iterator)->shouldBeDestroy())
+        {
+            delete *powerup_iterator;
+            powerup_iterator = powerUps.erase(powerup_iterator);
+        }
+        else
+            ++powerup_iterator;
+    }
+
 
     if (!myPlayer->isDead)
         sendMovement();
@@ -250,9 +263,10 @@ void MpManager::draw()
 
     MpManager::map->draw(x0 ,y0);
 
-    for (auto &gameObject : gameObjects) gameObject->draw(x0,y0);
+    //for (auto &gameObject : gameObjects) gameObject->draw(x0,y0);
     for (auto &player     : players    )     player->draw(x0,y0);
     for (auto &bullet     : bullets    )     bullet->draw(x0,y0);
+    for (auto &powerUp    : powerUps   )    powerUp->draw(x0,y0);
     for (auto &animation  : animations )  animation->draw(x0,y0);
     for (auto &player     : players    ) player->drawInfo(x0,y0);
     for (auto &text       : deads      )  text->draw();
@@ -311,6 +325,7 @@ void MpManager::reloadGUI()
 
     for (auto &player     : players    )     player->reloadGUI();
     for (auto &bullet     : bullets    )     bullet->reloadGUI();
+    for (auto &powerUp    : powerUps   )    powerUp->reloadGUI();
     for (auto &animation  : animations )  animation->reloadGUI();
     map->reloadGUI();
     Game::textureManager->reloadGUI();
