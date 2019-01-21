@@ -91,7 +91,7 @@ void Configuration::readFile()
     while (infile.good())
     {
         infile >> key;
-
+        sval = "";
         if (key == "QUALITY")
         {
             infile >> fval;
@@ -141,5 +141,38 @@ bool Configuration::getSounds()
 
 std::string Configuration::getNickname() {
     return nickname;
+}
+
+void Configuration::setNickname(const std::string &name) {
+
+    std::string pom ("NAME");
+    std::ifstream infile("config.txt");
+    std::ofstream config("config1.txt");
+    std::string line;
+
+    while (std::getline(infile, line))
+    {
+        if( pom.compare(line.substr(0,4)) == 0)
+        {
+            config << "NAME " << name;
+        }
+        else
+            config << line << "\n";
+    }
+    config.close();
+    infile.close();
+
+    std::rename("config1.txt","config.txt");
+
+    Configuration::nickname = name;
+}
+
+bool Configuration::isNicknameSet() {
+
+    if (nickname.compare("") == 0)
+    {
+        return false;
+    }
+    return true;
 }
 

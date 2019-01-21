@@ -22,7 +22,6 @@ Game::Game()
     textureManager = new TextureManager();
     debugger = new Debugger();
     soundManager = new SoundManager();
-
     currentScene = new MainMenu();
     running = true;
 }
@@ -56,7 +55,7 @@ void Game::Update()
             currentScene = new SettingsVideo();
             break;
         case 5:
-            Game::setNickname("");
+            Game::configuration->setNickname("");
             currentScene = new MainMenu();
             break;
         case 7: // Settings - Game
@@ -81,46 +80,5 @@ Game::~Game()
     SDL_Quit();
 }
 
-bool Game::isNicknameSet() {
 
-    std::ifstream infile("config.txt");
-    std::string name ("NAME");
-
-    std::string line;
-    while (std::getline(infile, line))
-    {
-        if( name.compare(line.substr(0,4)) == 0)
-        {
-            if (line.length() <=5)
-            {
-                infile.close();
-                return false;
-            }
-        }
-    }
-    infile.close();
-    return true;
-}
-
-void Game::setNickname(std::string name) {
-
-    std::string pom ("NAME");
-    std::ifstream infile("config.txt");
-    std::ofstream config("config1.txt");
-    std::string line;
-
-    while (std::getline(infile, line))
-    {
-        if( pom.compare(line.substr(0,4)) == 0)
-        {
-           config << "NAME " << name;
-        }
-        else
-            config << line << "\n";
-    }
-    config.close();
-    infile.close();
-
-    std::rename("config1.txt","config.txt");
-}
 
