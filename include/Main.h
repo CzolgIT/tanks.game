@@ -99,8 +99,8 @@
 #define NICKNAME "Gracz"
 
 #define SIGMAIP "153.19.7.230"
-#define LOCALIP "127.0.0.1"
-//#define LOCALIP "25.63.145.1"
+//#define LOCALIP "127.0.0.1"
+#define LOCALIP "25.63.145.1"
 #define SERVERPORT 7777
 
 //Tank Globals
