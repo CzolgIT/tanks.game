@@ -37,7 +37,7 @@ void MpManager::everyStep()
         p->updated = false;
 
         int los = int(random()%3); // generate drive animation
-        if (p->getTankSpeed()>0 && los==2)
+        if (p->getTankSpeed()!=0 && los==2)
         {
             auto* tankdrive = new Animation( TANKDRIVE , p->smokePosition() , p->getDir() );
             animations.push_back(tankdrive);
@@ -184,6 +184,12 @@ void MpManager::loadFromServer()
                 {
                     auto * bullet = new Bullet( {packet->getX(),packet->getY()} , packet->getAngle() , packet->getBulletId());
                     bullets.push_back(bullet);
+
+                    for (auto &player : players)
+                    {
+                        if (player->getId() == packet->getPlayerId() )
+                            player->turretState = 2;
+                    }
 
                     auto* tankshoot = new Animation( TANKSHOOT , {packet->getX(),packet->getY()} , packet->getAngle() );
                     animations.push_back(tankshoot);

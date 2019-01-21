@@ -8,7 +8,7 @@ class TankSprite
 public:
 
     TankSprite( int color = 1 , float scale=1 );
-    void draw( SDL_Point position , int dir , int dirT , int move );
+    void draw( SDL_Point position , int dir , int dirT , int move , SDL_Point turretposition = {0,0} );
 
     void reloadGUI();
     
@@ -21,7 +21,7 @@ private:
 
     int color;
 
-    int step;
+    double step;
 };
 
 #endif

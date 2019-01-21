@@ -10,21 +10,26 @@ TankSprite::TankSprite( int color , float scale )
     for (int i=0; i<5; i++)
         spriteTracks[i] = new Sprite( Game::textureManager->tracks , { 256*i , 0 , 256 , 256 } , TANKSCALE*scale );
 
-    step = 1;
+    step = 0;
 }
 
-void TankSprite::draw( SDL_Point position , int dir , int dirT , int move )
+void TankSprite::draw( SDL_Point position , int dir , int dirT , int move , SDL_Point turretposition )
 {
-    if (move > 0)
-        step++;
-    if (move < 0)
-        step --;
-    if (step == 199) step = 0; else if (step == 0) step = 199;
+    if (turretposition.x == 0 && turretposition.y == 0)
+        turretposition = position;
 
-    spriteTracks[(int)round(abs(step)/40)]->draw( position , dir );
+    if (move > 0)
+        step += Game::windowManager->getStepTime()*move/5;
+    if (move < 0)
+        step -= Game::windowManager->getStepTime()*move/5;
+
+    while (int(step)<0) step+=5;
+    while (int(step)>4) step-=5;
+
+    spriteTracks[int(step)]->draw( position , dir );
     spriteBody->draw( position , dir);
     spriteTower->draw( position , dirT);
-    spriteBarrel->draw( position , dirT);
+    spriteBarrel->draw( turretposition , dirT);
 }
 
 void TankSprite::reloadGUI()

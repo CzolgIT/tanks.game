@@ -19,6 +19,8 @@ Player::Player( int id, std::string nickname ) : _GameObject( {-5000,-5000} , { 
 
     xFloat = position.x;
     yFloat = position.y;
+
+    this->turretposition = position;
 }
 
 void Player::handleEvent( SDL_Event& e )
@@ -40,6 +42,7 @@ void Player::simulate()
 
     position.x = int(xFloat);
     position.y = int(yFloat);
+    turretposition = position;
 
     directionFloat += rotationSpeed * step ;
     towerDirection += rotationSpeed * step + turretRotationSpeed * step;
@@ -50,12 +53,38 @@ void Player::simulate()
 
 void Player::draw( int x0 , int y0 )
 {
+    if (turretState == 0)
+    {
+        turretposition = { position.x , position.y };
+    }
+    else
+    {
+        turretposition = { int(position.x + (cos((direction) *M_PI/180) * -turretcounter)) , int(position.y + (sin((direction) *M_PI/180) * -turretcounter)) };
+
+        if (turretState == 2 )
+        {
+            turretcounter += Game::windowManager->getStepTime() * 80;
+            turretposition = { int(position.x + (cos((direction) *M_PI/180) * -turretcounter)) , int(position.y + (sin((direction) *M_PI/180) * -turretcounter)) };
+            if (turretcounter >5)
+                turretState = 1;
+        }
+        if (turretState == 1)
+        {
+            turretcounter -= Game::windowManager->getStepTime() * 20;
+            if (turretcounter <0)
+            {
+                turretState =0;
+                turretcounter = 0;
+            }
+        }
+    }
+
     double scale = Game::configuration->getScale();
 
     if (id == Game::netManager->getMyId())
-        sprite->draw( { Game::configuration->getDisplayMode()->w/2 , Game::configuration->getDisplayMode()->h/2 } , direction , iTowerDirection , (int)moveSpeed );
+        sprite->draw( { Game::configuration->getDisplayMode()->w/2 , Game::configuration->getDisplayMode()->h/2 } , direction , iTowerDirection , getTankSpeed() , { int(x0+turretposition.x* scale) , int(y0+turretposition.y*scale) } );
     else
-        sprite->draw( { int(x0+position.x* scale) , int(y0+position.y*scale) } , direction , iTowerDirection , (int)moveSpeed );
+        sprite->draw( { int(x0+position.x* scale) , int(y0+position.y*scale) } , direction , iTowerDirection , getTankSpeed() , { int(x0+turretposition.x* scale) , int(y0+turretposition.y*scale) } );
 }
 
 void Player::drawInfo( int x0 , int y0 )

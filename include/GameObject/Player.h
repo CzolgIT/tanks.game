@@ -46,7 +46,13 @@ public:
 
     void setScore(int score);
 
+    int turretState=0;
+
 private:
+
+
+    double turretcounter=0;
+    SDL_Point turretposition;
 
     int id;
     std::string nickname;
