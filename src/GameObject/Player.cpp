@@ -14,7 +14,6 @@ Player::Player( int id, std::string nickname ) : _GameObject( {-5000,-5000} , { 
     towerSpeed = 0;
 
     sprite = new TankSprite( id , Game::configuration->getScale() );
-    collider = new Collider( position , dimensions , direction );
 
     blocked = {0,0};
 
@@ -88,19 +87,6 @@ void Player::drawInfo( int x0 , int y0 )
 
     SDL_RenderFillRect( Game::renderer , &ramka2 );
 
-
-//    Game::textManager->draw( std::to_string( position.x ) , x0+position.x , y0+position.y-140 , 15 , C_BLACK , true );
-//    Game::textManager->draw( std::to_string( position.y ) ,  x0+position.x , y0+position.y-126 , 15 , C_BLACK , true);
-//    Game::textManager->draw( std::to_string( direction ) , x0+position.x , y0+position.y-112 , 15 , C_BLACK , true);
-//
-//    Game::textManager->draw( std::to_string( (int)tankSpeed ) ,  x0+position.x , y0+position.y-94 , 15 , C_BLACK , true);
-//    Game::textManager->draw( std::to_string( (int)rotationSpeed ) ,  x0+position.x , y0+position.y-80 , 15 , C_BLACK , true);
-//    Game::textManager->draw( std::to_string( (int)turretRotationSpeed ) ,  x0+position.x , y0+position.y-66 , 15 , C_BLACK , true);
-
-    //Game::textManager->draw( "sp: " + std::to_string( moveSpeed ) ,  150 , 540 );
-    //Game::textManager->draw( "dir: " + std::to_string( direction ) ,  150 , 560 );
-    //Game::textManager->draw( "xblock: " + std::to_string( blocked.x ) ,  550 , 500 );
-    //Game::textManager->draw( "yblock: " + std::to_string( blocked.y ) ,  550 , 530 );
 }
 
 int Player::getTowDir() { return iTowerDirection; }

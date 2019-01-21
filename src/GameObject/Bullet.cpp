@@ -34,10 +34,7 @@ void Bullet::move()
 
 }
 
-void Bullet::destroy()
-{
 
-}
 
 void Bullet::reloadGUI()
 {

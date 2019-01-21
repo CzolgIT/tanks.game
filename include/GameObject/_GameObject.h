@@ -30,7 +30,6 @@ public:
     int getW();
     int getH();
 
-    virtual Collider * getCollider();
     ObjectType getType();
     bool shouldBeDestroy(){ return toDestroy; }
 
@@ -43,7 +42,6 @@ protected:
     SDL_Point dimensions;
     int direction;
 
-    Collider * collider;
     ObjectType type;
     bool toDestroy;
 

@@ -34,35 +34,6 @@ void Timer::stop()
     mPausedTicks = 0;
 }
 
-void Timer::pause()
-{
-    //If the timer is running and isn't already paused
-    if( mStarted && !mPaused )
-    {
-        //Pause the timer
-        mPaused = true;
-        
-        //Calculate the paused ticks
-        mPausedTicks = SDL_GetTicks() - mStartTicks;
-        mStartTicks = 0;
-    }
-}
-
-void Timer::unpause()
-{
-    //If the timer is running and paused
-    if( mStarted && mPaused )
-    {
-        //Unpause the timer
-        mPaused = false;
-        
-        //Reset the starting ticks
-        mStartTicks = SDL_GetTicks() - mPausedTicks;
-        
-        //Reset the paused ticks
-        mPausedTicks = 0;
-    }
-}
 
 Uint32 Timer::getTicks()
 {
@@ -86,14 +57,4 @@ Uint32 Timer::getTicks()
     }
     
     return time;
-}
-
-bool Timer::isStarted()
-{
-    return mStarted;
-}
-
-bool Timer::isPaused()
-{
-    return mPaused && mStarted;
 }

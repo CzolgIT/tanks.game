@@ -1,6 +1,6 @@
 #include "Main.h"
 
-SettingsGame::SettingsGame() : _Menu(5)
+SettingsGame::SettingsGame() : _Menu(2)
 {
     // najpierw buttony
     elements.push_back( new Button("Change nickname", 32, 25.5, 5, Game::configuration->getNickname()) );
