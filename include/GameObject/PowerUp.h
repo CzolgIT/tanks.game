@@ -3,16 +3,18 @@
 
 #include "Main.h"
 
-class PowerUp: public _GameObject
+class PowerUp
 {
 public:
 
     PowerUp( int id , SDL_Point position , int type );
-    void draw(int x0 , int y0) override;
+    void draw(int x0 , int y0);
     void reloadGUI();
+    int getId();
 
 private:
 
+    SDL_Point position;
     int id;
     int type;
     Sprite* sprite;

@@ -15,12 +15,6 @@ MpManager::MpManager(): _Scene()
     Game::soundManager->PlayEngineSound();
     Game::soundManager->PlayTurretSound();
 
-
-    powerUps.push_back(new PowerUp(1,{400,400},0));
-    powerUps.push_back(new PowerUp(2,{450,400},1));
-    powerUps.push_back(new PowerUp(3,{500,400},2));
-    powerUps.push_back(new PowerUp(4,{550,400},3));
-    powerUps.push_back(new PowerUp(5,{600,400},4));
 }
 
 void MpManager::everyStep()
@@ -75,20 +69,6 @@ void MpManager::everyStep()
         else
             ++animation_iterator;
     }
-
-    // deleting powerUps
-    auto powerup_iterator = powerUps.begin();
-    while(powerup_iterator != powerUps.end())
-    {
-        if((*powerup_iterator)->shouldBeDestroy())
-        {
-            delete *powerup_iterator;
-            powerup_iterator = powerUps.erase(powerup_iterator);
-        }
-        else
-            ++powerup_iterator;
-    }
-
 
     if (!myPlayer->isDead)
         sendMovement();
@@ -211,16 +191,21 @@ void MpManager::loadFromServer()
             case PT_POWERUP:{
                 auto* packet = (PowerUpPacket*) received;
 
-                std::cout << "przyszedl pakiet z powerupem\n";
                 if (packet->getToShow())
-                {
-                    std::cout << "przyszedl pakiet z powerupem 1:" << packet->getX() << " x " << packet->getY() << " " << packet->getPowerUpType() << "\n";
-                    powerUps.push_back( new PowerUp( int(packet->getPowerUpId()) , { int(packet->getX()) , int(packet->getY()) } , int(packet->getType()) ));
-                    std::cout << "jest " << powerUps.size() << " powerupow (w tym zebrane)\n";
-                }
+                    powerUps.push_back( new PowerUp( packet->getPowerUpId() , { packet->getX() , packet->getY() } , packet->getPowerUpType() ));
                 else
                 {
-                    std::cout << "PAKIET POWINIEN ZNIKNAC\n";
+                    auto powerup_iterator = powerUps.begin();
+                    while(powerup_iterator != powerUps.end())
+                    {
+                        if((*powerup_iterator)->getId() == packet->getPowerUpId())
+                        {
+                            delete *powerup_iterator;
+                            powerup_iterator = powerUps.erase(powerup_iterator);
+                        }
+                        else
+                            ++powerup_iterator;
+                    }
                 }
 
             }

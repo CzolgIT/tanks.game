@@ -31,8 +31,8 @@ public:
     PowerUpType getPowerUpType();
     bool getToShow();
     Uint8 getPowerUpId();
-    Uint16 getX();
-    Uint16 getY();
+    int getX();
+    int getY();
 };
 
 #endif //SERVERTANKSGAME_POWERUPPACKET_H

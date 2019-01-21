@@ -40,12 +40,12 @@ Uint8 PowerUpPacket::getPowerUpId() {
     return data[3];
 }
 
-Uint16 PowerUpPacket::getX() {
-    return SDLNet_Read16(&data[4]);
+int PowerUpPacket::getX() {
+    return int(static_cast<Uint16>(SDLNet_Read16(&data[4])));
 }
 
-Uint16 PowerUpPacket::getY() {
-    return SDLNet_Read16(&data[6]);
+int PowerUpPacket::getY() {
+    return int(static_cast<Uint16>(SDLNet_Read16(&data[6])));
 }
 
 
