@@ -14,6 +14,13 @@ MpManager::MpManager(): _Scene()
     Game::soundManager->PlayBackgroundMusic();
     Game::soundManager->PlayEngineSound();
     Game::soundManager->PlayTurretSound();
+
+
+    powerUps.push_back(new PowerUp(1,{400,400},0));
+    powerUps.push_back(new PowerUp(2,{450,400},1));
+    powerUps.push_back(new PowerUp(3,{500,400},2));
+    powerUps.push_back(new PowerUp(4,{550,400},3));
+    powerUps.push_back(new PowerUp(5,{600,400},4));
 }
 
 void MpManager::everyStep()
@@ -202,7 +209,20 @@ void MpManager::loadFromServer()
             }
             break;
             case PT_POWERUP:{
-                //TODO: Andrzeju, tutaj odbierasz info od pakietow i je rysujesz/robisz whatever you want
+                auto* packet = (PowerUpPacket*) received;
+
+                std::cout << "przyszedl pakiet z powerupem\n";
+                if (packet->getToShow())
+                {
+                    std::cout << "przyszedl pakiet z powerupem 1:" << packet->getX() << " x " << packet->getY() << " " << packet->getPowerUpType() << "\n";
+                    powerUps.push_back( new PowerUp( int(packet->getPowerUpId()) , { int(packet->getX()) , int(packet->getY()) } , int(packet->getType()) ));
+                    std::cout << "jest " << powerUps.size() << " powerupow (w tym zebrane)\n";
+                }
+                else
+                {
+                    std::cout << "PAKIET POWINIEN ZNIKNAC\n";
+                }
+
             }
 
             break;

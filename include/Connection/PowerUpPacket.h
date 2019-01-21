@@ -33,7 +33,6 @@ public:
     Uint8 getPowerUpId();
     Uint16 getX();
     Uint16 getY();
-    void setFromPowerUp(PowerUp* powerUp);
 };
 
 #endif //SERVERTANKSGAME_POWERUPPACKET_H

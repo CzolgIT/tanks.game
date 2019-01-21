@@ -75,7 +75,7 @@
 #include "GameObject/Player.h"
 #include "GameObject/Bullet.h"
 #include "GameObject/PowerUp.h"
-#include "Connection/PowerUpPacket.h""
+#include "Connection/PowerUpPacket.h"
 
 #include "Map.h"
 #include "Scene/_Scene.h"
