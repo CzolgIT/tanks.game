@@ -156,7 +156,7 @@ void MpManager::loadFromServer()
                     auto *newPlayer = new Player((int) packet->getId(), packet->getNickname() );
                     players.push_back(newPlayer);
                     std::string info = packet->getNickname();
-                    deads.push_back(new TextStatic(info.append(" joined to the game "),32,0.5,1,0.1));
+                    deads.push_back(new TextStatic(info.append(" joined"),32,0.5,1,0.1));
                 }
             }
                 break;
@@ -189,9 +189,7 @@ void MpManager::loadFromServer()
                 break;
             case PT_PLAYER_DEAD:{
                 auto* packet = (PlayerDeadPacket*) received;
-
-                std::string info = "gracz ";
-                deads.push_back(new TextStatic(info.append(toString(netManager->clientsMap[packet->getPlayerId()])).append(" zastrzelony przez ").append(toString(netManager->clientsMap[packet->getKillerId()])),32,0.5,1,0.1));
+                deads.push_back(new TextStatic(toString(netManager->clientsMap[packet->getPlayerId()]).append(" killed by ").append(toString(netManager->clientsMap[packet->getKillerId()])),32,0.5,1,0.1));
 
                 for (auto &player : players) {
                     if (player->getId() == packet->getPlayerId())
