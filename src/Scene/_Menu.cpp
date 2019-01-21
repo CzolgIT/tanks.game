@@ -29,9 +29,11 @@ void  _Menu::handleEvent()
             else selected++;
             break;
         case SDLK_LEFT:
+            Game::soundManager->PlayClickSound();
             actionLeft(selected);
             break;
         case SDLK_RIGHT:
+            Game::soundManager->PlayClickSound();
             actionRight(selected);
             break;
         default:

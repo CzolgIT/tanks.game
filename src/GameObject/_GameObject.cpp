@@ -42,11 +42,6 @@ int _GameObject::getH()
     return this->dimensions.y;
 }
 
-Collider * _GameObject::getCollider()
-{
-    return collider;
-}
-
 ObjectType _GameObject::getType()
 {
     return type;

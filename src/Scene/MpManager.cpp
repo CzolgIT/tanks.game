@@ -161,7 +161,7 @@ void MpManager::loadFromServer()
                     auto *newPlayer = new Player((int) packet->getId(), packet->getNickname() );
                     players.push_back(newPlayer);
                     std::string info = packet->getNickname();
-                    deads.push_back(new TextStatic(info.append(" joined to the game "),32,0.5,1,0.1));
+                    deads.push_back(new TextStatic(info.append(" joined"),32,0.5,1,0.1));
                 }
             }
                 break;
@@ -369,59 +369,4 @@ void MpManager::handleEvent()
     // use eventHandler
 }
 
-void MpManager::CheckColliders()
-{
-    Collider * col1 = nullptr;
-    Collider * col2 = nullptr;
-
-    for (int i = 0; i < gameObjects.size(); i++)
-    {
-        for (int j = i+1; j < gameObjects.size(); j++)
-        {
-            if (!(gameObjects[i]->getType()==STATIC && gameObjects[j]->getType()==STATIC))
-            {
-                double diagonal1 = sqrt( pow(gameObjects[i]->getW()/2,2) + pow(gameObjects[i]->getH()/2,2) );
-                double diagonal2 = sqrt( pow(gameObjects[j]->getW()/2,2) + pow(gameObjects[j]->getH()/2,2) );
-                double distance = sqrt( pow(gameObjects[j]->getX()-gameObjects[i]->getX(),2) + pow(gameObjects[j]->getY()-gameObjects[i]->getY(),2) );
-
-                if ( (distance < diagonal1 + diagonal2) )
-                {
-                    col1 = gameObjects[i]->getCollider();
-                    col2 = gameObjects[j]->getCollider();
-
-                    Vector2D col = Collider::areColliding(col1, col2);
-                    if (col.x != 0 || col.y != 0) {
-                        bool del_i=false;
-                        bool del_j=false;
-                        if (auto *p = dynamic_cast<Player *>(gameObjects[i])) {
-                            if (auto *b = dynamic_cast<Bullet *>(gameObjects[j])) {
-
-                            } else{
-                                p->PushOut(col * 2);
-                            }
-                        } else if (auto *p = dynamic_cast<Player *>(gameObjects[j])) {
-                            if (auto *b = dynamic_cast<Bullet *>(gameObjects[i])) {
-
-                            } else{
-                                p->PushOut(col * 2);
-
-                            }
-                        } else if (auto *b = dynamic_cast<Bullet *>(gameObjects[i])) {
-                            del_i=true;
-                        } else if (auto *b = dynamic_cast<Bullet *>(gameObjects[j])) {
-                            del_j=true;
-                        }
-
-                        if (!(del_i && del_j))
-                        {
-                            if (del_i) gameObjects[i]->setToBeDestroyed();
-                            if (del_j) gameObjects[j]->setToBeDestroyed();
-                        }
-
-                    }
-                }
-            }
-        }
-    }
-}
 
