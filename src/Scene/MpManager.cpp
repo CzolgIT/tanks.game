@@ -77,6 +77,7 @@ void MpManager::everyStep()
         if(state[SDL_SCANCODE_RETURN]){
             auto *playerReadyPacket = new PlayerReadyPacket;
             playerReadyPacket->setId(static_cast<Uint8>(netManager->getMyId()));
+            powerUps.erase (powerUps.begin(),powerUps.end());
             netManager->tcpSend(playerReadyPacket);
             myPlayer->isDead = false;
         }
