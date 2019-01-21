@@ -32,3 +32,12 @@ void TextStatic::loadTexture()
     this->white->setAlignCenter(true);
     TTF_CloseFont( font );
 }
+
+void TextStatic::setNewName(std::string nname)
+{
+    name = std::move(nname);
+    free(white);
+    free(black);
+    loadTexture();
+
+}

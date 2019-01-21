@@ -9,6 +9,9 @@ public:
 
     MainMenu();
 
+    bool isNicknameSet();
+    void setNickname(std::string name);
+
 };
 
 #endif

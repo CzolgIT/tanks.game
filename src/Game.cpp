@@ -29,6 +29,7 @@ Game::Game()
 
 void Game::Update()
 {
+
     while (currentScene->isRunning())
     {
         Game::windowManager->update();
