@@ -46,6 +46,7 @@ bool NetManager::connect(std::string host, Uint16 port, Uint32 &globalTime) {
     tcpConnection.startSenderThread();
     udpConnection.startSenderThread();
 
+    SDL_Delay(3000);
     getAllPlayersData();
     //ping the server
     if(!syncTimeWithServer(netPlayer, globalTime))
@@ -67,7 +68,7 @@ void NetManager::getMap(){
     irpacket->setRequested(RequestType::RT_MAP_DATA);
     tcpConnection.addPacketToQueue(irpacket);
 
-    float timeOut = 300;
+    float timeOut = 1000;
 
     while (true) {
         read();
