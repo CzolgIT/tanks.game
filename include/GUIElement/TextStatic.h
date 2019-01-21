@@ -9,7 +9,7 @@ class TextStatic : public _Element
 public:
 
     TextStatic( std::string name , float x , float y , float size , float shadow=-1 );
-    void draw() override;
+    void draw(int line=0);
     void updateScale() override;
     void loadTexture();
 

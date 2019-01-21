@@ -15,6 +15,13 @@ MpManager::MpManager(): _Scene()
     Game::soundManager->PlayEngineSound();
     Game::soundManager->PlayTurretSound();
 
+    for (auto const& client : Game::netManager->clientsMap){
+        if (client.first != myPlayer->getId())
+        {
+            players.push_back(new Player( client.first , client.second ));
+        }
+    }
+
 }
 
 void MpManager::everyStep()
@@ -105,17 +112,22 @@ void MpManager::loadFromServer()
                         player->setFromPacket(packet);
                     }
                 }
-                if (!player_found) {
-                    auto *newPlayer = new Player((int) packet->getPlayerId(), netManager->clientsMap[packet->getPlayerId()]);
-                    newPlayer->setFromPacket(packet);
-                    players.push_back(newPlayer);
-                }
+//                if (!player_found) {
+//                    auto *newPlayer = new Player((int) packet->getPlayerId(), netManager->clientsMap[packet->getPlayerId()]);
+//                    newPlayer->setFromPacket(packet);
+//                    players.push_back(newPlayer);
+//                    std::string info = newPlayer->getNickname();
+//                    deads.push_back(new TextStatic(info.append(" joined to the game "),32,0.5,1,0.1));
+//                }
                 //delete packet;
             }
                 break;
             case PT_PLAYER_DISCONNECTED:
             {
                 auto* packet = (PlayerDisconnectedPacket *)received;
+
+                Game::netManager->clientsMap.erase(packet->getId());
+
                 auto players_iterator = players.begin();
                 while(players_iterator != players.end())
                 {
@@ -134,11 +146,18 @@ void MpManager::loadFromServer()
             {
                 auto* packet = (PlayerJoinedPacket*)received;
 
-                auto *newPlayer = new Player(packet->getId(),packet->getNickname());
-                players.push_back(newPlayer);
-
-                packet->print();
-                //delete packet;
+                bool player_found = false;
+                for (auto &player : players) {
+                    if (player->getId() == packet->getId()) {
+                        player_found = true;
+                    }
+                }
+                if (!player_found) {
+                    auto *newPlayer = new Player((int) packet->getId(), packet->getNickname() );
+                    players.push_back(newPlayer);
+                    std::string info = packet->getNickname();
+                    deads.push_back(new TextStatic(info.append(" joined to the game "),32,0.5,1,0.1));
+                }
             }
                 break;
             case PT_BULLET_INFO:
@@ -199,6 +218,7 @@ void MpManager::loadFromServer()
                     auto powerup_iterator = powerUps.begin();
                     while(powerup_iterator != powerUps.end())
                     {
+
                         if((*powerup_iterator)->getId() == packet->getPowerUpId())
                         {
                             delete *powerup_iterator;
@@ -260,13 +280,13 @@ void MpManager::draw()
 
     MpManager::map->draw(x0 ,y0);
 
-    //for (auto &gameObject : gameObjects) gameObject->draw(x0,y0);
+    int text_iter=0;
     for (auto &player     : players    )     player->draw(x0,y0);
     for (auto &bullet     : bullets    )     bullet->draw(x0,y0);
     for (auto &powerUp    : powerUps   )    powerUp->draw(x0,y0);
     for (auto &animation  : animations )  animation->draw(x0,y0);
     for (auto &player     : players    ) player->drawInfo(x0,y0);
-    for (auto &text       : deads      )  text->draw();
+    for (auto &text       : deads      )  text->draw(text_iter++);
 
     if (myPlayer->isDead)
     {

@@ -8,10 +8,10 @@ TextStatic::TextStatic( std::string name , float x , float y , float size , floa
     this->shadow = shadow;
     loadTexture();
 }
-void TextStatic::draw()
+void TextStatic::draw(int line)
 {
-    black->draw(int(x*xScale) + int((shadow == -1) ? yScale/9 : yScale*shadow), int(y*yScale) + int((shadow == -1) ? yScale/9 : yScale*shadow));
-    white->draw(int(x*xScale) , int(y*yScale));
+    black->draw(int(x*xScale) + int((shadow == -1) ? yScale/9 : yScale*shadow), yScale*line + int(y*yScale) + int((shadow == -1) ? yScale/9 : yScale*shadow));
+    white->draw(int(x*xScale) , yScale*line + int(y*yScale));
 }
 void TextStatic::updateScale()
 {

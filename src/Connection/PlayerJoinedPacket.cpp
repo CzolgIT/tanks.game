@@ -5,7 +5,7 @@
 
 PlayerJoinedPacket::PlayerJoinedPacket():BasePacket(PT_PLAYER_JOINED,PLAYERJOINED_PACKET_SIZE) {
     for(int i=2; i<12; i++){
-        data[i] = (Uint8)0;
+        data[i] = 0;
     }
 }
 
@@ -35,6 +35,17 @@ void PlayerJoinedPacket::setNickname(std::string nickname) {
 
 std::string PlayerJoinedPacket::getNickname() const
 {
-    return toString(toString(data[2])+toString(data[3])+toString(data[4])+toString(data[5])
-           +toString(data[6])+toString(data[7])+toString(data[8])+toString(data[9])+toString(data[10])+toString(data[11]));
+    std::string nickname;
+    char letter;
+    for(int i=2; i<12;i++)
+    {
+        if (data[i]==0)
+            break;
+        else
+            {
+            letter = data[i];
+            nickname.push_back(letter);
+        }
+    }
+    return nickname;
 }
