@@ -283,7 +283,7 @@ void MpManager::draw()
         Game::textManager->draw("deaths",w/4+3*w/10,h/4+(w/40),20*Game::configuration->getScale(),C_WHITE);
         Game::textManager->draw("score",w/4+4*w/10,h/4+(w/40),20*Game::configuration->getScale(),C_WHITE);
 
-        SDL_Rect statline = {w/4+w/40,h/4+3*h/40,w/2-w/20,5};
+        SDL_Rect statline = {w/4+w/40,h/4+2*w/36,w/2-w/20,5};
         SDL_SetRenderDrawColor( Game::renderer , 255 , 255 , 255 ,255);
         SDL_RenderFillRect( Game::renderer , &statline );
 
