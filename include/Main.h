@@ -39,7 +39,6 @@
 #include "Graphics/TextureManager.h"
 #include "Graphics/Sprite.h"
 #include "Graphics/TankSprite.h"
-#include "Graphics/Background.h"
 #include "Graphics/Animation.h"
 
 #include "Text/Letter.h"
@@ -75,7 +74,7 @@
 #include "GameObject/_GameObject.h"
 #include "GameObject/Player.h"
 #include "GameObject/Bullet.h"
-#include "GameObject/Wall.h"
+#include "GameObject/PowerUp.h"
 
 #include "Map.h"
 #include "Scene/_Scene.h"
@@ -87,7 +86,6 @@
 #include "Scene/SettingsGame.h"
 #include "Scene/Room.h"
 #include "Scene/MainMenu.h"
-#include "Scene/Manager.h"
 #include "Scene/MpManager.h"
 
 

@@ -10,33 +10,11 @@ Map::Map() {
 
     for (int i = 0; i < 37; i++)
     {
-        elements[i] = new Sprite(Game::textureManager->map, {160*i,0,160,160}, 0.41 * Game::configuration->getScale());
+        elements[i] = new Sprite(Game::textureManager->map, {160*i,0,160,160}, float(0.41 * Game::configuration->getScale()));
     }
     width=double(64) * Game::configuration->getScale();
     height=double(64) * Game::configuration->getScale();
 
-}
-
-void Map::loadFromFile( std::vector<_GameObject*> * gameObjects )
-{
-    std::ifstream infile("assets/maps/map2.txt");
-    int w,h;
-    infile >> w >> h;
-    char c;
-
-    for(int i =0; i<h; i++)
-    {
-        for(int j =0; j<w; j++)
-        {
-            infile >> c;
-            if (c == '#')
-            {
-                auto * wall = new Wall({ 32+j*64 , 32+i*64 });
-                gameObjects->push_back(wall);
-            }
-        }
-    }
-    infile.close();
 }
 
 void Map::draw(int x , int y)
@@ -46,8 +24,8 @@ void Map::draw(int x , int y)
     {
         for (int i = 0; i < MAP_WIDTH; i++)
         {
-            int xPos = x+width*double(i);
-            int yPos = y+height*double(j);
+            int xPos = int(x+width*double(i));
+            int yPos = int(y+height*double(j));
             SDL_Point pos = {xPos,yPos};
             switch (characters[j*MAP_WIDTH+i])
             {

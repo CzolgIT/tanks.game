@@ -12,11 +12,12 @@ public:
 
     // user interface
     Texture* button;
+    TextStatic* youdied;
 
     // map elements
-    Texture* wall;
     Texture* background;
-    Texture* city;
+    Texture* map;
+    Texture* mapmin;
 
     // tank sprites
     Texture* barrel;
@@ -24,7 +25,9 @@ public:
     Texture* tower;
     Texture* tracks;
 
+    // gameobjects
     Texture* bullet;
+    Texture* powerups;
 
     // animation sheets
     Texture* tankdrive;
@@ -32,13 +35,7 @@ public:
     Texture* tankexplode;
     Texture* bulletexplode;
 
-    Texture* map;
-    Texture* mapmin;
-
-    TextStatic* youdied;
-
     void reloadGUI();
-
 
 };
 
