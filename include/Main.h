@@ -63,7 +63,6 @@
 #include "Connection/PlayerJoinedPacket.h"
 #include "Connection/PlayerReadyPacket.h"
 #include "Connection/PlayerDeadPacket.h"
-#include "Connection/ScoreInfoPacket.h"
 #include "Connection/SyncPacket.h"
 #include "Connection/EventPacket.h"
 #include "Connection/NetPlayer.h"
@@ -71,10 +70,12 @@
 #include "Connection/TCPConnection.h"
 #include "Connection/NetManager.h"
 
+#include "PowerUpType.h"
 #include "GameObject/_GameObject.h"
 #include "GameObject/Player.h"
 #include "GameObject/Bullet.h"
 #include "GameObject/PowerUp.h"
+#include "Connection/PowerUpPacket.h""
 
 #include "Map.h"
 #include "Scene/_Scene.h"

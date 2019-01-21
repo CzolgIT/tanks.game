@@ -155,8 +155,8 @@ BasePacket* TCPConnection::getNextPacket() {
                     case PT_MAP_INFO:
                         bytesRemaining = MAP_PACKET_SIZE-1;
                         break;
-                    case PT_SCORE_INFO:
-                        bytesRemaining = SCORE_INFO_PACKET_SIZE-1;
+                    case PT_PLAYER_DEAD:
+                        bytesRemaining = PLAYERDEAD_PACKET_SIZE-1;
                         break;
                     default:
                         std::cout<<"TCP unknown packet size!"<<std::endl;
