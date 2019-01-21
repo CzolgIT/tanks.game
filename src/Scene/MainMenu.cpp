@@ -12,7 +12,7 @@ MainMenu::MainMenu() : _Menu(4)
         elements.push_back( new TextStatic( "Enter your nickname" , 32 , 2.3 , 3 , 0.2 ) );
         std::string inputText = "";
 
-        TextStatic *txt = new TextStatic(inputText, 32 , 8.3 , 6 , 0.2);
+        TextStatic *txt = new TextStatic("\"\"", 32 , 8.3 , 6 , 0.2);
         elements.push_back(txt);
         SDL_StartTextInput();
         while (!quit) {
