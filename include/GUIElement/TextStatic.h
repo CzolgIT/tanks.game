@@ -13,6 +13,8 @@ public:
     void updateScale() override;
     void loadTexture();
 
+    void setNewName(std::string nname);
+
 private:
 
     Texture* black;

@@ -20,6 +20,8 @@ public:
 protected:
 
     std::string name;
+
+protected:
     float x,y,xScale,yScale;
 
 };
