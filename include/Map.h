@@ -11,7 +11,8 @@ class Map
 public:
     char * characters;
     explicit Map();
-    void loadFromFile( std::vector<_GameObject*> * gameObjects );
+
+    void getMapFromFile();
 
     void draw(int x , int y);
 

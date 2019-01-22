@@ -46,7 +46,7 @@ bool NetManager::connect(std::string host, Uint16 port, Uint32 &globalTime) {
     tcpConnection.startSenderThread();
     udpConnection.startSenderThread();
 
-    SDL_Delay(3000);
+    SDL_Delay(300);
     getAllPlayersData();
 
     if(!syncTimeWithServer(netPlayer, globalTime))
@@ -63,31 +63,34 @@ bool NetManager::connect(std::string host, Uint16 port, Uint32 &globalTime) {
 }
 
 void NetManager::getMap(){
-    InfoRequestPacket * irpacket = new InfoRequestPacket();
-    irpacket->setRequested(RequestType::RT_MAP_DATA);
-    tcpConnection.addPacketToQueue(irpacket);
 
-    float timeOut = 1000;
+    MpManager::map->getMapFromFile();
 
-    while (true) {
-        read();
-        if (canPollPacket()) {
-            BasePacket *received = pollPacket();
-            if (received->getType() == PT_MAP_INFO) {
-                std::cout << "Got map packet" << std::endl;
-                MapDataPacket *m = (MapDataPacket *) received;
-                strcpy(MpManager::map->characters, m->getMapData());
-                std::cout << MpManager::map->characters << std::endl;
-                break;
-            }
-        }
-        if (timeOut < 0)
-            break;
-
-        timeOut--;
-        SDL_Delay(10);
-        std::cout << timeOut << std::endl;
-    }
+//    InfoRequestPacket * irpacket = new InfoRequestPacket();
+//    irpacket->setRequested(RequestType::RT_MAP_DATA);
+//    tcpConnection.addPacketToQueue(irpacket);
+//
+//    float timeOut = 1000;
+//
+//    while (true) {
+//        read();
+//        if (canPollPacket()) {
+//            BasePacket *received = pollPacket();
+//            if (received->getType() == PT_MAP_INFO) {
+//                std::cout << "Got map packet" << std::endl;
+//                MapDataPacket *m = (MapDataPacket *) received;
+//                strcpy(MpManager::map->characters, m->getMapData());
+//                std::cout << MpManager::map->characters << std::endl;
+//                break;
+//            }
+//        }
+//        if (timeOut < 0)
+//            break;
+//
+//        timeOut--;
+//        SDL_Delay(10);
+//        std::cout << timeOut << std::endl;
+//    }
 
 }
 

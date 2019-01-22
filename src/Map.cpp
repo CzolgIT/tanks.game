@@ -13,6 +13,25 @@ Map::Map() {
 
 }
 
+void Map::getMapFromFile()
+{
+    //w, h - 64
+
+    std::ifstream infile("assets/maps/map2.txt");
+    char temp;
+
+    for (int x = 0; x < MAP_WIDTH; x++)
+    {
+        for (int y = 0; y < MAP_HEIGHT; y++)
+        {
+            infile >> temp;
+            characters[x*MAP_WIDTH+y] = temp;
+        }
+
+    }
+    infile.close();
+}
+
 void Map::draw(int x , int y)
 {
 
