@@ -52,7 +52,6 @@ bool TCPConnection::connectToServer(NetPlayer* player, std::string host, Uint16 
     if(response.getResponse() == JR_OK){
         std::cout << "The connection to the server was successful! : " << (int)response.getId() << "\n";
         player->id = (Uint8)(int)response.getId();
-        std::cout << "X" <<  (int)player->id << "D" << std::endl;
         SDLNet_TCP_AddSocket(socketSet,socket);
         connectionGood = true;
         return true;
@@ -134,9 +133,6 @@ BasePacket* TCPConnection::getNextPacket() {
                         break;
                     case PT_PLAYER_JOINED:
                         bytesRemaining = PLAYERJOINED_PACKET_SIZE-1;
-                        break;
-                    case PT_LAST_PLAYER_SENT:
-                        bytesRemaining = LAST_PLAYER_SENT_SIZE-1;
                         break;
                     case PT_MAP_INFO:
                         bytesRemaining = MAP_PACKET_SIZE-1;

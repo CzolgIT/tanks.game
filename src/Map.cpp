@@ -165,7 +165,7 @@ void Map::draw(int x , int y)
 
 void Map::reloadGUI()
 {
-    std::cout << "nowa skala: " << 0.4 * Game::configuration->getScale() << "\n";
+//    std::cout << "nowa skala: " << 0.4 * Game::configuration->getScale() << "\n";
 
     for (int i = 0; i < 37; i++)
     {

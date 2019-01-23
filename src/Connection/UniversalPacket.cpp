@@ -37,8 +37,6 @@ BasePacket* UniversalPacket::createFromContents()
             return constructPacket(new CurrentPositionPacket);
         case PT_PLAYER_JOINED:
             return constructPacket(new PlayerJoinedPacket);
-        case PT_LAST_PLAYER_SENT:
-            return constructPacket(new LastPlayerSentPacket);
         case PT_BULLET_INFO:
             return constructPacket(new BulletInfoPacket);
         case PT_MAP_INFO:

@@ -269,8 +269,6 @@ void MpManager::sendMovement()
     ep->setTime(netManager->getGlobalTime());
     if(prevEventPacket!= nullptr){
         if(!ep->compare(prevEventPacket)){
-            //delete_object(prevEventPacket);
-            std::cout << "wysłałem nowy pakiet" << std::endl;
             Game::netManager->udpSend(ep);
             prevEventPacket = new EventPacket();
             prevEventPacket->setId(ep->getId());
@@ -280,7 +278,6 @@ void MpManager::sendMovement()
         prevEventPacket = new EventPacket();
         prevEventPacket->setId(ep->getId());
         prevEventPacket->setKeys(ep->getKeys());
-        std::cout << "przypisałem nowy pakiet jako wzorcowy" << std::endl;
         Game::netManager->udpSend(ep);
     }
 }
