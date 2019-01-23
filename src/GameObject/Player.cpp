@@ -51,12 +51,12 @@ void Player::draw( int x0 , int y0 )
     }
     else
     {
-        turretposition = { int(position.x + (cos((direction) *M_PI/180) * -turretcounter)) , int(position.y + (sin((direction) *M_PI/180) * -turretcounter)) };
+        turretposition = { int(position.x + (cos((iTowerDirection) *M_PI/180) * -turretcounter)) , int(position.y + (sin((iTowerDirection) *M_PI/180) * -turretcounter)) };
 
         if (turretState == 2 )
         {
             turretcounter += Game::windowManager->getStepTime() * 80;
-            turretposition = { int(position.x + (cos((direction) *M_PI/180) * -turretcounter)) , int(position.y + (sin((direction) *M_PI/180) * -turretcounter)) };
+            turretposition = { int(position.x + (cos((iTowerDirection) *M_PI/180) * -turretcounter)) , int(position.y + (sin((iTowerDirection) *M_PI/180) * -turretcounter)) };
             if (turretcounter >5)
                 turretState = 1;
         }
