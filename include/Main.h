@@ -30,10 +30,6 @@
     #include <SDL2/SDL_mixer.h>
 #endif
 
-#include "Collisions/Vector2D.h"
-#include "Collisions/Projection.h"
-#include "Collisions/Collider.h"
-
 #include "Graphics/Texture.h"
 #include "Graphics/Debugger.h"
 #include "Graphics/TextureManager.h"

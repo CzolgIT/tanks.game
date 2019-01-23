@@ -59,8 +59,6 @@ private:
 
     int actualHp;
 
-    Vector2D blocked;
-
     float xFloat , yFloat;
 
     int deaths = 0;

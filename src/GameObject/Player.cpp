@@ -15,8 +15,6 @@ Player::Player( int id, std::string nickname ) : _GameObject( {-5000,-5000} , { 
 
     sprite = new TankSprite( id , Game::configuration->getScale() );
 
-    blocked = {0,0};
-
     xFloat = position.x;
     yFloat = position.y;
 
