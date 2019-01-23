@@ -365,9 +365,5 @@ void MpManager::reloadGUI()
 
 }
 
-void MpManager::handleEvent()
-{
-
-}
 
 

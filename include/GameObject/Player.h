@@ -7,7 +7,6 @@ public:
 
     Player( int id = 0, std::string nickname = "default" ) ;
     void handleEvent( SDL_Event& e );
-    void move();
     void draw( int x0 , int y0 );
     void drawInfo( int x0 , int y0 );
     int getId();
@@ -38,12 +37,10 @@ public:
     void setActualHp(int actualHp);
 
     bool isDead = false;
+
     int getDeaths() const;
-
     void setDeaths(int deaths);
-
     int getScore() const;
-
     void setScore(int score);
 
     int turretState=0;

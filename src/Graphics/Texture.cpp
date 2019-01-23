@@ -117,9 +117,6 @@ void Texture::draw(float x, float y, float scale, SDL_Rect *clip, double angle, 
     SDL_RenderCopyEx( Game::renderer , mTexture, clip, &renderQuad, angle, center, SDL_FLIP_NONE );
 }
 
-void Texture::setColor( Uint8 r, Uint8 g, Uint8 b ) { SDL_SetTextureColorMod( mTexture, r, g, b ); }
-void Texture::setBlendMode( SDL_BlendMode blending ) { SDL_SetTextureBlendMode( mTexture, blending ); }
-void Texture::setAlpha( Uint8 alpha ) { SDL_SetTextureAlphaMod( mTexture, alpha ); }
 void Texture::setAlignCenter(bool center) { this->alignCenter = center; }
 
 int Texture::getWidth() { return mWidth; }

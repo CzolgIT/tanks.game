@@ -11,8 +11,6 @@ public:
 
     void everyStep() override;
     void draw() override;
-    void handleEvent() override;
-
     void reloadGUI() override;
 
     // globals

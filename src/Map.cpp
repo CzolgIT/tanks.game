@@ -156,7 +156,6 @@ void Map::draw(int x , int y)
                     elements[36]->draw(pos,0);
                     break;
                 default:
-                    // NIEPRAWIDLOWA MAPA JEST PRZESLANA
                     elements[0]->draw(pos,0);
                     break;
             }

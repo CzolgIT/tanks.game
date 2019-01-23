@@ -1,16 +1,14 @@
 #include "Main.h"
 
-_GameObject::_GameObject( SDL_Point position , SDL_Point dimensions , int direction , ObjectType type )
+_GameObject::_GameObject( SDL_Point position , SDL_Point dimensions , int direction)
 {
     this->position = position;
     this->dimensions = dimensions;
     this->direction = direction;
 
-    this->type = type;
     this->toDestroy = false;
 }
 
-void _GameObject::destroy(){}
 
 SDL_Point _GameObject::getPosition()
 {
@@ -40,9 +38,4 @@ int _GameObject::getW()
 int _GameObject::getH()
 {
     return this->dimensions.y;
-}
-
-ObjectType _GameObject::getType()
-{
-    return type;
 }
