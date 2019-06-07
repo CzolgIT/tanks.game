@@ -14,14 +14,6 @@ void SettingsGame::actionLeft( int s )
 {
     switch( s )
     {
-        case 0:
-            break;
-        case 1:
-            break;
-        case 2:
-            break;
-        case 3:
-            break;
         default:
             break;
     }
@@ -30,14 +22,6 @@ void SettingsGame::actionRight( int s )
 {
     switch( s )
     {
-        case 0:
-            break;
-        case 1:
-            break;
-        case 2:
-            break;
-        case 3:
-            break;
         default:
             break;
     }
