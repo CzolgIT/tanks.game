@@ -15,8 +15,6 @@ Map::Map() {
 
 void Map::getMapFromFile()
 {
-    //w, h - 64
-
     std::ifstream infile("assets/maps/map2.txt");
     char temp;
 
@@ -165,8 +163,6 @@ void Map::draw(int x , int y)
 
 void Map::reloadGUI()
 {
-//    std::cout << "nowa skala: " << 0.4 * Game::configuration->getScale() << "\n";
-
     for (int i = 0; i < 37; i++)
     {
         delete elements[i];
